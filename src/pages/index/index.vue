@@ -1,7 +1,9 @@
 <template>
   <div class="chatting">
     <div v-if="allConversation.length === 0" class="empty">
-      <button type="button" class="empty-button" @click="empty">发起会话</button>
+      <view class="i-divider-mart">
+        <i-divider content="没有其他数据" lineColor="#2d8cf0"></i-divider>
+      </view>
     </div>
     <div class="chat" v-for="item in allConversation" :key="item.conversationID">
       <i-modal title="确认删除会话？" :visible="modalVisible" @ok="handleConfirm()" @cancel="handleModalShow">
@@ -71,7 +73,7 @@
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-      <i-tab-bar-item key="kepu" icon="document" current-icon="document_fill" title="科普"></i-tab-bar-item>
+      <i-tab-bar-item key="science" icon="document" current-icon="document_fill" title="科普"></i-tab-bar-item>
       <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
     </i-tab-bar>
   </div>
@@ -111,9 +113,9 @@ export default {
         wx.switchTab({
           url: '../home/main'
         })
-      } else if (detail.mp.detail.key.toString() === 'kepu') {
+      } else if (detail.mp.detail.key.toString() === 'science') {
         wx.switchTab({
-          url: '../newsDoc/main'
+          url: '../science/main'
         })
       } else if (detail.mp.detail.key.toString() === 'mine') {
         wx.switchTab({

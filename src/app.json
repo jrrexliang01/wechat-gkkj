@@ -5,7 +5,10 @@
     "pages/login/main",
     "pages/citySelect/main",
     "pages/search/main",
-    "pages/docInfo/main"
+    "pages/docInfo/main",
+    "pages/science/main",
+    "pages/own/main",
+    "pages/scienceInfo/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,6 +31,18 @@
       {
         "text": "首页",
         "pagePath": "pages/home/main",
+        "iconPath": "static/images/index.png",
+        "selectedIconPath": "static/images/index_focus.png"
+      },
+      {
+        "text": "科普",
+        "pagePath": "pages/science/main",
+        "iconPath": "static/images/index.png",
+        "selectedIconPath": "static/images/index_focus.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/own/main",
         "iconPath": "static/images/index.png",
         "selectedIconPath": "static/images/index_focus.png"
       }

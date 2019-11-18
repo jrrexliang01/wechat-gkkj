@@ -17,7 +17,7 @@
           <span class="z-font-size-13 z-color-888"></span>
         </p>
         <p class="ub-box ub-ver">
-				<span @click.stop="toGoods (docInfo.id) " class="buyBtn ub-box ub-ver z-font-size-16 z-color-fff">
+				<span @click.stop="toConsult (docInfo.id) " class="buyBtn ub-box ub-ver z-font-size-16 z-color-fff">
 					立即咨询
 				</span>
         </p>
@@ -110,7 +110,7 @@ export default {
     this.docInfo = wx.getStorageSync('docInfo')
   },
   methods: {
-    toGoods (id) {
+    toConsult (id) {
       wx.navigateTo({
         url: '/pages/docInfo/main?docId=' + id
       })
