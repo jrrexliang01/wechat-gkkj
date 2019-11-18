@@ -8,7 +8,11 @@
     "pages/docInfo/main",
     "pages/science/main",
     "pages/own/main",
-    "pages/scienceInfo/main"
+    "pages/scienceInfo/main",
+    "pages/myorder/main",
+    "pages/myInfo/main",
+    "pages/patInfo/main",
+    "pages/agreement/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
