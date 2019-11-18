@@ -105,19 +105,20 @@
         })
       },
       gotoDetail (id) {
-        wx.navigateTo({url: '/pages/testDocInfo1/main?docId=' + id})
+        wx.navigateTo({url: '/pages/docInfo/main?docId=' + id})
       }
     },
     async beforeCreate () {
       // 调用应用实例的方法获取全局数据
-      const { res } = await getDocList()
-      wx.setStorageSync('docList', res)
+      const { docList } = await getDocList()
+      wx.setStorageSync('docList', docList)
     },
     mounted () {
       this.docList = wx.getStorageSync('docList')
     },
     onPullDownRefresh () {
       setTimeout(() => {
+        this.docList = wx.getStorageSync('docList')
         wx.stopPullDownRefresh()
       }, 600)
     }
