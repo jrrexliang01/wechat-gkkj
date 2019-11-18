@@ -52,7 +52,7 @@
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-333"><b>状态</b></p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333">{{docInfo.onlineStatus}}</span>
+          <span class="z-font-size-14 z-color-333">{{docInfo.onlineStatus | TXLineStatus}}</span>
         </p>
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
@@ -80,7 +80,7 @@ import { getDocInfo } from '../../config'
 export default {
   data () {
     return {
-      indexImg: 'http://p0.meituan.net/deal/522fd16a9b25479496188b59476d1b941062402.jpg',
+      indexImg: 'http://39.100.255.143/img/wx/wenzhen.jpg',
       docId: 0,
       docInfo: {
         docName: '',
@@ -94,9 +94,17 @@ export default {
       }
     }
   },
+  filters: {
+    TXLineStatus (value) {
+      if (value === 1) {
+        return '在线'
+      } else {
+        return '离线'
+      }
+    }
+  },
   async onLoad (options) {
     this.docId = parseInt(options.docId)
-    console.log(this.docId)
     const { docInfo } = await getDocInfo(this.docId)
     wx.setStorageSync('docInfo', docInfo)
     this.docInfo = wx.getStorageSync('docInfo')
@@ -110,8 +118,6 @@ export default {
   },
   mounted () {
     wx.removeStorage('docInfo')
-    console.log(this.docInfo)
-    console.log(wx.getStorageSync('userId'))
   }
 }
 </script>
