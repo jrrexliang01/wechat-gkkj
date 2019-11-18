@@ -4,7 +4,8 @@
     "pages/index/main",
     "pages/login/main",
     "pages/citySelect/main",
-    "pages/search/main"
+    "pages/search/main",
+    "pages/docInfo/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,8 +22,8 @@
       {
         "text": "消息",
         "pagePath": "pages/index/main",
-        "iconPath": "static/images/chat.png",
-        "selectedIconPath": "static/images/chat_focus.png"
+        "iconPath": "static/images/index.png",
+        "selectedIconPath": "static/images/index_focus.png"
       },
       {
         "text": "首页",
