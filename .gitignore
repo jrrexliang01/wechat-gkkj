@@ -1,0 +1,7 @@
+node_modules
+.idea/
+package-lock.json
+dist/wx/project.config.json
+dist/wx/sitemap.json
+dist
+_doc/需求变更/~$需求变更.docx
