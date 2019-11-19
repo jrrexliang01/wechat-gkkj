@@ -52,10 +52,28 @@ export default {
                 wx.setStorageSync('sessionKey', res)
                 wx.getUserInfo({
                   success (res) {
-                    console.log(res.userInfo)
-                    wx.setStorageSync('userInfo', res.userInfo)
                     var sessionKey = wx.getStorageSync('sessionKey')
-                    console.log(sessionKey.data.openid)
+                    wx.request({
+                      url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
+                      data: {
+                        openId: sessionKey.data.openid,
+                        icon: res.userInfo.avatarUrl,
+                        alias: res.userInfo.nickName
+                      },
+                      method: 'POST',
+                      success (res) {
+                        wx.setStorageSync('sessionKey', res)
+                        wx.getUserInfo({
+                          success (res) {
+                            console.log(res)
+                            wx.setStorageSync('userInfo', res.data.data)
+                            var userInfo = wx.getStorageSync('userInfo')
+                            console.log('这是用户：' + userInfo)
+                            wx.navigateTo({url: '/pages/home/main'})
+                          }
+                        })
+                      }
+                    })
                     // let options = genTestUserSig(sessionKey.data.openid)
                     // options.runLoopNetType = 0
                   }
