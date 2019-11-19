@@ -52,7 +52,7 @@
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-333"><b>状态</b></p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333">{{docInfo.onlineStatus | TXLineStatus}}</span>
+          <span class="z-font-size-14 z-color-333">{{lineStatus[docInfo.onlineStatus]}}</span>
         </p>
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
@@ -90,16 +90,12 @@ export default {
         subject: '',
         title: '',
         department: '',
-        introduce: ''
-      }
-    }
-  },
-  filters: {
-    TXLineStatus (value) {
-      if (value === 1) {
-        return '在线'
-      } else {
-        return '离线'
+        introduce: '',
+        onlineStatus: ''
+      },
+      lineStatus: {
+        '1': '在线',
+        '2': '离线'
       }
     }
   },
@@ -110,6 +106,13 @@ export default {
     this.docInfo = wx.getStorageSync('docInfo')
   },
   methods: {
+    TXLineStatus (value) {
+      if (value === 1) {
+        return '在线'
+      } else {
+        return '离线'
+      }
+    },
     toConsult: function (id) {
       if (wx.getStorageSync('userStatus') === '') {
         wx.navigateTo({
