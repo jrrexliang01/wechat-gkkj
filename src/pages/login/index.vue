@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     getUserInfo (e) {
+      if (wx.getStorageSync('sessionKey')) return
       wx.login({
         success (res) {
           if (res.code) {

@@ -199,6 +199,9 @@ export default {
       this.$store.commit('setBlacklist', res.data)
     })
   },
+  onShow () {
+    this.current = 'chat'
+  },
   mounted () {}
 }
 </script>

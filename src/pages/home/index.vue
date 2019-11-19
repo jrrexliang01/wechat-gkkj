@@ -113,6 +113,9 @@
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
     },
+    onShow () {
+      this.current = 'homepage'
+    },
     mounted () {
       this.docList = wx.getStorageSync('docList')
     },

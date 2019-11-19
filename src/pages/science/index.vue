@@ -80,6 +80,9 @@ export default {
     const { newList } = await getNewList()
     wx.setStorageSync('newList', newList)
   },
+  onShow () {
+    this.current = 'science'
+  },
   mounted () {
     this.newList = wx.getStorageSync('newList')
   }

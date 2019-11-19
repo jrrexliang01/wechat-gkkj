@@ -192,6 +192,7 @@ export default {
   },
   // 更新自己的个人信息
   onShow () {
+    this.current = 'mine'
     this.myInfo = this.$store.state.user.myInfo
     // this.myInfo = wx.getStorageSync('updateUser')
   }
