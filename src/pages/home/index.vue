@@ -16,7 +16,7 @@
       <!--图标九宫格入口-->
       <dl class="ub-box ub-wrap z-padding-v-5-px" style="background:#fff">
         <div class="icon-item ub-box ub-col ub-ver" :key="key" v-for="(idx, key) in iconMap">
-          <dd @click.stop="$openWin('/pages/error/main')" class="icon ub-box ub-ver iconfont" :class="key" :style="{background: iconMap[key]['bk']}"></dd>
+          <dd @click.stop="$openWin('/pages/search/main')" class="icon ub-box ub-ver iconfont" :class="key" :style="{background: iconMap[key]['bk']}"></dd>
           <span class="z-padding-v-8-px z-font-size-12 z-color-333">{{iconMap[key]['title']}}</span>
         </div>
       </dl>
@@ -25,7 +25,7 @@
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
           <span class="z-font-size-12 z-color-888 z-lineHeight-36">—专家列表—</span>
         </p>
-        <dd class="ub-box ub-col">
+        <dd class="ub-box ub-col" style="padding-bottom: 40px;">
           <div class="ub-end" v-for="(val, idx) in docList" :key="val.id" :isLast="idx===6">
             <div @click.stop="gotoDetail(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.icon" class="z-img-cover">
