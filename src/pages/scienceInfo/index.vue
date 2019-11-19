@@ -1,14 +1,12 @@
 <template>
-  <div class="container ub-box ub-col ub-ver">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver" style="border-bottom: 1px solid #f5f5f5">
+  <div class="container ub-box ub-col ub-ver" style="padding-top: 230px;">
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver" style="margin-top: 500px;border-bottom: 1px solid #f5f5f5">
       <p class="z-font-size-24 z-color-000" style="border-bottom: 1px solid #f5f5f5">{{newsInfo.title}}</p>
       <p class="z-font-size-14 z-color-666">发表时间:{{newsInfo.createTime}}</p>
     </dd>
-    <scroll-view>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
-        <parser :html="newsInfo.content" img-mode="widthFix"></parser>
-      </dd>
-    </scroll-view>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col" style="margin-top: 1px;">
+      <parser :html="newsInfo.content" img-mode="widthFix"></parser>
+    </dd>
   </div>
 </template>
 
