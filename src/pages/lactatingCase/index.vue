@@ -38,10 +38,10 @@ export default {
       switch1: false,
       switch2: false,
       switch3: false,
-      age: 20,
-      phone: '13899988888',
-      patientName: '王一凡',
-      postpartumDay: 22,
+      age: 0,
+      phone: '',
+      patientName: '',
+      postpartumDay: 0,
       nowList: [{
         id: 1,
         name: '少奶'

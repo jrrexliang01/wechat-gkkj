@@ -11,6 +11,10 @@
     "i-modal": "../../../static/iview/modal/index",
     "i-switch": "../../../static/iview/switch/index",
     "i-cell": "../../../static/iview/cell/index",
-    "i-panel": "../../static/iview/panel/index"
+    "i-panel": "../../static/iview/panel/index",
+    "i-radio-group": "../../static/iview/radio-group/index",
+    "i-radio": "../../static/iview/radio/index",
+    "i-checkbox-group": "../../static/iview/checkbox-group/index",
+    "i-checkbox": "../../static/iview/checkbox/index"
   }
 }
