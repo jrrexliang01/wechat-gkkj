@@ -17,6 +17,11 @@ export default {
       let url = '../myInfo/main'
       wx.navigateTo({ url: url })
     }
+  },
+  onUnload: function () {
+    wx.reLaunch({
+      url: '../home/main'
+    })
   }
 }
 </script>
