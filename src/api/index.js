@@ -6,6 +6,9 @@ class API {
    */
   getNewList () {
     return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/news/list',
         data: {
@@ -22,6 +25,7 @@ class API {
           'content-type': 'application/json' // 默认值
         },
         success (res) {
+          wx.hideLoading()
           resolve(res)
         }
       })
@@ -34,6 +38,9 @@ class API {
    */
   getDocList () {
     return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/list',
         data: {
@@ -53,6 +60,7 @@ class API {
           'content-type': 'application/json' // 默认值
         },
         success (res) {
+          wx.hideLoading()
           resolve(res)
         }
       })
@@ -66,6 +74,9 @@ class API {
    */
   getDocInfo (docId) {
     return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/detail',
         data: {
@@ -76,6 +87,7 @@ class API {
           'content-type': 'application/json' // 默认值
         },
         success (res) {
+          wx.hideLoading()
           resolve(res)
         }
       })
@@ -89,6 +101,9 @@ class API {
    */
   getNewsInfo (newsId) {
     return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/news/detail',
         data: {
@@ -99,6 +114,7 @@ class API {
           'content-type': 'application/json' // 默认值
         },
         success (res) {
+          wx.hideLoading()
           resolve(res)
         }
       })
@@ -112,6 +128,9 @@ class API {
    */
   getOrderList (patId) {
     return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/patientList',
         data: {
@@ -128,6 +147,7 @@ class API {
           'content-type': 'application/json' // 默认值
         },
         success (res) {
+          wx.hideLoading()
           resolve(res)
         }
       })
@@ -141,6 +161,9 @@ class API {
    */
   getOrderInfo (ordId) {
     return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/detail',
         data: {
@@ -151,6 +174,7 @@ class API {
           'content-type': 'application/json' // 默认值
         },
         success (res) {
+          wx.hideLoading()
           resolve(res)
         }
       })
