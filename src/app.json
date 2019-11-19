@@ -18,7 +18,8 @@
     "pages/success/main",
     "pages/lactatingCase/main",
     "pages/nonLactatingCase/main",
-    "pages/message/main"
+    "pages/message/main",
+    "pages/patList/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
