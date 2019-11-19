@@ -24,12 +24,12 @@ export default {
   },
   async onLoad (options) {
     this.newsId = parseInt(options.newsId)
-    const { newsInfo } = await getNewsInfo(this.newsId)
-    wx.setStorageSync('newsInfo', newsInfo)
   },
   methods: {
   },
-  mounted () {
+  async mounted () {
+    const { newsInfo } = await getNewsInfo(this.newsId)
+    wx.setStorageSync('newsInfo', newsInfo)
     this.newsInfo = wx.getStorageSync('newsInfo')
   }
 }
