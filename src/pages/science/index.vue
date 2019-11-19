@@ -52,19 +52,19 @@ export default {
     handleChange (detail) {
       this.current = detail.mp.detail.key
       if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.switchTab({
+        wx.navigateTo({
           url: '../home/main'
         })
       } else if (detail.mp.detail.key.toString() === 'science') {
-        wx.switchTab({
+        wx.navigateTo({
           url: '../science/main'
         })
       } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.switchTab({
+        wx.navigateTo({
           url: '../own/main'
         })
       } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.switchTab({
+        wx.navigateTo({
           url: '../index/main'
         })
       }
