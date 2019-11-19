@@ -17,22 +17,29 @@
 </template>
 
 <script>
-import { getOrderList } from '../../config'
+import { getOrderList, getOrderStatusList } from '../../config'
 export default {
   data () {
     return {
       modalLoading: true,
       modal: false,
       orderList: {},
-      patId: 0
+      patId: 0,
+      orderStatus: 0
     }
   },
   methods: {
   },
   async onLoad (options) {
     this.patId = parseInt(options.patId)
-    const { orderList } = await getOrderList(this.patId)
-    wx.setStorageSync('orderList', orderList)
+    this.orderStatus = parseInt(options.orderStatus)
+    if (this.orderStatus === 2) {
+      const { orderList } = await getOrderList(this.patId)
+      wx.setStorageSync('orderList', orderList)
+    } else {
+      const { orderList } = await getOrderStatusList(this.patId, this.orderStatus)
+      wx.setStorageSync('orderList', orderList)
+    }
     this.orderList = wx.getStorageSync('orderList')
     for (const v of this.orderList) {
       if (v.status === 1) {
