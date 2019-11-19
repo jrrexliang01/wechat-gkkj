@@ -20,17 +20,15 @@
       <i-cell title="我的订单"></i-cell>
     </i-panel>
     <view class="sc df tc bte ">
-      <navigator class="df_1" url="../user/dingdan?currentTab=0" hover-class="none" >
-        <view>
-          <image src="../../static/images/dfh.png"></image>
-        </view>
+      <navigator @click.stop="toOrdWList()" class="df_1" url="../user/dingdan?currentTab=0" hover-class="none" >
+        <view><image src="../../static/images/dfh.png"></image></view>
         <text class="font_12">待付款</text>
       </navigator>
-      <navigator @click.stop="toOrdList()"  class="df_1" url="../user/dingdan?currentTab=3" hover-class="none" >
+      <navigator @click.stop="toOrdFList()" class="df_1" url="../user/dingdan?currentTab=3" hover-class="none" >
         <view><image src="../../static/images/dfk.png"></image></view>
         <text  class="font_12">已完成</text>
       </navigator>
-      <navigator @click.stop="toOrdList()"  class="df_1" url="../user/dingdan?currentTab=4" hover-class="none" >
+      <navigator @click.stop="toOrdList()" class="df_1" url="../user/dingdan?currentTab=4" hover-class="none" >
         <view><image src="../../static/images/tksh.png"></image></view>
         <text class="font_12">全部订单</text>
       </navigator>
@@ -149,7 +147,17 @@ export default {
     },
     toOrdList () {
       this.patId = wx.getStorageSync('patId')
-      let url = '../myorder/main?patId=' + this.patId
+      let url = '../myorder/main?patId=' + this.patId + '&orderStatus=2'
+      wx.navigateTo({ url: url })
+    },
+    toOrdWList () {
+      this.patId = wx.getStorageSync('patId')
+      let url = '../myorder/main?patId=' + this.patId + '&orderStatus=0'
+      wx.navigateTo({ url: url })
+    },
+    toOrdFList () {
+      this.patId = wx.getStorageSync('patId')
+      let url = '../myorder/main?patId=' + this.patId + '&orderStatus=1'
       wx.navigateTo({ url: url })
     },
     toMyInfo () {
