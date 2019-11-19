@@ -61,7 +61,7 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="$openWin('/pages/patList/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="toPatList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-shangpin" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">评估报告</span>
@@ -173,8 +173,9 @@ export default {
       let url = '../myinfo/main'
       wx.navigateTo({ url: url })
     },
-    toPat () {
-      let url = '../patinfo/main'
+    toPatList () {
+      this.patId = wx.getStorageSync('patId')
+      let url = '../patList/main?patId=' + this.patId
       wx.navigateTo({ url: url })
     },
     logout () {

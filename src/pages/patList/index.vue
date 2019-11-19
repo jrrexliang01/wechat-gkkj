@@ -2,26 +2,28 @@
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col">
-        <dd @click.stop="$openWin('/pages/orderinfo/main?ordId=' + val.id)" v-for="(val, idx) in orderList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
+        <dd @click.stop="$openWin('/pages/patinfo/main?ordId=' + val.id)" v-for="(val, idx) in reportList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
-            <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.doc.docName}}问诊</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">消息内容</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">消息内容</span>
+            <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.doc.docName}}问诊报告</span>
+            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">报告时间{{val.reportDate}}</span>
           </div>
         </dd>
+        <view class="i-divider-mart">
+          <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
+        </view>
       </dl>
     </scroll-view>
   </div>
 </template>
 
 <script>
-import { getOrderList, getOrderStatusList } from '../../config'
+import { getPatReportList } from '../../config'
 export default {
   data () {
     return {
       modalLoading: true,
       modal: false,
-      orderList: {},
+      reportList: {},
       patId: 0,
       orderStatus: 0
     }
@@ -30,26 +32,11 @@ export default {
   },
   async onLoad (options) {
     this.patId = parseInt(options.patId)
-    this.orderStatus = parseInt(options.orderStatus)
-    if (this.orderStatus === 2) {
-      const { orderList } = await getOrderList(this.patId)
-      wx.setStorageSync('orderList', orderList)
-    } else {
-      const { orderList } = await getOrderStatusList(this.patId, this.orderStatus)
-      wx.setStorageSync('orderList', orderList)
-    }
-    this.orderList = wx.getStorageSync('orderList')
-    for (const v of this.orderList) {
-      if (v.status === 1) {
-        v.statusStr = '已付款'
-      }
-      if (v.status === 0) {
-        v.statusStr = '未付款'
-      }
-    }
+    const { reportList } = await getPatReportList(this.patId)
+    wx.setStorageSync('reportList', reportList)
   },
   mounted () {
-    this.orderList = wx.getStorageSync('orderList')
+    this.reportList = wx.getStorageSync('reportList')
   }
 }
 </script>
