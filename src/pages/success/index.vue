@@ -1,6 +1,6 @@
 <template>
   <div class="counter-warp">
-    <i-card @click="toChoose">
+    <i-card @click="toMyInfo">
       <img src="../../../static/images/pay.png" size="large" shape="square"  style="height: 600px;width: 100%;"/>
     </i-card>
   </div>
@@ -13,8 +13,8 @@ export default {
     }
   },
   methods: {
-    toChoose () {
-      let url = '../myinfo/main'
+    toMyInfo () {
+      let url = '../myInfo/main'
       wx.navigateTo({ url: url })
     }
   }

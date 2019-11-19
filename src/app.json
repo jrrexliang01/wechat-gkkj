@@ -12,7 +12,11 @@
     "pages/myorder/main",
     "pages/myInfo/main",
     "pages/patInfo/main",
-    "pages/agreement/main"
+    "pages/agreement/main",
+    "pages/paymentInfo/main",
+    "pages/success/main",
+    "pages/lactatingCase/main",
+    "pages/nonLactatingCase/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

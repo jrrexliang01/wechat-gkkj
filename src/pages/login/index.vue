@@ -7,7 +7,7 @@
       国科康健
     </div>
     <div class="login-button">
-      <button style="border-radius: 10px;background-color: #357cfb;" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取微信授权</button>
+      <button style="border-radius: 6px;background-color: #357cfb;" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取微信授权</button>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
 export default {
   data () {
     return {
-      userID: 'user3',
+      userID: 'user1',
       password: '',
       selected: false,
       userInfo: {},
@@ -34,32 +34,18 @@ export default {
     })
   },
   methods: {
-    // 点击登录进行初始化
-    // handleLogin () {
-    //   let options = genTestUserSig(this.userID)
-    //   options.runLoopNetType = 0
-    //   if (options) {
-    //     wx.$app.login({
-    //       userID: this.userID,
-    //       userSig: options.userSig
-    //     }).then(() => {
-    //       wx.showLoading({
-    //         title: '登录成功'
-    //       })
-    //     })
-    //   }
-    // },
     getUserInfo (e) {
-      console.log(e)
-      let options = genTestUserSig('user2')
+      console.log(e.mp.detail.userInfo)
+      let options = genTestUserSig('user1')
       options.runLoopNetType = 0
       if (options) {
         wx.$app.login({
-          userID: 'user2',
+          userID: 'user1',
           userSig: options.userSig,
           hasUserInfo: true
         }).then(() => {
-          wx.setStorageSync('userId', 'user3')
+          wx.setStorageSync('userId', 'user1')
+          wx.setStorageSync('userStatus', 'user1')
           wx.showLoading({
             title: '登录成功'
           })

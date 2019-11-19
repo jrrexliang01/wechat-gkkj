@@ -110,10 +110,16 @@ export default {
     this.docInfo = wx.getStorageSync('docInfo')
   },
   methods: {
-    toConsult (id) {
-      wx.navigateTo({
-        url: '/pages/docInfo/main?docId=' + id
-      })
+    toConsult: function (id) {
+      if (wx.getStorageSync('userStatus') === '') {
+        wx.navigateTo({
+          url: '/pages/login/main'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/paymentInfo/main?docId=' + id
+        })
+      }
     }
   },
   mounted () {

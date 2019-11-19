@@ -7,7 +7,7 @@ class API {
   getNewList () {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/news/list',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/news/list',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -35,7 +35,7 @@ class API {
   getDocList () {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/doc/list',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/doc/list',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -67,7 +67,7 @@ class API {
   getDocInfo (docId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/doc/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/doc/detail',
         data: {
           id: docId
         },
@@ -90,7 +90,7 @@ class API {
   getNewsInfo (newsId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/news/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/news/detail',
         data: {
           id: newsId
         },
@@ -113,7 +113,7 @@ class API {
   getOrderList (patId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/order/interrogation/patientList',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/order/interrogation/patientList',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -142,7 +142,7 @@ class API {
   getOrderInfo (ordId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/order/interrogation/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/order/interrogation/detail',
         data: {
           id: ordId
         },
@@ -165,7 +165,7 @@ class API {
   getOrderCourseList (docId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/orders/course/docList',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/orders/course/docList',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -194,7 +194,7 @@ class API {
   getOrderCourseInfo (ordId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/orders/course/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/orders/course/detail',
         data: {
           id: ordId
         },
@@ -218,7 +218,7 @@ class API {
   getOrderStatusList (patId, status) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/order/interrogation/patientList',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/order/interrogation/patientList',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -249,7 +249,7 @@ class API {
   getOrderCourseStatusList (docId, status) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/orders/course/docList',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/orders/course/docList',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -278,7 +278,7 @@ class API {
   getAgreementInfo () {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/agreement/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/agreement/detail',
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -298,7 +298,7 @@ class API {
   getPatReportList (patId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/report/list/patient',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/report/list/patient',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -327,7 +327,7 @@ class API {
   reportAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/report/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/report/add',
         data: {
           formData
         },
@@ -350,7 +350,7 @@ class API {
   getReportInfo (reportId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/report/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/report/detail',
         data: {
           id: reportId
         },
@@ -373,7 +373,7 @@ class API {
   searchAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/search/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/search/add',
         data: {
           formData
         },
@@ -395,7 +395,7 @@ class API {
   searchHot () {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/search/hot',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/search/hot',
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -416,7 +416,7 @@ class API {
   getMsgList (userId, userType) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/msg/list',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/msg/list',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -446,7 +446,7 @@ class API {
   msgAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/msg/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/msg/add',
         data: {
           formData
         },
@@ -469,7 +469,7 @@ class API {
   patientAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/patient/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/patient/add',
         data: {
           formData
         },
@@ -492,7 +492,7 @@ class API {
   doctorAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/doc/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/doc/add',
         data: {
           formData
         },
@@ -515,7 +515,7 @@ class API {
   orderAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/order/interrogation/save',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/order/interrogation/save',
         data: {
           formData
         },
@@ -537,7 +537,7 @@ class API {
   getMyPat (docId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/doc/mePatient',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/doc/mePatient',
         data: {
           id: docId
         },
@@ -560,7 +560,7 @@ class API {
   getCourseList (courseTitle) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/course/list',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/course/list',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -589,7 +589,7 @@ class API {
   getCourseInfo (couresId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/orders/course/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/orders/course/detail',
         data: {
           id: couresId
         },
@@ -612,7 +612,7 @@ class API {
   orderCourseAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/orders/course/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/orders/course/add',
         data: {
           formData
         },
@@ -635,7 +635,7 @@ class API {
   getArticleList (title) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/article/list',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/article/list',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -664,7 +664,7 @@ class API {
   getArticleInfo (articleId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/article/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/article/detail',
         data: {
           id: articleId
         },
@@ -687,7 +687,7 @@ class API {
   remindAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/remind/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/remind/add',
         data: {
           formData
         },
@@ -710,7 +710,7 @@ class API {
   remindConfigAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/remind/config/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/remind/config/add',
         data: {
           formData
         },
@@ -733,7 +733,7 @@ class API {
   getremindList (docId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/remind/list',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/remind/list',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -762,7 +762,7 @@ class API {
   getRemindInfo (remindId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/remind/config/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/remind/config/detail',
         data: {
           id: remindId
         },
@@ -786,7 +786,7 @@ class API {
   getCodeMsg (docId, code) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/code/edit',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/code/edit',
         data: {
           doc: {
             id: docId
@@ -812,7 +812,7 @@ class API {
   studyAdd (formData) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/study/add',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/study/add',
         data: {
           formData
         },
@@ -834,7 +834,7 @@ class API {
   getHotDocList () {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/doc/hot',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/doc/hot',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -859,7 +859,7 @@ class API {
   getBanner () {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/news/banner',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/news/banner',
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -879,7 +879,7 @@ class API {
   getDocBill (docId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/bill/list',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/bill/list',
         data: {
           pageInfo: {
             currentPage: 0,
@@ -908,7 +908,7 @@ class API {
   getPatientDetail (patientId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://39.100.255.143:8000/api/wx/patient/detail',
+        url: 'http://gkkj.jrrexliang.com:8000/api/wx/patient/detail',
         data: {
           id: patientId
         },

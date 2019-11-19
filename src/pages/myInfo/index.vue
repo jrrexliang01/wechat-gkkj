@@ -19,13 +19,13 @@ export default {
     toAddIn () {
       wx.setStorageSync('isIn', '1')
       wx.navigateTo({
-        url: '/pages/patinfoin/main'
+        url: '/pages/lactatingCase/main'
       })
     },
     toAddOut () {
       wx.setStorageSync('isIn', '2')
       wx.navigateTo({
-        url: '/pages/patinfoout/main'
+        url: '/pages/nonLactatingCase/main'
       })
     }
   }

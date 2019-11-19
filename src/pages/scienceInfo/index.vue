@@ -7,7 +7,7 @@
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
         <ul class="ub-box ub-col">
-          <div class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">{{newsInfo.content}}</div>
+          <div class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24" v-html="newsDetailHtml"/>
         </ul>
       </dd>
     </scroll-view>
@@ -23,12 +23,15 @@ export default {
       newsInfo: {
         title: '',
         content: ''
-      }
+      },
+      newsDetailHtml: ''
     }
   },
   async onLoad (options) {
+    wx.removeStorageSync('newsInfo')
     this.newsId = parseInt(options.newsId)
     const { newsInfo } = await getNewsInfo(this.newsId)
+    this.newsDetailHtml = newsInfo.content
     wx.setStorageSync('newsInfo', newsInfo)
   },
   methods: {
