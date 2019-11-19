@@ -61,9 +61,9 @@ const getPatReportList = async (patId) => {
   return { reportList }
 }
 const reportAdd = async (formData) => {
-  const res = (await API.reportAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.reportAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const getReportInfo = async (reportId) => {
   const res = (await API.getReportInfo(reportId)).data.data
@@ -71,9 +71,9 @@ const getReportInfo = async (reportId) => {
   return { reportInfo }
 }
 const searchAdd = async (formData) => {
-  const res = (await API.searchAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.searchAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const searchHot = async () => {
   const res = (await API.searchHot()).data.data
@@ -86,24 +86,24 @@ const getMsgList = async (userId, userType) => {
   return { msgList }
 }
 const msgAdd = async (formData) => {
-  const res = (await API.msgAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.msgAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const patientAdd = async (formData) => {
-  const res = (await API.patientAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.patientAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const doctorAdd = async (formData) => {
-  const res = (await API.doctorAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.doctorAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const orderAdd = async (formData) => {
-  const res = (await API.orderAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.orderAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const getMyPat = async (docId) => {
   const res = (await API.getMyPat(docId)).data.data
@@ -121,9 +121,9 @@ const getCourseInfo = async (couresId) => {
   return { courseInfo }
 }
 const orderCourseAdd = async (formData) => {
-  const res = (await API.orderCourseAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.orderCourseAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const getArticleList = async (courseTitle) => {
   const res = (await API.getCourseList(courseTitle)).data.data.content
@@ -136,14 +136,14 @@ const getArticleInfo = async (articleId) => {
   return { articleInfo }
 }
 const remindAdd = async (formData) => {
-  const res = (await API.remindAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.remindAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const remindConfigAdd = async (formData) => {
-  const res = (await API.remindConfigAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.remindConfigAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const getremindList = async (docId) => {
   const res = (await API.getCourseList(docId)).data.data.content
@@ -156,14 +156,14 @@ const getRemindInfo = async (remindId) => {
   return { remindInfo }
 }
 const getCodeMsg = async (docId, code) => {
-  const res = (await API.getCodeMsg(docId, code)).data.msg
+  const res = (await API.getCodeMsg(docId, code)).data.status
   const codeMsg = res
   return { codeMsg }
 }
 const studyAdd = async (formData) => {
-  const res = (await API.studyAdd(formData)).data.msg
-  const msg = res
-  return { msg }
+  const res = (await API.studyAdd(formData)).data.status
+  const status = res
+  return { status }
 }
 const getHotDocList = async () => {
   const res = (await API.getHotDocList()).data.data.content

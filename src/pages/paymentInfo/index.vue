@@ -28,22 +28,51 @@
 </template>
 
 <script>
+import { orderAdd } from '../../config'
 export default {
   data () {
     return {
-      docId: 0,
-      docInfo: {}
+      userInfo: {},
+      docInfo: {},
+      status: 0,
+      orderInfo: {
+        total: '',
+        doc: {
+          id: 0
+        },
+        patient: {
+          id: 0
+        },
+        pay: 0,
+        star: 0,
+        status: 0,
+        integral: 0
+      },
+      formData: {}
     }
   },
   methods: {
-    toSuccess () {
-      wx.navigateTo({
-        url: '/pages/success/main'
-      })
+    async toSuccess () {
+      this.orderInfo.total = this.docInfo.price
+      this.orderInfo.doc.id = this.docInfo.id
+      this.orderInfo.patient.id = this.userInfo.id
+      this.orderInfo.pay = this.docInfo.price
+      this.orderInfo.status = 1
+      this.formData = JSON.stringify(this.orderInfo)
+      const { status } = await orderAdd(this.formData)
+      this.status = status
+      if (this.status === 1) {
+        wx.navigateTo({
+          url: '/pages/success/main'
+        })
+      } else {
+        console.log('订单保存失败')
+      }
     }
   },
   mounted () {
     this.docInfo = wx.getStorageSync('docInfo')
+    this.userInfo = wx.getStorageSync('userInfo')
   }
 }
 </script>

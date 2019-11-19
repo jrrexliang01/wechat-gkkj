@@ -328,9 +328,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/report/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -374,9 +372,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/search/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -447,9 +443,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/msg/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -470,9 +464,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -493,9 +485,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -516,9 +506,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/save',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -613,9 +601,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/orders/course/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -688,9 +674,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/remind/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -711,9 +695,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/remind/config/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
@@ -813,9 +795,7 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
-        data: {
-          formData
-        },
+        data: formData,
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
