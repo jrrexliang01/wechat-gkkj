@@ -58,6 +58,9 @@ export default {
     return {
       id: '',
       content: '',
+      age: 0,
+      phone: '',
+      patientName: '',
       diseaseList: [{
         id: 1,
         name: '妇科疾病'
@@ -133,12 +136,13 @@ export default {
       this.form.patientName = this.patientName
       this.form.age = this.age
       this.form.phone = this.phone
-      this.form.pmedicalHistory = this.currentDisease.toString()
+      this.form.medicalHistory = this.currentDisease.toString()
       this.form.treatment = this.currentTreatment.toString()
       this.form.appearance = this.currentAppearance
       this.form.pain = this.currentPain
       this.form.touch = this.currentTouch
       this.form.secretion = this.currentSecretion
+      console.log(this.form)
       this.formData = JSON.stringify(this.form)
       const { status } = await patientAdd(this.formData)
       this.status = status

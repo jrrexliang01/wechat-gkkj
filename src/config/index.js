@@ -181,7 +181,7 @@ const getDocBill = async (docId) => {
   return { docBill }
 }
 const getPatientDetail = async (patientId) => {
-  const res = (await API.getPatientDetail(patientId)).data.data.content
+  const res = (await API.getPatientDetail(patientId)).data.data
   const patientDetail = res
   return { patientDetail }
 }
