@@ -43,7 +43,7 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="$openWin('/pages/message/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="toMsgList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-ziyuan" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的消息</span>
@@ -176,6 +176,11 @@ export default {
     toPatList () {
       this.patId = wx.getStorageSync('patId')
       let url = '../patList/main?patId=' + this.patId
+      wx.navigateTo({ url: url })
+    },
+    toMsgList () {
+      this.patId = wx.getStorageSync('patId')
+      let url = '../message/main?patId=' + this.patId
       wx.navigateTo({ url: url })
     },
     logout () {
