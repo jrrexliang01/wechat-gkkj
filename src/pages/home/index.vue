@@ -108,7 +108,7 @@
         wx.navigateTo({url: '/pages/docInfo/main?docId=' + id})
       }
     },
-    async beforeCreate () {
+    async onLoad () {
       // 调用应用实例的方法获取全局数据
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
@@ -116,7 +116,10 @@
     onShow () {
       this.current = 'homepage'
     },
-    mounted () {
+    async mounted () {
+      // 调用应用实例的方法获取全局数据
+      const { docList } = await getDocList()
+      wx.setStorageSync('docList', docList)
       this.docList = wx.getStorageSync('docList')
     },
     onPullDownRefresh () {
