@@ -54,7 +54,7 @@
       </dd>
       <dd @click.stop="$openWin('/pages/myInfo/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
-          <i class="iconfont icon-hongbao" style="color:#357cfb;font-size:20px"></i>
+          <i class="iconfont icon-zhiliang" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">个人信息</span>
         </p>
         <p class="ub-box ub-ver">
@@ -63,7 +63,7 @@
       </dd>
       <dd @click.stop="$openWin('/pages/patList/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
-          <i class="iconfont icon-caiwu" style="color:#357cfb;font-size:20px"></i>
+          <i class="iconfont icon-shangpin" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">评估报告</span>
         </p>
         <p class="ub-box ub-ver">
