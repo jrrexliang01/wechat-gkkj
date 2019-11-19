@@ -106,13 +106,6 @@ export default {
     this.docInfo = wx.getStorageSync('docInfo')
   },
   methods: {
-    TXLineStatus (value) {
-      if (value === 1) {
-        return '在线'
-      } else {
-        return '离线'
-      }
-    },
     toConsult: function (id) {
       if (wx.getStorageSync('userStatus') === '') {
         wx.navigateTo({
