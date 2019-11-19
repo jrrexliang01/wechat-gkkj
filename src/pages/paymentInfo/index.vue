@@ -57,6 +57,7 @@ export default {
       this.orderInfo.doc.id = this.docInfo.id
       this.orderInfo.patient.id = this.userInfo.id
       this.orderInfo.pay = this.docInfo.price
+      this.orderInfo.status = 1
       this.formData = JSON.stringify(this.orderInfo)
       const { status } = await orderAdd(this.formData)
       this.status = status
