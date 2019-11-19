@@ -7,7 +7,7 @@
       国科康健
     </div>
     <div class="login-button">
-      <button style="border-radius: 6px;background-color: #357cfb;" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取微信授权</button>
+      <button style="border-radius: 6px;background-color: #357cfb;" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" @change="getUserInfo">获取微信授权</button>
     </div>
   </div>
 </template>
@@ -38,26 +38,48 @@ export default {
   },
   methods: {
     getUserInfo (e) {
-      console.log(e.mp.detail.userInfo)
-      let options = genTestUserSig('user1')
-      options.runLoopNetType = 0
-      if (options) {
-        wx.$app.login({
-          userID: 'user1',
-          userSig: options.userSig,
-          hasUserInfo: true
-        }).then(() => {
-          wx.setStorageSync('userInfo', {
-            id: 1,
-            patientName: '黄一凡'
-          })
-          wx.setStorageSync('userId', 'user1')
-          wx.setStorageSync('userStatus', 'user1')
-          wx.showLoading({
-            title: '登录成功'
-          })
-        })
-      }
+      wx.login({
+        success (res) {
+          if (res.code) {
+            wx.request({
+              url: 'https://gkkj.jrrexliang.com/wx/user/wx67010d52ded34ff6/login',
+              data: {
+                code: res.code
+              },
+              method: 'GET',
+              success (res) {
+                wx.setStorageSync('sessionKey', res)
+                wx.getUserInfo({
+                  success (res) {
+                    console.log(res.userInfo)
+                    var sessionKey = wx.getStorageSync('sessionKey')
+                    console.log(sessionKey.data.openid)
+                    // let options = genTestUserSig(sessionKey.data.openid)
+                    // options.runLoopNetType = 0
+                  }
+                })
+              }
+            })
+          }
+        }
+      })
+      // if (options) {
+      //   wx.$app.login({
+      //     userID: 'user1',
+      //     userSig: options.userSig,
+      //     hasUserInfo: true
+      //   }).then(() => {
+      //     wx.setStorageSync('userInfo', {
+      //       id: 1,
+      //       patientName: '黄一凡'
+      //     })
+      //     wx.setStorageSync('userId', 'user1')
+      //     wx.setStorageSync('userStatus', 'user1')
+      //     wx.showLoading({
+      //       title: '登录成功'
+      //     })
+      //   })
+      // }
     }
   }
 }
