@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getUserInfo (e) {
-      if (wx.getStorageSync('sessionKey')) return
+      // if (wx.getStorageSync('sessionKey')) return
       wx.login({
         success (res) {
           if (res.code) {
@@ -53,6 +53,7 @@ export default {
                 wx.getUserInfo({
                   success (res) {
                     console.log(res.userInfo)
+                    wx.setStorageSync('userInfo', res.userInfo)
                     var sessionKey = wx.getStorageSync('sessionKey')
                     console.log(sessionKey.data.openid)
                     // let options = genTestUserSig(sessionKey.data.openid)
