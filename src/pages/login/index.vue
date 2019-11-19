@@ -21,7 +21,10 @@ export default {
       userID: 'user1',
       password: '',
       selected: false,
-      userInfo: {},
+      userInfo: {
+        id: 0,
+        patientName: ''
+      },
       hasUserInfo: false,
       canIUse: wx.canIUse('button.open-type.getUserInfo')
     }
@@ -44,6 +47,10 @@ export default {
           userSig: options.userSig,
           hasUserInfo: true
         }).then(() => {
+          wx.setStorageSync('userInfo', {
+            id: 1,
+            patientName: '黄一凡'
+          })
           wx.setStorageSync('userId', 'user1')
           wx.setStorageSync('userStatus', 'user1')
           wx.showLoading({

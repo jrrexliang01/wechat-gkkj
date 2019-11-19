@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { patientAdd } from '../../config'
 export default {
   data () {
     return {
@@ -121,63 +122,76 @@ export default {
         pain: '',
         touch: '',
         secretion: ''
-      }
+      },
+      formData: {},
+      status: 0
     }
   },
   methods: {
     // 拉黑好友
-    addOut () {
+    async addOut () {
       this.form.patientName = this.patientName
       this.form.age = this.age
       this.form.phone = this.phone
-      this.form.pmedicalHistory = this.currentDisease
-      this.form.treatment = this.currentTreatment
+      this.form.pmedicalHistory = this.currentDisease.toString()
+      this.form.treatment = this.currentTreatment.toString()
       this.form.appearance = this.currentAppearance
       this.form.pain = this.currentPain
       this.form.touch = this.currentTouch
       this.form.secretion = this.currentSecretion
-      wx.setStorageSync('userOutInfo', this.form)
-      console.log(wx.getStorageSync('userOutInfo'))
-      this.$store.commit('showToast', {
-        title: '保存成功',
-        icon: 'none',
-        duration: 1500
-      })
-      this.id = wx.getStorageSync('userId')
-      this.content = 'hello'
-      if (this.content !== '' && this.id !== '') {
-        let option = {
-          userIDList: [this.id]
-        }
-        wx.$app.getUserProfile(option).then((res) => {
-          if (res.data.length > 0) {
-            const message = wx.$app.createTextMessage({
-              to: this.id,
-              conversationType: this.TIM.TYPES.CONV_C2C,
-              payload: { text: this.content }
-            })
-            wx.$app.sendMessage(message).then(() => {
-              let conversationID = this.TIM.TYPES.CONV_C2C + this.id
-              wx.$app.getConversationProfile(conversationID).then((res) => {
-                this.$store.commit('resetCurrentConversation')
-                this.$store.commit('resetGroup')
-                this.$store.commit('updateCurrentConversation', res.data.conversation)
-                this.$store.dispatch('getMessageList', conversationID)
-                this.content = ''
-                this.id = ''
-                let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick || res.data.conversation.userProfile.userID}`
-                wx.navigateTo({ url })
-              }).catch(error => {
-                console.log(error)
+      this.formData = JSON.stringify(this.form)
+      const { status } = await patientAdd(this.formData)
+      this.status = status
+      if (this.status === 1) {
+        this.$store.commit('showToast', {
+          title: '保存成功',
+          icon: 'none',
+          duration: 1500
+        })
+        this.id = wx.getStorageSync('userId')
+        this.content = 'hello'
+        if (this.content !== '' && this.id !== '') {
+          let option = {
+            userIDList: [this.id]
+          }
+          wx.$app.getUserProfile(option).then((res) => {
+            if (res.data.length > 0) {
+              const message = wx.$app.createTextMessage({
+                to: this.id,
+                conversationType: this.TIM.TYPES.CONV_C2C,
+                payload: { text: this.content }
               })
-            }).catch(() => {
+              wx.$app.sendMessage(message).then(() => {
+                let conversationID = this.TIM.TYPES.CONV_C2C + this.id
+                wx.$app.getConversationProfile(conversationID).then((res) => {
+                  this.$store.commit('resetCurrentConversation')
+                  this.$store.commit('resetGroup')
+                  this.$store.commit('updateCurrentConversation', res.data.conversation)
+                  this.$store.dispatch('getMessageList', conversationID)
+                  this.content = ''
+                  this.id = ''
+                  let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick || res.data.conversation.userProfile.userID}`
+                  wx.navigateTo({ url })
+                }).catch(error => {
+                  console.log(error)
+                })
+              }).catch(() => {
+                this.$store.commit('showToast', {
+                  title: '输入内容有误',
+                  icon: 'none',
+                  duration: 1000
+                })
+              })
+            } else {
               this.$store.commit('showToast', {
-                title: '输入内容有误',
+                title: '用户不存在',
                 icon: 'none',
                 duration: 1000
               })
-            })
-          } else {
+              this.id = ''
+              this.content = ''
+            }
+          }).catch(() => {
             this.$store.commit('showToast', {
               title: '用户不存在',
               icon: 'none',
@@ -185,16 +199,10 @@ export default {
             })
             this.id = ''
             this.content = ''
-          }
-        }).catch(() => {
-          this.$store.commit('showToast', {
-            title: '用户不存在',
-            icon: 'none',
-            duration: 1000
           })
-          this.id = ''
-          this.content = ''
-        })
+        }
+      } else {
+        console.log('用户保存失败！')
       }
     },
     handleDiseaseChange (data) {
