@@ -17,7 +17,8 @@
     "pages/paymentInfo/main",
     "pages/success/main",
     "pages/lactatingCase/main",
-    "pages/nonLactatingCase/main"
+    "pages/nonLactatingCase/main",
+    "pages/message/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
