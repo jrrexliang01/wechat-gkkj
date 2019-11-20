@@ -17,7 +17,7 @@
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="padding: 5px 20px 0 20px;">
       <p class="z-font-size-14 z-color-333">注册代表同意用户协议</p>
       <p class="ub-box">
-        <span class="z-font-size-14 z-color-333" style="color: #357cfb;">我是医生</span>
+        <span class="z-font-size-14 z-color-333" style="color: #357cfb;" @click="toDocReg()">我是医生</span>
       </p>
     </dd>
   </div>
@@ -56,6 +56,9 @@ export default {
           wx.navigateTo({url: '/pages/init/main'})
         }
       })
+    },
+    toDocReg () {
+      wx.navigateTo({url: '/pages/registerDoc/main'})
     }
   }
 }
