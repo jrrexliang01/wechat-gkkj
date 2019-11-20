@@ -1,100 +1,45 @@
 <template>
-  <div class="counter-warp">
-    <div style="margin-bottom: 20px">
+  <div class="container ub-box ub-col">
+    <dd class="ub-ver z-margin-bottom-20-px z-margin-top-40-px">
       <img src="../../../static/images/logo.png" size="large" shape="square"  style="height: 120px;width: 120px;"/>
-    </div>
-    <div class="login">
-      国科康健
-    </div>
-    <div class="login-button">
-      <button style="border-radius: 6px;background-color: #357cfb;" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" @change="getUserInfo">获取微信授权</button>
-    </div>
+    </dd>
+    <dd class="z-box-sizing-border z-bg-color-fff ub-ver-h">
+      <p class="z-font-size-18 z-color-000">国科康健</p>
+    </dd>
+    <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
+      <button class="loginBtn" lang="zh_CN" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" @change="getUserInfo">获取微信授权</button>
+    </dd>
   </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      selected: false,
-      userInfo: {
-        id: 0,
-        patientName: ''
-      },
-      hasUserInfo: false,
-      canIUse: wx.canIUse('button.open-type.getUserInfo')
-    }
-  },
-  methods: {
-    getUserInfo () {
-      wx.getUserInfo({
-        success (res) {
-          wx.setStorageSync('userInfo', res.userInfo)
-          wx.navigateTo({url: '/pages/register/main'})
-        }
-      })
+  export default {
+    data () {
+      return {
+        selected: false,
+        userInfo: {
+          id: 0,
+          patientName: ''
+        },
+        hasUserInfo: false,
+        canIUse: wx.canIUse('button.open-type.getUserInfo')
+      }
+    },
+    methods: {
+      getUserInfo () {
+        wx.getUserInfo({
+          success (res) {
+            wx.setStorageSync('userInfo', res.userInfo)
+            wx.navigateTo({url: '/pages/register/main'})
+          }
+        })
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
-.select-wrapper
-  display flex
-  justify-content space-between
-  border 1px solid $border-light
-  height 30px
-  .show
-    text-align center
-    color $secondary
-    padding-left 10px
-    font-size 14px
-    line-height 30px
-  .down
-    color white
-    background-color $primary
-    height 100%
-    padding 10px 8px
-    box-sizing border-box
-    .inside
-      width 0
-      height 0
-      border-left 8px solid transparent
-      border-right 8px solid transparent
-      border-top 10px solid white
-.select-list
-  position absolute
-  z-index 9999
-  background-color white
-  width 200px
-  height 200px
-  overflow-y scroll
-  border-left 1px solid $border-base
-  border-right 1px solid $border-base
-  box-sizing border-box
-  .select
-    border-bottom 1px solid $border-base
-    font-size 14px
-    text-align left
-    padding 6px 8px
-.counter-warp
-  text-align center
-  margin-top 100px
-.login
-  display inline-block
-  padding 10px 0
-  border-radius 8px
-  width 200px
-.input
-  text-align center
-  height 32px
-  background-color white
-  border-radius 8px
-  font-size 16px
-  border 1px solid $border-base
-  margin-bottom 8px
-.login-button
-  width 320px
-  padding 20px 0
-  display inline-block
+  .container{width:100%;height:100vh;background:#ffffff;text-align:center;}
+  .label{border-radius:3px;background: #fff;padding: 3px 5px;margin: 0 5px 5px 0}
+  .loginBtn{font-size:18px;color:#fff;padding:0px 20px;margin-left: 10px;margin-right: 10px;background: #357cfb}
 </style>
