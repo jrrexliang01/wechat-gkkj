@@ -14,7 +14,7 @@
 
 <script>
 import { mapState } from 'vuex'
-// import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
+import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
 export default {
   data () {
     return {
@@ -26,7 +26,8 @@ export default {
         patientName: ''
       },
       hasUserInfo: false,
-      canIUse: wx.canIUse('button.open-type.getUserInfo')
+      canIUse: wx.canIUse('button.open-type.getUserInfo'),
+      sessionKey: ''
     }
   },
   computed: {
@@ -49,33 +50,37 @@ export default {
               },
               method: 'GET',
               success (res) {
-                wx.setStorageSync('sessionKey', res)
+                var sessionKey = res.data
+                wx.setStorageSync('sessionKey', sessionKey)
                 wx.getUserInfo({
                   success (res) {
-                    var sessionKey = wx.getStorageSync('sessionKey')
                     wx.request({
                       url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
                       data: {
-                        openId: sessionKey.data.openid,
+                        openId: sessionKey.openid,
                         icon: res.userInfo.avatarUrl,
                         alias: res.userInfo.nickName
                       },
                       method: 'POST',
                       success (res) {
-                        wx.setStorageSync('sessionKey', res)
-                        wx.getUserInfo({
-                          success (res) {
-                            console.log(res)
-                            wx.setStorageSync('userInfo', res.data.data)
-                            var userInfo = wx.getStorageSync('userInfo')
-                            console.log('这是用户：' + userInfo)
+                        console.log(res)
+                        wx.setStorageSync('userInfo', res.data.data)
+                        let options = genTestUserSig(sessionKey.openid)
+                        options.runLoopNetType = 0
+                        if (options) {
+                          wx.$app.login({
+                            userID: sessionKey.openid,
+                            userSig: options.userSig,
+                            hasUserInfo: true
+                          }).then(() => {
+                            wx.showLoading({
+                              title: '登录成功'
+                            })
                             wx.navigateTo({url: '/pages/home/main'})
-                          }
-                        })
+                          })
+                        }
                       }
                     })
-                    // let options = genTestUserSig(sessionKey.data.openid)
-                    // options.runLoopNetType = 0
                   }
                 })
               }
@@ -83,23 +88,6 @@ export default {
           }
         }
       })
-      // if (options) {
-      //   wx.$app.login({
-      //     userID: 'user1',
-      //     userSig: options.userSig,
-      //     hasUserInfo: true
-      //   }).then(() => {
-      //     wx.setStorageSync('userInfo', {
-      //       id: 1,
-      //       patientName: '黄一凡'
-      //     })
-      //     wx.setStorageSync('userId', 'user1')
-      //     wx.setStorageSync('userStatus', 'user1')
-      //     wx.showLoading({
-      //       title: '登录成功'
-      //     })
-      //   })
-      // }
     }
   }
 }
