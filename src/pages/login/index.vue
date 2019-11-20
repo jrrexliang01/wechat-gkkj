@@ -6,8 +6,14 @@
     <dd class="z-box-sizing-border z-bg-color-fff ub-ver-h">
       <p class="z-font-size-18 z-color-000">国科康健</p>
     </dd>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-between z-margin-top-10-px" style="padding: 5px 20px 0 20px;">
+      <p class="z-font-size-16 z-color-333">为提供更好的服务体验，请先登录再进行操作</p>
+    </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
-      <button class="loginBtn" lang="zh_CN" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" @change="getUserInfo">获取微信授权</button>
+      <button class="loginBtn" lang="zh_CN" @click="getUserInfo" type="primary" shape="square" size="large" open-type="getUserInfo" @change="getUserInfo">立即登陆</button>
+    </dd>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-between z-margin-top-10-px" style="padding: 5px 20px 0 20px;">
+      <p class="z-font-size-16 z-color-333" @click.stop="goBack()">暂不登录</p>
     </dd>
   </div>
 </template>
@@ -33,6 +39,9 @@
             wx.navigateTo({url: '/pages/register/main'})
           }
         })
+      },
+      goBack () {
+        wx.navigateBack()
       }
     }
   }
