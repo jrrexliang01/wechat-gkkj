@@ -71,7 +71,7 @@ export default {
       },
       formData: {},
       status: 0,
-      user: {}
+      docInfo: {}
     }
   },
   methods: {
@@ -94,8 +94,8 @@ export default {
           icon: 'none',
           duration: 1500
         })
-        this.user = wx.getStorageSync('userInfo')
-        this.id = this.user.openId
+        this.docInfo = wx.getStorageSync('docInfo')
+        this.id = this.docInfo.openId
         this.content = '医生，您好'
         if (this.content !== '' && this.id !== '') {
           let option = {
