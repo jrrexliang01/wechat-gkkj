@@ -59,10 +59,17 @@
 <script>
   import good from '../../components/good.vue'
   import { getDocList } from '../../config'
+  import { mapState } from 'vuex'
+  import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
   export default {
     props: ['curGood', 'isLast'],
     components: {good},
     computed: {
+      ...mapState({
+        isSdkReady: state => {
+          return state.global.isSdkReady
+        }
+      }),
       curCity () {
         return this.$store.state.curCity
       }
@@ -82,19 +89,19 @@
       handleChange (detail) {
         this.current = detail.mp.detail.key
         if (detail.mp.detail.key.toString() === 'homepage') {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../home/main'
           })
         } else if (detail.mp.detail.key.toString() === 'science') {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../science/main'
           })
         } else if (detail.mp.detail.key.toString() === 'mine') {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../own/main'
           })
         } else if (detail.mp.detail.key.toString() === 'chat') {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../index/main'
           })
         }
@@ -112,6 +119,20 @@
       // 调用应用实例的方法获取全局数据
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
+      console.log(wx.getStorageSync('userInfo'))
+      if (wx.getStorageSync('userInfo') === '') {
+      } else {
+        let options = genTestUserSig(wx.getStorageSync('userInfo').openId)
+        options.runLoopNetType = 0
+        if (options) {
+          wx.$app.login({
+            userID: wx.getStorageSync('userInfo').openId,
+            userSig: options.userSig,
+            hasUserInfo: true
+          }).then(() => {
+          })
+        }
+      }
     },
     onShow () {
       this.current = 'homepage'

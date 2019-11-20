@@ -63,7 +63,6 @@ export default {
                       },
                       method: 'POST',
                       success (res) {
-                        console.log(res)
                         wx.setStorageSync('userInfo', res.data.data)
                         let options = genTestUserSig(sessionKey.openid)
                         options.runLoopNetType = 0

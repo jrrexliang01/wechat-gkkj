@@ -130,19 +130,19 @@ export default {
     handleChange (detail) {
       this.current = detail.mp.detail.key
       if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../home/main'
         })
       } else if (detail.mp.detail.key.toString() === 'science') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../science/main'
         })
       } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../own/main'
         })
       } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../index/main'
         })
       }

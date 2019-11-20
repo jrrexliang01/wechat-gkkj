@@ -110,19 +110,19 @@ export default {
     handleChange (detail) {
       this.current = detail.mp.detail.key
       if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../home/main'
         })
       } else if (detail.mp.detail.key.toString() === 'science') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../science/main'
         })
       } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../own/main'
         })
       } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../index/main'
         })
       }
@@ -177,7 +177,7 @@ export default {
           this.$store.dispatch('getMessageList')
         })
       let url = '../system/main'
-      wx.navigateTo({url})
+      wx.redirectTo({url})
     },
     // 删除会话
     deleteConversation (item) {
@@ -187,7 +187,7 @@ export default {
     },
     empty () {
       let url = '../friend/main'
-      wx.navigateTo({url})
+      wx.redirectTo({url})
     }
   },
   // 初始化加载userProfile并且存入store

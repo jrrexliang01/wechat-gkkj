@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/init/main",
     "pages/home/main",
     "pages/index/main",
     "pages/login/main",
@@ -19,7 +20,9 @@
     "pages/lactatingCase/main",
     "pages/nonLactatingCase/main",
     "pages/message/main",
-    "pages/patList/main"
+    "pages/patList/main",
+    "pages/doc/home/main",
+    "pages/doc/citySelect/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
