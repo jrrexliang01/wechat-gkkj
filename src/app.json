@@ -4,6 +4,7 @@
     "pages/home/main",
     "pages/index/main",
     "pages/login/main",
+    "pages/register/main",
     "pages/citySelect/main",
     "pages/search/main",
     "pages/docInfo/main",

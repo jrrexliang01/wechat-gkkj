@@ -13,78 +13,24 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
 export default {
   data () {
     return {
-      userID: 'user1',
-      password: '',
       selected: false,
       userInfo: {
         id: 0,
         patientName: ''
       },
       hasUserInfo: false,
-      canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      sessionKey: ''
+      canIUse: wx.canIUse('button.open-type.getUserInfo')
     }
   },
-  computed: {
-    ...mapState({
-      isSdkReady: state => {
-        return state.global.isSdkReady
-      }
-    })
-  },
   methods: {
-    getUserInfo (e) {
-      // if (wx.getStorageSync('sessionKey')) return
-      wx.login({
+    getUserInfo () {
+      wx.getUserInfo({
         success (res) {
-          if (res.code) {
-            wx.request({
-              url: 'https://gkkj.jrrexliang.com/wx/user/wx67010d52ded34ff6/login',
-              data: {
-                code: res.code
-              },
-              method: 'GET',
-              success (res) {
-                var sessionKey = res.data
-                wx.setStorageSync('sessionKey', sessionKey)
-                wx.getUserInfo({
-                  success (res) {
-                    wx.request({
-                      url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
-                      data: {
-                        openId: sessionKey.openid,
-                        icon: res.userInfo.avatarUrl,
-                        alias: res.userInfo.nickName
-                      },
-                      method: 'POST',
-                      success (res) {
-                        wx.setStorageSync('userInfo', res.data.data)
-                        let options = genTestUserSig(sessionKey.openid)
-                        options.runLoopNetType = 0
-                        if (options) {
-                          wx.$app.login({
-                            userID: sessionKey.openid,
-                            userSig: options.userSig,
-                            hasUserInfo: true
-                          }).then(() => {
-                            wx.showLoading({
-                              title: '登录成功'
-                            })
-                            wx.navigateTo({url: '/pages/home/main'})
-                          })
-                        }
-                      }
-                    })
-                  }
-                })
-              }
-            })
-          }
+          wx.setStorageSync('userInfo', res.userInfo)
+          wx.navigateTo({url: '/pages/register/main'})
         }
       })
     }

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "患者注册",
+  "navigationBarBackgroundColor": "#E7E9EA",
+  "backgroundColor": "#e6e6e6",
+  "usingComponents": {
+    "i-input": "../../../static/iview/input/index"
+  }
+}

@@ -7,10 +7,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
 export default {
   data () {
     return {
     }
+  },
+  computed: {
+    ...mapState({
+      isSdkReady: state => {
+        return state.global.isSdkReady
+      }
+    })
   },
   onLoad () {
     wx.login({
@@ -43,12 +52,34 @@ export default {
                       } else if (res.data.data.userType === 1) {
                         console.log('doc')
                         wx.setStorageSync('userInfo', res.data.data.doc)
+                        let options = genTestUserSig(res.data.data.doc.openId)
+                        options.runLoopNetType = 0
+                        if (options) {
+                          wx.$app.login({
+                            userID: res.data.data.doc.openId,
+                            userSig: options.userSig,
+                            hasUserInfo: true
+                          }).then(() => {
+                            wx.navigateTo({url: '/pages/home/main'})
+                          })
+                        }
                         wx.redirectTo({
                           url: '/pages/doc/home/main'
                         })
                       } else if (res.data.data.userType === 2) {
                         console.log('patient')
                         wx.setStorageSync('userInfo', res.data.data.patient)
+                        let options = genTestUserSig(res.data.data.patient.openId)
+                        options.runLoopNetType = 0
+                        if (options) {
+                          wx.$app.login({
+                            userID: res.data.data.patient.openId,
+                            userSig: options.userSig,
+                            hasUserInfo: true
+                          }).then(() => {
+                            wx.navigateTo({url: '/pages/home/main'})
+                          })
+                        }
                         wx.redirectTo({
                           url: '/pages/home/main'
                         })
