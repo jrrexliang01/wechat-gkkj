@@ -146,7 +146,7 @@
       toChoose (val) {
         if (val === '申请讲座') {
           wx.navigateTo({
-            url: '/pages/doc/scienceInfo/main'
+            url: '/pages/doc/course/main'
           })
         }
         if (val === '经验分享') {
@@ -156,7 +156,7 @@
         }
         if (val === '专家带教') {
           wx.navigateTo({
-            url: '/pages/doc/scienceInfo/main'
+            url: '/pages/doc/course/main'
           })
         }
         if (val === '科普知识') {
