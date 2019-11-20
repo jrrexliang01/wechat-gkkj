@@ -41,7 +41,8 @@ export default {
         data: {
           openId: sessionKey.openid,
           icon: userInfo.avatarUrl,
-          alias: userInfo.nickName
+          alias: userInfo.nickName,
+          phone: this.form.phone
         },
         method: 'POST',
         success (res) {
