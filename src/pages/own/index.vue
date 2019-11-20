@@ -104,7 +104,8 @@ export default {
       search: '',
       myInfo: {},
       current: 'mine',
-      patId: 0
+      patId: 0,
+      user: {}
     }
   },
   methods: {
@@ -155,17 +156,20 @@ export default {
       wx.navigateTo({ url: url })
     },
     toOrdList () {
-      this.patId = wx.getStorageSync('patId')
+      this.user = wx.getStorageSync('userInfo')
+      this.patId = this.user.id
       let url = '../myorder/main?patId=' + this.patId + '&orderStatus=2'
       wx.navigateTo({ url: url })
     },
     toOrdWList () {
-      this.patId = wx.getStorageSync('patId')
+      this.user = wx.getStorageSync('userInfo')
+      this.patId = this.user.id
       let url = '../myorder/main?patId=' + this.patId + '&orderStatus=0'
       wx.navigateTo({ url: url })
     },
     toOrdFList () {
-      this.patId = wx.getStorageSync('patId')
+      this.user = wx.getStorageSync('userInfo')
+      this.patId = this.user.id
       let url = '../myorder/main?patId=' + this.patId + '&orderStatus=1'
       wx.navigateTo({ url: url })
     },
@@ -174,12 +178,14 @@ export default {
       wx.navigateTo({ url: url })
     },
     toPatList () {
-      this.patId = wx.getStorageSync('patId')
+      this.user = wx.getStorageSync('userInfo')
+      this.patId = this.user.id
       let url = '../patList/main?patId=' + this.patId
       wx.navigateTo({ url: url })
     },
     toMsgList () {
-      this.patId = wx.getStorageSync('patId')
+      this.user = wx.getStorageSync('userInfo')
+      this.patId = this.user.id
       let url = '../message/main?patId=' + this.patId
       wx.navigateTo({ url: url })
     },
