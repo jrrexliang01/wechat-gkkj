@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     toConsult: function (id) {
-      if (wx.getStorageSync('userInfo') === '') {
+      if (wx.getStorageSync('userInfo').id === undefined) {
         wx.navigateTo({
           url: '/pages/login/main'
         })
