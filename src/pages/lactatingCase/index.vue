@@ -70,7 +70,8 @@ export default {
         currentState: []
       },
       formData: {},
-      status: 0
+      status: 0,
+      user: {}
     }
   },
   methods: {
@@ -93,7 +94,8 @@ export default {
           icon: 'none',
           duration: 1500
         })
-        this.id = wx.getStorageSync('userId')
+        this.user = wx.getStorageSync('userInfo')
+        this.id = this.user.openId
         this.content = '医生，您好'
         if (this.content !== '' && this.id !== '') {
           let option = {
