@@ -5,10 +5,9 @@
         <image :src="userInfo.avatarUrl || '/static/images/header.png'" class="head-img" mode="aspectFill"></image>
       </dd>
       <dd class="ub-flex-1 z-font-size-18 z-color-333 ub-box ub-ver-v z-padding-h-10-px">
-        <button v-if="isLogin===false" class="loginBtn" lang="zh_CN" open-type="getUserInfo" @getuserinfo="onGetUserInfo">登录</button>
+        <button v-if="isLogin===false" class="loginBtn" lang="zh_CN" @click.stop="login()">登录</button>
         <ul v-if="isLogin===true" class="ub-box z-margin-left-10-px ub-col">
           <li class="z-font-size-16 z-color-333 z-margin-bottom-5-px">{{userInfo.nickName}}</li>
-          <li class="z-font-size-14 z-color-888">{{myInfo.userID}}</li>
         </ul>
       </dd>
       <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">
@@ -109,6 +108,11 @@ export default {
     }
   },
   methods: {
+    login () {
+      wx.navigateTo({
+        url: '/pages/login/main'
+      })
+    },
     onGetUserInfo (e) {
       this.$store.commit('updateIsLogin', true)
       this.$store.commit('updateUser', e.mp.detail.userInfo)
@@ -124,7 +128,7 @@ export default {
       wx.clearStorage()
       wx.hideLoading()
       wx.reLaunch({
-        url: '../login/main'
+        url: '../init/main'
       })
     },
     handleChange (detail) {
@@ -292,7 +296,7 @@ export default {
 .bte
   border-top:solid 1px #eee
 .container{width:100%;height:100vh;background:#e8e8e8;object-fit: cover}
-.head-img{width:70px;height:70px;border-radius:50%;box-shadow:0 0 5px rgba(0,0,0,.2);background:#eee}
+.head-img{width:60px;height:60px;border-radius:50%;box-shadow:0 0 5px rgba(0,0,0,.2);background:#eee}
 .loginBtn{font-size:14px;color:#fff;padding:0px 20px;margin-left: 10px;background: #ff5722}
 .exitBtn{border: 1px solid #357cfb;padding:7px 15px;color:#357cfb;border-radius: 3px}
 </style>
