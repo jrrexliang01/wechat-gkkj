@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "评估报告",
+  "navigationBarBackgroundColor": "#E7E9EA",
+  "disableScroll": false,
+  "usingComponents": {
+    "i-divider": "../../../static/iview/divider/index"
+  }
+}

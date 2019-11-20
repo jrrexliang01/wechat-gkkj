@@ -2,7 +2,7 @@
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col">
-        <dd @click.stop="$openWin('/pages/patInfo/main?reportId=' + val.id)" v-for="(val, idx) in reportList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
+        <dd @click.stop="$openWin('/pages/doc/patInfo/main?reportId=' + val.id)" v-for="(val, idx) in reportList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.doc.docName}}问诊报告</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">报告时间{{val.reportDate}}</span>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getPatReportList } from '../../config'
+import { getPatReportList } from '../../../config'
 export default {
   data () {
     return {

@@ -1,0 +1,89 @@
+<template>
+  <div class="container ub-box">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
+      <img :src="imgSrc" class="z-width-100-percent" mode="widthFix"/>
+      <dl class="z-width-100-percent ub-box ub-col" style="margin-bottom: 50px;">
+        <dd @click.stop="toNewsInfo(item.id)" v-for="(item,index ) in newList" :key="item.id" @click="toNewsInfo(item.id)" class="order z-width-100-percent z-box-sizing-border">
+          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
+            <span class="z-font-size-17 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
+          </div>
+          <img class="z-img-contain" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711471422&di=925e0c1d65d6df1958bd6bf2dadb21fc&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd5d8822184fb61bd5b16bc940c5b02aa77f9efb426b3f-wrTF8y_fw658" />
+          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
+            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>
+<!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
+          </div>
+        </dd>
+        <view class="i-divider-mart">
+          <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
+        </view>
+      </dl>
+
+      <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
+        <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
+        <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
+        <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
+      </i-tab-bar>
+    </scroll-view>
+  </div>
+</template>
+
+<script>
+import { getNewList } from '../../../config'
+export default {
+  data () {
+    return {
+      newList: {},
+      imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711070555&di=838265d4fd12babf14dc71651dc9a9a7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F170e60b9758f0742a63e91e3179995d14d95c89d2d012-bYEkE9_fw658',
+      current: ''
+    }
+  },
+  filters: {
+    ellipsis (value) {
+      if (!value) return ''
+      if (value.length > 20) {
+        console.log(value)
+        return value
+      }
+      return value
+    }
+  },
+  methods: {
+    handleChange (detail) {
+      this.current = detail.mp.detail.key
+      if (detail.mp.detail.key.toString() === 'homepage') {
+        wx.switchTab({
+          url: '../home/main'
+        })
+      } else if (detail.mp.detail.key.toString() === 'mine') {
+        wx.switchTab({
+          url: '../own/main'
+        })
+      } else if (detail.mp.detail.key.toString() === 'chat') {
+        wx.switchTab({
+          url: '../index/main'
+        })
+      }
+    },
+    toNewsInfo (id) {
+      wx.navigateTo({
+        url: '/pages/doc/scienceInfo/main?newsId=' + id
+      })
+    }
+  },
+  onShow () {
+    this.current = ''
+  },
+  async mounted () {
+    // 调用应用实例的方法获取全局数据
+    const { newList } = await getNewList()
+    wx.setStorageSync('newList', newList)
+    this.newList = wx.getStorageSync('newList')
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+  .container{width:100%;height:100vh;background:#fff}
+  .order{border-bottom: 1px solid #f5f5f5;padding: 10px 8px;}
+  .order img{width: 99%; height: 120px; border-radius: 3px}
+</style>

@@ -5,10 +5,10 @@
     </dd>
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
       <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input v-model="form.phone" type="number" autofocus placeholder="请输入手机号" title="+86" right maxlength="11" @change="changValue('phone',$event)"/></span>
+        <span class="z-font-size-14 z-color-333"><i-input v-model="phone" type="number" autofocus placeholder="请输入手机号" title="+86" maxlength="11" right @change="changValue('phone',$event)"/></span>
       </p>
       <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input v-model="form.code" type="number" title="邀请码" placeholder="请输入邀请码" right  maxlength="5" @change="changValue('code',$event)"/></span>
+        <span class="z-font-size-14 z-color-333"><i-input v-model="code" type="number" title="邀请码" placeholder="请输入邀请码" maxlength="5" right @change="changValue('code',$event)"/></span>
       </p>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">

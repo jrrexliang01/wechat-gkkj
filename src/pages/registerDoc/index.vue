@@ -6,28 +6,28 @@
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px" style="border-bottom: 1px solid #f5f5f5">
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="phone" title="手机号"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入手机号" @change="changValue('phone', $event)" title="手机号"/></span>
         </p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="code" title="邀请码"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入邀请码" @change="changValue('code', $event)" title="邀请码"/></span>
         </p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="docName" title="医生姓名"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生姓名" @change="changValue('docName', $event)" title="医生姓名"/></span>
         </p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="title" title="医生职称"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生职称" @change="changValue('title', $event)" title="医生职称"/></span>
         </p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="hospitalName" title="所属医院"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入所属医院" @change="changValue('hospitalName', $event)" title="所属医院"/></span>
         </p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="department" title="科室"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入科室" @change="changValue('department', $event)" title="科室"/></span>
         </p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="subject" title="擅长描述"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入擅长描述" @change="changValue('subject', $event)" title="擅长描述"/></span>
         </p>
         <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input value="" v-model="introduce" title="医生介绍"/></span>
+          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生介绍" @change="changValue('introduce', $event)" title="医生介绍"/></span>
         </p>
         <!--<p class="ub-box">-->
           <!--<span class="z-font-size-14 z-color-333" @click="chooseImage()"><i-input value="" v-model="path" title="资质证书"/></span>-->
@@ -98,38 +98,41 @@
         this.form.openId = sessionKey.openid
         this.form.icon = userInfo.avatarUrl
         this.form.alias = userInfo.nickName
-        // wx.request({
-        //   url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
-        //   data: {
-        //     hospitalName: this.hospitalName,
-        //     department: this.department
-        //   },
-        //   method: 'POST',
-        //   success (res) {
-        //     this.form.hospitals.id = res.data.data.id
-        //     this.formData = JSON.stringify(this.form)
-        //     wx.request({
-        //       url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
-        //       data: this.formData,
-        //       method: 'POST',
-        //       success (res) {
-        //         wx.setStorageSync('userInfo', res.data.data)
-        //         wx.navigateTo({url: '/pages/init/main'})
-        //       }
-        //     })
-        //   }
-        // })
-        this.form.hospitals.id = 1
-        this.formData = JSON.stringify(this.form)
         wx.request({
-          url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
-          data: this.formData,
+          url: 'https://gkkj.jrrexliang.com/api/wx/hospital/add',
+          data: {
+            hospitalName: this.hospitalName,
+            department: this.department
+          },
           method: 'POST',
           success (res) {
-            wx.setStorageSync('userInfo', res.data.data)
-            wx.navigateTo({url: '/pages/init/main'})
+            this.form.hospitals.id = res.data.data.id
+            this.formData = JSON.stringify(this.form)
+            wx.request({
+              url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
+              data: this.formData,
+              method: 'POST',
+              success (res) {
+                wx.setStorageSync('userInfo', res.data.data)
+                wx.navigateTo({url: '/pages/init/main'})
+              }
+            })
           }
         })
+        // this.form.hospitals.id = 1
+        // this.formData = JSON.stringify(this.form)
+        // wx.request({
+        //   url: 'http://localhost:8001/api/wx/doc/add',
+        //   data: this.formData,
+        //   method: 'POST',
+        //   success (res) {
+        //     wx.setStorageSync('userInfo', res.data.data)
+        //     wx.navigateTo({url: '/pages/doc/home/main'})
+        //   }
+        // })
+      },
+      changValue (val, event) {
+        this[val] = event.target.detail.value
       }
       // chooseImage () {
       //   var _this = this

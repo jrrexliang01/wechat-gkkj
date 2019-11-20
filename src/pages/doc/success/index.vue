@@ -1,0 +1,68 @@
+<template>
+  <div class="counter-warp">
+    <i-card @click="toMyInfo">
+      <img src="../../../static/images/pay.png" size="large" shape="square"  style="height: 600px;width: 100%;"/>
+    </i-card>
+  </div>
+</template>
+
+<script>
+import { msgAdd } from '../../../config'
+export default {
+  data () {
+    return {
+      courseInfo: {},
+      docInfo: {},
+      status: 0,
+      msgInfo: {
+        title: '',
+        userId: 0,
+        userType: 0,
+        msg: ''
+      },
+      msgDocInfo: {
+        title: '',
+        userId: 0,
+        userType: 0,
+        msg: ''
+      },
+      formData: {},
+      formDocData: {},
+      docId: 0
+    }
+  },
+  methods: {
+    async toMyInfo () {
+      this.msgInfo.title = '订单消息'
+      this.msgInfo.userId = this.docInfo.id
+      this.msgInfo.userType = 1
+      this.msgInfo.msg = this.docInfo.docName + '您好，您的订单已支付成功！'
+      this.formData = JSON.stringify(this.msgInfo)
+      const { status } = await msgAdd(this.formData)
+      this.status = status
+      if (this.status === 1) {
+        this.docId = this.docInfo.id
+        let url = '../myorder/main?docId=' + this.docId + '&orderStatus=2'
+        wx.navigateTo({ url: url })
+      } else {
+        console.log('保存消息失败！')
+      }
+    }
+  },
+  onUnload: function () {
+    wx.reLaunch({
+      url: '../home/main'
+    })
+  },
+  mounted () {
+    this.courseInfo = wx.getStorageSync('courseInfo')
+    this.docInfo = wx.getStorageSync('userInfo')
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+.counter-warp
+  text-align center
+  margin-top 100px
+</style>

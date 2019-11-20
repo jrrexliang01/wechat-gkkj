@@ -25,7 +25,7 @@
       <!--图标九宫格入口-->
       <dl class="ub-box ub-wrap z-padding-v-5-px" style="background:#fff">
         <div class="icon-item ub-box ub-col ub-ver" :key="key" v-for="(idx, key) in iconMap">
-          <dd @click.stop="$openWin('/pages/newsDoc/main')" class="icon ub-box ub-ver iconfont" :class="key" :style="{background: iconMap[key]['bk']}"></dd>
+          <dd @click.stop="toChoose(iconMap[key]['title'])" class="icon ub-box ub-ver iconfont" :class="key" :style="{background: iconMap[key]['bk']}"></dd>
           <span class="z-padding-v-8-px z-font-size-12 z-color-333">{{iconMap[key]['title']}}</span>
         </div>
       </dl>
@@ -57,7 +57,7 @@
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
           <span class="z-font-size-12 z-color-888 z-lineHeight-36">—科普知识—</span>
         </p>
-        <dd @click.stop="toNewsInfo(item.id)" v-for="(item,index ) in newList" :key="item.id" @click="toNewsInfo(item.id)" class="order z-width-100-percent z-box-sizing-border">
+        <dd @click.stop="toNewsInfo(item.id)" v-for="(item,index ) in newList" :key="item.id" class="order z-width-100-percent z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>
@@ -136,7 +136,34 @@
         })
       },
       gotoDetail (id) {
-        wx.navigateTo({url: '/pages/testDocInfo1/main?docId=' + id})
+        wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + id})
+      },
+      toNewsInfo (id) {
+        wx.navigateTo({
+          url: '/pages/doc/scienceInfo/main?newsId=' + id
+        })
+      },
+      toChoose (val) {
+        if (val === '申请讲座') {
+          wx.navigateTo({
+            url: '/pages/doc/scienceInfo/main'
+          })
+        }
+        if (val === '经验分享') {
+          wx.navigateTo({
+            url: '/pages/doc/article/main'
+          })
+        }
+        if (val === '专家带教') {
+          wx.navigateTo({
+            url: '/pages/doc/scienceInfo/main'
+          })
+        }
+        if (val === '科普知识') {
+          wx.navigateTo({
+            url: '/pages/doc/science/main'
+          })
+        }
       }
     },
     async beforeCreate () {

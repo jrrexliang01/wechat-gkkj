@@ -17,7 +17,7 @@ class API {
             sizePerPage: 10
           },
           params: {
-            title: 'a'
+            title: ''
           }
         },
         method: 'POST',
