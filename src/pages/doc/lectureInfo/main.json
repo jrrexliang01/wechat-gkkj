@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "单人讲座",
+  "navigationBarBackgroundColor": "#E7E9EA",
+  "disableScroll": false,
+  "usingComponents": {
+    "i-input": "../../../static/iview/input/index",
+    "i-button": "../../../static/iview/button/index",
+    "i-avatar": "../../../static/iview/avatar/index",
+    "i-row": "../../../static/iview/row/index",
+    "i-col": "../../../static/iview/col/index",
+    "i-grid": "./../../static/iview/grid/index",
+    "i-grid-item": "./../../static/iview/grid-item/index",
+    "i-grid-icon": "./../../static/iview/grid-icon/index",
+    "i-grid-label": "./../../static/iview/grid-label/index",
+    "i-icon": "./../../static/iview/icon/index",
+    "i-card": "./../../static/iview/card/index"
+  }
+}

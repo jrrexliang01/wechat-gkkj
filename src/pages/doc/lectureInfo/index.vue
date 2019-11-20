@@ -1,0 +1,113 @@
+<template>
+  <div class="container ub-box ub-col ub-ver">
+    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-888">介绍</p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333">姓名</p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">{{docInfo.docName}}</span>
+        </p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333">所属医院</p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">{{docInfo.hospitals.hospitalName}}</span>
+        </p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333">讲座金额</p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">99</span>
+        </p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333">截止时间</p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">2019年11月30日</span>
+        </p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333">参与人数</p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">10人</span>
+        </p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-888">讲座简介</p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333">讲座标题</p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">乳腺癌的早期症状</span>
+        </p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
+        <ul class="ub-box ub-col">
+          <li class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">乳腺癌的早期症状就是胀痛、有肿块……</li>
+        </ul>
+      </dd>
+      <!--fixed部分-->
+      <ul class="fixCon ub-box ub-ver ub-between">
+        <li class="ub-box ub-ver z-padding-h-10-px">
+          <span class="z-font-size-18 z-font-weight-bold" style="color:red">¥99</span>
+        </li>
+        <li @click.stop="toSuccess()" class="sumbitBtn ub-box ub-ver z-font-size-16 z-color-fff">支付</li>
+      </ul>
+    </scroll-view>
+  </div>
+</template>
+
+<script>
+import { getDocInfo } from '../../../config'
+export default {
+  data () {
+    return {
+      indexImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573715874900&di=5bcf608e16d7ea2b57cf2785f8a081e4&imgtype=0&src=http%3A%2F%2Fwww.czt.cn%2FUpImage%2FRelate%2F20170623115550.jpg',
+      docId: 0,
+      docInfo: {
+        docName: '',
+        hospitals: {
+          hospitalName: ''
+        },
+        title: '',
+        department: '',
+        introduce: ''
+      }
+    }
+  },
+  async onLoad (options) {
+    this.docId = parseInt(options.docId)
+    console.log(this.docId)
+    const { docInfo } = await getDocInfo(this.docId)
+    wx.setStorageSync('docInfo', docInfo)
+    this.docInfo = wx.getStorageSync('docInfo')
+  },
+  methods: {
+    toGoods (id) {
+      wx.navigateTo({
+        url: '/pages/testGoodsInfo1/main?docId=' + id
+      })
+    }
+  },
+  mounted () {
+    wx.removeStorage('docInfo')
+    console.log(this.docInfo)
+    console.log(wx.getStorageSync('userId'))
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+  .container{width:100%;height:100vh;background:#e8e8e8}
+  .indexImg{height: 170px;position: relative;}
+  .indexImg-bk{position: absolute;bottom: 0;left: 0;z-index: 1;width: 100%;height: 30%;background: rgba(0,0,0,.3);padding: 5px 0px}
+  .buyBtn{background: #f90;padding: 8px 12px;border-radius:3px}
+  .label{border-radius:3px;background: #fff;padding: 3px 5px;margin: 0 5px 5px 0}
+  .tuijian{color: #f90;border:1px solid #f90;}
+  .butuijian{color: #999;border:1px solid #ddd;}
+  .item{border-bottom: 1px solid #f5f5f5;padding: 10px 8px;}
+  .fixCon{position: fixed;left: 0;bottom: 0;z-index: 10;width: 100%;background: #fff;}
+  .sumbitBtn{padding: 15px 35px;background: #5CA2F2;box-sizing: border-box;}
+</style>
