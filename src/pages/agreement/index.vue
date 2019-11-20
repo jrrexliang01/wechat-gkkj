@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div class="card">
-      <div class="item agreement">
-        <span class="z-font-size-15 z-color-666 z-padding-h-10-px">{{user_agreement.content}}</span>
-      </div>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
+      <ul class="ub-box ub-col">
+        <li class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">&nbsp;&nbsp;&nbsp;&nbsp;{{user_agreement.content}}</li>
+      </ul>
+    </dd>
   </div>
-</div>
 </template>
 
 <script>
