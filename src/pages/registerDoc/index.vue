@@ -1,52 +1,47 @@
 <template>
   <div class="container ub-box ub-col">
-    <scroll-view scroll-y style="height: 100vh;padding: 10px;" scroll-top="0">
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff" style="border-bottom: 1px solid #f5f5f5">
-        <p class="z-font-size-20 z-color-888" style="color: #5ca2f2;padding: 10px;">医生注册</p>
-      </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px" style="border-bottom: 1px solid #f5f5f5">
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入手机号" @change="changValue('phone', $event)" title="手机号"/></span>
-        </p>
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入邀请码" @change="changValue('code', $event)" title="邀请码"/></span>
-        </p>
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生姓名" @change="changValue('docName', $event)" title="医生姓名"/></span>
-        </p>
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生职称" @change="changValue('title', $event)" title="医生职称"/></span>
-        </p>
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入所属医院" @change="changValue('hospitalName', $event)" title="所属医院"/></span>
-        </p>
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入科室" @change="changValue('department', $event)" title="科室"/></span>
-        </p>
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入擅长描述" @change="changValue('subject', $event)" title="擅长描述"/></span>
-        </p>
-        <p class="ub-box">
-          <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生介绍" @change="changValue('introduce', $event)" title="医生介绍"/></span>
-        </p>
-        <!--<p class="ub-box">-->
-          <!--<span class="z-font-size-14 z-color-333" @click="chooseImage()"><i-input value="" v-model="path" title="资质证书"/></span>-->
-        <!--</p>-->
-      </dd>
-      <div class="login-button">
-        <button style="border-radius: 10px;background-color: #5ca2f2;color: #ffffff;" @click="reg" >注  册</button>
-      </div>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="padding-right: 10px;">
-        <p class="z-font-size-14 z-color-333" style="color: #5ca2f2;"><b>注册代表同意用户协议</b></p>
-      </dd>
-    </scroll-view>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
+      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">医生注册</p>
+    </dd>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入手机号" autofocus @change="changValue('phone', $event)" right title="手机号"/></span>
+      </p>
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入邀请码" @change="changValue('code', $event)" right title="邀请码"/></span>
+      </p>
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input v-model="docName" placeholder="请输入医生姓名" @change="changValue('docName', $event)" right title="医生姓名"/></span>
+      </p>
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生职称" @change="changValue('title', $event)" right title="医生职称"/></span>
+      </p>
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入所属医院" @change="changValue('hospitalName', $event)" right title="所属医院"/></span>
+      </p>
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入科室" @change="changValue('department', $event)" right title="科室"/></span>
+      </p>
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入擅长描述" @change="changValue('subject', $event)" right title="擅长描述"/></span>
+      </p>
+      <p class="ub-box">
+        <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入医生介绍" @change="changValue('introduce', $event)" right title="医生介绍"/></span>
+      </p>
+      <!--<p class="ub-box">-->
+        <!--<span class="z-font-size-14 z-color-333" @click="chooseImage()"><i-input value="" v-model="path" title="资质证书"/></span>-->
+      <!--</p>-->
+    </dd>
+    <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
+      <button class="loginBtn" lang="zh_CN" @click="reg()">注  册</button>
+    </dd>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="padding: 5px 20px 0 20px;">
+      <p class="z-font-size-14 z-color-333 z-margin-bottom-30-px">注册代表同意<font style="color: #357cfb;" @click.stop="goTOAgreement()">用户协议</font></p>
+    </dd>
   </div>
 </template>
 
 <script>
-  /* eslint-disable no-cond-assign,no-constant-condition */
-
-  import { getDocInfo } from '../../config'
   export default {
     data () {
       return {
@@ -61,7 +56,7 @@
         subject: '',
         path: '',
         introduce: '',
-        docInfo: {
+        form: {
           docName: '',
           phone: '',
           hospitals: {
@@ -77,13 +72,6 @@
         },
         formData: {}
       }
-    },
-    async onLoad (options) {
-      this.docId = parseInt(options.docId)
-      console.log(this.docId)
-      const { docInfo } = await getDocInfo(this.docId)
-      wx.setStorageSync('docInfo', docInfo)
-      this.docInfo = wx.getStorageSync('docInfo')
     },
     methods: {
       async reg () {
@@ -130,6 +118,9 @@
         //     wx.navigateTo({url: '/pages/doc/home/main'})
         //   }
         // })
+      },
+      goTOAgreement () {
+        wx.navigateTo({url: '/pages/agreement/main'})
       },
       changValue (val, event) {
         this[val] = event.target.detail.value
@@ -190,25 +181,13 @@
       //     }
       //   })
       // }
-    },
-    mounted () {
-      wx.removeStorage('docInfo')
-      console.log(this.docInfo)
-      console.log(wx.getStorageSync('userId'))
     }
   }
 </script>
 
 <style lang="stylus" scoped>
   .container{width:100%;height:100vh;background:#ffffff}
-  .indexImg{height: 170px;position: relative;}
-  .indexImg-bk{position: absolute;bottom: 0;left: 0;z-index: 1;width: 100%;height: 30%;background: rgba(0,0,0,.3);padding: 5px 0px}
-  .buyBtn{background: #f90;padding: 8px 12px;border-radius:3px}
   .label{border-radius:3px;background: #fff;padding: 3px 5px;margin: 0 5px 5px 0}
-  .tuijian{color: #f90;border:1px solid #f90;}
-  .butuijian{color: #999;border:1px solid #ddd;}
-  .login-button
-    width 90%
-    padding 15px 0
-    display inline-block
+  .loginBtn{font-size:18px;color:#fff;padding:0px 20px;margin-left: 10px;margin-right: 10px;background: #357cfb}
 </style>
+
