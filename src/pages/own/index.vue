@@ -51,7 +51,7 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="$openWin('/pages/myInfo/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="toMyInfo()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-zhiliang" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">个人信息</span>
@@ -161,34 +161,84 @@ export default {
     },
     toOrdList () {
       this.user = wx.getStorageSync('userInfo')
+      if (this.user === '') {
+        wx.showToast({
+          title: '请登录后重试',
+          icon: 'info',
+          duration: 2000
+        })
+        return
+      }
+      console.log(this.user)
       this.patId = this.user.id
       let url = '../myorder/main?patId=' + this.patId + '&orderStatus=2'
       wx.navigateTo({ url: url })
     },
     toOrdWList () {
       this.user = wx.getStorageSync('userInfo')
+      if (this.user === '') {
+        wx.showToast({
+          title: '请登录后重试',
+          icon: 'info',
+          duration: 2000
+        })
+        return
+      }
       this.patId = this.user.id
       let url = '../myorder/main?patId=' + this.patId + '&orderStatus=0'
       wx.navigateTo({ url: url })
     },
     toOrdFList () {
       this.user = wx.getStorageSync('userInfo')
+      if (this.user === '') {
+        wx.showToast({
+          title: '请登录后重试',
+          icon: 'info',
+          duration: 2000
+        })
+        return
+      }
       this.patId = this.user.id
       let url = '../myorder/main?patId=' + this.patId + '&orderStatus=1'
       wx.navigateTo({ url: url })
     },
     toMyInfo () {
+      this.user = wx.getStorageSync('userInfo')
+      if (this.user === '') {
+        wx.showToast({
+          title: '请登录后重试',
+          icon: 'info',
+          duration: 2000
+        })
+        return
+      }
       let url = '../myinfo/main'
       wx.navigateTo({ url: url })
     },
     toPatList () {
       this.user = wx.getStorageSync('userInfo')
+      if (this.user === '') {
+        wx.showToast({
+          title: '请登录后重试',
+          icon: 'info',
+          duration: 2000
+        })
+        return
+      }
       this.patId = this.user.id
       let url = '../patList/main?patId=' + this.patId
       wx.navigateTo({ url: url })
     },
     toMsgList () {
       this.user = wx.getStorageSync('userInfo')
+      if (this.user === '') {
+        wx.showToast({
+          title: '请登录后重试',
+          icon: 'info',
+          duration: 2000
+        })
+        return
+      }
       this.patId = this.user.id
       let url = '../message/main?patId=' + this.patId
       wx.navigateTo({ url: url })
