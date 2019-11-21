@@ -42,7 +42,8 @@
     "pages/doc/science/main",
     "pages/doc/scienceInfo/main",
     "pages/doc/success/main",
-    "pages/doc/docList/main"
+    "pages/doc/docList/main",
+    "pages/doc/setting/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
