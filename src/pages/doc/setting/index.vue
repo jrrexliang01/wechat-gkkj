@@ -35,7 +35,8 @@ export default {
     async saveDay () {
       this.form.remindDay = this.day
       // let sessionKey = wx.getStorageSync('sessionKey')
-      // let userInfo = wx.getStorageSync('userInfo')
+      let userInfo = wx.getStorageSync('userInfo')
+      this.form.doc.id = userInfo.id
       // TODO 补全后台AJAX
       this.formData = JSON.stringify(this.form)
       wx.request({
