@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/doc/home/main",
     "pages/init/main",
     "pages/home/main",
     "pages/index/main",
@@ -24,6 +23,7 @@
     "pages/nonLactatingCase/main",
     "pages/message/main",
     "pages/patList/main",
+    "pages/doc/home/main",
     "pages/doc/article/main",
     "pages/doc/articleInfo/main",
     "pages/doc/citySelect/main",

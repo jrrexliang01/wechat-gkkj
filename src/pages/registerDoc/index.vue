@@ -47,15 +47,15 @@
       return {
         indexImg: 'http://39.100.255.143/img/wx/wenzhen.jpg',
         docId: 0,
-        phone: '',
-        code: '',
-        docName: '',
-        title: '',
-        hospitalName: '',
-        department: '',
-        subject: '',
+        phone: '13566688888',
+        code: '644308',
+        docName: '刘',
+        title: '主任',
+        hospitalName: '总医院',
+        department: '妇科',
+        subject: '乳腺',
         path: '',
-        introduce: '',
+        introduce: '强',
         form: {
           docName: '',
           phone: '',
@@ -86,6 +86,8 @@
         this.form.openId = sessionKey.openid
         this.form.icon = userInfo.avatarUrl
         this.form.alias = userInfo.nickName
+        let form = this.form
+        let code = this.code
         wx.request({
           url: 'https://gkkj.jrrexliang.com/api/wx/hospital/add',
           data: {
@@ -94,15 +96,28 @@
           },
           method: 'POST',
           success (res) {
-            this.form.hospitals.id = res.data.data.id
-            this.formData = JSON.stringify(this.form)
+            form.hospitals.id = res.data.data.id
+            let formData = JSON.stringify(form)
             wx.request({
-              url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
-              data: this.formData,
+              url: 'https://gkkj.jrrexliang.com/api/wx/code/get',
+              data: {
+                code: code
+              },
               method: 'POST',
               success (res) {
-                wx.setStorageSync('userInfo', res.data.data)
-                wx.navigateTo({url: '/pages/init/main'})
+                if (res.data.data.id !== null && !res.data.data.isUse) {
+                  wx.request({
+                    url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
+                    data: formData,
+                    method: 'POST',
+                    success (res) {
+                      wx.setStorageSync('userInfo', res.data.data)
+                      wx.navigateTo({url: '/pages/init/main'})
+                    }
+                  })
+                } else {
+                  console.log('验证码无效')
+                }
               }
             })
           }
