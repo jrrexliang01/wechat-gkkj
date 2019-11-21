@@ -34,13 +34,13 @@ export default {
     this.docId = parseInt(options.docId)
     this.orderStatus = parseInt(options.orderStatus)
     if (this.orderStatus === 2) {
-      const { orderList } = await getOrderCourseList(this.docId)
-      wx.setStorageSync('orderList', orderList)
+      const { orderCourseList } = await getOrderCourseList(this.docId)
+      wx.setStorageSync('orderCourseList', orderCourseList)
     } else {
-      const { orderList } = await getOrderCourseStatusList(this.docId, this.orderStatus)
-      wx.setStorageSync('orderList', orderList)
+      const { orderCourseList } = await getOrderCourseStatusList(this.docId, this.orderStatus)
+      wx.setStorageSync('orderCourseList', orderCourseList)
     }
-    this.orderList = wx.getStorageSync('orderList')
+    this.orderList = wx.getStorageSync('orderCourseList')
     for (const v of this.orderList) {
       if (v.status === 1) {
         v.statusStr = '已付款'

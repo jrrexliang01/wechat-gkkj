@@ -1,13 +1,13 @@
 <template>
   <div class="container ub-box ub-col">
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">就诊报告</p>
+      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">就真报告</p>
     </dd>
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
       <p class="ub-box">
         <i-panel title="疼痛">
           <i-radio-group :current="currentPainRep" v-for="(painRep,index ) in painRepList" :key="painRep.id" @change="handlePainRepChange">
-            <i-radio position="right" :value="painRep.name" disabled>
+            <i-radio position="right" :value="painRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -15,7 +15,7 @@
       <p class="ub-box">
         <i-panel title="积乳">
           <i-radio-group :current="currentMilkRep" v-for="(milkRep,index ) in milkRepList" :key="milkRep.id" @change="handleMilkRepChange">
-            <i-radio position="right" :value="milkRep.name" disabled>
+            <i-radio position="right" :value="milkRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -23,7 +23,7 @@
       <p class="ub-box">
         <i-panel title="包块">
           <i-radio-group :current="currentChunksRep" v-for="(chunksRep,index ) in chunksRepList" :key="chunksRep.id" @change="handleChunksRepChange">
-            <i-radio position="right" :value="chunksRep.name" disabled>
+            <i-radio position="right" :value="chunksRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -31,7 +31,7 @@
       <p class="ub-box">
         <i-panel title="急性乳腺炎">
           <i-radio-group :current="currentAcuteMastitisRep" v-for="(acuteMastitisRep,index ) in acuteMastitisRepList" :key="acuteMastitisRep.id" @change="handleAcuteMastitisRepChange">
-            <i-radio position="right" :value="acuteMastitisRep.name" disabled>
+            <i-radio position="right" :value="acuteMastitisRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -39,7 +39,7 @@
       <p class="ub-box">
         <i-panel title="溢液">
           <i-radio-group :current="currentSpillRep" v-for="(spillRep,index ) in spillRepList" :key="spillRep.id" @change="handleSpillRepChange">
-            <i-radio position="right" :value="spillRep.name" disabled>
+            <i-radio position="right" :value="spillRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -47,7 +47,7 @@
       <p class="ub-box">
         <i-panel title="乳头问题">
           <i-radio-group :current="currentQuestionRep" v-for="(questionRep,index ) in questionRepList" :key="questionRep.id" @change="handleQuestionRepChange">
-            <i-radio position="right" :value="questionRep.name" disabled>
+            <i-radio position="right" :value="questionRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -55,7 +55,7 @@
       <p class="ub-box">
         <i-panel title="增生">
           <i-radio-group :current="currentHyperplasiaRep" v-for="(hyperplasiaRep,index ) in hyperplasiaRepList" :key="hyperplasiaRep.id" @change="handleHyperplasiaRepChange">
-            <i-radio position="right" :value="hyperplasiaRep.name" disabled>
+            <i-radio position="right" :value="hyperplasiaRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -63,7 +63,7 @@
       <p class="ub-box">
         <i-panel title="纤维瘤、脂肪瘤">
           <i-radio-group :current="currentFibromaRep" v-for="(fibromaRep,index ) in fibromaRepList" :key="fibromaRep.id" @change="handleFibromaRepChange">
-            <i-radio position="right" :value="fibromaRep.name" disabled>
+            <i-radio position="right" :value="fibromaRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -71,7 +71,7 @@
       <p class="ub-box">
         <i-panel title="乳痛症">
           <i-radio-group :current="currentMastodyniaRep" v-for="(mastodyniaRep,index ) in mastodyniaRepList" :key="mastodyniaRep.id" @change="handleMastodyniaRepChange">
-            <i-radio position="right" :value="mastodyniaRep.name" disabled>
+            <i-radio position="right" :value="mastodyniaRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
@@ -79,16 +79,10 @@
       <p class="ub-box">
         <i-panel title="乳腺囊肿">
           <i-radio-group :current="currentBreastCystRep" v-for="(breastCystRep,index ) in breastCystRepList" :key="breastCystRep.id" @change="handleBreastCystRepChange">
-            <i-radio position="right" :value="breastCystRep.name" disabled>
+            <i-radio position="right" :value="breastCystRep.name">
             </i-radio>
           </i-radio-group>
         </i-panel>
-      </p>
-      <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input placeholder="调理建议" @change="changValue('healthProposal', $event)" right title="调理建议" disabled/></span>
-      </p>
-      <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input placeholder="项目建议" @change="changValue('projectProposal', $event)" right title="项目建议" disabled/></span>
       </p>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
@@ -98,7 +92,6 @@
 </template>
 
 <script>
-import { getReportInfo } from '../../../config'
 export default {
   data () {
     return {
@@ -212,9 +205,6 @@ export default {
       currentFibromaRep: '',
       currentMastodyniaRep: '',
       currentBreastCystRep: '',
-      healthProposal: '',
-      projectProposal: '',
-      patInfo: {},
       patRepInfo: {
         isPain: '',
         isMilk: '',
@@ -226,18 +216,22 @@ export default {
         fibroma: '',
         mastodynia: '',
         breastCyst: '',
+        patient: {
+          id: 0
+        },
+        doc: {
+          id: 0
+        },
         healthProposal: '',
         projectProposal: ''
       },
-      reportId: 0
+      patId: 0
     }
   },
   methods: {
     async onLoad (options) {
-      this.reportId = parseInt(options.reportId)
-      console.log(this.reportId)
-      const { reportInfo } = await getReportInfo(this.reportId)
-      wx.setStorageSync('reportInfo', reportInfo)
+      this.patId = parseInt(options.patId)
+      console.log(this.patId)
     },
     handlePainRepChange (data) {
       console.log(data.target.value)
@@ -278,22 +272,23 @@ export default {
     handleBreastCystRepChange (data) {
       console.log(data.target.value)
       this.currentBreastCystRep = data.target.value
+    },
+    next () {
+      let userInfo = wx.getStorageSync('userInfo')
+      this.patRepInfo.isPain = this.currentPainRep
+      this.patRepInfo.isMilk = this.currentMilkRep
+      this.patRepInfo.chunks = this.currentChunksRep
+      this.patRepInfo.auteMastitis = this.currentAcuteMastitisRep
+      this.patRepInfo.spill = this.currentSpillRep
+      this.patRepInfo.question = this.currentQuestionRep
+      this.patRepInfo.hyperplasia = this.currentHyperplasiaRep
+      this.patRepInfo.fibroma = this.currentFibromaRep
+      this.patRepInfo.mastodynia = this.currentMastodyniaRep
+      this.patRepInfo.breastCyst = this.currentBreastCystRep
+      this.patRepInfo.patient.id = this.patId
+      this.patRepInfo.doc.id = userInfo.id
+      wx.setStorageSync('reportInfoAdd', this.patRepInfo)
     }
-  },
-  mounted () {
-    this.patRepInfo = wx.getStorageSync('reportInfo')
-    this.currentPainRep = this.patRepInfo.isPain
-    this.currentMilkRep = this.patRepInfo.isMilk
-    this.currentChunksRep = this.patRepInfo.chunks
-    this.currentAcuteMastitisRep = this.patRepInfo.auteMastitis
-    this.currentSpillRep = this.patRepInfo.spill
-    this.currentQuestionRep = this.patRepInfo.question
-    this.currentHyperplasiaRep = this.patRepInfo.hyperplasia
-    this.currentFibromaRep = this.patRepInfo.fibroma
-    this.currentMastodyniaRep = this.patRepInfo.mastodynia
-    this.currentBreastCystRep = this.patRepInfo.breastCyst
-    this.healthProposal = this.patRepInfo.healthProposal
-    this.projectProposal = this.patRepInfo.projectProposal
   }
 }
 </script>

@@ -601,7 +601,7 @@ class API {
   getCourseInfo (couresId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'https://gkkj.jrrexliang.com/api/wx/orders/course/detail',
+        url: 'https://gkkj.jrrexliang.com/api/wx/course/detail',
         data: {
           id: couresId
         },
