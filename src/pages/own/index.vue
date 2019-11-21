@@ -217,7 +217,7 @@ export default {
         })
         return
       }
-      let url = '../myinfo/main'
+      let url = '../myInfo/main'
       wx.navigateTo({ url: url })
     },
     toPatList () {
