@@ -217,7 +217,7 @@ export default {
         return
       }
       this.docId = this.user.id
-      let url = '../docInfo/main?docId=' + this.docId
+      let url = '../myInfo/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toMyPat () {

@@ -43,7 +43,10 @@
     "pages/doc/scienceInfo/main",
     "pages/doc/success/main",
     "pages/doc/docList/main",
-    "pages/doc/setting/main"
+    "pages/doc/setting/main",
+    "pages/doc/patInfoAdd/main",
+    "pages/doc/myInfo/main",
+    "pages/doc/patInfoAddProposal/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

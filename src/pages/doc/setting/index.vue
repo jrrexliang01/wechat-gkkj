@@ -23,31 +23,35 @@ export default {
     return {
       day: '',
       form: {
-        day: ''
+        doc: {
+          id: 0
+        },
+        remindDay: ''
       },
       formData: {}
     }
   },
   methods: {
     async saveDay () {
-      this.form.day = this.day
+      this.form.remindDay = this.day
       // let sessionKey = wx.getStorageSync('sessionKey')
-      // let userInfo = wx.getStorageSync('userInfo')
+      let userInfo = wx.getStorageSync('userInfo')
+      this.form.doc.id = userInfo.id
       // TODO 补全后台AJAX
-      // wx.request({
-      //   url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
-      //   data: {
-      //     openId: sessionKey.openid,
-      //     icon: userInfo.avatarUrl,
-      //     alias: userInfo.nickName,
-      //     phone: this.form.phone
-      //   },
-      //   method: 'POST',
-      //   success (res) {
-      //     wx.setStorageSync('userInfo', res.data.data)
-      //     wx.navigateTo({url: '/pages/init/main'})
-      //   }
-      // })
+      this.formData = JSON.stringify(this.form)
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/remind/config/add',
+        data: this.formData,
+        method: 'POST',
+        success (res) {
+          wx.setStorageSync('docSetting', res.data.data)
+          this.$store.commit('showToast', {
+            title: '保存成功',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      })
     },
     changValue (val, event) {
       this[val] = event.target.detail.value

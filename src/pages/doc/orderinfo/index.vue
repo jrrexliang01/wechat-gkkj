@@ -94,12 +94,12 @@
     async onLoad (options) {
       this.ordId = parseInt(options.ordId)
       console.log(this.ordId)
-      const { orderInfo } = await getOrderCourseInfo(this.ordId)
-      wx.setStorageSync('orderInfo', orderInfo)
-      this.orderInfo = wx.getStorageSync('orderInfo')
+      const { orderCourseInfo } = await getOrderCourseInfo(this.ordId)
+      wx.setStorageSync('orderCourseInfo', orderCourseInfo)
+      this.orderInfo = wx.getStorageSync('orderCourseInfo')
     },
     mounted () {
-      this.orderInfo = wx.getStorageSync('orderInfo')
+      this.orderInfo = wx.getStorageSync('orderCourseInfo')
       console.log(this.orderInfo)
     },
     onShow () {
