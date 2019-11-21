@@ -2,12 +2,12 @@
   <div class="container ub-box ub-col">
     <dl class="ub-box z-padding-all-10-px" style="background:#fff">
       <dd class="ub-box ub-ver">
-        <image :src="userInfo.avatarUrl || '/static/images/header.png'" class="head-img" mode="aspectFill"></image>
+        <image :src="userInfo.icon || '/static/images/header.png'" class="head-img" mode="aspectFill"></image>
       </dd>
       <dd class="ub-flex-1 z-font-size-18 z-color-333 ub-box ub-ver-v z-padding-h-10-px">
         <button v-if="isLogin===false" class="loginBtn" lang="zh_CN" @click.stop="login()">登录</button>
         <ul v-if="isLogin===true" class="ub-box z-margin-left-10-px ub-col">
-          <li class="z-font-size-16 z-color-333 z-margin-bottom-5-px">{{userInfo.nickName}}</li>
+          <li class="z-font-size-16 z-color-333 z-margin-bottom-5-px">{{userInfo.alias}}</li>
         </ul>
       </dd>
       <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">
@@ -92,10 +92,15 @@
 export default {
   computed: {
     isLogin () {
-      return this.$store.state.isLogin
+      this.user = wx.getStorageSync('userInfo')
+      if (this.user === '') {
+        return false
+      } else {
+        return true
+      }
     },
     userInfo () {
-      return this.$store.state.userInfo
+      return wx.getStorageSync('userInfo')
     }
   },
   data () {
@@ -248,6 +253,7 @@ export default {
       this.$store.commit('resetUser')
       this.$store.commit('resetCurrentConversation')
       this.$store.commit('resetAllConversation')
+      wx.removeStorageSync('userInfo')
       wx.$app.logout()
       wx.clearStorage()
       wx.hideLoading()
