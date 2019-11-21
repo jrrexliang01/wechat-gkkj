@@ -17,12 +17,6 @@
           <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
         </view>
       </dl>
-
-      <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
-        <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
-        <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-        <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
-      </i-tab-bar>
     </scroll-view>
   </div>
 </template>

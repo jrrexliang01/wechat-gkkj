@@ -1,8 +1,7 @@
 {
-  "navigationBarTitleText": "经验分享",
+  "navigationBarTitleText": "专家带教",
   "navigationBarBackgroundColor": "#E7E9EA",
   "disableScroll": false,
   "usingComponents": {
-    "i-divider": "../../../static/iview/divider/index"
   }
 }

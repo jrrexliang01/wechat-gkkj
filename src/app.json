@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/doc/home/main",
     "pages/init/main",
     "pages/home/main",
     "pages/index/main",
@@ -23,7 +24,6 @@
     "pages/nonLactatingCase/main",
     "pages/message/main",
     "pages/patList/main",
-    "pages/doc/home/main",
     "pages/doc/article/main",
     "pages/doc/articleInfo/main",
     "pages/doc/citySelect/main",
@@ -41,7 +41,8 @@
     "pages/doc/paymentInfo/main",
     "pages/doc/science/main",
     "pages/doc/scienceInfo/main",
-    "pages/doc/success/main"
+    "pages/doc/success/main",
+    "pages/doc/docList/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

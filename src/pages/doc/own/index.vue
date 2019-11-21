@@ -20,15 +20,15 @@
     </i-panel>
     <view class="sc df tc bte ">
       <navigator @click.stop="toOrdWList()" class="df_1" url="../user/dingdan?currentTab=0" hover-class="none" >
-        <view><image src="../../static/images/dfh.png"></image></view>
+        <view><image src="../../../static/images/dfh.png"></image></view>
         <text class="font_12">待付款</text>
       </navigator>
       <navigator @click.stop="toOrdFList()" class="df_1" url="../user/dingdan?currentTab=3" hover-class="none" >
-        <view><image src="../../static/images/dfk.png"></image></view>
+        <view><image src="../../../static/images/dfk.png"></image></view>
         <text  class="font_12">已完成</text>
       </navigator>
       <navigator @click.stop="toOrdList()" class="df_1" url="../user/dingdan?currentTab=4" hover-class="none" >
-        <view><image src="../../static/images/tksh.png"></image></view>
+        <view><image src="../../../static/images/tksh.png"></image></view>
         <text class="font_12">全部订单</text>
       </navigator>
     </view>
@@ -91,7 +91,6 @@
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-      <i-tab-bar-item key="science" icon="document" current-icon="document_fill" title="科普"></i-tab-bar-item>
       <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
     </i-tab-bar>
   </div>
@@ -145,10 +144,6 @@ export default {
       if (detail.mp.detail.key.toString() === 'homepage') {
         wx.redirectTo({
           url: '../home/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'science') {
-        wx.redirectTo({
-          url: '../science/main'
         })
       } else if (detail.mp.detail.key.toString() === 'mine') {
         wx.redirectTo({

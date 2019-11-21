@@ -29,7 +29,22 @@
           <span class="z-padding-v-8-px z-font-size-12 z-color-333">{{iconMap[key]['title']}}</span>
         </div>
       </dl>
-      <!--猜你喜欢，商品列表-->
+      <!--经验分享-->
+      <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
+        <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
+          <span class="z-font-size-12 z-color-888 z-lineHeight-36">—经验分享—</span>
+        </p>
+        <dd @click.stop="toNewsInfo(item.id)" v-for="(item,index ) in newList" :key="item.id" class="order z-width-100-percent z-box-sizing-border">
+          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
+            <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
+          </div>
+          <img class="z-img-contain" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711471422&di=925e0c1d65d6df1958bd6bf2dadb21fc&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd5d8822184fb61bd5b16bc940c5b02aa77f9efb426b3f-wrTF8y_fw658" />
+          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
+            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>
+          </div>
+        </dd>
+      </dl>
+      <!--专家带教-->
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
           <span class="z-font-size-12 z-color-888 z-lineHeight-36">—专家带教—</span>
@@ -52,22 +67,7 @@
           </div>
         </dd>
       </dl>
-      <!--猜你喜欢，商品列表-->
-      <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
-        <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
-          <span class="z-font-size-12 z-color-888 z-lineHeight-36">—科普知识—</span>
-        </p>
-        <dd @click.stop="toNewsInfo(item.id)" v-for="(item,index ) in newList" :key="item.id" class="order z-width-100-percent z-box-sizing-border">
-          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
-            <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>
-          </div>
-          <img class="z-img-contain" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711471422&di=925e0c1d65d6df1958bd6bf2dadb21fc&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd5d8822184fb61bd5b16bc940c5b02aa77f9efb426b3f-wrTF8y_fw658" />
-          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.createTime}}</span>
-          </div>
-        </dd>
-      </dl>
+
     </scroll-view>
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
@@ -117,15 +117,15 @@
       handleChange (detail) {
         this.current = detail.mp.detail.key
         if (detail.mp.detail.key.toString() === 'homepage') {
-          wx.switchTab({
+          wx.redirectTo({
             url: '../home/main'
           })
         } else if (detail.mp.detail.key.toString() === 'mine') {
-          wx.switchTab({
+          wx.redirectTo({
             url: '../own/main'
           })
         } else if (detail.mp.detail.key.toString() === 'chat') {
-          wx.switchTab({
+          wx.redirectTo({
             url: '../index/main'
           })
         }
@@ -156,7 +156,7 @@
         }
         if (val === '专家带教') {
           wx.navigateTo({
-            url: '/pages/doc/course/main'
+            url: '/pages/doc/docList/main'
           })
         }
         if (val === '科普知识') {
