@@ -1,8 +1,12 @@
 <template>
   <div class="chatting">
     <div v-if="allConversation.length === 0" class="empty">
-      <view class="i-divider-mart">
-        <i-divider content="没有其他数据" lineColor="#2d8cf0"></i-divider>
+      <view class="z-margin-top-40-px">
+        <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
+          <p class="ub-flex-1 ub-box ub-ver ub-between">
+            <span class="z-width-100-percent z-font-size-15 z-lineHeight-26">还没有消息，快去找医生咨询</span>
+          </p>
+        </div>
       </view>
     </div>
     <div class="chat" v-for="item in allConversation" :key="item.conversationID">
