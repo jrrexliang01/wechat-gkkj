@@ -31,9 +31,9 @@ export default {
   methods: {
     async saveDay () {
       this.form.day = this.day
-      let sessionKey = wx.getStorageSync('sessionKey')
-      let userInfo = wx.getStorageSync('userInfo')
-      //TODO 补全后台AJAX
+      // let sessionKey = wx.getStorageSync('sessionKey')
+      // let userInfo = wx.getStorageSync('userInfo')
+      // TODO 补全后台AJAX
       // wx.request({
       //   url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
       //   data: {
