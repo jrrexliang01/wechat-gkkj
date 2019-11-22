@@ -14,10 +14,10 @@
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between">
                   <span class="z-width-80-percent z-font-size-15 z-lineHeight-26">{{val.docName}}</span>
-                  <button class="loginBtn" lang="zh_CN" @click.stop="login()">申请带教</button>
+                  <button class="loginBtn" lang="zh_CN" @click.stop="addStudy(val.id)">申请带教</button>
                 </p>
               </div>
-            </div>
+            </div>Study
           </div>
         </dd>
       </dl>
@@ -31,12 +31,37 @@
     props: ['curGood', 'isLast'],
     data () {
       return {
-        docList: {}
+        docList: {},
+        studyInfo: {
+          teacher: {
+            id: 0
+          },
+          student: {
+            id: 0
+          }
+        }
       }
     },
     methods: {
-      gotoDetail (id) {
-        wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + id})
+      addStudy (id) {
+        let userInfo = wx.getStorageSync('userInfo')
+        this.studyInfo.student.id = userInfo.id
+        this.studyInfo.teacher.id = id
+        // TODO 补全后台AJAX
+        this.formData = JSON.stringify(this.studyInfo)
+        wx.request({
+          url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
+          data: this.formData,
+          method: 'POST',
+          success (res) {
+            wx.setStorageSync('studyInfo', res.data.data)
+            this.$store.commit('showToast', {
+              title: '保存成功',
+              icon: 'none',
+              duration: 1500
+            })
+          }
+        })
       }
     },
     async beforeCreate () {
