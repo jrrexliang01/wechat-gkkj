@@ -36,7 +36,7 @@
       <dd @click.stop="toOrdList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的订单</span>
+          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的医生</span>
         </p>
         <p class="ub-box ub-ver">
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
@@ -174,9 +174,8 @@ export default {
         })
         return
       }
-      console.log(this.user)
       this.patId = this.user.id
-      let url = '../myorder/main?patId=' + this.patId + '&orderStatus=2'
+      let url = '../myDoctor/main?patId=' + this.patId
       wx.navigateTo({ url: url })
     },
     toOrdWList () {

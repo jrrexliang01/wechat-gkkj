@@ -23,6 +23,7 @@
     "pages/nonLactatingCase/main",
     "pages/message/main",
     "pages/patList/main",
+    "pages/myDoctor/main",
     "pages/doc/home/main",
     "pages/doc/article/main",
     "pages/doc/articleInfo/main",
