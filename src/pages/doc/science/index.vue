@@ -13,16 +13,7 @@
 <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
           </div>
         </dd>
-        <view class="i-divider-mart">
-          <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
-        </view>
       </dl>
-
-      <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
-        <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
-        <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-        <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
-      </i-tab-bar>
     </scroll-view>
   </div>
 </template>
@@ -33,8 +24,7 @@ export default {
   data () {
     return {
       newList: {},
-      imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711070555&di=838265d4fd12babf14dc71651dc9a9a7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F170e60b9758f0742a63e91e3179995d14d95c89d2d012-bYEkE9_fw658',
-      current: ''
+      imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711070555&di=838265d4fd12babf14dc71651dc9a9a7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F170e60b9758f0742a63e91e3179995d14d95c89d2d012-bYEkE9_fw658'
     }
   },
   filters: {
@@ -48,30 +38,11 @@ export default {
     }
   },
   methods: {
-    handleChange (detail) {
-      this.current = detail.mp.detail.key
-      if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.switchTab({
-          url: '../home/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.switchTab({
-          url: '../own/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.switchTab({
-          url: '../index/main'
-        })
-      }
-    },
     toNewsInfo (id) {
       wx.navigateTo({
         url: '/pages/doc/scienceInfo/main?newsId=' + id
       })
     }
-  },
-  onShow () {
-    this.current = ''
   },
   async mounted () {
     // 调用应用实例的方法获取全局数据
