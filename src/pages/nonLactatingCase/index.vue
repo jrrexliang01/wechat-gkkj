@@ -1,7 +1,7 @@
 <template>
   <div class="bg">
     <div class="card" style="margin-top:20px">
-      <view style="margin: 16px">用户信息</view>
+      <view style="margin: 2px"></view>
       <i-input value="" v-model="patientName" title="姓名"/>
       <i-input value="" v-model="age" title="年龄"/>
       <i-input value="" v-model="phone" title="电话"/>
@@ -46,7 +46,7 @@
     </div>
     <div class="revise">
 <!--      <button @click="deleteFriend" class="btn delete">删除好友</button>-->
-      <button @click="addOut" class="btn delete">保存</button>
+      <button @click="addOut" class="btn" style="background-color: #5ca2f2;">保存</button>
     </div>
   </div>
 </template>
@@ -155,7 +155,7 @@ export default {
         })
         this.docInfo = wx.getStorageSync('docInfo')
         this.id = this.docInfo.openId
-        this.content = 'hello'
+        this.content = '医生，您好'
         if (this.content !== '' && this.id !== '') {
           let option = {
             userIDList: [this.id]
