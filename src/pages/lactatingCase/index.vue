@@ -23,7 +23,7 @@
       </i-panel>
     </div>
     <div class="revise">
-      <button @click="add" class="btn" style="background-color: #5ca2f2;">下一步</button>
+      <button @click="add" class="btn" style="background-color: #5ca2f2;">保存</button>
     </div>
   </div>
 </template>
