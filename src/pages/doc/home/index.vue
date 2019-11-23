@@ -47,21 +47,30 @@
       <!--专家带教-->
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
-          <span class="z-font-size-12 z-color-888 z-lineHeight-36">—专家带教—</span>
+          <span class="z-font-size-12 z-color-888 z-lineHeight-36">—专家列表—</span>
         </p>
-        <dd class="ub-box ub-col">
+        <dd class="ub-box ub-col" style="margin-bottom: 60px;">
           <div v-for="(val, idx) in docList" :key="val.id" :isLast="idx===10">
             <div @click.stop="gotoDetail(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.icon" class="z-img-cover">
-              <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
-                <p class="ub-flex-1 ub-box ub-ver ub-between">
+              <div class="z-padding-h-10-px ub-between ub-flex-1">
+                <p class="ub-ver-left">
                   <span class="z-width-80-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.docName}}</span>
-                  <span class="ub-flex-1 z-textAlign-right z-font-size-12 z-color-888">{{val.title}}</span>
                 </p>
-                <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
-                  <span class="z-font-size-12 z-color-666 z-lineHeight-20">{{val.title}}</span>
-                  <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>
+                <p class="ub-ver-left">
+                  <span class="ub-flex-1 z-textAlign-left z-font-size-12 z-color-888">{{val.title}}</span>
                 </p>
+                <p class="ub-ver-left">
+                  <span class="ub-flex-1 z-textAlign-left z-font-size-12 z-color-888" style="width: 150px;">{{val.hospitals.hospitalName}}</span>
+                </p>
+              </div>
+              <div class="z-padding-h-10-px ub-between ub-flex-1 z-margin-left-30-px" style="text-align: right;">
+                <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right z-margin-bottom-20-px">
+                  <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">申请带教</div>
+                </dd>
+                <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right">
+                  <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">申请讲座</div>
+                </dd>
               </div>
             </div>
           </div>
@@ -200,4 +209,5 @@
 .card img{width: 80px;height: 80px}
 .order{border-bottom: 1px solid #f5f5f5;padding: 10px 8px;}
 .order img{width: 99%; height: 120px; border-radius: 3px}
+.exitBtn{border: 1px solid #357cfb;padding:7px 15px;color:#357cfb;border-radius: 3px}
 </style>

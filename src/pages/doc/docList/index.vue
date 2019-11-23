@@ -7,17 +7,23 @@
           <div v-for="(val, idx) in docList" :key="val.id" :isLast="idx===10">
             <div @click.stop="gotoDetail(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.icon" class="z-img-cover">
-              <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
-                <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
-                  <span class="z-font-size-12 z-color-666 z-lineHeight-20 z-font-weight-bold">{{val.docName}}</span>
-                  <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>
+              <div class="z-padding-h-10-px ub-between ub-flex-1">
+                <p class="ub-ver-left">
+                  <span class="z-width-80-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.docName}}</span>
                 </p>
-                <p class="ub-flex-1 ub-box ub-ver ub-between">
-                  <span class="z-width-80-percent z-font-size-15 z-lineHeight-26">{{val.docName}}</span>
+                <p class="ub-ver-left">
+                  <span class="ub-flex-1 z-textAlign-left z-font-size-12 z-color-888">{{val.title}}</span>
+                </p>
+                <p class="ub-ver-left">
+                  <span class="ub-flex-1 z-textAlign-left z-font-size-12 z-color-888" style="width: 150px;">{{val.hospitals.hospitalName}}</span>
+                </p>
+              </div>
+              <div class="z-padding-h-10-px ub-between ub-flex-1 z-margin-left-30-px" style="text-align: right;">
+                <p class="ub-flex-1 ub-box ub-ver ub-between z-padding-top-15-px">
                   <button class="loginBtn" lang="zh_CN" @click.stop="addStudy(val.id)">申请带教</button>
                 </p>
               </div>
-            </div>Study
+            </div>
           </div>
         </dd>
       </dl>
@@ -59,11 +65,6 @@
           },
           success (res) {
             wx.setStorageSync('studyInfo', res.data.data)
-            this.$store.commit('showToast', {
-              title: '保存成功',
-              icon: 'none',
-              duration: 1500
-            })
           }
         })
       }
