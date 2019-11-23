@@ -32,7 +32,7 @@
       <!--经验分享-->
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
-          <span class="z-font-size-12 z-color-888 z-lineHeight-36">—经验分享—</span>
+          <span class="z-font-size-12 z-color-888 z-lineHeight-36">—专业课程—</span>
         </p>
         <dd @click.stop="toNewsInfo(item.id)" v-for="(item,index ) in newList" :key="item.id" class="order z-width-100-percent z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
