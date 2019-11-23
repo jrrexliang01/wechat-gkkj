@@ -28,13 +28,13 @@
         <input type="text" class="custom-input" placeholder="输入其他" v-model.lazy:value="customExtension"/>
       </div>
     </i-modal>
-    <i-modal title="对IM demo的评分和评价" i-class="custom-modal" :visible="rateModal" @ok="sendSurvey" @cancel="rateModal = false">
+    <i-modal title="对医生的评分" i-class="custom-modal" :visible="rateModal" @ok="sendSurvey" @cancel="rateModal = false">
       <div class="custom-wrapper">
         <i-rate
           @change="onChange"
           :value="rate">
         </i-rate>
-        <input type="text" class="custom-input" placeholder="输入评价" v-model.lazy:value="customExtension"/>
+<!--        <input type="text" class="custom-input" placeholder="输入评价" v-model.lazy:value="customExtension"/>-->
       </div>
     </i-modal>
     <div id="list" @click="loseFocus">
@@ -55,7 +55,7 @@
           </div>
           <div class="content">
             <div class="name">
-              {{message.nick || message.from}}
+<!--              {{message.nick || message.from}}-->
             </div>
             <div class="message" v-if="message.type === 'TIMTextElem'">
               <div class="text-message">
@@ -202,7 +202,7 @@
               <image src="/static/images/dice.png" class="icon"/>
             </div>
             <div class="name">
-              评分
+              点赞
             </div>
           </div>
         </div>
@@ -276,9 +276,10 @@ export default {
   },
   onLoad (options) {
     this.set = options.toAccount
+    console.log(options)
     // 设置header——聊天对象昵称或群名
     wx.setNavigationBarTitle({
-      title: this.set
+      title: '医生咨询'
     })
     let sysInfo = wx.getSystemInfoSync()
     this.sysInfo = sysInfo
