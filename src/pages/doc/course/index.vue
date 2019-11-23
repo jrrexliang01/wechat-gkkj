@@ -13,16 +13,7 @@
 <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
           </div>
         </dd>
-        <view class="i-divider-mart">
-          <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
-        </view>
       </dl>
-
-      <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
-        <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
-        <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-        <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
-      </i-tab-bar>
     </scroll-view>
   </div>
 </template>
@@ -48,36 +39,16 @@ export default {
     }
   },
   methods: {
-    handleChange (detail) {
-      this.current = detail.mp.detail.key
-      if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.switchTab({
-          url: '../home/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.switchTab({
-          url: '../own/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.switchTab({
-          url: '../index/main'
-        })
-      }
-    },
     toCourseInfo (id) {
       wx.navigateTo({
         url: '/pages/doc/courseInfo/main?courseId=' + id
       })
     }
   },
-  onShow () {
-    this.current = 'science'
-  },
   async mounted () {
     // 调用应用实例的方法获取全局数据
     const { courseList } = await getCourseList()
-    wx.setStorageSync('courseList', courseList)
-    this.courseList = wx.getStorageSync('courseList')
+    this.courseList = courseList
   }
 }
 </script>
