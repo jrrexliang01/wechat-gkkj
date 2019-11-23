@@ -18,15 +18,15 @@
     <view class="sc df tc bte ">
       <navigator @click.stop="toBillList()" class="df_1" url="../user/dingdan?currentTab=0" hover-class="none" >
         <view><image src="../../../static/images/dfh.png"></image></view>
-        <text class="font_12">总计：-100</text>
+        <text class="font_12">总计：{{docTotal.realSum}}</text>
       </navigator>
       <navigator @click.stop="toBillList()" class="df_1" url="../user/dingdan?currentTab=3" hover-class="none" >
         <view><image src="../../../static/images/dfk.png"></image></view>
-        <text  class="font_12">支出：200</text>
+        <text  class="font_12">支出：{{docTotal.paySum}}</text>
       </navigator>
       <navigator @click.stop="toBillList()" class="df_1" url="../user/dingdan?currentTab=4" hover-class="none" >
         <view><image src="../../../static/images/tksh.png"></image></view>
-        <text class="font_12">收入：100</text>
+        <text class="font_12">收入：{{docTotal.incomeSum}}</text>
       </navigator>
     </view>
     <dl class="ub-box ub-col z-margin-top-10-px" style="background:#fff;">
@@ -121,6 +121,7 @@
 </template>
 
 <script>
+import { getDocTotal } from '../../../config'
 export default {
   computed: {
     isLogin () {
@@ -141,8 +142,17 @@ export default {
       myInfo: {},
       current: 'mine',
       docId: 0,
-      user: {}
+      user: {},
+      docTotal: {}
     }
+  },
+  async onLoad () {
+    this.user = wx.getStorageSync('userInfo')
+    this.docId = this.user.id
+    const { docTotal } = await getDocTotal(this.docId)
+    this.docTotal = docTotal
+    this.docTotal.realSum = this.docTotal.incomeSum - this.docTotal.paySum
+    console.log(docTotal)
   },
   methods: {
     login () {
