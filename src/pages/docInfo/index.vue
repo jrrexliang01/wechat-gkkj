@@ -67,7 +67,7 @@
         <span class="z-font-size-12 z-color-999 z-margin-right-10-px">咨询费用</span>
         <span class="z-font-size-18 z-font-weight-bold" style="color:red">¥{{docInfo.price}}</span>
       </li>
-      <li @click.stop="toConsult(docInfo.id)" class="sumbitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即咨询</li>
+      <li @click.stop="toConsult(docInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即咨询</li>
     </ul>
   </div>
 </template>
@@ -129,5 +129,5 @@ export default {
   .buyBtn{background: #f90;padding: 8px 12px;border-radius:3px}
   .label{border-radius:3px;background: #fff;padding: 3px 5px;margin: 0 5px 5px 0}
   .fixCon{position: fixed;left: 0;bottom: 0;z-index: 10;width: 100%;background: #fff;}
-  .sumbitBtn{padding: 15px 35px;background: #5CA2F2;box-sizing: border-box;}
+  .submitBtn{padding: 15px 35px;background: #5CA2F2;box-sizing: border-box;}
 </style>
