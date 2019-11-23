@@ -69,6 +69,15 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
+      <dd @click.stop="$openWin('/pages/feedback/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon--fuwu" style="color:#357cfb;font-size:20px"></i>
+          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">用户反馈</span>
+        </p>
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
+        </p>
+      </dd>
       <dd @click.stop="$openWin('/pages/agreement/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon--fuwu" style="color:#357cfb;font-size:20px"></i>
