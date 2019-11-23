@@ -1,11 +1,7 @@
 <template>
   <div class="container ub-box ub-col">
     <scroll-view scroll-y style="height: calc(100vh - 50px);" scroll-top="0">
-      <!--专家列表-->
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
-        <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
-          <span class="z-font-size-12 z-color-888 z-lineHeight-36">—专家列表—</span>
-        </p>
         <dd class="ub-box ub-col" style="padding-bottom: 40px;">
           <div class="ub-end" v-for="(val, idx) in patList" :key="val.id" :isLast="idx===6">
             <div @click.stop="toPatList(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">

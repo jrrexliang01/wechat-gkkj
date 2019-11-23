@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "我的患者",
   "navigationBarBackgroundColor": "#E7E9EA",
   "disableScroll": false,
   "usingComponents": {
