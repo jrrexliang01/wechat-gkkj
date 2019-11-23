@@ -95,6 +95,10 @@
             department: this.department
           },
           method: 'POST',
+          header: {
+            'content-type': 'application/json', // 默认值
+            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+          },
           success (res) {
             form.hospitals.id = res.data.data.id
             let formData = JSON.stringify(form)
@@ -110,6 +114,10 @@
                     url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
                     data: formData,
                     method: 'POST',
+                    header: {
+                      'content-type': 'application/json', // 默认值
+                      'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+                    },
                     success (res) {
                       wx.setStorageSync('userInfo', res.data.data)
                       wx.navigateTo({url: '/pages/init/main'})

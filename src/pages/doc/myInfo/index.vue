@@ -77,6 +77,10 @@
           url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
           data: this.formData,
           method: 'POST',
+          header: {
+            'content-type': 'application/json', // 默认值
+            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+          },
           success (res) {
             wx.removeStorage('userInfo')
             wx.setStorageSync('userInfo', res.data.data)

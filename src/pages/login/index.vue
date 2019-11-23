@@ -44,6 +44,10 @@
                       openId: sessionKey.openid
                     },
                     method: 'POST',
+                    header: {
+                      'content-type': 'application/json', // 默认值
+                      'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+                    },
                     success (res) {
                       console.log(res)
                       if (res.data.data.userType === null) {

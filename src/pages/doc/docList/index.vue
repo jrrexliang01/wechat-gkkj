@@ -53,6 +53,10 @@
           url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
           data: this.formData,
           method: 'POST',
+          header: {
+            'content-type': 'application/json', // 默认值
+            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+          },
           success (res) {
             wx.setStorageSync('studyInfo', res.data.data)
             this.$store.commit('showToast', {

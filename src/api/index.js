@@ -22,7 +22,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           wx.hideLoading()
@@ -57,8 +58,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
-          // 'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           console.log('======')
@@ -87,7 +88,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           wx.hideLoading()
@@ -114,7 +116,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           wx.hideLoading()
@@ -147,7 +150,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           wx.hideLoading()
@@ -174,7 +178,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           wx.hideLoading()
@@ -204,7 +209,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -227,7 +233,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -258,7 +265,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -289,7 +297,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -308,7 +317,8 @@ class API {
         url: 'https://gkkj.jrrexliang.com/api/wx/agreement/detail',
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -337,7 +347,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -358,7 +369,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -381,7 +393,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -402,7 +415,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -421,7 +435,8 @@ class API {
         url: 'https://gkkj.jrrexliang.com/api/wx/search/hot',
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -452,7 +467,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -473,7 +489,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -494,7 +511,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -515,7 +533,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -536,7 +555,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -558,7 +578,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -587,7 +608,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -610,7 +632,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -631,7 +654,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -660,7 +684,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -683,7 +708,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -704,7 +730,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -725,7 +752,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -754,7 +782,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -777,7 +806,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -804,7 +834,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -825,7 +856,8 @@ class API {
         data: formData,
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -850,7 +882,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -869,7 +902,8 @@ class API {
         url: 'https://gkkj.jrrexliang.com/api/wx/news/banner',
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -898,7 +932,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)
@@ -921,7 +956,8 @@ class API {
         },
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
           resolve(res)

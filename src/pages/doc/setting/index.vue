@@ -43,6 +43,10 @@ export default {
         url: 'https://gkkj.jrrexliang.com/api/wx/remind/config/add',
         data: this.formData,
         method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
         success (res) {
           wx.setStorageSync('docSetting', res.data.data)
           this.$store.commit('showToast', {

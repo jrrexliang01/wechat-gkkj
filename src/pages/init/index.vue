@@ -33,9 +33,10 @@
               method: 'GET',
               success (res) {
                 var sessionKey = res.data
+                console.log('===========sessionKey============')
                 console.log(res)
                 wx.setStorageSync('sessionKey', sessionKey)
-                // wx.setStorageSync('token', sessionKey.unionid)
+                wx.setStorageSync('token', sessionKey.unionid)
                 let options = genTestUserSig(sessionKey.openid)
                 options.runLoopNetType = 0
                 if (options) {
@@ -49,25 +50,22 @@
                       data: {
                         openId: sessionKey.openid
                       },
-                      // header: {
-                      //   'wxAuthorization': 'Bearer ' + sessionKey.unionid
-                      // },
+                      header: {
+                        'content-type': 'application/json', // 默认值
+                        'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+                      },
                       method: 'POST',
                       success (res) {
-                        console.log(res)
                         if (res.data.data.userType === null) {
-                          console.log('null')
                           wx.redirectTo({
                             url: '/pages/home/main'
                           })
                         } else if (res.data.data.userType === 1) {
-                          console.log('doc')
                           wx.setStorageSync('userInfo', res.data.data.doc)
                           wx.redirectTo({
                             url: '/pages/doc/home/main'
                           })
                         } else if (res.data.data.userType === 2) {
-                          console.log('patient')
                           wx.setStorageSync('userInfo', res.data.data.patient)
                           wx.redirectTo({
                             url: '/pages/home/main'
