@@ -10,9 +10,9 @@
           <li class="z-font-size-16 z-color-333 z-margin-bottom-5-px">{{userInfo.alias}}</li>
         </ul>
       </dd>
-      <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">
-        <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">退出</div>
-      </dd>
+<!--      <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">-->
+<!--        <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">退出</div>-->
+<!--      </dd>-->
     </dl>
     <!--订单详情-->
     <i-panel class="cell-panel-demo">
