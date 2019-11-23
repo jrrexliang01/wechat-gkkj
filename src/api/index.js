@@ -924,7 +924,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 4
+            sizePerPage: 10
           },
           params: {
             id: docId

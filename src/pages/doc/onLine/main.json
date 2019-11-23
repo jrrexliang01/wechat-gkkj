@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "在线状态",
+  "navigationBarBackgroundColor": "#E7E9EA",
+  "backgroundColor": "#e6e6e6",
+  "usingComponents": {
+    "i-switch": "../../../static/iview/switch/index",
+    "i-input": "../../../static/iview/input/index"
+  }
+}
