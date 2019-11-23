@@ -22,21 +22,50 @@
   export default {
     data () {
       return {
-        selected: false,
-        userInfo: {
-          id: 0,
-          patientName: ''
-        },
-        hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
       }
     },
     methods: {
       getUserInfo () {
-        wx.getUserInfo({
+        wx.login({
           success (res) {
-            wx.setStorageSync('userInfo', res.userInfo)
-            wx.navigateTo({url: '/pages/register/main'})
+            if (res.code) {
+              wx.request({
+                url: 'https://gkkj.jrrexliang.com/wx/user/wx67010d52ded34ff6/login',
+                data: {
+                  code: res.code
+                },
+                method: 'GET',
+                success (res) {
+                  var sessionKey = res.data
+                  wx.setStorageSync('sessionKey', sessionKey)
+                  wx.request({
+                    url: 'https://gkkj.jrrexliang.com/api/wx/doc/userType',
+                    data: {
+                      openId: sessionKey.openid
+                    },
+                    method: 'POST',
+                    success (res) {
+                      console.log(res)
+                      if (res.data.data.userType === null) {
+                        wx.getUserInfo({
+                          success (res) {
+                            wx.setStorageSync('userInfo', res.userInfo)
+                            wx.navigateTo({url: '/pages/register/main'})
+                          }
+                        })
+                      } else if (res.data.data.userType === 1) {
+                        wx.setStorageSync('userInfo', res.data.data.doc)
+                        wx.navigateTo({url: '/pages/doc/home/main'})
+                      } else if (res.data.data.userType === 2) {
+                        console.log('patient')
+                        wx.setStorageSync('userInfo', res.data.data.patient)
+                        wx.navigateTo({url: '/pages/home/main'})
+                      }
+                    }
+                  })
+                }
+              })
+            }
           }
         })
       },
