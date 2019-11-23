@@ -39,16 +39,18 @@
             </li>
           </ul>
         </dd>
-        <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+        <dd style="padding:8px 50px" class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">问诊单信息</span>
           <li class="z-width-100-percent ub-box ub-between ub-ver">
             <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">问诊开始时间</span>
             <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.createTime}}</span>
           </li>
           <li class="z-width-100-percent ub-box ub-between ub-ver">
-            <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">评估报告提交时间</span>
+            <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">评估报告时间</span>
             <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.createTime}}</span>
           </li>
+        </dd>
+        <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
           <span v-if="orderInfo.star ===0 " @click.stop="clickContact()" class="contactBtn z-width-100-percent ub-box ub-ver z-font-size-14 z-color-666">点赞</span>
           <div v-if="orderInfo.star !==0 ">
             <i-rate
