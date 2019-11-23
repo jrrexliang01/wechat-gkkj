@@ -8,18 +8,20 @@
       <dd class="ub-flex-1 ub-box ub-ver">
         <div @click.stop="$openWin('/pages/search/main')" class="search ub-box ub-ver-v z-width-90-percent z-box-sizing-border">
           <i class="iconfont icon-sousuo z-color-666 z-font-size-16"></i>
-          <span class="z-font-size-14 z-color-999 z-margin-left-8-px">请输入疾病、医生名称...</span>
+          <span class="z-font-size-14 z-color-999 z-margin-left-8-px">请输入疾病、医生</span>
         </div>
       </dd>
     </dl>
     <scroll-view scroll-y style="height: calc(100vh - 50px);" scroll-top="0">
-      <!--图标九宫格入口-->
-      <dl class="ub-box ub-wrap z-padding-v-5-px" style="background:#fff">
-        <div class="icon-item ub-box ub-col ub-ver" :key="key" v-for="(idx, key) in iconMap">
-          <dd @click.stop="$openWin('/pages/search/main')" class="icon ub-box ub-ver iconfont" :class="key" :style="{background: iconMap[key]['bk']}"></dd>
-          <span class="z-padding-v-8-px z-font-size-12 z-color-333">{{iconMap[key]['title']}}</span>
-        </div>
-      </dl>
+      <div class="ub-box ub-ver z-bg-color-fff">
+        <swiper class="swiper" indicator-dots="false" autoplay="false" interval="5000" duration="500">
+          <block v-for="(item, idx) in imgUrls" :key="idx">
+            <swiper-item>
+              <image :src="item" class="z-width-100-percent" mode="widthFix"/>
+            </swiper-item>
+          </block>
+        </swiper>
+      </div>
       <!--专家列表-->
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
@@ -39,7 +41,7 @@
                   <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
-                  <span class="z-font-size-16" style="color:#06c1ae">{{val.price}}元</span>
+                  <span class="z-font-size-16" style="color:#c1c12f">👍 0</span>
                 </p>
               </div>
             </div>
@@ -59,28 +61,21 @@
 <script>
   import good from '../../components/good.vue'
   import { getDocList } from '../../config'
-  import { mapState } from 'vuex'
-  import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
   export default {
     props: ['curGood', 'isLast'],
     components: {good},
     computed: {
-      ...mapState({
-        isSdkReady: state => {
-          return state.global.isSdkReady
-        }
-      }),
       curCity () {
         return this.$store.state.curCity
       }
     },
     data () {
       return {
-        iconMap: {
-          'icon-shoucang': {title: '医生', bk: '#5CA2F2'},
-          'icon-jiesuan': {title: '疾病', bk: '#E4463B'},
-          'icon-zitigui': {title: '新闻', bk: '#8B67E5'}
-        },
+        imgUrls: [
+          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg',
+          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg',
+          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg'
+        ],
         current: 'homepage',
         docList: {}
       }
@@ -120,19 +115,6 @@
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
       console.log(wx.getStorageSync('userInfo'))
-      if (wx.getStorageSync('userInfo') === '') {
-      } else {
-        let options = genTestUserSig(wx.getStorageSync('userInfo').openId)
-        options.runLoopNetType = 0
-        if (options) {
-          wx.$app.login({
-            userID: wx.getStorageSync('userInfo').openId,
-            userSig: options.userSig,
-            hasUserInfo: true
-          }).then(() => {
-          })
-        }
-      }
     },
     onShow () {
       this.current = 'homepage'
