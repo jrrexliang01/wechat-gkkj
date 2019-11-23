@@ -13,27 +13,45 @@
     </dl>
     <!--订单详情-->
     <i-panel class="cell-panel-demo">
-      <i-cell title="我的订单"></i-cell>
+      <i-cell title="我的收益"></i-cell>
     </i-panel>
     <view class="sc df tc bte ">
       <navigator @click.stop="toOrdWList()" class="df_1" url="../user/dingdan?currentTab=0" hover-class="none" >
         <view><image src="../../../static/images/dfh.png"></image></view>
-        <text class="font_12">待付款</text>
+        <text class="font_12">总计：-100</text>
       </navigator>
       <navigator @click.stop="toOrdFList()" class="df_1" url="../user/dingdan?currentTab=3" hover-class="none" >
         <view><image src="../../../static/images/dfk.png"></image></view>
-        <text  class="font_12">已完成</text>
+        <text  class="font_12">支出：200</text>
       </navigator>
       <navigator @click.stop="toOrdList()" class="df_1" url="../user/dingdan?currentTab=4" hover-class="none" >
         <view><image src="../../../static/images/tksh.png"></image></view>
-        <text class="font_12">全部订单</text>
+        <text class="font_12">收入：100</text>
       </navigator>
     </view>
     <dl class="ub-box ub-col z-margin-top-10-px" style="background:#fff;">
       <dd @click.stop="toOrdList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
+          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">收益明细</span>
+        </p>
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
+        </p>
+      </dd>
+      <dd @click.stop="toOrdList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的订单</span>
+        </p>
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
+        </p>
+      </dd>
+      <dd @click.stop="toOrdList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
+          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">已购课程</span>
         </p>
         <p class="ub-box ub-ver">
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
@@ -57,19 +75,28 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="toMyPat()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="toOrdList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
-          <i class="iconfont icon-shangpin" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的患者</span>
+          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
+          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">在线状态</span>
         </p>
         <p class="ub-box ub-ver">
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="$openWin('/pages/agreement/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="toOrdList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
-          <i class="iconfont icon--fuwu" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">用户协议</span>
+          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
+          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">问诊价钱</span>
+        </p>
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
+        </p>
+      </dd>
+      <dd @click.stop="toMyPat()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+        <p class="ub-box ub-ver">
+          <i class="iconfont icon-shangpin" style="color:#357cfb;font-size:20px"></i>
+          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的患者</span>
         </p>
         <p class="ub-box ub-ver">
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
