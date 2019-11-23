@@ -8,8 +8,8 @@
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">报告时间{{val.reportDate}}</span>
           </div>
         </dd>
-        <view class="i-divider-mart">
-          <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
+        <view class="i-divider-mart z-margin-top-100-px">
+          <i-divider content="暂无相关报告，在线咨询，可以了解自身乳腺健康情况去咨询" lineColor="#2d8cf0" @click.stop="goToHome()"></i-divider>
         </view>
       </dl>
     </scroll-view>
@@ -29,6 +29,9 @@ export default {
     }
   },
   methods: {
+    goToHome () {
+      wx.redirectTo({url: 'pages/home/main'})
+    }
   },
   async onLoad (options) {
     this.patId = parseInt(options.patId)
