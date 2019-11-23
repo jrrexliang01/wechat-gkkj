@@ -1,7 +1,7 @@
 <template>
   <div class="chatting">
     <div v-if="allConversation.length === 0" class="empty">
-      <view class="z-margin-top-40-px">
+      <view class="z-margin-top-100-px">
         <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
           <p class="ub-flex-1 ub-box ub-ver ub-between">
             <span class="z-width-100-percent z-font-size-15 z-lineHeight-26">还没有消息，快去找医生咨询</span>
@@ -97,6 +97,16 @@ export default {
   computed: {
     ...mapState({
       allConversation: state => {
+        console.log(state.conversation.allConversation)
+        let docList = wx.getStorageSync('docList')
+        for (let j = 0; j < state.conversation.allConversation.length; j++) {
+          for (let i = 0; i < docList.length; i++) {
+            if (state.conversation.allConversation[j].userProfile.userID === docList[i].openId) {
+              state.conversation.allConversation[j].userProfile.nick = docList[i].docName
+              state.conversation.allConversation[j].userProfile.avatar = docList[i].icon
+            }
+          }
+        }
         return state.conversation.allConversation
       }
     })
