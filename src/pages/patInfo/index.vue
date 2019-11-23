@@ -1,69 +1,5 @@
 <template>
   <div class="bg">
-    <!--<div class="card" style="margin-top:20px">-->
-      <!--<view style="margin: 16px">用户信息</view>-->
-      <!--<i-input value="" v-model="patientName" title="姓名" disabled/>-->
-      <!--<i-input value="" v-model="age" title="年龄" disabled/>-->
-      <!--<i-input value="" v-model="phone" title="电话" disabled/>-->
-      <!--<i-panel title="哺乳期">-->
-        <!--<i-cell title="疾病史">-->
-          <!--<i-switch :value="switch1" @change="onChange1" slot="footer"></i-switch>-->
-        <!--</i-cell>-->
-        <!--<i-cell title="过敏史">-->
-          <!--<i-switch :value="switch2" @change="onChange2" slot="footer"></i-switch>-->
-        <!--</i-cell>-->
-        <!--<i-input value="" v-model="postpartumDay" title="产后天数（天）"/>-->
-        <!--<i-cell title="产后修复">-->
-          <!--<i-switch :value="switch3" @change="onChange3" slot="footer"></i-switch>-->
-        <!--</i-cell>-->
-        <!--<i-panel title="目前状态">-->
-          <!--<i-checkbox-group :current="current" v-for="(now,index ) in nowList" :key="now.id" @change="handleChange">-->
-            <!--<i-checkbox position="right" :value="now.name">-->
-            <!--</i-checkbox>-->
-          <!--</i-checkbox-group>-->
-        <!--</i-panel>-->
-      <!--</i-panel>-->
-      <!--<i-panel title="非哺乳期">-->
-        <!--<i-panel title="疾病">-->
-          <!--<i-checkbox-group :current="currentDisease" v-for="(disease,index ) in diseaseList" :key="disease.id" @change="handleDiseaseChange">-->
-            <!--<i-checkbox position="right" :value="disease.name">-->
-            <!--</i-checkbox>-->
-          <!--</i-checkbox-group>-->
-        <!--</i-panel>-->
-        <!--<i-panel title="治疗或服务经历">-->
-          <!--<i-checkbox-group :current="currentTreatment" v-for="(treatment,index ) in treatmentList" :key="treatment.id" @change="handleTreatmentChange">-->
-            <!--<i-checkbox position="right" :value="treatment.name">-->
-            <!--</i-checkbox>-->
-          <!--</i-checkbox-group>-->
-        <!--</i-panel>-->
-        <!--<i-panel title="目前状况">-->
-          <!--<i-panel title="1.外观">-->
-            <!--<i-radio-group :current="currentAppearance" v-for="(appearance,index ) in appearanceList" :key="appearance.id" @change="handleAppearanceChange">-->
-              <!--<i-radio position="right" :value="appearance.name">-->
-              <!--</i-radio>-->
-            <!--</i-radio-group>-->
-          <!--</i-panel>-->
-          <!--<i-panel title="2.疼痛">-->
-            <!--<i-radio-group :current="currentPain" v-for="(pain,index ) in painList" :key="pain.id" @change="handlePainChange">-->
-              <!--<i-radio position="right" :value="pain.name">-->
-              <!--</i-radio>-->
-            <!--</i-radio-group>-->
-          <!--</i-panel>-->
-          <!--<i-panel title="3.触感">-->
-            <!--<i-radio-group :current="currentTouch" v-for="(touch,index ) in touchList" :key="touch.id" @change="handleTouchChange">-->
-              <!--<i-radio position="right" :value="touch.name">-->
-              <!--</i-radio>-->
-            <!--</i-radio-group>-->
-          <!--</i-panel>-->
-          <!--<i-panel title="4.分泌物">-->
-            <!--<i-radio-group :current="currentSecretion" v-for="(secretion,index ) in secretionList" :key="secretion.id" @change="handleSecretionChange">-->
-              <!--<i-radio position="right" :value="secretion.name">-->
-              <!--</i-radio>-->
-            <!--</i-radio-group>-->
-          <!--</i-panel>-->
-        <!--</i-panel>-->
-      <!--</i-panel>-->
-    <!--</div>-->
     <div class="card" style="margin-top:20px">
       <view style="margin: 16px">就诊报告</view>
       <i-panel title="疼痛">
@@ -135,78 +71,6 @@ import { getReportInfo } from '../../config'
 export default {
   data () {
     return {
-      // switch1: false,
-      // switch2: false,
-      // switch3: false,
-      // age: 0,
-      // phone: '',
-      // patientName: '',
-      // postpartumDay: 0,
-      // nowList: [{
-      //   id: 1,
-      //   name: '少奶'
-      // }, {
-      //   id: 2,
-      //   name: '生理涨奶'
-      // }, {
-      //   id: 3,
-      //   name: '乳头问题'
-      // }, {
-      //   id: 4,
-      //   name: '急性乳腺炎'
-      // }, {
-      //   id: 5,
-      //   name: '回奶'
-      // }],
-      // current: [],
-      // diseaseList: [{
-      //   id: 1,
-      //   name: '妇科疾病'
-      // }, {
-      //   id: 2,
-      //   name: '内分泌疾病'
-      // }, {
-      //   id: 3,
-      //   name: '心理疾病'
-      // }],
-      // treatmentList: [{
-      //   id: 1,
-      //   name: '有乳腺病治疗经历'
-      // }, {
-      //   id: 2,
-      //   name: '有乳腺病服务经历'
-      // }],
-      // appearanceList: [{
-      //   id: 1,
-      //   name: '双乳不对称'
-      // }, {
-      //   id: 2,
-      //   name: '对称且无明显凸起'
-      // }],
-      // painList: [{
-      //   id: 1,
-      //   name: '经期胀痛'
-      // }, {
-      //   id: 2,
-      //   name: '非经期胀痛'
-      // }],
-      // touchList: [{
-      //   id: 1,
-      //   name: '有明显肿块'
-      // }, {
-      //   id: 2,
-      //   name: '有小型或分散性肿块'
-      // }, {
-      //   id: 3,
-      //   name: '无明显肿块'
-      // }],
-      // secretionList: [{
-      //   id: 1,
-      //   name: '有'
-      // }, {
-      //   id: 2,
-      //   name: '无'
-      // }],
       painRepList: [{
         id: 1,
         name: '有'
@@ -393,41 +257,7 @@ export default {
       index === -1 ? this.current.push(data.target.value) : this.current.splice(index, 1)
     }
   },
-  // async beforeCreate () {
-  //   // 调用应用实例的方法获取全局数据
-  //   this.userInfo = wx.getStorageSync('userInfo')
-  //   // const { patientDetail } = await getPatientDetail(this.userInfo.id)
-  //   // wx.setStorageSync('patientDetail', patientDetail)
-  //   const { reportInfo } = await getReportInfo(this.userInfo.id)
-  //   wx.setStorageSync('reportInfo', reportInfo)
-  // },
   mounted () {
-    // this.patInfo = wx.getStorageSync('patientDetail')
-    // this.patInfo.medicalHistory = '妇科疾病,内分泌疾病'
-    // this.patInfo.treatment = '有乳腺病治疗经历,有乳腺病服务经历'
-    // this.patInfo.currentState = '少奶,乳头问题'
-    // this.patInfo.appearance = '对称且无明显凸起'
-    // this.patInfo.pain = '非经期胀痛'
-    // this.patInfo.secretion = '无'
-    // this.patInfo.touch = '有明显肿块'
-    // this.patInfo.isDisease = false
-    // this.patInfo.isAllergy = false
-    // this.patInfo.postpartumRepair = true
-    // this.phone = this.patInfo.phone
-    // this.age = this.patInfo.age
-    // this.postpartumDay = this.patInfo.postpartumDay
-    // this.patientName = this.patInfo.patientName
-    // this.currentAppearance = this.patInfo.appearance
-    // this.currentPain = this.patInfo.pain
-    // this.currentSecretion = this.patInfo.secretion
-    // this.currentTouch = this.patInfo.touch
-    // this.currentDisease = this.patInfo.medicalHistory.split(',')
-    // this.currentTreatment = this.patInfo.treatment.split(',')
-    // this.current = this.patInfo.currentState.split(',')
-    // this.switch1 = this.patInfo.isDisease
-    // this.switch2 = this.patInfo.isAllergy
-    // this.switch3 = this.patInfo.postpartumRepair
-    // console.log(this.patInfo)
     this.patRepInfo = wx.getStorageSync('reportInfo')
     this.currentPainRep = this.patRepInfo.isPain
     this.currentMilkRep = this.patRepInfo.isMilk
