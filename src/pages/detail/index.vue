@@ -33,11 +33,6 @@
         <div class="value">{{userProfile.selfSignature || '未设置'}}</div>
       </div>
     </div>
-    <div class="revise">
-<!--      <button @click="deleteFriend" class="btn delete">删除好友</button>-->
-      <button @click="addBlackList" class="btn delete" v-if="!isInBlacklist">拉黑</button>
-      <button @click="deleteBlackList" class="btn" v-if="isInBlacklist">取消拉黑</button>
-    </div>
   </div>
 </template>
 
@@ -54,7 +49,6 @@ export default {
     this.userProfile = {}
   },
   onShow () {
-    this.getBlacklist()
     this.userProfile = this.$store.state.user.userProfile
     let blacklist = this.$store.state.user.blacklist
     if (blacklist.indexOf(this.userProfile.userID) > -1) {
@@ -62,50 +56,6 @@ export default {
     }
   },
   methods: {
-    // 获取黑名单
-    getBlacklist () {
-      wx.$app.getBlacklist().then(res => {
-        this.$store.commit('setBlacklist', res.data)
-      })
-    },
-    // 拉黑好友
-    addBlackList () {
-      wx.$app.addToBlacklist({ userIDList: [this.userProfile.userID] }).then((res) => {
-        this.$store.commit('showToast', {
-          title: '拉黑成功',
-          icon: 'none',
-          duration: 1500
-        })
-        this.isInBlacklist = true
-        this.$store.commit('setBlacklist', res.data)
-      }).catch(() => {
-        this.$store.commit('showToast', {
-          title: '拉黑失败',
-          icon: 'none',
-          duration: 1500
-        })
-      })
-      this.userProfile = this.$store.state.user.userProfile
-    },
-    // 取消拉黑
-    deleteBlackList () {
-      wx.$app.removeFromBlacklist({ userIDList: [this.userProfile.userID] }).then((res) => {
-        this.$store.commit('showToast', {
-          title: '取消拉黑成功',
-          icon: 'none',
-          duration: 1500
-        })
-        this.$store.commit('setBlacklist', res.data)
-        this.isInBlacklist = false
-      }).catch(() => {
-        this.$store.commit('showToast', {
-          title: '取消拉黑失败',
-          icon: 'none',
-          duration: 1500
-        })
-      })
-      this.userProfile = this.$store.state.user.userProfile
-    }
   }
 }
 </script>
