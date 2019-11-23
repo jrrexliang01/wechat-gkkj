@@ -58,8 +58,11 @@ class API {
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
+          // 'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
+          console.log('======')
+          console.log(res)
           wx.hideLoading()
           resolve(res)
         }
