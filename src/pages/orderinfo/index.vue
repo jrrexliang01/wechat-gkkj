@@ -4,7 +4,7 @@
       <dl class="ub-box ub-col z-width-100-percent">
         <dd class="item z-width-100-percent ub-box ub-ver z-box-sizing-border z-bg-color-fff">
           <p class="ub-box">
-            <img class="z-img-cover" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573708198208&di=caad1e40da5a13dd206896e3494cffed&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F12%2F27%2Fd4e58d34321d4d7be62b4a6d7682c211.jpg" />
+            <img class="z-img-cover" :src="orderInfo.doc.icon" />
           </p>
           <div class="ub-flex-1 ub-box ub-col z-padding-h-10-px z-box-sizing-border">
             <p class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold z-lines-1-overflow-hidden">{{orderInfo.doc.docName}}问诊</p>
