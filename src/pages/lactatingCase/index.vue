@@ -1,30 +1,79 @@
 <template>
-  <div class="bg">
-    <div class="card" style="margin-top:20px">
-      <view style="margin: 16px">用户信息</view>
-      <i-input value="" v-model="patientName" title="姓名"/>
-      <i-input value="" v-model="age" title="年龄"/>
-      <i-input value="" v-model="phone" title="电话"/>
-      <i-cell title="疾病史">
-        <i-switch :value="switch1" @change="onChange1" slot="footer"></i-switch>
-      </i-cell>
-      <i-cell title="过敏史">
-        <i-switch :value="switch2" @change="onChange2" slot="footer"></i-switch>
-      </i-cell>
-      <i-input value="" v-model="postpartumDay" title="产后天数（天）"/>
-      <i-cell title="产后修复">
-        <i-switch :value="switch3" @change="onChange3" slot="footer"></i-switch>
-      </i-cell>
-      <i-panel title="目前状态">
-        <i-checkbox-group :current="current" v-for="(now,index ) in nowList" :key="now.id" @change="handleChange">
+  <div class="container ub-box ub-col ub-ver">
+    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
+      <dd style="padding:8px 10px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">基本信息</span>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">姓名</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="patientName" placeholder="请输入姓名">
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">年龄</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="age" placeholder="请输入年龄" type="number">
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">电话</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="phone" placeholder="请输入电话" type="number">
+            </span>
+          </li>
+        </ul>
+      </dd>
+      <dd style="padding:8px 10px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">疾病情况</span>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">疾病史</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <i-switch :value="switch1" @change="onChange1" slot="footer"></i-switch>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">过敏史</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <i-switch :value="switch2" @change="onChange2" slot="footer"></i-switch>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">产后修复</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <i-switch :value="switch3" @change="onChange3" slot="footer"></i-switch>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">产后天数(天)</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="postpartumDay" placeholder="请输入年龄" type="number">
+            </span>
+          </li>
+        </ul>
+      </dd>
+      <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">目前状态</span>
+        <i-checkbox-group :current="current" v-for="(now, index) in nowList" :key="now.id" @change="handleChange">
           <i-checkbox position="right" :value="now.name">
           </i-checkbox>
         </i-checkbox-group>
-      </i-panel>
-    </div>
-    <div class="revise">
-      <button @click="add" class="btn" style="background-color: #5ca2f2;">保存</button>
-    </div>
+      </dd>
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
+        <button class="loginBtn" lang="zh_CN" @click="add">保存</button>
+      </dd>
+    </scroll-view>
   </div>
 </template>
 
@@ -38,10 +87,10 @@ export default {
       switch1: false,
       switch2: false,
       switch3: false,
-      age: 0,
+      age: '',
       phone: '',
       patientName: '',
-      postpartumDay: 0,
+      postpartumDay: '',
       nowList: [{
         id: 1,
         name: '少奶'
@@ -171,64 +220,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.bg
-  background-color $background
-  height 100vh
-.right
-  box-sizing border-box
-  height 100px
-  padding 10px
-  display flex
-  flex-direction column
-  justify-content space-around
-  .username
-    font-weight 600
-    font-size 18px
-    color $base
-  .account
-    font-size 14px
-    color $secondary
-.btn
-  color white
-  background-color $primary
-  border-radius 20px
-  height 40px
-  width 150px
-  line-height 40px
-  font-size 16px
-.delete
-  background-color $danger
-.container
-  background-color $background
-  height 100vh
-  overflow scroll
-.card
-  border-top 1px solid $border-light
-  border-bottom 1px solid $border-light
-  background-color white
-  margin-bottom -1px
-  .item
-    display flex
-    width 100vw
-    padding 10px 20px
-    border-bottom 1px solid $border-base
-    font-size 16px
-    .key
-      width 60vw
-      font-weight 500
-      color $base
-      box-sizing border-box
-    .value
-      width 40vw
-      font-weight 400
-      color $regular
-      box-sizing border-box
-.avatar
-  padding 10px
-.revise
-  padding-top 20px
-  display flex
-  flex-direction column
-  justify-content space-around
-  height 100px
+  .container{width:100%;height:100vh;background:#e8e8e8}
+  .indexImg{height: 170px;position: relative;}
+  .indexImg-bk{position: absolute;bottom: 0;left: 0;z-index: 1;width: 100%;height: 30%;background: rgba(0,0,0,.3);padding: 5px 0px}
+  .buyBtn{background: #f90;padding: 8px 12px;border-radius:3px}
+  .label{border-radius:3px;background: #fff;padding: 3px 5px;margin: 0 5px 5px 0}
+  .fixCon{position: fixed;left: 0;bottom: 0;z-index: 10;width: 100%;background: #fff;}
+  .submitBtn{padding: 15px 35px;background: #5CA2F2;box-sizing: border-box;}
+  .input{font-size: 12px;}
+  .loginBtn{font-size:18px;color:#fff;padding:0px 20px;margin-left: 10px;margin-right: 10px;background: #5CA2F2}
 </style>
