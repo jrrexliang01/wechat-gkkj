@@ -26,12 +26,13 @@ export default {
     this.newsId = parseInt(options.newsId)
   },
   onUnload () {
+    this.newsInfo.title = ''
     this.newsInfo.content = ''
+    this.newsInfo.createTime = ''
   },
   async mounted () {
     const { newsInfo } = await getNewsInfo(this.newsId)
-    wx.setStorageSync('newsInfo', newsInfo)
-    this.newsInfo = wx.getStorageSync('newsInfo')
+    this.newsInfo = newsInfo
   }
 }
 </script>
