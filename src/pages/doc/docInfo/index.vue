@@ -12,10 +12,10 @@
         </dd>
       </dl>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
-<!--        <p class="ub-box ub-ver">-->
-<!--          <span class="z-font-size-24 z-margin-right-5-px" style="color:#06c1ae">¥{{docInfo.price}}</span>-->
-<!--          <span class="z-font-size-13 z-color-888"></span>-->
-<!--        </p>-->
+        <p class="ub-box ub-ver">
+          <span class="z-font-size-24 z-margin-right-5-px" style="color:#06c1ae"></span>
+          <span class="z-font-size-13 z-color-888"></span>
+        </p>
         <p class="ub-box ub-ver">
 				<span @click.stop="toChat (docInfo.id) " class="buyBtn ub-box ub-ver z-font-size-16 z-color-fff">
 					沟通
