@@ -34,13 +34,14 @@
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
           <span class="z-font-size-12 z-color-888 z-lineHeight-36">—专业课程—</span>
         </p>
-        <dd @click.stop="toNewsInfo(item.id)" v-for="(item,index ) in newList" :key="item.id" class="order z-width-100-percent z-box-sizing-border">
+        <dd @click.stop="toCourseInfo(item.id)" v-for="(item,index ) in courseList" :key="item.id" class="order z-width-100-percent z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
-            <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
+            <span class="z-font-size-17 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.courseTitle}}</span>
           </div>
           <img class="z-img-contain" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711471422&di=925e0c1d65d6df1958bd6bf2dadb21fc&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd5d8822184fb61bd5b16bc940c5b02aa77f9efb426b3f-wrTF8y_fw658" />
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>
+            <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
           </div>
         </dd>
       </dl>
@@ -87,7 +88,7 @@
 </template>
 
 <script>
-  import { getDocList, getNewList } from '../../../config'
+  import { getDocList, getCourseList } from '../../../config'
   export default {
     props: ['curGood', 'isLast'],
     computed: {
@@ -109,7 +110,7 @@
           'icon-jisuanqilishuai': {title: '科普知识', bk: '#26e57c'}
         },
         current: 'homepage',
-        newList: {},
+        courseList: {},
         docList: {}
       }
     },
@@ -147,9 +148,9 @@
       gotoDetail (id) {
         wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + id})
       },
-      toNewsInfo (id) {
+      toCourseInfo (id) {
         wx.navigateTo({
-          url: '/pages/doc/scienceInfo/main?newsId=' + id
+          url: '/pages/doc/courseInfo/main?courseId=' + id
         })
       },
       toChoose (val) {
@@ -179,13 +180,12 @@
       // 调用应用实例的方法获取全局数据
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
-      // 调用应用实例的方法获取全局数据
-      const { newList } = await getNewList()
-      wx.setStorageSync('newList', newList)
+      const { courseList } = await getCourseList()
+      wx.setStorageSync('courseList', courseList)
     },
     mounted () {
       this.docList = wx.getStorageSync('docList')
-      this.newList = wx.getStorageSync('newList')
+      this.courseList = wx.getStorageSync('courseList')
     },
     onPullDownRefresh () {
       console.log('onPullDownRefresh')
