@@ -13,9 +13,9 @@
           </div>
         </dd>
         <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
-          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">所属医院</span>
+          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">所属医院/科室</span>
           <div class="z-width-100-percent ub-box ub-between">
-            <span class="z-font-size-14 z-color-666">{{orderInfo.doc.hospitals.hospitalName}}</span>
+            <span class="z-font-size-14 z-color-666">{{orderInfo.doc.hospitals.hospitalName}}/{{orderInfo.doc.hospitals.department}}</span>
           </div>
         </dd>
         <dd style="padding:8px 50px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
@@ -33,19 +33,23 @@
               <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">下单时间</span>
               <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.createTime}}</span>
             </li>
-            <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-8-px">
-              <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">数量</span>
-              <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">1</span>
-            </li>
             <li class="z-width-100-percent ub-box ub-between ub-ver">
-              <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">总价</span>
+              <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">支付金额</span>
               <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.total}}</span>
             </li>
           </ul>
         </dd>
         <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
-          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">评价</span>
-          <span v-if="orderInfo.star ===0 " @click.stop="clickContact()" class="contactBtn z-width-100-percent ub-box ub-ver z-font-size-14 z-color-666">订单评价</span>
+          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">问诊单信息</span>
+          <li class="z-width-100-percent ub-box ub-between ub-ver">
+            <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">问诊开始时间</span>
+            <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.createTime}}</span>
+          </li>
+          <li class="z-width-100-percent ub-box ub-between ub-ver">
+            <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">评估报告提交时间</span>
+            <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.createTime}}</span>
+          </li>
+          <span v-if="orderInfo.star ===0 " @click.stop="clickContact()" class="contactBtn z-width-100-percent ub-box ub-ver z-font-size-14 z-color-666">点赞</span>
           <div v-if="orderInfo.star !==0 ">
             <i-rate
               :value="orderInfo.star">
@@ -65,7 +69,8 @@
           ordId: 0,
           total: 0.00,
           hospitals: {
-            hospitalName: ''
+            hospitalName: '',
+            department: ''
           },
           star: 0,
           orderNum: '',
