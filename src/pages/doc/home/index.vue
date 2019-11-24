@@ -66,12 +66,12 @@
                 </p>
               </div>
               <div class="z-padding-h-10-px ub-between ub-flex-1 z-margin-left-30-px" style="text-align: right;">
-                <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right z-margin-bottom-20-px">
+                <div class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right z-margin-bottom-20-px">
                   <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">申请带教</div>
-                </dd>
-                <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right">
+                </div>
+                <div class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right">
                   <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">申请讲座</div>
-                </dd>
+                </div>
               </div>
             </div>
           </div>
