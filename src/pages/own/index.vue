@@ -198,7 +198,7 @@ export default {
         return
       }
       this.patId = this.user.id
-      let url = '../myorder/main?patId=' + this.patId + '&orderStatus=0'
+      let url = '../myOrder/main?patId=' + this.patId + '&orderStatus=0'
       wx.navigateTo({ url: url })
     },
     toOrdFList () {
@@ -212,7 +212,7 @@ export default {
         return
       }
       this.patId = this.user.id
-      let url = '../myorder/main?patId=' + this.patId + '&orderStatus=1'
+      let url = '../myOrder/main?patId=' + this.patId + '&orderStatus=1'
       wx.navigateTo({ url: url })
     },
     toMyInfo () {

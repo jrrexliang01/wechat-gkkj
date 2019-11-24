@@ -29,7 +29,7 @@
         <text class="font_12">收入：{{docTotal.incomeSum}}</text>
       </navigator>
     </view>
-    <dl class="ub-box ub-col z-margin-top-10-px" style="background:#fff;">
+    <dl class="ub-box ub-col z-margin-top-10-px z-margin-bottom-10-px" style="background:#fff;">
       <dd @click.stop="toBillList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
@@ -229,7 +229,7 @@ export default {
       }
       console.log(this.user)
       this.docId = this.user.id
-      let url = '../myorder/main?docId=' + this.docId + '&orderStatus=2'
+      let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=2'
       wx.navigateTo({ url: url })
     },
     toOrdWList () {
@@ -243,7 +243,7 @@ export default {
         return
       }
       this.docId = this.user.id
-      let url = '../myorder/main?docId=' + this.docId + '&orderStatus=0'
+      let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=0'
       wx.navigateTo({ url: url })
     },
     toOrdFList () {
@@ -257,7 +257,7 @@ export default {
         return
       }
       this.docId = this.user.id
-      let url = '../myorder/main?docId=' + this.docId + '&orderStatus=1'
+      let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=1'
       wx.navigateTo({ url: url })
     },
     toCourseFList () {

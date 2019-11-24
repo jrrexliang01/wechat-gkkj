@@ -42,7 +42,7 @@ export default {
       this.status = status
       if (this.status === 1) {
         this.docId = this.docInfo.id
-        let url = '../myorder/main?docId=' + this.docId + '&orderStatus=2'
+        let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=2'
         wx.navigateTo({ url: url })
       } else {
         console.log('保存消息失败！')

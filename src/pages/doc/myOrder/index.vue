@@ -2,7 +2,7 @@
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col">
-        <dd @click.stop="$openWin('/pages/doc/orderinfo/main?ordId=' + val.id)" v-for="(val, idx) in orderList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
+        <dd @click.stop="$openWin('/pages/doc/orderInfo/main?ordId=' + val.id)" v-for="(val, idx) in orderList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
           <img class="z-img-cover" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573708198208&di=caad1e40da5a13dd206896e3494cffed&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F12%2F27%2Fd4e58d34321d4d7be62b4a6d7682c211.jpg" />
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.course.courseTitle}}</span>
