@@ -1,20 +1,17 @@
 <template>
   <div class="container ub-box ub-col">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">在线状态</p>
-    </dd>
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
       <ul class="z-width-100-percent ub-box ub-col ub-ver">
         <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
           <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">是否在线</span>
           <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
-              <i-switch :value="switch1" @change="onChange1" slot="footer"></i-switch>
+              <i-switch :value="onLineStatus" @change="onChange()" slot="footer"></i-switch>
             </span>
         </li>
       </ul>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
-      <button class="loginBtn" lang="zh_CN" @click="savePrice()">保存</button>
+      <button class="loginBtn" lang="zh_CN" @click="saveStatus()">保存</button>
     </dd>
   </div>
 </template>
@@ -24,7 +21,7 @@ import { getDocInfo } from '../../../config'
 export default {
   data () {
     return {
-      switch1: false,
+      onLineStatus: false,
       docInfo: {},
       formData: {}
     }
@@ -34,14 +31,14 @@ export default {
     const { docInfo } = await getDocInfo(this.docId)
     wx.setStorageSync('docInfo', docInfo)
     this.docInfo = wx.getStorageSync('docInfo')
-    this.switch1 = this.docInfo.onlineStatus
+    this.onLineStatus = this.docInfo.onlineStatus
   },
   methods: {
-    onChange1 () {
-      this.switch1 === true ? this.switch1 = false : this.switch1 = true
+    onChange () {
+      this.onLineStatus === true ? this.onLineStatus = false : this.onLineStatus = true
     },
-    async savePrice () {
-      if (this.switch1) {
+    async saveStatus () {
+      if (this.onLineStatus) {
         this.docInfo.onlineStatus = 1
       } else {
         this.docInfo.onlineStatus = 0
@@ -59,11 +56,7 @@ export default {
         success (res) {
           wx.removeStorageSync('docInfo')
           wx.setStorageSync('docInfo', res.data.data)
-          this.$store.commit('showToast', {
-            title: '保存成功',
-            icon: 'none',
-            duration: 1500
-          })
+          wx.navigateBack()
         }
       })
     },
