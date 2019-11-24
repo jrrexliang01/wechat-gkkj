@@ -1,10 +1,7 @@
 <template>
   <div class="container ub-box ub-col">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">问诊价钱</p>
-    </dd>
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="price" type="number" title="问诊价钱" placeholder="请输入问诊价钱" maxlength="10" right @change="changValue('price',$event)"/></span>
       </p>
     </dd>
@@ -19,7 +16,7 @@ import { getDocInfo } from '../../../config'
 export default {
   data () {
     return {
-      price: 1000,
+      price: 100,
       docInfo: {},
       formData: {}
     }
@@ -29,6 +26,7 @@ export default {
     const { docInfo } = await getDocInfo(this.docId)
     wx.setStorageSync('docInfo', docInfo)
     this.docInfo = wx.getStorageSync('docInfo')
+    this.price = this.docInfo.price
   },
   methods: {
     async savePrice () {
@@ -46,11 +44,7 @@ export default {
         success (res) {
           wx.removeStorageSync('docInfo')
           wx.setStorageSync('docInfo', res.data.data)
-          this.$store.commit('showToast', {
-            title: '保存成功',
-            icon: 'none',
-            duration: 1500
-          })
+          wx.navigateBack()
         }
       })
     },
