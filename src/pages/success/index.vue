@@ -1,7 +1,7 @@
 <template>
   <div class="counter-warp">
     <i-card @click="toMyInfo">
-      <img src="../../../static/images/pay.png" size="large" shape="square"  style="height: 600px;width: 100%;"/>
+      <img src="http://39.100.255.143/img/wx/pay.png" size="large" shape="square"  style="height: 600px;width: 100%;"/>
     </i-card>
   </div>
 </template>
