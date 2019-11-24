@@ -29,7 +29,7 @@
         <text class="font_12">收入：{{docTotal.incomeSum}}</text>
       </navigator>
     </view>
-    <dl class="ub-box ub-col z-margin-top-10-px z-margin-bottom-10-px" style="background:#fff;">
+    <dl class="ub-box ub-col z-margin-top-10-px z-margin-bottom-40-px z-padding-bottom-20-px" style="background:#fff;">
       <dd @click.stop="toBillList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
