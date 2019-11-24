@@ -1,53 +1,89 @@
 <template>
-  <div class="bg">
-    <div class="card" style="margin-top:20px">
-      <view style="margin: 2px"></view>
-      <i-input value="" v-model="patientName" title="姓名"/>
-      <i-input value="" v-model="age" title="年龄"/>
-      <i-input value="" v-model="phone" title="电话"/>
-      <i-panel title="疾病">
+  <div class="container ub-box ub-col ub-ver">
+    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
+      <dd style="padding:8px 10px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">基本信息</span>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">姓名</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="patientName" placeholder="请输入姓名">
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">年龄</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="age" placeholder="请输入年龄" type="number">
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">电话</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="phone" placeholder="请输入电话" type="number">
+            </span>
+          </li>
+        </ul>
+      </dd>
+      <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疾病</span>
         <i-checkbox-group :current="currentDisease" v-for="(disease,index ) in diseaseList" :key="disease.id" @change="handleDiseaseChange">
           <i-checkbox position="right" :value="disease.name">
           </i-checkbox>
         </i-checkbox-group>
-      </i-panel>
-      <i-panel title="治疗或服务经历">
+      </dd>
+      <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">治疗或服务经历</span>
         <i-checkbox-group :current="currentTreatment" v-for="(treatment,index ) in treatmentList" :key="treatment.id" @change="handleTreatmentChange">
           <i-checkbox position="right" :value="treatment.name">
           </i-checkbox>
         </i-checkbox-group>
-      </i-panel>
-      <i-panel title="目前状况">
-        <i-panel title="1.外观">
+      </dd>
+      <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">治疗或服务经历</span>
+        <i-checkbox-group :current="currentTreatment" v-for="(treatment,index ) in treatmentList" :key="treatment.id" @change="handleTreatmentChange">
+          <i-checkbox position="right" :value="treatment.name">
+          </i-checkbox>
+        </i-checkbox-group>
+      </dd>
+      <div style="padding:8px 10px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">目前状况</span>
+        <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">外观</span>
           <i-radio-group :current="currentAppearance" v-for="(appearance,index ) in appearanceList" :key="appearance.id" @change="handleAppearanceChange">
             <i-radio position="right" :value="appearance.name">
             </i-radio>
           </i-radio-group>
-        </i-panel>
-        <i-panel title="2.疼痛">
+        </dd>
+        <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疼痛</span>
           <i-radio-group :current="currentPain" v-for="(pain,index ) in painList" :key="pain.id" @change="handlePainChange">
             <i-radio position="right" :value="pain.name">
             </i-radio>
           </i-radio-group>
-        </i-panel>
-        <i-panel title="3.触感">
+        </dd>
+        <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">触感</span>
           <i-radio-group :current="currentTouch" v-for="(touch,index ) in touchList" :key="touch.id" @change="handleTouchChange">
             <i-radio position="right" :value="touch.name">
             </i-radio>
           </i-radio-group>
-        </i-panel>
-        <i-panel title="4.分泌物">
+        </dd>
+        <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">分泌物</span>
           <i-radio-group :current="currentSecretion" v-for="(secretion,index ) in secretionList" :key="secretion.id" @change="handleSecretionChange">
             <i-radio position="right" :value="secretion.name">
             </i-radio>
           </i-radio-group>
-        </i-panel>
-      </i-panel>
-    </div>
-    <div class="revise">
-<!--      <button @click="deleteFriend" class="btn delete">删除好友</button>-->
-      <button @click="addOut" class="btn" style="background-color: #5ca2f2;">保存</button>
-    </div>
+        </dd>
+      </div>
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
+        <button class="loginBtn" lang="zh_CN" @click="addOut">保存</button>
+      </dd>
+    </scroll-view>
   </div>
 </template>
 
@@ -58,7 +94,7 @@ export default {
     return {
       id: '',
       content: '',
-      age: 0,
+      age: '',
       phone: '',
       patientName: '',
       diseaseList: [{
@@ -117,7 +153,7 @@ export default {
       currentSecretion: '',
       form: {
         patientName: '',
-        age: 0,
+        age: '',
         phone: '',
         medicalHistory: [],
         treatment: [],
@@ -242,64 +278,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.bg
-  background-color $background
-  height 100vh
-.right
-  box-sizing border-box
-  height 100px
-  padding 10px
-  display flex
-  flex-direction column
-  justify-content space-around
-  .username
-    font-weight 600
-    font-size 18px
-    color $base
-  .account
-    font-size 14px
-    color $secondary
-.btn
-  color white
-  background-color $primary
-  border-radius 20px
-  height 40px
-  width 150px
-  line-height 40px
-  font-size 16px
-.delete
-  background-color $danger
-.container
-  background-color $background
-  height 100vh
-  overflow scroll
-.card
-  border-top 1px solid $border-light
-  border-bottom 1px solid $border-light
-  background-color white
-  margin-bottom -1px
-  .item
-    display flex
-    width 100vw
-    padding 10px 20px
-    border-bottom 1px solid $border-base
-    font-size 16px
-    .key
-      width 60vw
-      font-weight 500
-      color $base
-      box-sizing border-box
-    .value
-      width 40vw
-      font-weight 400
-      color $regular
-      box-sizing border-box
-.avatar
-  padding 10px
-.revise
-  padding-top 20px
-  display flex
-  flex-direction column
-  justify-content space-around
-  height 100px
+  .container{width:100%;height:100vh;background:#e8e8e8}
+  .indexImg{height: 170px;position: relative;}
+  .indexImg-bk{position: absolute;bottom: 0;left: 0;z-index: 1;width: 100%;height: 30%;background: rgba(0,0,0,.3);padding: 5px 0px}
+  .buyBtn{background: #f90;padding: 8px 12px;border-radius:3px}
+  .label{border-radius:3px;background: #fff;padding: 3px 5px;margin: 0 5px 5px 0}
+  .fixCon{position: fixed;left: 0;bottom: 0;z-index: 10;width: 100%;background: #fff;}
+  .submitBtn{padding: 15px 35px;background: #5CA2F2;box-sizing: border-box;}
+  .input{font-size: 12px;}
+  .loginBtn{font-size:18px;color:#fff;padding:0px 20px;margin-left: 10px;margin-right: 10px;background: #5CA2F2}
 </style>
+
