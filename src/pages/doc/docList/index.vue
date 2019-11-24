@@ -19,9 +19,9 @@
                 </p>
               </div>
               <div class="z-padding-h-10-px ub-between ub-flex-1 z-margin-left-30-px" style="text-align: right;">
-                <p class="ub-flex-1 ub-box ub-ver ub-between z-padding-top-15-px">
-                  <button class="loginBtn" lang="zh_CN" @click.stop="addStudy(val.id)">申请带教</button>
-                </p>
+                <div class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right z-margin-bottom-20-px">
+                  <div @click.stop="addStudy(val.id)" class="exitBtn ub-box ub-ver z-font-size-14">申请带教</div>
+                </div>
               </div>
             </div>
           </div>
@@ -67,6 +67,9 @@
             wx.setStorageSync('studyInfo', res.data.data)
           }
         })
+      },
+      gotoDetail (id) {
+        wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + id})
       }
     },
     async beforeCreate () {
@@ -99,4 +102,5 @@
 .order{border-bottom: 1px solid #f5f5f5;padding: 10px 8px;}
 .order img{width: 99%; height: 120px; border-radius: 3px}
 .loginBtn{width:80px;font-size:14px;color:#fff;padding:0px 5px;margin-left: 10px;background: #ff5722}
+.exitBtn{border: 1px solid #357cfb;padding:7px 15px;color:#357cfb;border-radius: 3px}
 </style>
