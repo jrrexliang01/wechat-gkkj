@@ -1,25 +1,25 @@
 <template>
   <div class="container ub-box ub-col">
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="form.phone" placeholder="请输入手机号" autofocus @change="changValue('form.phone', $event)" right title="手机号"/></span>
       </p>
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="form.docName" placeholder="请输入医生姓名" @change="changValue('form.docName', $event)" right title="医生姓名"/></span>
       </p>
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="form.title" placeholder="请输入医生职称" @change="changValue('form.title', $event)" right title="医生职称"/></span>
       </p>
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="form.hospitals.hospitalName" placeholder="请输入所属医院" @change="changValue('form.hospitals.hospitalName', $event)" right title="所属医院"/></span>
       </p>
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="form.hospitals.department" placeholder="请输入科室" @change="changValue('form.hospitals.department', $event)" right title="科室"/></span>
       </p>
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="form.subject" placeholder="请输入擅长描述" @change="changValue('form.subject', $event)" right title="擅长描述"/></span>
       </p>
-      <p class="ub-box">
+      <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="form.introduce" placeholder="请输入医生介绍" @change="changValue('form.introduce', $event)" right title="医生介绍"/></span>
       </p>
       <!--<p class="ub-box">-->
