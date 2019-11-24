@@ -67,7 +67,7 @@
               </div>
               <div class="z-padding-h-10-px ub-between ub-flex-1 z-margin-left-30-px" style="text-align: right;">
                 <div class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right z-margin-bottom-20-px">
-                  <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">申请带教</div>
+                  <div @click.stop="addStudy(val.id)" class="exitBtn ub-box ub-ver z-font-size-14">申请带教</div>
                 </div>
                 <div class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right">
                   <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">申请讲座</div>
@@ -174,6 +174,25 @@
             url: '/pages/doc/science/main'
           })
         }
+      },
+      addStudy (id) {
+        let userInfo = wx.getStorageSync('userInfo')
+        this.studyInfo.student.id = userInfo.id
+        this.studyInfo.teacher.id = id
+        // TODO 补全后台AJAX
+        this.formData = JSON.stringify(this.studyInfo)
+        wx.request({
+          url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
+          data: this.formData,
+          method: 'POST',
+          header: {
+            'content-type': 'application/json', // 默认值
+            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+          },
+          success (res) {
+            wx.setStorageSync('studyInfo', res.data.data)
+          }
+        })
       }
     },
     async beforeCreate () {
