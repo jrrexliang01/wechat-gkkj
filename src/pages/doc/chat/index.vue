@@ -194,17 +194,17 @@
               <image src="/static/images/define.png" class="icon"/>
             </div>
             <div class="name">
-              自定义
+              结束问诊
             </div>
           </div>
-          <div class="block" @click="rateModal = true">
-            <div class="image">
-              <image src="/static/images/dice.png" class="icon"/>
-            </div>
-            <div class="name">
-              点赞
-            </div>
-          </div>
+<!--          <div class="block" @click="rateModal = true">-->
+<!--            <div class="image">-->
+<!--              <image src="/static/images/dice.png" class="icon"/>-->
+<!--            </div>-->
+<!--            <div class="name">-->
+<!--              点赞-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
         <!-- <div class="images">
           <div class="block" @click="phoneCall">

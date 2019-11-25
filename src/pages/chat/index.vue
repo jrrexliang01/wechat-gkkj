@@ -189,14 +189,14 @@
               拍照
             </div>
           </div>
-          <div class="block" @click="customModal()">
-            <div class="image">
-              <image src="/static/images/define.png" class="icon"/>
-            </div>
-            <div class="name">
-              自定义
-            </div>
-          </div>
+<!--          <div class="block" @click="customModal()">-->
+<!--            <div class="image">-->
+<!--              <image src="/static/images/define.png" class="icon"/>-->
+<!--            </div>-->
+<!--            <div class="name">-->
+<!--              自定义-->
+<!--            </div>-->
+<!--          </div>-->
           <div class="block" @click="rateModal = true">
             <div class="image">
               <image src="/static/images/dice.png" class="icon"/>
