@@ -13,9 +13,6 @@
 <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
           </div>
         </dd>
-        <view class="i-divider-mart">
-          <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
-        </view>
       </dl>
     </scroll-view>
   </div>
@@ -72,6 +69,7 @@ export default {
     const { articleList } = await getArticleList()
     wx.setStorageSync('articleList', articleList)
     this.articleList = wx.getStorageSync('articleList')
+    console.log(this.articleList)
   }
 }
 </script>
