@@ -172,7 +172,6 @@ export default {
           wx.switchTab({
             url: '../index/main'
           })
-        }).catch((err) => {
         })
       } else {
         this.$store.commit('showToast', {

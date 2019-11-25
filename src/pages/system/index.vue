@@ -69,7 +69,7 @@ export default {
         this.$store.commit('showToast', {
           title: '处理完成'
         })
-      }).catch((err) => {
+      }).catch(() => {
         this.modal()
       })
     }

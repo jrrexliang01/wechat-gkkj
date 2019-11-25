@@ -1,10 +1,5 @@
 <template>
   <div class="container">
-<!--    <i-modal title="添加的用户ID" :visible="addModalVisible" @ok="handleAdd" @cancel="handleModalShow">-->
-<!--      <div class="input-wrapper">-->
-<!--        <input type="text" class="input border center" v-model.lazy:value="addUserId"/>-->
-<!--      </div>-->
-<!--    </i-modal>-->
     <i-modal title="提示" :visible="applyModalVisible" @ok="handleApply" @cancel="handleApplyModal">
       <div class="input-wrapper">
         确定要加入群{{search}}吗？
@@ -28,20 +23,6 @@
           </i-col>
         </i-row>
       </div>
-<!--      <div class="item" @click="handleModalShow()">-->
-<!--        <i-row>-->
-<!--          <i-col span="4">-->
-<!--            <div style="padding: 10px">-->
-<!--              <i-avatar shape="square" size="large" src="../../../static/images/add.png" />-->
-<!--            </div>-->
-<!--          </i-col>-->
-<!--          <i-col span="20">-->
-<!--            <div class="right border-bottom">-->
-<!--              <div class="information">添加好友</div>-->
-<!--            </div>-->
-<!--          </i-col>-->
-<!--        </i-row>-->
-<!--      </div>-->
       <div class="item" @click="createGroup()">
         <i-row>
           <i-col span="4">
@@ -85,23 +66,6 @@
         </i-row>
       </div>
     </div>
-<!--    <div class="friends">-->
-<!--      <div class="slot">-->
-<!--        联系人-->
-<!--      </div>-->
-<!--      <div class="friend">-->
-<!--        <i-row v-for="item in friends" :key="item.name" @click="chatTo(item)">-->
-<!--          <i-col span="4">-->
-<!--            <div style="padding: 10px">-->
-<!--              <i-avatar shape="square" size="large" src="../../../static/images/header.png" />-->
-<!--            </div>-->
-<!--          </i-col>-->
-<!--          <i-col span="20">-->
-<!--            <p class="line">{{item.profile.nick || item.profile.userID}}</p>-->
-<!--          </i-col>-->
-<!--        </i-row>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -194,26 +158,6 @@ export default {
       let url = '../create/main'
       wx.navigateTo({ url })
     },
-    // 加好友
-    // handleAdd () {
-    //   if (this.addUserId !== '') {
-    //     let option = {
-    //       userIDList: [this.addUserId]
-    //     }
-    //     wx.$app.getUserProfile(option).then(res => {
-    //       let userProfile = res.data[0]
-    //       let options = {
-    //         To_Account: userProfile.userID
-    //       }
-    //       wx.$app.applyAddFriend(options).then(() => {
-    //         this.$store.commit('showToast', { title: '发送申请成功' })
-    //         this.handleModalShow()
-    //       }).catch(() => {
-    //         this.$store.commit('showToast', { title: '发送申请失败' })
-    //       })
-    //     })
-    //   }
-    // },
     chatTo (item) {
       let conversationID = this.TIM.TYPES.CONV_C2C + item.userID
       wx.$app.getConversationProfile(conversationID).then((res) => {
@@ -224,7 +168,6 @@ export default {
         this.id = ''
         let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick}`
         wx.navigateTo({ url })
-      }).catch(error => {
       })
     }
   },

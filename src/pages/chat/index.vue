@@ -146,9 +146,6 @@
         <div class="btn" @click="handleMore()">
           <image src="/static/images/plus.png" class="btn-small"/>
         </div>
-<!--        <div class="btn" @click="sendMessage()">-->
-<!--          <image src="/static/images/plane.png" class="btn-small"/>-->
-<!--        </div>-->
       </div>
 <!--    emoji部分-->
       <div class="bottom-emoji" v-if="isEmojiOpen">
@@ -189,14 +186,6 @@
               拍照
             </div>
           </div>
-<!--          <div class="block" @click="customModal()">-->
-<!--            <div class="image">-->
-<!--              <image src="/static/images/define.png" class="icon"/>-->
-<!--            </div>-->
-<!--            <div class="name">-->
-<!--              自定义-->
-<!--            </div>-->
-<!--          </div>-->
           <div class="block" @click="rateModal = true">
             <div class="image">
               <image src="/static/images/dice.png" class="icon"/>
@@ -206,16 +195,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="images">
-          <div class="block" @click="phoneCall">
-            <div class="image">
-              <image src="/static/images/phone.png" class="icon"/>
-            </div>
-            <div class="name">
-              视频通话
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -505,7 +484,7 @@ export default {
               that.percent = 0
               that.handleModalShow()
             },
-            fail: function (err) {
+            fail: function () {
               that.$store.commit('showToast', {
                 title: '小程序不支持该文件预览哦',
                 icon: 'none',
@@ -659,7 +638,6 @@ export default {
           self.$store.commit('sendMessage', message)
           wx.$app.sendMessage(message).then(() => {
             self.percent = 0
-          }).catch((err) => {
           })
         }
       })

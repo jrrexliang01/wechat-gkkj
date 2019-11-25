@@ -44,7 +44,6 @@ const groupModules = {
             context.commit('updateCurrentGroupMemberList', res.data.memberList)
             context.commit('updateOffset')
             context.state.isLoading = false
-          }).catch(err => {
           })
         } else {
           wx.showToast({

@@ -505,7 +505,7 @@ export default {
               that.percent = 0
               that.handleModalShow()
             },
-            fail: function (err) {
+            fail: function () {
               that.$store.commit('showToast', {
                 title: '小程序不支持该文件预览哦',
                 icon: 'none',
@@ -659,7 +659,6 @@ export default {
           self.$store.commit('sendMessage', message)
           wx.$app.sendMessage(message).then(() => {
             self.percent = 0
-          }).catch((err) => {
           })
         }
       })

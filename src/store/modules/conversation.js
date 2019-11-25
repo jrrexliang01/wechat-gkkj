@@ -143,14 +143,8 @@ const conversationModules = {
             context.commit('unshiftMessageList', res.data.messageList)
             if (res.data.isCompleted) {
               context.state.isCompleted = true
-              // wx.showToast({
-              //   title: '更新成功',
-              //   icon: 'none',
-              //   duration: 1500
-              // })
             }
             context.state.isLoading = false
-          }).catch(err => {
           })
         } else {
           wx.showToast({
