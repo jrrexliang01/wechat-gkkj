@@ -6,7 +6,7 @@
           <img class="z-img-cover" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573708198208&di=caad1e40da5a13dd206896e3494cffed&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F12%2F27%2Fd4e58d34321d4d7be62b4a6d7682c211.jpg" />
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.course.courseTitle}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">数量：1</span>
+            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">主讲医生：{{val.doc.docName}}</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">总价：{{val.total}}</span>
           </div>
           <span class="z-font-size-14" style="color:#06c1ae">{{val.statusStr}}</span>
