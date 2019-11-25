@@ -93,14 +93,12 @@
     },
     async onLoad (options) {
       this.ordId = parseInt(options.ordId)
-      console.log(this.ordId)
       const { orderCourseInfo } = await getOrderCourseInfo(this.ordId)
       wx.setStorageSync('orderCourseInfo', orderCourseInfo)
       this.orderInfo = wx.getStorageSync('orderCourseInfo')
     },
     mounted () {
       this.orderInfo = wx.getStorageSync('orderCourseInfo')
-      console.log(this.orderInfo)
     },
     onShow () {
       wx.setNavigationBarTitle({title: '订单详情页'})

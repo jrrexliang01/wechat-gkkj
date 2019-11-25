@@ -51,10 +51,8 @@ export default {
           let url = '../myInfo/main'
           wx.navigateTo({ url: url })
         } else {
-          console.log('保存消息失败！')
         }
       } else {
-        console.log('保存消息失败！')
       }
     }
   },

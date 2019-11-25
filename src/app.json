@@ -53,7 +53,8 @@
     "pages/doc/patInfoAdd/main",
     "pages/doc/myInfo/main",
     "pages/doc/patInfoAddProposal/main",
-    "pages/doc/billList/main"
+    "pages/doc/billList/main",
+    "pages/doc/search/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

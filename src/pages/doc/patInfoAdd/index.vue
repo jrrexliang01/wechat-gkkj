@@ -231,46 +231,35 @@ export default {
   methods: {
     async onLoad (options) {
       this.patId = parseInt(options.patId)
-      console.log(this.patId)
     },
     handlePainRepChange (data) {
-      console.log(data.target.value)
       this.currentPainRep = data.target.value
     },
     handleMilkRepChange (data) {
-      console.log(data.target.value)
       this.currentMilkRep = data.target.value
     },
     handleChunksRepChange (data) {
-      console.log(data.target.value)
       this.currentChunksRep = data.target.value
     },
     handleAcuteMastitisRepChange (data) {
-      console.log(data.target.value)
       this.currentAcuteMastitisRep = data.target.value
     },
     handleSpillRepChange (data) {
-      console.log(data.target.value)
       this.currentSpillRep = data.target.value
     },
     handleQuestionRepChange (data) {
-      console.log(data.target.value)
       this.currentQuestionRep = data.target.value
     },
     handleHyperplasiaRepChange (data) {
-      console.log(data.target.value)
       this.currentHyperplasiaRep = data.target.value
     },
     handleFibromaRepChange (data) {
-      console.log(data.target.value)
       this.currentFibromaRep = data.target.value
     },
     handleMastodyniaRepChange (data) {
-      console.log(data.target.value)
       this.currentMastodyniaRep = data.target.value
     },
     handleBreastCystRepChange (data) {
-      console.log(data.target.value)
       this.currentBreastCystRep = data.target.value
     },
     next () {

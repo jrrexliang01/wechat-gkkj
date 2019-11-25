@@ -44,7 +44,6 @@ export default {
     this.patId = parseInt(options.patId)
     const { orderList } = await getOrderList(this.patId)
     this.orderList = orderList
-    console.log(orderList)
   },
   mounted () {
     this.orderList = wx.getStorageSync('orderList')

@@ -49,7 +49,6 @@
                       'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
                     },
                     success (res) {
-                      console.log(res)
                       if (res.data.data.userType === null) {
                         wx.getUserInfo({
                           success (res) {
@@ -61,7 +60,6 @@
                         wx.setStorageSync('userInfo', res.data.data.doc)
                         wx.navigateTo({url: '/pages/doc/home/main'})
                       } else if (res.data.data.userType === 2) {
-                        console.log('patient')
                         wx.setStorageSync('userInfo', res.data.data.patient)
                         wx.navigateTo({url: '/pages/home/main'})
                       }

@@ -152,7 +152,6 @@ export default {
     const { docTotal } = await getDocTotal(this.docId)
     this.docTotal = docTotal
     this.docTotal.realSum = this.docTotal.incomeSum - this.docTotal.paySum
-    console.log(docTotal)
   },
   methods: {
     login () {
@@ -212,7 +211,6 @@ export default {
         })
         return
       }
-      console.log(this.user)
       this.docId = this.user.id
       let url = '../billList/main?docId=' + this.docId
       wx.navigateTo({ url: url })
@@ -227,7 +225,6 @@ export default {
         })
         return
       }
-      console.log(this.user)
       this.docId = this.user.id
       let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=2'
       wx.navigateTo({ url: url })

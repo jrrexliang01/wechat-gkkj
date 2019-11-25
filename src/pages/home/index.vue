@@ -114,14 +114,12 @@
       // 调用应用实例的方法获取全局数据
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
-      console.log(wx.getStorageSync('userInfo'))
     },
     onShow () {
       this.current = 'homepage'
       wx.getLocation({
         type: 'wgs84',
         success (res) {
-          console.log(res)
         }
       })
     },

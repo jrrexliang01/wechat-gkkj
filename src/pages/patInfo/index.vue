@@ -206,7 +206,6 @@ export default {
   methods: {
     async onLoad (options) {
       this.reportId = parseInt(options.reportId)
-      console.log(this.reportId)
       const { reportInfo } = await getReportInfo(this.reportId)
       wx.setStorageSync('reportInfo', reportInfo)
     },
@@ -217,29 +216,23 @@ export default {
       })
     },
     handleDiseaseChange (data) {
-      console.log(data.target.value)
       const index = this.currentDisease.indexOf(data.target.value)
       index === -1 ? this.currentDisease.push(data.target.value) : this.currentDisease.splice(index, 1)
     },
     handleTreatmentChange (data) {
-      console.log(data.target.value)
       const index = this.currentTreatment.indexOf(data.target.value)
       index === -1 ? this.currentTreatment.push(data.target.value) : this.currentTreatment.splice(index, 1)
     },
     handleAppearanceChange (data) {
-      console.log(data.target.value)
       this.currentAppearance = data.target.value
     },
     handlePainChange (data) {
-      console.log(data.target.value)
       this.currentPain = data.target.value
     },
     handleTouchChange (data) {
-      console.log(data.target.value)
       this.currentTouch = data.target.value
     },
     handleSecretionChange (data) {
-      console.log(data.target.value)
       this.currentSecretion = data.target.value
     },
     onChange1 () {
@@ -252,7 +245,6 @@ export default {
       this.switch3 === true ? this.switch3 = false : this.switch3 = true
     },
     handleChange (data) {
-      console.log(data.target.value)
       const index = this.current.indexOf(data.target.value)
       index === -1 ? this.current.push(data.target.value) : this.current.splice(index, 1)
     }

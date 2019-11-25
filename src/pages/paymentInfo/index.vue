@@ -66,7 +66,6 @@ export default {
           url: '/pages/success/main'
         })
       } else {
-        console.log('订单保存失败')
       }
     }
   },

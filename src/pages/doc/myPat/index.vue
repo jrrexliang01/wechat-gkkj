@@ -57,7 +57,6 @@
       // 调用应用实例的方法获取全局数据
       const { patList } = await getMyPat(this.docId)
       wx.setStorageSync('patList', patList)
-      console.log(wx.getStorageSync('userInfo'))
     },
     async mounted () {
       // 调用应用实例的方法获取全局数据

@@ -90,7 +90,6 @@ export default {
       this.choose()
     },
     getUserInfo (e) {
-      console.log(e)
       let options = genTestUserSig(this.userID)
       options.runLoopNetType = 0
       if (options) {

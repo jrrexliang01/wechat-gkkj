@@ -225,7 +225,6 @@ export default {
         let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick}`
         wx.navigateTo({ url })
       }).catch(error => {
-        console.log(error)
       })
     }
   },

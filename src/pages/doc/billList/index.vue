@@ -43,7 +43,6 @@ export default {
     for (const v of this.billList) {
       v.realIn = v.income - v.pay
     }
-    console.log(this.billList)
   }
 }
 </script>

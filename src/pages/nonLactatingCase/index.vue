@@ -179,7 +179,6 @@ export default {
       this.form.pain = this.currentPain
       this.form.touch = this.currentTouch
       this.form.secretion = this.currentSecretion
-      console.log(this.form)
       this.formData = JSON.stringify(this.form)
       const { status } = await patientAdd(this.formData)
       this.status = status
@@ -215,7 +214,6 @@ export default {
                   let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick || res.data.conversation.userProfile.userID}`
                   wx.navigateTo({ url })
                 }).catch(error => {
-                  console.log(error)
                 })
               }).catch(() => {
                 this.$store.commit('showToast', {
@@ -243,34 +241,26 @@ export default {
             this.content = ''
           })
         }
-      } else {
-        console.log('用户保存失败！')
       }
     },
     handleDiseaseChange (data) {
-      console.log(data.target.value)
       const index = this.currentDisease.indexOf(data.target.value)
       index === -1 ? this.currentDisease.push(data.target.value) : this.currentDisease.splice(index, 1)
     },
     handleTreatmentChange (data) {
-      console.log(data.target.value)
       const index = this.currentTreatment.indexOf(data.target.value)
       index === -1 ? this.currentTreatment.push(data.target.value) : this.currentTreatment.splice(index, 1)
     },
     handleAppearanceChange (data) {
-      console.log(data.target.value)
       this.currentAppearance = data.target.value
     },
     handlePainChange (data) {
-      console.log(data.target.value)
       this.currentPain = data.target.value
     },
     handleTouchChange (data) {
-      console.log(data.target.value)
       this.currentTouch = data.target.value
     },
     handleSecretionChange (data) {
-      console.log(data.target.value)
       this.currentSecretion = data.target.value
     }
   }

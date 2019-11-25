@@ -45,7 +45,6 @@ export default {
         let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=2'
         wx.navigateTo({ url: url })
       } else {
-        console.log('保存消息失败！')
       }
     }
   },

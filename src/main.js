@@ -76,7 +76,6 @@ tim.on(TIM.EVENT.BLACKLIST_UPDATED, event => {
 })
 
 tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, event => {
-  console.log('system message', event)
 })
 
 function onReadyStateUpdate ({ name }) {

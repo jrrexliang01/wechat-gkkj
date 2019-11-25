@@ -79,7 +79,6 @@ export default {
   },
   async onLoad (options) {
     this.docId = parseInt(options.docId)
-    console.log(this.docId)
     const { docInfo } = await getDocInfo(this.docId)
     wx.setStorageSync('docInfo', docInfo)
     this.docInfo = wx.getStorageSync('docInfo')
@@ -93,8 +92,6 @@ export default {
   },
   mounted () {
     wx.removeStorage('docInfo')
-    console.log(this.docInfo)
-    console.log(wx.getStorageSync('userId'))
   }
 }
 </script>

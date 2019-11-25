@@ -70,7 +70,6 @@ export default {
           title: '处理完成'
         })
       }).catch((err) => {
-        console.log(err)
         this.modal()
       })
     }

@@ -32,7 +32,6 @@ export default {
     ellipsis (value) {
       if (!value) return ''
       if (value.length > 20) {
-        console.log(value)
         return value
       }
       return value
@@ -69,7 +68,6 @@ export default {
     const { articleList } = await getArticleList()
     wx.setStorageSync('articleList', articleList)
     this.articleList = wx.getStorageSync('articleList')
-    console.log(this.articleList)
   }
 }
 </script>

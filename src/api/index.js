@@ -62,8 +62,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          console.log('======')
-          console.log(res)
           wx.hideLoading()
           resolve(res)
         }

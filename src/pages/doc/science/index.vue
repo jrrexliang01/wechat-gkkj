@@ -31,7 +31,6 @@ export default {
     ellipsis (value) {
       if (!value) return ''
       if (value.length > 20) {
-        console.log(value)
         return value
       }
       return value

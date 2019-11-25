@@ -134,7 +134,6 @@ export default {
       this.form.postpartumRepair = this.switch3
       this.form.currentState = this.current.toString()
       this.formData = JSON.stringify(this.form)
-      console.log('这是JSON' + this.formData)
       const { status } = await patientAdd(this.formData)
       this.status = status
       if (this.status === 1) {
@@ -169,7 +168,6 @@ export default {
                   let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick || res.data.conversation.userProfile.userID}`
                   wx.navigateTo({ url })
                 }).catch(error => {
-                  console.log(error)
                 })
               }).catch(() => {
                 this.$store.commit('showToast', {
@@ -197,8 +195,6 @@ export default {
             this.content = ''
           })
         }
-      } else {
-        console.log('用户保存失败！')
       }
     },
     onChange1 () {
@@ -211,7 +207,6 @@ export default {
       this.switch3 === true ? this.switch3 = false : this.switch3 = true
     },
     handleChange (data) {
-      console.log(data.target.value)
       const index = this.current.indexOf(data.target.value)
       index === -1 ? this.current.push(data.target.value) : this.current.splice(index, 1)
     }

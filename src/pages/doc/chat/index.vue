@@ -276,7 +276,6 @@ export default {
   },
   onLoad (options) {
     this.set = options.toAccount
-    console.log(options)
     // 设置header——聊天对象昵称或群名
     wx.setNavigationBarTitle({
       title: '医生咨询'
@@ -306,13 +305,10 @@ export default {
       this.messageContent += ' '
     })
     recorderManager.onStart(() => {
-      console.log('recorder start')
     })
     recorderManager.onPause(() => {
-      console.log('recorder pause')
     })
     recorderManager.onStop((res) => {
-      console.log('recorder stop')
       wx.hideLoading()
       if (this.canSend) {
         if (res.duration < 1000) {
@@ -487,7 +483,6 @@ export default {
       let downloadTask = wx.downloadFile({
         url: that.downloadInfo.fileUrl,
         success: function (res) {
-          console.log('start downloading: ')
         },
         fail: function ({errMsg}) {
           that.$store.commit('showToast', {
@@ -502,7 +497,6 @@ export default {
           wx.openDocument({
             filePath: res.tempFilePath,
             success: function (res) {
-              console.log('open file fail', res)
               that.$store.commit('showToast', {
                 title: '打开文档成功',
                 icon: 'none',
@@ -512,7 +506,6 @@ export default {
               that.handleModalShow()
             },
             fail: function (err) {
-              console.log('open file fail', err)
               that.$store.commit('showToast', {
                 title: '小程序不支持该文件预览哦',
                 icon: 'none',
@@ -641,7 +634,6 @@ export default {
       }
     },
     videoError (e) {
-      console.log(e)
       this.$store.commit('showToast', {
         title: `视频出现错误，错误信息${e.mp.detail.errMsg}`,
         duration: 1500
@@ -668,7 +660,6 @@ export default {
           wx.$app.sendMessage(message).then(() => {
             self.percent = 0
           }).catch((err) => {
-            console.log(err)
           })
         }
       })

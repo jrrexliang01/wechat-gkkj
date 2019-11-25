@@ -126,7 +126,7 @@ const orderCourseAdd = async (formData) => {
   return { status }
 }
 const getArticleList = async (courseTitle) => {
-  const res = (await API.getCourseList(courseTitle)).data.data.content
+  const res = (await API.getArticleList(courseTitle)).data.data.content
   const articleList = res
   return { articleList }
 }

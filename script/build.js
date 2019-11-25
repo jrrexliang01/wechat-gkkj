@@ -32,7 +32,6 @@ rm(path.join(config.build.assetsRoot, '*'), err => {
     }) + '\n\n')
 
     if (stats.hasErrors()) {
-      console.log(chalk.red('  Build failed with errors.\n'))
       process.exit(1)
     }
 

@@ -96,7 +96,6 @@ export default {
   computed: {
     ...mapState({
       allConversation: state => {
-        console.log(state.conversation.allConversation)
         let docList = wx.getStorageSync('docList')
         for (let j = 0; j < state.conversation.allConversation.length; j++) {
           for (let i = 0; i < docList.length; i++) {
@@ -191,7 +190,6 @@ export default {
     // 删除会话
     deleteConversation (item) {
       wx.$app.deleteConversation(item.conversationID).then((res) => {
-        console.log('delete success', res)
       })
     },
     empty () {

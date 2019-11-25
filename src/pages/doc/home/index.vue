@@ -6,7 +6,7 @@
         <i class="iconfont icon-xiangxiazhankai z-color-666 z-font-size-16"></i>
       </dd>
       <dd class="ub-flex-1 ub-box ub-ver">
-        <div @click.stop="$openWin('/pages/search/main')" class="search ub-box ub-ver-v z-width-90-percent z-box-sizing-border">
+        <div @click.stop="$openWin('/pages/doc/search/main')" class="search ub-box ub-ver-v z-width-90-percent z-box-sizing-border">
           <i class="iconfont icon-sousuo z-color-666 z-font-size-16"></i>
           <span class="z-font-size-14 z-color-999 z-margin-left-8-px">请输入疾病、医生名称...</span>
         </div>
@@ -207,7 +207,6 @@
       this.courseList = wx.getStorageSync('courseList')
     },
     onPullDownRefresh () {
-      console.log('onPullDownRefresh')
       setTimeout(() => {
         wx.stopPullDownRefresh()
       }, 600)

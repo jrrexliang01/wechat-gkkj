@@ -173,7 +173,6 @@ export default {
             url: '../index/main'
           })
         }).catch((err) => {
-          console.log(err)
         })
       } else {
         this.$store.commit('showToast', {

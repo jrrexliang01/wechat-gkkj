@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <dl class="ub-box ub-col">
-      <dd class="z-width-100-percent z-padding-all-8-px z-bg-color-fff ub-box ub-ver z-box-sizing-border" style="80px;">
+      <dd class="z-width-100-percent z-padding-all-8-px z-bg-color-fff ub-box ub-ver z-box-sizing-border">
         <div class="ub-flex-1 search ub-box ub-ver-v">
           <i class="iconfont icon-sousuo z-color-666 z-font-size-16"></i>
           <input @input="doInput" @confirm="doSearch" class="ub-flex-1 z-font-size-14 z-color-666 z-padding-v-5-px z-margin-left-8-px" placeholder="乳腺增生"/>
@@ -55,15 +55,15 @@
         searchVal: '',
         // 测试搜索结果集
         searchAllList: [
-          {id: '1', val: '郑新宇', num: '7'},
-          {id: '2', val: '武彪', num: '5'},
-          {id: '3', val: '龚益平', num: '3'},
+          {id: '1', val: '郑新宇', num: '1'},
+          {id: '2', val: '武彪', num: '1'},
+          {id: '3', val: '龚益平', num: '1'},
           {id: '4', val: '黄晓曦', num: '1'},
           {id: '5', val: '李建国', num: '1'},
-          {id: '6', val: '李文涛', num: '2'},
-          {id: '7', val: '廖海鹰', num: '3'},
+          {id: '6', val: '李文涛', num: '1'},
+          {id: '7', val: '廖海鹰', num: '1'},
           {id: '8', val: '任敏', num: '1'},
-          {id: '9', val: '胡童', num: '2'},
+          {id: '9', val: '胡童', num: '1'},
           {id: '10', val: '李永平', num: '1'},
           {id: '11', val: '黄汉源', num: '1'},
           {id: '12', val: '张保宁', num: '1'},

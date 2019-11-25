@@ -33,8 +33,6 @@
               method: 'GET',
               success (res) {
                 var sessionKey = res.data
-                console.log('===========sessionKey============')
-                console.log(res)
                 wx.setStorageSync('sessionKey', sessionKey)
                 wx.setStorageSync('token', sessionKey.unionid)
                 let options = genTestUserSig(sessionKey.openid)

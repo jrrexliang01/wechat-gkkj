@@ -45,7 +45,6 @@ const groupModules = {
             context.commit('updateOffset')
             context.state.isLoading = false
           }).catch(err => {
-            console.log(err)
           })
         } else {
           wx.showToast({
