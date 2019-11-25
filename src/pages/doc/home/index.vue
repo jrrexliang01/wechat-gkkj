@@ -70,7 +70,7 @@
                   <div @click.stop="addStudy(val.id)" class="exitBtn ub-box ub-ver z-font-size-14">申请带教</div>
                 </div>
                 <div class="z-font-size-18 z-color-333 ub-box ub-ver-v z-textAlign-right">
-                  <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">申请讲座</div>
+                  <div @click.stop="goToLecture()" class="exitBtn ub-box ub-ver z-font-size-14">申请讲座</div>
                 </div>
               </div>
             </div>
@@ -153,6 +153,11 @@
           url: '/pages/doc/courseInfo/main?courseId=' + id
         })
       },
+      goToLecture () {
+        wx.navigateTo({
+          url: '/pages/doc/lecture/main'
+        })
+      },
       toChoose (val) {
         if (val === '申请讲座') {
           wx.navigateTo({
@@ -205,6 +210,11 @@
     mounted () {
       this.docList = wx.getStorageSync('docList')
       this.courseList = wx.getStorageSync('courseList')
+      wx.getLocation({
+        type: 'wgs84',
+        success (res) {
+        }
+      })
     },
     onPullDownRefresh () {
       setTimeout(() => {
