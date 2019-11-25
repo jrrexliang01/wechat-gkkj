@@ -118,6 +118,12 @@
     },
     onShow () {
       this.current = 'homepage'
+      wx.getLocation({
+        type: 'wgs84',
+        success (res) {
+          console.log(res)
+        }
+      })
     },
     async mounted () {
       // 调用应用实例的方法获取全局数据
