@@ -986,6 +986,29 @@ class API {
       })
     })
   }
+  /**
+   * 根据OpenId查询用户信息
+   * @param docId
+   * @returns {Promise<any>}
+   */
+  getUserByOpenId (openId) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/doc/userType',
+        data: {
+          openId: openId
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          resolve(res)
+        }
+      })
+    })
+  }
 }
 
 export default new API()

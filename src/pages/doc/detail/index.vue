@@ -50,87 +50,87 @@
 </template>
 
 <script>
-  import { getUserByOpenId } from '../../config'
-  export default {
-    data () {
-      return {
-        userProfile: {},
-        userDetail: {}
-      }
-    },
-    // 退出聊天页面的时候所有状态清空
-    onUnload () {
-      this.userProfile = {}
-    },
-    async onLoad () {
-      this.userProfile = this.$store.state.user.userProfile
-      const { userDetail } = await getUserByOpenId(this.userProfile.userID)
-      console.log(userDetail.data.data)
-      wx.setStorageSync('userDetail', userDetail.data.data)
-      this.userDetail = wx.getStorageSync('userDetail')
+import { getUserByOpenId } from '../../../config'
+export default {
+  data () {
+    return {
+      userProfile: {},
+      userDetail: {}
     }
+  },
+  // 退出聊天页面的时候所有状态清空
+  onUnload () {
+    this.userProfile = {}
+  },
+  async onLoad () {
+    this.userProfile = this.$store.state.user.userProfile
+    const { userDetail } = await getUserByOpenId(this.userProfile.userID)
+    console.log(userDetail.data.data)
+    wx.setStorageSync('userDetail', userDetail.data.data)
+    this.userDetail = wx.getStorageSync('userDetail')
   }
+}
 </script>
 
 <style lang="stylus" scoped>
-  .bg
-    background-color $background
-    height 100vh
-  .right
-    box-sizing border-box
-    height 100px
-    padding 10px
+.bg
+  background-color $background
+  height 100vh
+.right
+  box-sizing border-box
+  height 100px
+  padding 10px
+  display flex
+  flex-direction column
+  justify-content space-around
+  .username
+    font-weight 600
+    font-size 18px
+    color $base
+  .account
+    font-size 14px
+    color $secondary
+.btn
+  color white
+  background-color $primary
+  border-radius 20px
+  height 40px
+  width 150px
+  line-height 40px
+  font-size 16px
+.delete
+  background-color $danger
+.container
+  background-color $background
+  height 100vh
+  overflow scroll
+.card
+  border-top 1px solid $border-light
+  border-bottom 1px solid $border-light
+  background-color white
+  margin-bottom -1px
+  .item
     display flex
-    flex-direction column
-    justify-content space-around
-    .username
-      font-weight 600
-      font-size 18px
-      color $base
-    .account
-      font-size 14px
-      color $secondary
-  .btn
-    color white
-    background-color $primary
-    border-radius 20px
-    height 40px
-    width 150px
-    line-height 40px
+    width 100vw
+    padding 10px 20px
+    border-bottom 1px solid $border-base
     font-size 16px
-  .delete
-    background-color $danger
-  .container
-    background-color $background
-    height 100vh
-    overflow scroll
-  .card
-    border-top 1px solid $border-light
-    border-bottom 1px solid $border-light
-    background-color white
-    margin-bottom -1px
-    .item
-      display flex
-      width 100vw
-      padding 10px 20px
-      border-bottom 1px solid $border-base
-      font-size 16px
-      .key
-        width 60vw
-        font-weight 500
-        color $base
-        box-sizing border-box
-      .value
-        width 40vw
-        font-weight 400
-        color $regular
-        box-sizing border-box
-  .avatar
-    padding 10px
-  .revise
-    padding-top 20px
-    display flex
-    flex-direction column
-    justify-content space-around
-    height 100px
+    .key
+      width 60vw
+      font-weight 500
+      color $base
+      box-sizing border-box
+    .value
+      width 40vw
+      font-weight 400
+      color $regular
+      box-sizing border-box
+.avatar
+  padding 10px
+.revise
+  padding-top 20px
+  display flex
+  flex-direction column
+  justify-content space-around
+  height 100px
 </style>

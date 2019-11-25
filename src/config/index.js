@@ -190,10 +190,16 @@ const getDocTotal = async (docId) => {
   const docTotal = res
   return { docTotal }
 }
+const getUserByOpenId = async (openId) => {
+  const res = (await API.getUserByOpenId(openId))
+  const userDetail = res
+  return { userDetail }
+}
 
 export {
   getNewList, getDocList, getDocInfo, getNewsInfo, getOrderList, getOrderInfo, getOrderCourseList, getOrderCourseInfo, getOrderStatusList,
   getOrderCourseStatusList, getAgreementInfo, getPatReportList, reportAdd, getReportInfo, searchAdd, searchHot, getMsgList, msgAdd,
   patientAdd, doctorAdd, orderAdd, getMyPat, getCourseList, getCourseInfo, orderCourseAdd, getArticleList, getArticleInfo, remindAdd,
-  remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal
+  remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal,
+  getUserByOpenId
 }

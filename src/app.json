@@ -57,7 +57,8 @@
     "pages/doc/lecture/main",
     "pages/doc/lectureInfo/main",
     "pages/doc/lectureList/main",
-    "pages/doc/followSetting/main"
+    "pages/doc/followSetting/main",
+    "pages/doc/detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
