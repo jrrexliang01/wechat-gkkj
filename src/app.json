@@ -36,7 +36,6 @@
     "pages/doc/courseInfo/main",
     "pages/doc/myCourse/main",
     "pages/doc/docInfo/main",
-    "pages/doc/lectureInfo/main",
     "pages/doc/message/main",
     "pages/doc/myOrder/main",
     "pages/doc/myPat/main",
@@ -55,7 +54,9 @@
     "pages/doc/patInfoAddProposal/main",
     "pages/doc/billList/main",
     "pages/doc/search/main",
-    "pages/doc/lecture/main"
+    "pages/doc/lecture/main",
+    "pages/doc/lectureInfo/main",
+    "pages/doc/lectureList/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

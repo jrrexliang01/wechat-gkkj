@@ -1,7 +1,7 @@
 {
-  "navigationBarTitleText": "申请讲座",
+  "navigationBarTitleText": "讲座列表",
   "navigationBarBackgroundColor": "#E7E9EA",
-  "backgroundColor": "#e6e6e6",
+  "disableScroll": false,
   "usingComponents": {
   }
 }

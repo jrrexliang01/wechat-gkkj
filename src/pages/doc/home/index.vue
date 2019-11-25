@@ -161,7 +161,7 @@
       toChoose (val) {
         if (val === '申请讲座') {
           wx.navigateTo({
-            url: '/pages/doc/course/main'
+            url: '/pages/doc/lectureList/main'
           })
         }
         if (val === '经验分享') {
