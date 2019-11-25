@@ -49,7 +49,7 @@
         docId: 0,
         phone: '13566688888',
         code: '644308',
-        docName: '刘',
+        docName: '',
         title: '主任',
         hospitalName: '总医院',
         department: '妇科',
