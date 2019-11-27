@@ -32,7 +32,7 @@
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box">
           <ul class="ub-box ub-wrap">
-            <li @click.stop="clickSearchItem(val)" v-for="(val, idx) in guess" :key="idx" class="item z-font-size-13 z-color-333">{{val.name}}</li>
+            <li @click.stop="clickSearchItem(val)" v-for="(val, idx) in guess" :key="idx" class="item z-font-size-13 z-color-333">{{val.content}}</li>
           </ul>
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
@@ -49,6 +49,7 @@
   </div>
 </template>
 <script>
+  import { searchHot } from '../../../config'
   export default {
     data () {
       return {
@@ -70,16 +71,16 @@
           {id: '13', val: '李俊来', num: '1'}
         ],
         currSearchList: [], // 当前根据搜索关键词搜索到的列表
-        guess: [
-          {goodId: '1', name: '郑新宇'}, {goodId: '2', name: '武彪'},
-          {goodId: '3', name: '龚益平'}, {goodId: '5', name: '李建国'},
-          {goodId: '8', name: '任敏'}, {goodId: '10', name: '李永平'}
-        ],
+        guess: {},
         history: [
           {goodId: '1', name: '郑新宇'},
           {goodId: '5', name: '李建国'}
         ]
       }
+    },
+    async onLoad () {
+      const { searchHotList } = await searchHot()
+      this.guess = searchHotList
     },
     methods: {
       doInput (e) {
@@ -95,7 +96,7 @@
         })
       },
       clickSearchItem (val) {
-        wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.goodId})
+        wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.userId})
       }
     },
     mounted () {

@@ -77,8 +77,8 @@ const searchAdd = async (formData) => {
 }
 const searchHot = async () => {
   const res = (await API.searchHot()).data.data
-  const searchHot = res
-  return { searchHot }
+  const searchHotList = res
+  return { searchHotList }
 }
 const getMsgList = async (userId, userType) => {
   const res = (await API.getMsgList(userId, userType)).data.data.content

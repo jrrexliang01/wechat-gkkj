@@ -441,6 +441,25 @@ export default {
     },
     customModal () {
       this.customModalVisible = !this.customModalVisible
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/doc/userType',
+        data: {
+          openId: this.set
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          let patId = res.data.data.patient.id
+          if (patId !== null) {
+            wx.navigateTo({
+              url: '/pages/doc/patInfoAdd/main?patId=' + patId
+            })
+          }
+        }
+      })
     },
     sendCustomMessage () {
       if (this.customData.length === 0 && this.customDescription.length === 0 && this.customExtension.length === 0) {

@@ -11,6 +11,7 @@ import { msgAdd } from '../../config'
 export default {
   data () {
     return {
+      id: '',
       userInfo: {},
       docInfo: {},
       status: 0,
@@ -48,8 +49,57 @@ export default {
         const { status } = await msgAdd(this.formDocData)
         this.status = status
         if (this.status === 1) {
-          let url = '../myInfo/main'
-          wx.navigateTo({ url: url })
+          this.id = this.docInfo.openId
+          this.content = '医生，您好'
+          if (this.content !== '' && this.id !== '') {
+            let option = {
+              userIDList: [this.id]
+            }
+            wx.$app.getUserProfile(option).then((res) => {
+              if (res.data.length > 0) {
+                const message = wx.$app.createTextMessage({
+                  to: this.id,
+                  conversationType: this.TIM.TYPES.CONV_C2C,
+                  payload: { text: this.content }
+                })
+                wx.$app.sendMessage(message).then(() => {
+                  let conversationID = this.TIM.TYPES.CONV_C2C + this.id
+                  wx.$app.getConversationProfile(conversationID).then((res) => {
+                    this.$store.commit('resetCurrentConversation')
+                    this.$store.commit('resetGroup')
+                    this.$store.commit('updateCurrentConversation', res.data.conversation)
+                    this.$store.dispatch('getMessageList', conversationID)
+                    this.content = ''
+                    this.id = ''
+                    let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick || res.data.conversation.userProfile.userID}`
+                    wx.navigateTo({ url })
+                  })
+                }).catch(() => {
+                  this.$store.commit('showToast', {
+                    title: '输入内容有误',
+                    icon: 'none',
+                    duration: 1000
+                  })
+                })
+              } else {
+                this.$store.commit('showToast', {
+                  title: '用户不存在',
+                  icon: 'none',
+                  duration: 1000
+                })
+                this.id = ''
+                this.content = ''
+              }
+            }).catch(() => {
+              this.$store.commit('showToast', {
+                title: '用户不存在',
+                icon: 'none',
+                duration: 1000
+              })
+              this.id = ''
+              this.content = ''
+            })
+          }
         } else {
         }
       } else {

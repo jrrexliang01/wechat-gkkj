@@ -324,7 +324,7 @@ export default {
         return
       }
       this.docId = this.user.id
-      let url = '../followSetting/main?docId=' + this.docId
+      let url = '../setting/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toMyPat () {

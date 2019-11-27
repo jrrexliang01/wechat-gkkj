@@ -110,8 +110,11 @@ export default {
           url: '/pages/login/main'
         })
       } else {
+        // wx.navigateTo({
+        //   url: '/pages/paymentInfo/main?docId=' + id
+        // })
         wx.navigateTo({
-          url: '/pages/paymentInfo/main?docId=' + id
+          url: '/pages/myInfo/main'
         })
       }
     }
