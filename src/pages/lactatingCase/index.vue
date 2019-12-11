@@ -58,7 +58,7 @@
           <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">产后天数(天)</span>
             <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
-              <input v-model="postpartumDay" placeholder="请输入年龄" type="number">
+              <input v-model="postpartumDay" placeholder="请输入天数" type="number">
             </span>
           </li>
         </ul>
@@ -154,6 +154,30 @@ export default {
       this.formData = JSON.stringify(this.form)
       const { status } = await patientAdd(this.formData)
       this.status = status
+      if (this.form.patientName === '') {
+        this.$store.commit('showToast', {
+          title: '请输入姓名',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
+      if (this.form.age === '') {
+        this.$store.commit('showToast', {
+          title: '请输入年龄',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
+      if (this.form.phone === '') {
+        this.$store.commit('showToast', {
+          title: '请输入手机号',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
       if (this.status === 1) {
         this.$store.commit('showToast', {
           title: '保存成功',

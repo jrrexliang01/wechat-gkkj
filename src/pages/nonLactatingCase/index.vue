@@ -42,13 +42,6 @@
           </i-checkbox>
         </i-checkbox-group>
       </dd>
-      <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
-        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">治疗或服务经历</span>
-        <i-checkbox-group :current="currentTreatment" v-for="(treatment,index ) in treatmentList" :key="treatment.id" @change="handleTreatmentChange">
-          <i-checkbox position="right" :value="treatment.name">
-          </i-checkbox>
-        </i-checkbox-group>
-      </dd>
       <div style="padding:8px 10px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">目前状况</span>
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
@@ -201,6 +194,30 @@ export default {
       this.formData = JSON.stringify(this.form)
       const { status } = await patientAdd(this.formData)
       this.status = status
+      if (this.form.patientName === '') {
+        this.$store.commit('showToast', {
+          title: '请输入姓名',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
+      if (this.form.age === '') {
+        this.$store.commit('showToast', {
+          title: '请输入年龄',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
+      if (this.form.phone === '') {
+        this.$store.commit('showToast', {
+          title: '请输入手机号',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
       if (this.status === 1) {
         this.$store.commit('showToast', {
           title: '保存成功',
