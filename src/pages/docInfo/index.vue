@@ -77,7 +77,7 @@ import { getDocInfo } from '../../config'
 export default {
   data () {
     return {
-      indexImg: 'http://39.100.255.143/img/wx/wenzhen.jpg',
+      indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
       docId: 0,
       docInfo: {
         docName: '',
@@ -92,7 +92,7 @@ export default {
       },
       lineStatus: {
         '1': '在线',
-        '2': '离线'
+        '0': '离线'
       }
     }
   },
@@ -104,17 +104,26 @@ export default {
   },
   methods: {
     toConsult: function (id) {
-      let userInfo = wx.getStorageSync('userInfo')
-      if (userInfo.id === undefined) {
-        wx.navigateTo({
-          url: '/pages/login/main'
-        })
-      } else {
-        // wx.navigateTo({
-        //   url: '/pages/paymentInfo/main?docId=' + id
-        // })
-        wx.navigateTo({
-          url: '/pages/myInfo/main'
+      console.log(this.docInfo.onlineStatus)
+      if (this.docInfo.onlineStatus === 0) {
+        wx.showModal({
+          title: '提示',
+          content: '该医生可能长时间不在线',
+          success (res) {
+            if (res.confirm) {
+              let userInfo = wx.getStorageSync('userInfo')
+              if (userInfo.id === undefined) {
+                wx.navigateTo({
+                  url: '/pages/login/main'
+                })
+              } else {
+                wx.navigateTo({
+                  url: '/pages/myInfo/main'
+                })
+              }
+            } else if (res.cancel) {
+            }
+          }
         })
       }
     }
