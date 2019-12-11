@@ -83,15 +83,10 @@
     },
     methods: {
       clickContact () {
-        wx.showActionSheet({
-          itemList: ['客服电话：10107888'],
-          success (res) {
-            switch (res.tapIndex) {
-              case 0:
-                wx.makePhoneCall({phoneNumber: '10107888'})
-                break
-            }
-          }
+        this.$store.commit('showToast', {
+          title: '点赞成功',
+          icon: 'none',
+          duration: 1500
         })
       }
     },
