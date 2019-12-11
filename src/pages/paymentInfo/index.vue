@@ -60,12 +60,18 @@ export default {
       this.orderInfo.status = 1
       this.formData = JSON.stringify(this.orderInfo)
       const { status } = await orderAdd(this.formData)
-      this.status = status
+      console.log(status)
+      this.status = status.status
       if (this.status === 1) {
         wx.navigateTo({
           url: '/pages/success/main'
         })
       } else {
+        this.$store.commit('showToast', {
+          title: status.msg,
+          icon: 'none',
+          duration: 1500
+        })
       }
     }
   },
