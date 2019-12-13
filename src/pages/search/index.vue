@@ -14,7 +14,7 @@
           <ul class="ub-box ub-col">
             <li @click.stop="clickSearchItem(val)" v-if="currSearchList.length>0" class="search-item ub-box ub-ver z-box-sizing-border" v-for="(val, i) in currSearchList" :key="i">
               <i class="iconfont icon-sousuo z-color-999 z-font-size-16 z-margin-right-10-px"></i>
-              <p class="ub-flex-1 z-color-333 z-font-size-14">{{val.val}}</p>
+              <p class="ub-flex-1 z-color-333 z-font-size-14">{{val.docName}}</p>
               <span class="z-font-size-12 z-color-999">约{{val.num}}个结果</span>
             </li>
             <li @click.stop="clickSearchItem(searchVal)" v-if="currSearchList.length===0" class="search-item ub-box ub-ver z-box-sizing-border">
@@ -49,26 +49,26 @@
   </div>
 </template>
 <script>
-  import { searchHot } from '../../config'
+  import { searchHot, getBaseDocs } from '../../config'
   export default {
     data () {
       return {
         searchVal: '',
         // 测试搜索结果集
         searchAllList: [
-          {id: '1', val: '郑新宇', num: '7'},
-          {id: '2', val: '武彪', num: '5'},
-          {id: '3', val: '龚益平', num: '3'},
-          {id: '4', val: '黄晓曦', num: '1'},
-          {id: '5', val: '李建国', num: '1'},
-          {id: '6', val: '李文涛', num: '2'},
-          {id: '7', val: '廖海鹰', num: '3'},
-          {id: '8', val: '任敏', num: '1'},
-          {id: '9', val: '胡童', num: '2'},
-          {id: '10', val: '李永平', num: '1'},
-          {id: '11', val: '黄汉源', num: '1'},
-          {id: '12', val: '张保宁', num: '1'},
-          {id: '13', val: '李俊来', num: '1'}
+          // {id: '1', val: '郑新宇', num: '7'},
+          // {id: '2', val: '武彪', num: '5'},
+          // {id: '3', val: '龚益平', num: '3'},
+          // {id: '4', val: '黄晓曦', num: '1'},
+          // {id: '5', val: '李建国', num: '1'},
+          // {id: '6', val: '李文涛', num: '2'},
+          // {id: '7', val: '廖海鹰', num: '3'},
+          // {id: '8', val: '任敏', num: '1'},
+          // {id: '9', val: '胡童', num: '2'},
+          // {id: '10', val: '李永平', num: '1'},
+          // {id: '11', val: '黄汉源', num: '1'},
+          // {id: '12', val: '张保宁', num: '1'},
+          // {id: '13', val: '李俊来', num: '1'}
         ],
         currSearchList: [], // 当前根据搜索关键词搜索到的列表
         guess: {},
@@ -92,14 +92,16 @@
       },
       filterList () {
         this.currSearchList = this.searchAllList.filter(item => {
-          if (item.val.indexOf(this.searchVal) >= 0) return item
+          if (item.docName.indexOf(this.searchVal) >= 0) return item
         })
       },
       clickSearchItem (val) {
-        wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.userId})
+        wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.id})
       }
     },
-    mounted () {
+    async mounted () {
+      const { allDocList } = await getBaseDocs()
+      this.searchAllList = allDocList
       this.searchVal = ''
       this.currSearchList = JSON.parse(JSON.stringify(this.searchAllList))
     },

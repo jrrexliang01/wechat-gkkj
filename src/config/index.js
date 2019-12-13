@@ -205,11 +205,16 @@ const feedBackAdd = async (formData) => {
   const status = res
   return { status }
 }
+const getBaseDocs = async () => {
+  const res = (await API.getBaseDocs()).data.data
+  const allDocList = res
+  return { allDocList }
+}
 
 export {
   getNewList, getDocList, getDocInfo, getNewsInfo, getOrderList, getOrderInfo, getOrderCourseList, getOrderCourseInfo, getOrderStatusList,
   getOrderCourseStatusList, getAgreementInfo, getPatReportList, reportAdd, getReportInfo, searchAdd, searchHot, getMsgList, msgAdd,
   patientAdd, doctorAdd, orderAdd, getMyPat, getCourseList, getCourseInfo, orderCourseAdd, getArticleList, getArticleInfo, remindAdd,
   remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal,
-  getUserByOpenId, getEnclosureList, feedBackAdd
+  getUserByOpenId, getEnclosureList, feedBackAdd, getBaseDocs
 }

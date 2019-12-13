@@ -161,28 +161,9 @@ export default {
       docInfo: {}
     }
   },
-  async onLoad () {
-    let userInfo = wx.getStorageSync('userInfo')
-    this.patId = userInfo.id
-    // 调用应用实例的方法获取全局数据
-    const { patientDetail } = await getPatientDetail(this.patId)
-    if (patientDetail !== null && patientDetail !== '') {
-      this.form = patientDetail
-      this.patientName = this.form.patientName
-      this.age = this.form.age
-      this.phone = this.form.phone
-      if (this.form.medicalHistory !== null) {
-        this.currentDisease = this.form.medicalHistory.split(',')
-      }
-      if (this.form.treatment !== null) {
-        this.currentTreatment = this.form.treatment.split(',')
-      }
-      this.currentAppearance = this.form.appearance
-      this.currentPain = this.form.pain
-      this.currentTouch = this.form.touch
-      this.currentSecretion = this.form.secretion
-    }
-  },
+  // async onLoad () {
+  //
+  // },
   methods: {
     // 拉黑好友
     async addOut () {
@@ -196,7 +177,7 @@ export default {
       this.form.touch = this.currentTouch
       this.form.secretion = this.currentSecretion
       this.formData = JSON.stringify(this.form)
-      if (this.form.patientName === '') {
+      if (this.form.patientName === '' || this.form.patientName == null) {
         this.$store.commit('showToast', {
           title: '请输入姓名',
           icon: 'none',
@@ -204,7 +185,7 @@ export default {
         })
         return
       }
-      if (this.form.age === '') {
+      if (this.form.age === '' || this.form.age == null) {
         this.$store.commit('showToast', {
           title: '请输入年龄',
           icon: 'none',
@@ -212,7 +193,7 @@ export default {
         })
         return
       }
-      if (this.form.phone === '') {
+      if (this.form.phone === '' || this.form.phone == null) {
         this.$store.commit('showToast', {
           title: '请输入手机号',
           icon: 'none',
@@ -254,6 +235,28 @@ export default {
     },
     handleSecretionChange (data) {
       this.currentSecretion = data.target.value
+    }
+  },
+  async mounted () {
+    let userInfo = wx.getStorageSync('userInfo')
+    this.patId = userInfo.id
+    // 调用应用实例的方法获取全局数据
+    const { patientDetail } = await getPatientDetail(this.patId)
+    if (patientDetail !== null && patientDetail !== '') {
+      this.form = patientDetail
+      this.patientName = this.form.patientName
+      this.age = this.form.age
+      this.phone = this.form.phone
+      if (this.form.medicalHistory !== null) {
+        this.currentDisease = this.form.medicalHistory.split(',')
+      }
+      if (this.form.treatment !== null) {
+        this.currentTreatment = this.form.treatment.split(',')
+      }
+      this.currentAppearance = this.form.appearance
+      this.currentPain = this.form.pain
+      this.currentTouch = this.form.touch
+      this.currentSecretion = this.form.secretion
     }
   }
 }

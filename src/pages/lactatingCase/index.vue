@@ -124,29 +124,9 @@ export default {
       docInfo: {}
     }
   },
-  async onLoad () {
-    console.log(this.current)
-    let userInfo = wx.getStorageSync('userInfo')
-    this.patId = userInfo.id
-    // 调用应用实例的方法获取全局数据
-    const { patientDetail } = await getPatientDetail(this.patId)
-    if (patientDetail !== null && patientDetail !== '') {
-      this.form = patientDetail
-      this.patientName = this.form.patientName
-      this.age = this.form.age
-      this.phone = this.form.phone
-      this.switch1 = this.form.isDisease
-      this.switch2 = this.form.isAllergy
-      this.postpartumDay = this.form.postpartumDay
-      this.switch3 = this.form.postpartumRepair
-      this.form.currentState = '少奶,乳头问题'
-      if (this.form.currentState !== null) {
-        this.current = this.form.currentState.split(',')
-      } else {
-        this.current = []
-      }
-    }
-  },
+  // async onLoad () {
+  //
+  // },
   methods: {
     async add () {
       this.form.patientName = this.patientName
@@ -158,7 +138,7 @@ export default {
       this.form.postpartumRepair = this.switch3
       this.form.currentState = this.current.toString()
       this.formData = JSON.stringify(this.form)
-      if (this.form.patientName === '') {
+      if (this.form.patientName === '' || this.form.patientName == null) {
         this.$store.commit('showToast', {
           title: '请输入姓名',
           icon: 'none',
@@ -166,7 +146,7 @@ export default {
         })
         return
       }
-      if (this.form.age === '') {
+      if (this.form.age === '' || this.form.age == null) {
         this.$store.commit('showToast', {
           title: '请输入年龄',
           icon: 'none',
@@ -174,7 +154,7 @@ export default {
         })
         return
       }
-      if (this.form.phone === '') {
+      if (this.form.phone === '' || this.form.phone == null) {
         this.$store.commit('showToast', {
           title: '请输入手机号',
           icon: 'none',
@@ -209,6 +189,28 @@ export default {
     handleChange (data) {
       const index = this.current.indexOf(data.target.value)
       index === -1 ? this.current.push(data.target.value) : this.current.splice(index, 1)
+    }
+  },
+  async mounted () {
+    console.log(this.current)
+    let userInfo = wx.getStorageSync('userInfo')
+    this.patId = userInfo.id
+    // 调用应用实例的方法获取全局数据
+    const { patientDetail } = await getPatientDetail(this.patId)
+    if (patientDetail !== null && patientDetail !== '') {
+      this.form = patientDetail
+      this.patientName = this.form.patientName
+      this.age = this.form.age
+      this.phone = this.form.phone
+      this.switch1 = this.form.isDisease
+      this.switch2 = this.form.isAllergy
+      this.postpartumDay = this.form.postpartumDay
+      this.switch3 = this.form.postpartumRepair
+      if (this.form.currentState !== null) {
+        this.current = this.form.currentState.split(',')
+      } else {
+        this.current = []
+      }
     }
   }
 }

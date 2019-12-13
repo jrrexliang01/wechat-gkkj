@@ -1193,6 +1193,30 @@ class API {
       })
     })
   }
+  /**
+   * 获取全部医生列表
+   * @returns {Promise<any>}
+   */
+  getBaseDocs () {
+    return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/doc/selectList',
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          wx.hideLoading()
+          console.log(res)
+          resolve(res)
+        }
+      })
+    })
+  }
 }
 
 export default new API()
