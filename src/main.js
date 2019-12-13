@@ -1,7 +1,6 @@
 import Vue from 'mpvue'
 import TIMApp from './App'
 import TIM from 'tim-wx-sdk'
-import QQMapWX from 'qqmap-wx-jssdk'
 import store from './store/index'
 import { openWin, redirectTo, backBeaforWin, Ajax } from './utils/common'
 import COS from 'cos-wx-sdk-v5'
@@ -9,11 +8,6 @@ import { SDKAPPID } from '../static/utils/GenerateTestUserSig'
 import TYPES from './utils/types'
 import './css/common.css'
 import './css/iconfont.css'
-
-
-const qqmapsdk = new QQMapWX({
-  key: 'S5FBZ-ZBMW5-JZ4IQ-Q2JKE-WDNSF-NPBW6' // 必填
-});
 
 const tim = TIM.create({
   SDKAppID: SDKAPPID

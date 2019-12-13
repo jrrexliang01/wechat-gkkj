@@ -61,6 +61,7 @@
 <script>
   import good from '../../components/good.vue'
   import { getDocList, getEnclosureList } from '../../config'
+  import QQMapWX from 'qqmap-wx-jssdk'
   export default {
     props: ['curGood', 'isLast'],
     components: {good},
@@ -115,19 +116,22 @@
     },
     onShow () {
       this.current = 'homepage'
+      const qqmapsdk = new QQMapWX({
+        key: 'S5FBZ-ZBMW5-JZ4IQ-Q2JKE-WDNSF-NPBW6'
+      })
       // 实例化API核心类
-      let that = this
       wx.getLocation({
         type: 'wgs84',
         success (res) {
           console.log(res)
-          this.qqmapsdk.reverseGeocoder({
+          qqmapsdk.reverseGeocoder({
             location: {
               latitude: res.latitude,
               longitude: res.longitude
             },
             success (res) {
               console.log(res)
+              wx.setStorageSync('location', res.result.address_component)
             }
           })
         }

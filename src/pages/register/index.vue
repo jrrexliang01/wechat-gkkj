@@ -47,15 +47,17 @@ export default {
       this.form.code = this.code
       let sessionKey = wx.getStorageSync('sessionKey')
       let userInfo = wx.getStorageSync('userInfo')
+      let location = wx.getStorageSync('location')
+
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
         data: {
           openId: sessionKey.openid,
           icon: userInfo.avatarUrl,
           alias: userInfo.nickName,
-          county: userInfo.county,
-          city: userInfo.city,
-          province: userInfo.province,
+          county: userInfo.county || location.nation,
+          city: userInfo.city || location.city,
+          province: userInfo.province || location.province,
           phone: this.form.phone
         },
         header: {
