@@ -1,15 +1,12 @@
 <template>
   <div class="container ub-box ub-col">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">请输入手机号</p>
-    </dd>
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
       <p class="ub-box">
         <span class="z-font-size-14 z-color-333"><i-input v-model="phone" type="number" autofocus placeholder="请输入手机号" title="+86" maxlength="11" right @change="changValue('phone',$event)"/></span>
         <span class="z-font-size-14 z-color-333" style="margin-top: 15px">非必填</span>
       </p>
       <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input v-model="code" type="number" title="邀请码" placeholder="请输入邀请码" maxlength="5" right @change="changValue('code',$event)"/></span>
+        <span class="z-font-size-14 z-color-333"><i-input v-model="code" type="number" title="推荐码" placeholder="请输入推荐码" maxlength="5" right @change="changValue('code',$event)"/></span>
         <span class="z-font-size-14 z-color-333" style="margin-top: 15px">非必填</span>
       </p>
     </dd>
