@@ -16,6 +16,7 @@
          * 更新Vuex state中的curCity
          */
         this.$store.commit('updateCity', city)
+        wx.setStorageSync('locationCity', city)
         this.$backBeaforWin()
       }
     },

@@ -132,6 +132,7 @@
             success (res) {
               console.log(res)
               wx.setStorageSync('location', res.result.address_component)
+              wx.setStorageSync('locationCity', res.result.address_component.city)
             }
           })
         }
