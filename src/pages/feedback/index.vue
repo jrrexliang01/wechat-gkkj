@@ -23,17 +23,45 @@
 </template>
 
 <script>
+import { feedBackAdd } from '../../config'
 export default {
   data () {
     return {
       id: '',
       content: '',
-      userInfo: ''
+      userInfo: '',
+      form: {
+        content: '',
+        patientId: '',
+        openId: ''
+      },
+      formData: {}
     }
   },
   methods: {
     async save () {
       this.userInfo = wx.getStorageSync('userInfo')
+      this.form.content = this.content
+      this.form.patientId = this.userInfo.id
+      this.form.openId = this.userInfo.openId
+      this.formData = JSON.stringify(this.form)
+      if (this.form.content === '') {
+        this.$store.commit('showToast', {
+          title: '请输入反馈内容',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
+      const { status } = await feedBackAdd(this.formData)
+      this.status = status
+      if (this.status === 1) {
+        this.$store.commit('showToast', {
+          title: '保存成功',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     }
   }
 }
