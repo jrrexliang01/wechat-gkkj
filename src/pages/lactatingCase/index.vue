@@ -125,6 +125,7 @@ export default {
     }
   },
   async onLoad () {
+    console.log(this.current)
     let userInfo = wx.getStorageSync('userInfo')
     this.patId = userInfo.id
     // 调用应用实例的方法获取全局数据
@@ -138,8 +139,9 @@ export default {
       this.switch2 = this.form.isAllergy
       this.postpartumDay = this.form.postpartumDay
       this.switch3 = this.form.postpartumRepair
+      this.form.currentState = '少奶,乳头问题'
       if (this.form.currentState !== null) {
-        this.current = '[' + this.form.currentState + ']'
+        this.current = this.form.currentState.split(',')
       } else {
         this.current = []
       }

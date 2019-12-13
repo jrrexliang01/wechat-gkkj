@@ -172,10 +172,10 @@ export default {
       this.age = this.form.age
       this.phone = this.form.phone
       if (this.form.medicalHistory !== null) {
-        this.currentDisease = '[' + this.form.medicalHistory + ']'
+        this.currentDisease = this.form.medicalHistory.split(',')
       }
       if (this.form.treatment !== null) {
-        this.currentTreatment = '[' + this.form.treatment + ']'
+        this.currentTreatment = this.form.treatment.split(',')
       }
       this.currentAppearance = this.form.appearance
       this.currentPain = this.form.pain

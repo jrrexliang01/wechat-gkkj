@@ -278,7 +278,7 @@ export default {
       this.patRepInfo.doc.id = userInfo.id
       wx.setStorageSync('reportInfoAdd', this.patRepInfo)
       wx.navigateTo({
-        url: '/pages/doc/home/main'
+        url: '/pages/doc/patInfoAddProposal/main'
       })
     }
   }
