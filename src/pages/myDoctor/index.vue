@@ -4,7 +4,7 @@
       <dl class="z-width-100-percent ub-box ub-col">
         <dd class="ub-box ub-col" style="padding-bottom: 40px;">
           <div class="ub-end" v-for="(val, idx) in orderList" :key="idx" :isLast="idx===6">
-            <div class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
+            <div @click.stop="gotoDocDetail(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.doc.icon" class="z-img-cover">
               <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
                 <p class="ub-flex-1 ub-box ub-ver ub-between">
@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    gotoDetail (id) {
+    gotoDocDetail (id) {
       wx.navigateTo({url: '/pages/docInfo/main?docId=' + id})
     }
   },

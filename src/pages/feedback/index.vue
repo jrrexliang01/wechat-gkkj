@@ -57,7 +57,7 @@ export default {
       this.status = status
       if (this.status === 1) {
         this.$store.commit('showToast', {
-          title: '保存成功',
+          title: '感谢您的反馈',
           icon: 'none',
           duration: 1500
         })
