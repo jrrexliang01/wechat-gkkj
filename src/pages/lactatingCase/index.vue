@@ -138,7 +138,9 @@ export default {
       this.switch2 = this.form.isAllergy
       this.postpartumDay = this.form.postpartumDay
       this.switch3 = this.form.postpartumRepair
-      this.current = '[' + this.form.currentState + ']'
+      if (this.form.currentState !== undefined) {
+        this.current = '[' + this.form.currentState + ']'
+      }
     }
   },
   methods: {
