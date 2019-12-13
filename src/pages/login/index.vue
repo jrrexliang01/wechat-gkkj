@@ -1,7 +1,7 @@
 <template>
   <div class="container ub-box ub-col">
     <dd class="ub-ver z-margin-bottom-20-px z-margin-top-40-px">
-      <img src="../../../static/images/logo.png" size="large" shape="square"  style="height: 120px;width: 120px;"/>
+      <img src="http://39.100.255.143:8013/img/photo/logo.png" size="large" shape="square"  style="height: 120px;width: 120px;"/>
     </dd>
     <dd class="z-box-sizing-border z-bg-color-fff ub-ver-h">
       <p class="z-font-size-18 z-color-000">国科康健</p>
