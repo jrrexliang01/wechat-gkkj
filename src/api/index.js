@@ -655,7 +655,7 @@ class API {
    * @param courseTitle
    * @returns {Promise<any>}
    */
-  getCourseList (courseTitle) {
+  getCourseList () {
     return new Promise((resolve, reject) => {
       wx.showLoading({
         title: '数据加载中'
@@ -668,7 +668,7 @@ class API {
             sizePerPage: 10
           },
           params: {
-            courseTitle: courseTitle
+            type: 2
           }
         },
         method: 'POST',
@@ -1211,7 +1211,29 @@ class API {
         },
         success (res) {
           wx.hideLoading()
-          console.log(res)
+          resolve(res)
+        }
+      })
+    })
+  }
+  /**
+   * 医生带教列表
+   * @returns {Promise<any>}
+   */
+  getExpDocList () {
+    return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/doc/expertEducatio',
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          wx.hideLoading()
           resolve(res)
         }
       })

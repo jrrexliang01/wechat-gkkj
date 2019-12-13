@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import { getDocList } from '../../../config'
+  import { getExpDocList } from '../../../config'
   export default {
     props: ['curGood', 'isLast'],
     data () {
@@ -74,11 +74,11 @@
     },
     async beforeCreate () {
       // 调用应用实例的方法获取全局数据
-      const { docList } = await getDocList()
-      wx.setStorageSync('docList', docList)
+      const { expDocList } = await getExpDocList()
+      wx.setStorageSync('expDocList', expDocList)
     },
     mounted () {
-      this.docList = wx.getStorageSync('docList')
+      this.docList = wx.getStorageSync('expDocList')
     },
     onPullDownRefresh () {
       setTimeout(() => {

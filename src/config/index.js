@@ -110,8 +110,8 @@ const getMyPat = async (docId) => {
   const myPatInfo = res
   return { myPatInfo }
 }
-const getCourseList = async (courseTitle) => {
-  const res = (await API.getCourseList(courseTitle)).data.data.content
+const getCourseList = async () => {
+  const res = (await API.getCourseList()).data.data.content
   const courseList = res
   return { courseList }
 }
@@ -146,7 +146,7 @@ const remindConfigAdd = async (formData) => {
   return { status }
 }
 const getremindList = async (docId) => {
-  const res = (await API.getCourseList(docId)).data.data.content
+  const res = (await API.getremindList(docId)).data.data.content
   const remindList = res
   return { remindList }
 }
@@ -210,11 +210,16 @@ const getBaseDocs = async () => {
   const allDocList = res
   return { allDocList }
 }
+const getExpDocList = async () => {
+  const res = (await API.getExpDocList()).data.data
+  const expDocList = res
+  return { expDocList }
+}
 
 export {
   getNewList, getDocList, getDocInfo, getNewsInfo, getOrderList, getOrderInfo, getOrderCourseList, getOrderCourseInfo, getOrderStatusList,
   getOrderCourseStatusList, getAgreementInfo, getPatReportList, reportAdd, getReportInfo, searchAdd, searchHot, getMsgList, msgAdd,
   patientAdd, doctorAdd, orderAdd, getMyPat, getCourseList, getCourseInfo, orderCourseAdd, getArticleList, getArticleInfo, remindAdd,
   remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal,
-  getUserByOpenId, getEnclosureList, feedBackAdd, getBaseDocs
+  getUserByOpenId, getEnclosureList, feedBackAdd, getBaseDocs, getExpDocList
 }
