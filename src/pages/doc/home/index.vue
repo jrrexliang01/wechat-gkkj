@@ -1,10 +1,6 @@
 <template>
   <div class="container ub-box ub-col">
     <dl class="ub-box ub-ver z-padding-v-10-px" style="background:#fff;">
-      <dd @click.stop="$openWin('/pages/citySelect/main')" class="z-padding-h-10-px ub-box ub-ver">
-        <span class="z-font-size-14 z-color-666 z-margin-right-3-px">{{curCity}}</span>
-        <i class="iconfont icon-xiangxiazhankai z-color-666 z-font-size-16"></i>
-      </dd>
       <dd class="ub-flex-1 ub-box ub-ver">
         <div @click.stop="$openWin('/pages/doc/search/main')" class="search ub-box ub-ver-v z-width-90-percent z-box-sizing-border">
           <i class="iconfont icon-sousuo z-color-666 z-font-size-16"></i>
