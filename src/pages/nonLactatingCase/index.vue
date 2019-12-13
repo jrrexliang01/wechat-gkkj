@@ -171,8 +171,12 @@ export default {
       this.patientName = this.form.patientName
       this.age = this.form.age
       this.phone = this.form.phone
-      this.currentDisease = '[' + this.form.medicalHistory + ']'
-      this.currentTreatment = '[' + this.form.treatment + ']'
+      if (this.form.medicalHistory !== undefined) {
+        this.currentDisease = '[' + this.form.medicalHistory + ']'
+      }
+      if (this.form.treatment !== undefined) {
+        this.currentTreatment = '[' + this.form.treatment + ']'
+      }
       this.currentAppearance = this.form.appearance
       this.currentPain = this.form.pain
       this.currentTouch = this.form.touch
