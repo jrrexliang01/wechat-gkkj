@@ -53,6 +53,7 @@ export default {
           county: userInfo.county || location.nation,
           city: userInfo.city || location.city,
           province: userInfo.province || location.province,
+          sex: userInfo.gender,
           phone: this.form.phone
         },
         header: {
