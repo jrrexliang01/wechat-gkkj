@@ -139,8 +139,10 @@
       })
     },
     async mounted () {
+      let location = wx.getStorageSync('location')
+      console.log(location)
       // 调用应用实例的方法获取全局数据
-      const { docList } = await getDocList()
+      const { docList } = await getDocList(location.province)
       wx.setStorageSync('docList', docList)
       this.docList = wx.getStorageSync('docList')
       const { enclosureList } = await getEnclosureList('banner')

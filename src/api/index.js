@@ -37,7 +37,7 @@ class API {
    * 医生列表
    * @returns {Promise<any>}
    */
-  getDocList () {
+  getDocList (province) {
     return new Promise((resolve, reject) => {
       wx.showLoading({
         title: '数据加载中'
@@ -50,7 +50,7 @@ class API {
             sizePerPage: 10
           },
           params: {
-            province: '',
+            province: province,
             city: '',
             docName: ''
 

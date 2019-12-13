@@ -43,7 +43,9 @@ export default {
         },
         healthProposal: '',
         projectProposal: ''
-      }
+      },
+      orderInfo: {},
+      formData: {}
     }
   },
   methods: {
@@ -53,13 +55,47 @@ export default {
       this.patRepInfo.projectProposal = this.projectProposal
       let formData = JSON.stringify(this.patRepInfo)
       const { status } = await reportAdd(formData)
-      this.status = status
+      this.status = status.status
       if (this.status === 1) {
-        wx.removeStorage('reportInfoAdd')
-        this.$store.commit('showToast', {
-          title: '保存成功',
-          icon: 'none',
-          duration: 1500
+        this.formData.docId = this.patRepInfo.doc.id
+        this.formData.patientId = this.patRepInfo.patient.id
+        let formData = JSON.stringify(this.formData)
+        wx.request({
+          url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/orderInfo',
+          data: formData,
+          method: 'POST',
+          header: {
+            'content-type': 'application/json', // 默认值
+            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+          },
+          success (res) {
+            let orderInfo = res.data.data
+            if (orderInfo !== null) {
+              orderInfo.isReport = true
+              orderInfo.reportTime = new Date()
+              orderInfo.reportTime = status.id
+              let formData = JSON.stringify(orderInfo)
+              wx.request({
+                url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/save',
+                data: formData,
+                method: 'POST',
+                header: {
+                  'content-type': 'application/json', // 默认值
+                  'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+                },
+                success (res) {
+                  if (res.data.status === 1) {
+                    wx.removeStorage('reportInfoAdd')
+                    this.$store.commit('showToast', {
+                      title: '保存成功',
+                      icon: 'none',
+                      duration: 1500
+                    })
+                  }
+                }
+              })
+            }
+          }
         })
       }
     }

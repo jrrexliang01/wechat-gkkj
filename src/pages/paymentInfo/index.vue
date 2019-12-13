@@ -46,7 +46,8 @@ export default {
         pay: 0,
         star: 0,
         status: 0,
-        integral: 0
+        integral: 0,
+        isEnd: false
       },
       formData: {}
     }

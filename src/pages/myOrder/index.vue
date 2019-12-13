@@ -9,8 +9,9 @@
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">问诊医生：{{val.doc.docName}}</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">问诊时间：{{val.createTime}}</span>
           </div>
-
-          <span class="z-font-size-14" style="color:#06c1ae">评估报告已上传</span>
+          <div v-if="val.isReport">
+            <span class="z-font-size-14" style="color:#06c1ae"><a @click.stop="$openWin('/pages/patInfo/main?reportId=' + val.reportId)">评估报告已上传</a></span>
+          </div>
         </dd>
       </dl>
     </scroll-view>

@@ -5,8 +5,8 @@ const getNewList = async () => {
   const newList = res
   return { newList }
 }
-const getDocList = async () => {
-  const res = (await API.getDocList()).data.data.content
+const getDocList = async (province) => {
+  const res = (await API.getDocList(province)).data.data.content
   const docList = res
   return { docList }
 }
@@ -61,7 +61,7 @@ const getPatReportList = async (patId) => {
   return { reportList }
 }
 const reportAdd = async (formData) => {
-  const res = (await API.reportAdd(formData)).data.status
+  const res = (await API.reportAdd(formData)).data
   const status = res
   return { status }
 }

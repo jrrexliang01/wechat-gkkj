@@ -47,7 +47,7 @@
           </li>
           <li class="z-width-100-percent ub-box ub-between ub-ver">
             <span class="z-font-size-14 z-color-888 ub-flex-1 z-textAlign-left">评估报告时间</span>
-            <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.createTime}}</span>
+            <span class="z-font-size-14 z-color-888 ub-flex-2 z-textAlign-right">{{orderInfo.reportTime}}</span>
           </li>
         </dd>
         <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
