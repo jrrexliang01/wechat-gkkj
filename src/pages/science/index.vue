@@ -7,7 +7,7 @@
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col z-padding-bottom-10-px">
             <span class="z-font-size-17 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
           </div>
-          <img class="z-img-contain" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711471422&di=925e0c1d65d6df1958bd6bf2dadb21fc&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd5d8822184fb61bd5b16bc940c5b02aa77f9efb426b3f-wrTF8y_fw658" />
+          <img class="z-img-contain" :src="newSrc" />
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col z-margin-top-6-px">
 <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>-->
 <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
@@ -26,12 +26,13 @@
 </template>
 
 <script>
-import { getNewList } from '../../config'
+import { getNewList, getEnclosureList } from '../../config'
 export default {
   data () {
     return {
       newList: {},
-      imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711070555&di=838265d4fd12babf14dc71651dc9a9a7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F170e60b9758f0742a63e91e3179995d14d95c89d2d012-bYEkE9_fw658',
+      imgSrc: '',
+      newSrc: '',
       current: 'science'
     }
   },
@@ -71,7 +72,12 @@ export default {
       })
     }
   },
-  onShow () {
+  async onShow () {
+    const { enclosureList } = await getEnclosureList('new_default')
+    console.log(enclosureList.data.length)
+    if (enclosureList.data.length > 0) {
+      this.newSrc = enclosureList.data[0].enclosurePath
+    }
     this.current = 'science'
   },
   async mounted () {
@@ -79,6 +85,10 @@ export default {
     const { newList } = await getNewList()
     wx.setStorageSync('newList', newList)
     this.newList = wx.getStorageSync('newList')
+    const { enclosureList } = await getEnclosureList('new_banner')
+    if (enclosureList.data.length > 0) {
+      this.imgSrc = enclosureList.data[0].enclosurePath
+    }
   }
 }
 </script>

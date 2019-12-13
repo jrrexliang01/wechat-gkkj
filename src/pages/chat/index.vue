@@ -246,7 +246,7 @@ export default {
       startPoint: 0,
       title: '正在录音',
       rateModal: false,
-      rate: 5,
+      rate: 1,
       isShow: false
     }
   },

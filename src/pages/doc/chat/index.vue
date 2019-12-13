@@ -440,7 +440,7 @@ export default {
       }
     },
     customModal () {
-      this.customModalVisible = !this.customModalVisible
+      // this.customModalVisible = !this.customModalVisible
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/userType',
         data: {

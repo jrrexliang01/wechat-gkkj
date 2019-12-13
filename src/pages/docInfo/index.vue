@@ -73,11 +73,11 @@
 </template>
 
 <script>
-import { getDocInfo } from '../../config'
+import { getDocInfo, getEnclosureList } from '../../config'
 export default {
   data () {
     return {
-      indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
+      indexImg: '',
       docId: 0,
       docInfo: {
         docName: '',
@@ -101,6 +101,10 @@ export default {
     const { docInfo } = await getDocInfo(this.docId)
     wx.setStorageSync('docInfo', docInfo)
     this.docInfo = wx.getStorageSync('docInfo')
+    const { enclosureList } = await getEnclosureList('doc_default')
+    if (enclosureList.data.length > 0) {
+      this.indexImg = enclosureList.data[0].enclosurePath
+    }
   },
   methods: {
     toConsult: function (id) {
@@ -121,10 +125,20 @@ export default {
                   url: '/pages/myInfo/main'
                 })
               }
-            } else if (res.cancel) {
             }
           }
         })
+      } else {
+        let userInfo = wx.getStorageSync('userInfo')
+        if (userInfo.id === undefined) {
+          wx.navigateTo({
+            url: '/pages/login/main'
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/myInfo/main'
+          })
+        }
       }
     }
   },

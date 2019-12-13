@@ -77,7 +77,7 @@ import { getDocInfo } from '../../../config'
 export default {
   data () {
     return {
-      indexImg: 'http://39.100.255.143/img/wx/wenzhen.jpg',
+      indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
       docId: 0,
       docInfo: {
         docName: '',

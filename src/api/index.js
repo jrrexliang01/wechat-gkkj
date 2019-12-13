@@ -1009,6 +1009,29 @@ class API {
       })
     })
   }
+  /**
+   * 获取附件
+   * @param formData
+   * @returns {Promise<any>}
+   */
+  enclosureList (name) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/enclosure/list',
+        method: 'POST',
+        data: {
+          name: name
+        },
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          resolve(res)
+        }
+      })
+    })
+  }
 }
 
 export default new API()

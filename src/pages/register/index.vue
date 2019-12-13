@@ -6,10 +6,15 @@
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
       <p class="ub-box">
         <span class="z-font-size-14 z-color-333"><i-input v-model="phone" type="number" autofocus placeholder="请输入手机号" title="+86" maxlength="11" right @change="changValue('phone',$event)"/></span>
+        <span class="z-font-size-14 z-color-333" style="margin-top: 15px">非必填</span>
       </p>
       <p class="ub-box">
         <span class="z-font-size-14 z-color-333"><i-input v-model="code" type="number" title="邀请码" placeholder="请输入邀请码" maxlength="5" right @change="changValue('code',$event)"/></span>
+        <span class="z-font-size-14 z-color-333" style="margin-top: 15px">非必填</span>
       </p>
+    </dd>
+    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-between z-margin-top-10-px" style="padding: 5px 20px 0 20px;">
+      <p class="z-font-size-16 z-color-333">输入医生推荐码，可以获取医生的专属服务</p>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
       <button class="loginBtn" lang="zh_CN" @click="saveUser()">注册</button>
@@ -48,7 +53,14 @@ export default {
           openId: sessionKey.openid,
           icon: userInfo.avatarUrl,
           alias: userInfo.nickName,
+          county: userInfo.county,
+          city: userInfo.city,
+          province: userInfo.province,
           phone: this.form.phone
+        },
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         method: 'POST',
         success (res) {

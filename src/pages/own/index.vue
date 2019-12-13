@@ -78,15 +78,15 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="$openWin('/pages/agreement/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon--fuwu" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">用户协议</span>
-        </p>
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
-        </p>
-      </dd>
+<!--      <dd @click.stop="$openWin('/pages/agreement/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">-->
+<!--        <p class="ub-box ub-ver">-->
+<!--          <i class="iconfont icon&#45;&#45;fuwu" style="color:#357cfb;font-size:20px"></i>-->
+<!--          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">用户协议</span>-->
+<!--        </p>-->
+<!--        <p class="ub-box ub-ver">-->
+<!--          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>-->
+<!--        </p>-->
+<!--      </dd>-->
     </dl>
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
@@ -184,7 +184,7 @@ export default {
         return
       }
       this.patId = this.user.id
-      let url = '../myDoctor/main?patId=' + this.patId
+      let url = '../myOrder/main?patId=' + this.patId
       wx.navigateTo({ url: url })
     },
     toOrdWList () {

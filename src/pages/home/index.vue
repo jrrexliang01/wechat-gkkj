@@ -17,7 +17,7 @@
         <swiper class="swiper" indicator-dots="false" autoplay="false" interval="5000" duration="500">
           <block v-for="(item, idx) in imgUrls" :key="idx">
             <swiper-item>
-              <image :src="item" class="z-width-100-percent" mode="widthFix"/>
+              <image :src="item" class="z-width-100-percent" mode="widthFix" style="height: 150px;"/>
             </swiper-item>
           </block>
         </swiper>
@@ -60,7 +60,7 @@
 
 <script>
   import good from '../../components/good.vue'
-  import { getDocList } from '../../config'
+  import { getDocList, getEnclosureList } from '../../config'
   export default {
     props: ['curGood', 'isLast'],
     components: {good},
@@ -72,12 +72,10 @@
     data () {
       return {
         imgUrls: [
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg',
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg',
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg'
         ],
         current: 'homepage',
-        docList: {}
+        docList: {},
+        enclosureList: []
       }
     },
     methods: {
@@ -117,9 +115,21 @@
     },
     onShow () {
       this.current = 'homepage'
+      // 实例化API核心类
+      let that = this
       wx.getLocation({
         type: 'wgs84',
         success (res) {
+          console.log(res)
+          this.qqmapsdk.reverseGeocoder({
+            location: {
+              latitude: res.latitude,
+              longitude: res.longitude
+            },
+            success (res) {
+              console.log(res)
+            }
+          })
         }
       })
     },
@@ -128,6 +138,12 @@
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
       this.docList = wx.getStorageSync('docList')
+      const { enclosureList } = await getEnclosureList('banner')
+      this.imgUrls = []
+      for (let i = 0; i < enclosureList.data.length; i++) {
+        this.imgUrls.push(enclosureList.data[i].enclosurePath)
+      }
+      this.enclosureList = enclosureList
     },
     onPullDownRefresh () {
       setTimeout(() => {
@@ -141,7 +157,7 @@
 <style lang="stylus" scoped>
   .container{width:100%;height:100vh;background:#e8e8e8;}
   .search{background: #f5f5f5;border-radius: 12px;padding: 5px 10px}
-  .swiper{height: 120px;width: calc(100% - 16px)}
+  .swiper{height: 190px;width: calc(100% - 16px)}
   .icon-item{width:33.33%;padding: 10px 13px 0 13px;box-sizing: border-box;}
   .icon{width: 38px;height: 38px;border-radius: 50%;color: #fff;font-size: 24px}
   .adv{border-right: 2px solid #eee}

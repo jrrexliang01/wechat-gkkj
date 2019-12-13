@@ -1,7 +1,7 @@
 <template>
   <div class="counter-warp">
     <i-card @click="toMyInfo">
-      <img src="http://39.100.255.143/img/wx/pay.png" size="large" shape="square"  style="height: 600px;width: 100%;"/>
+      <img src="http://39.100.255.143:8013/img/wx/pay.png" size="large" shape="square"  style="height: 600px;width: 100%;"/>
     </i-card>
   </div>
 </template>
@@ -36,7 +36,12 @@ export default {
       this.msgInfo.title = '订单消息'
       this.msgInfo.userId = this.userInfo.id
       this.msgInfo.userType = 2
-      this.msgInfo.msg = this.userInfo.patientName + '您好，您的订单已支付成功！'
+      if (this.userInfo.patientName === null) {
+        this.msgInfo.msg = '患者您好，您的订单已支付成功！'
+      } else {
+        this.msgInfo.msg = this.userInfo.patientName + '您好，您的订单已支付成功！'
+      }
+
       this.formData = JSON.stringify(this.msgInfo)
       const { status } = await msgAdd(this.formData)
       this.status = status

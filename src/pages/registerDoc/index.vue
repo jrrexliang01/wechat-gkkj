@@ -9,6 +9,7 @@
       </p>
       <p class="ub-box">
         <span class="z-font-size-14 z-color-333"><i-input placeholder="请输入邀请码" @change="changValue('code', $event)" right title="邀请码"/></span>
+        <span class="z-font-size-14 z-color-333" style="margin-top: 15px">非必填</span>
       </p>
       <p class="ub-box">
         <span class="z-font-size-14 z-color-333"><i-input v-model="docName" placeholder="请输入医生姓名" @change="changValue('docName', $event)" right title="医生姓名"/></span>
@@ -45,7 +46,7 @@
   export default {
     data () {
       return {
-        indexImg: 'http://39.100.255.143/img/wx/wenzhen.jpg',
+        indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
         docId: 0,
         phone: '13566688888',
         code: '644308',

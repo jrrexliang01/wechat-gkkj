@@ -101,7 +101,7 @@ const doctorAdd = async (formData) => {
   return { status }
 }
 const orderAdd = async (formData) => {
-  const res = (await API.orderAdd(formData)).data.status
+  const res = (await API.orderAdd(formData)).data
   const status = res
   return { status }
 }
@@ -195,11 +195,16 @@ const getUserByOpenId = async (openId) => {
   const userDetail = res
   return { userDetail }
 }
+const getEnclosureList = async (name) => {
+  const res = (await API.enclosureList(name)).data
+  const enclosureList = res
+  return { enclosureList }
+}
 
 export {
   getNewList, getDocList, getDocInfo, getNewsInfo, getOrderList, getOrderInfo, getOrderCourseList, getOrderCourseInfo, getOrderStatusList,
   getOrderCourseStatusList, getAgreementInfo, getPatReportList, reportAdd, getReportInfo, searchAdd, searchHot, getMsgList, msgAdd,
   patientAdd, doctorAdd, orderAdd, getMyPat, getCourseList, getCourseInfo, orderCourseAdd, getArticleList, getArticleInfo, remindAdd,
   remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal,
-  getUserByOpenId
+  getUserByOpenId, getEnclosureList
 }

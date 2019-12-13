@@ -37,7 +37,7 @@
   export default {
     data () {
       return {
-        indexImg: 'http://39.100.255.143/img/wx/wenzhen.jpg',
+        indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
         docId: 0,
         form: {
           id: 0,

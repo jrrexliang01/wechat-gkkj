@@ -26,13 +26,14 @@
         success (res) {
           if (res.code) {
             wx.request({
-              url: 'https://gkkj.jrrexliang.com/wx/user/wx67010d52ded34ff6/login',
+              url: 'https://gkkj.jrrexliang.com/wx/user/wx8610e4f0f0c5f3bb/login',
               data: {
                 code: res.code
               },
               method: 'GET',
               success (res) {
                 var sessionKey = res.data
+                console.log(sessionKey)
                 wx.setStorageSync('sessionKey', sessionKey)
                 wx.setStorageSync('token', sessionKey.unionid)
                 let options = genTestUserSig(sessionKey.openid)
