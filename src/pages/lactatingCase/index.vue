@@ -138,8 +138,10 @@ export default {
       this.switch2 = this.form.isAllergy
       this.postpartumDay = this.form.postpartumDay
       this.switch3 = this.form.postpartumRepair
-      if (this.form.currentState !== undefined) {
+      if (this.form.currentState !== null) {
         this.current = '[' + this.form.currentState + ']'
+      } else {
+        this.current = []
       }
     }
   },
@@ -154,8 +156,6 @@ export default {
       this.form.postpartumRepair = this.switch3
       this.form.currentState = this.current.toString()
       this.formData = JSON.stringify(this.form)
-      const { status } = await patientAdd(this.formData)
-      this.status = status
       if (this.form.patientName === '') {
         this.$store.commit('showToast', {
           title: '请输入姓名',
@@ -180,6 +180,8 @@ export default {
         })
         return
       }
+      const { status } = await patientAdd(this.formData)
+      this.status = status
       if (this.status === 1) {
         this.$store.commit('showToast', {
           title: '保存成功',

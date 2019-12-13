@@ -171,10 +171,10 @@ export default {
       this.patientName = this.form.patientName
       this.age = this.form.age
       this.phone = this.form.phone
-      if (this.form.medicalHistory !== undefined) {
+      if (this.form.medicalHistory !== null) {
         this.currentDisease = '[' + this.form.medicalHistory + ']'
       }
-      if (this.form.treatment !== undefined) {
+      if (this.form.treatment !== null) {
         this.currentTreatment = '[' + this.form.treatment + ']'
       }
       this.currentAppearance = this.form.appearance
@@ -196,8 +196,6 @@ export default {
       this.form.touch = this.currentTouch
       this.form.secretion = this.currentSecretion
       this.formData = JSON.stringify(this.form)
-      const { status } = await patientAdd(this.formData)
-      this.status = status
       if (this.form.patientName === '') {
         this.$store.commit('showToast', {
           title: '请输入姓名',
@@ -222,6 +220,8 @@ export default {
         })
         return
       }
+      const { status } = await patientAdd(this.formData)
+      this.status = status
       if (this.status === 1) {
         this.$store.commit('showToast', {
           title: '保存成功',

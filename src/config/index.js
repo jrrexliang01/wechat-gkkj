@@ -200,11 +200,16 @@ const getEnclosureList = async (name) => {
   const enclosureList = res
   return { enclosureList }
 }
+const feedBackAdd = async (formData) => {
+  const res = (await API.feedBackAdd(formData)).data.status
+  const status = res
+  return { status }
+}
 
 export {
   getNewList, getDocList, getDocInfo, getNewsInfo, getOrderList, getOrderInfo, getOrderCourseList, getOrderCourseInfo, getOrderStatusList,
   getOrderCourseStatusList, getAgreementInfo, getPatReportList, reportAdd, getReportInfo, searchAdd, searchHot, getMsgList, msgAdd,
   patientAdd, doctorAdd, orderAdd, getMyPat, getCourseList, getCourseInfo, orderCourseAdd, getArticleList, getArticleInfo, remindAdd,
   remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal,
-  getUserByOpenId, getEnclosureList
+  getUserByOpenId, getEnclosureList, feedBackAdd
 }
