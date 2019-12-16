@@ -34,7 +34,7 @@
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-17 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.courseTitle}}</span>
           </div>
-          <img class="z-img-contain" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711471422&di=925e0c1d65d6df1958bd6bf2dadb21fc&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd5d8822184fb61bd5b16bc940c5b02aa77f9efb426b3f-wrTF8y_fw658" />
+          <img class="z-img-contain" :src="newSrc" />
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>
             <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-  import { getDocList, getCourseList } from '../../../config'
+  import { getDocList, getCourseList, getEnclosureList } from '../../../config'
   export default {
     props: ['curGood', 'isLast'],
     computed: {
@@ -94,11 +94,7 @@
     },
     data () {
       return {
-        imgUrls: [
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg',
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg',
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=62930714,2472250701&fm=26&gp=0.jpg'
-        ],
+        imgUrls: [],
         iconMap: {
           'icon-weicheng': {title: '申请讲座', bk: '#5CA2F2'},
           'icon-shoucang': {title: '经验分享', bk: '#E4463B'},
@@ -107,7 +103,8 @@
         },
         current: 'homepage',
         courseList: {},
-        docList: {}
+        docList: {},
+        newSrc: ''
       }
     },
     filters: {
@@ -202,8 +199,12 @@
       wx.setStorageSync('docList', docList)
       const { courseList } = await getCourseList()
       wx.setStorageSync('courseList', courseList)
+      const { enclosureList } = await getEnclosureList('new_default')
+      if (enclosureList.data.length > 0) {
+        this.newSrc = enclosureList.data[0].enclosurePath
+      }
     },
-    mounted () {
+    async mounted () {
       this.docList = wx.getStorageSync('docList')
       console.log(this.docList)
       this.courseList = wx.getStorageSync('courseList')
@@ -212,6 +213,11 @@
         success (res) {
         }
       })
+      const { enclosureList } = await getEnclosureList('doc_banner')
+      this.imgUrls = []
+      for (let i = 0; i < enclosureList.data.length; i++) {
+        this.imgUrls.push(enclosureList.data[i].enclosurePath)
+      }
     },
     onPullDownRefresh () {
       setTimeout(() => {
