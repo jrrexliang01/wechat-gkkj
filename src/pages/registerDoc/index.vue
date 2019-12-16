@@ -75,6 +75,33 @@
         formData: {}
       }
     },
+    onShow () {
+      this.phone = ''
+      this.code = ''
+      this.docName = ''
+      this.title = ''
+      this.hospitalName = ''
+      this.department = ''
+      this.subject = ''
+      this.introduce = ''
+      this.id = ''
+      this.form = {
+        docName: '',
+        phone: '',
+        hospitals: {
+          id: 0,
+          hospitalName: '',
+          department: ''
+        },
+        subject: '',
+        title: '',
+        department: '',
+        introduce: '',
+        openId: '',
+        icon: '',
+        alias: ''
+      }
+    },
     methods: {
       async reg () {
         let sessionKey = wx.getStorageSync('sessionKey')
