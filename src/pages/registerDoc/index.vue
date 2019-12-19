@@ -101,11 +101,14 @@
         icon: '',
         alias: ''
       }
+      let location = wx.getStorageSync('location')
+      console.log(location)
     },
     methods: {
       async reg () {
         let sessionKey = wx.getStorageSync('sessionKey')
         let userInfo = wx.getStorageSync('userInfo')
+        let location = wx.getStorageSync('location')
         this.form.phone = this.phone
         if (this.form.phone === '') {
           this.$store.commit('showToast', {
@@ -183,7 +186,8 @@
         let code = this.code
         if (form.hospitals.id !== 0) {
           form.id = this.id
-          console.log(form.id)
+          form.province = location.province
+          form.city = location.city
           let formData = JSON.stringify(form)
           wx.request({
             url: 'https://gkkj.jrrexliang.com/api/wx/code/get',
@@ -224,7 +228,13 @@
             url: 'https://gkkj.jrrexliang.com/api/wx/hospital/add',
             data: {
               hospitalName: this.hospitalName,
-              department: this.department
+              department: this.department,
+              province: location.province,
+              city: location.city,
+              county: location.district,
+              province_str: location.province,
+              city_str: location.city,
+              county_str: location.district
             },
             method: 'POST',
             header: {
@@ -235,6 +245,8 @@
               form.hospitals.id = res.data.data.id
               form.hospitals.hospitalName = res.data.data.hospitalName
               form.hospitals.department = res.data.data.department
+              form.province = location.province
+              form.city = location.city
               let formData = JSON.stringify(form)
               wx.request({
                 url: 'https://gkkj.jrrexliang.com/api/wx/code/get',
