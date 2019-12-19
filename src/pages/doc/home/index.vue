@@ -197,17 +197,16 @@
       // 调用应用实例的方法获取全局数据
       const { docList } = await getDocList()
       wx.setStorageSync('docList', docList)
+      this.docList = wx.getStorageSync('docList')
       const { courseList } = await getCourseList()
       wx.setStorageSync('courseList', courseList)
+      this.courseList = wx.getStorageSync('courseList')
       const { enclosureList } = await getEnclosureList('new_default')
       if (enclosureList.data.length > 0) {
         this.newSrc = enclosureList.data[0].enclosurePath
       }
     },
     async mounted () {
-      this.docList = wx.getStorageSync('docList')
-      console.log(this.docList)
-      this.courseList = wx.getStorageSync('courseList')
       wx.getLocation({
         type: 'wgs84',
         success (res) {
@@ -218,6 +217,9 @@
       for (let i = 0; i < enclosureList.data.length; i++) {
         this.imgUrls.push(enclosureList.data[i].enclosurePath)
       }
+    },
+    onShow () {
+      this.current = 'homepage'
     },
     onPullDownRefresh () {
       setTimeout(() => {
