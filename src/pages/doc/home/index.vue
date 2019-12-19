@@ -48,7 +48,7 @@
         </p>
         <dd class="ub-box ub-col" style="margin-bottom: 60px;">
           <div v-for="(val, idx) in docList" :key="val.id" :isLast="idx===10">
-            <div @click.stop="gotoDetail(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
+            <div @click.stop="gotoDetail(val.id)" v-if="val.expertEducation===true || val.expertLecture===true" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.icon" class="z-img-cover">
               <div class="z-padding-h-10-px ub-between ub-flex-1">
                 <p class="ub-ver-left">
