@@ -92,6 +92,7 @@ export default {
       phone: '',
       patientName: '',
       postpartumDay: '',
+      own: false,
       nowList: [{
         id: 1,
         name: '少奶'
@@ -124,9 +125,6 @@ export default {
       docInfo: {}
     }
   },
-  // async onLoad () {
-  //
-  // },
   methods: {
     async add () {
       this.form.patientName = this.patientName
@@ -170,11 +168,15 @@ export default {
           icon: 'none',
           duration: 1500
         })
-        this.docInfo = wx.getStorageSync('docInfo')
-        this.id = this.docInfo.id
-        wx.navigateTo({
-          url: '/pages/paymentInfo/main?docId=' + this.id
-        })
+        if (this.own) {
+          wx.navigateBack()
+        } else {
+          this.docInfo = wx.getStorageSync('docInfo')
+          this.id = this.docInfo.id
+          wx.navigateTo({
+            url: '/pages/paymentInfo/main?docId=' + this.id
+          })
+        }
       }
     },
     onChange1 () {
@@ -212,6 +214,10 @@ export default {
         this.current = []
       }
     }
+  },
+  onLoad (options) {
+    this.own = options.own
+    console.log(this.own)
   }
 }
 </script>

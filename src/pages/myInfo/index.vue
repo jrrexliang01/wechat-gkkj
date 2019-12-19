@@ -13,19 +13,23 @@
 export default {
   data () {
     return {
+      own: false
     }
+  },
+  onLoad (options) {
+    this.own = options.own
   },
   methods: {
     toAddIn () {
       wx.setStorageSync('isIn', '1')
       wx.navigateTo({
-        url: '/pages/lactatingCase/main'
+        url: '/pages/lactatingCase/main?own=' + this.own
       })
     },
     toAddOut () {
       wx.setStorageSync('isIn', '2')
       wx.navigateTo({
-        url: '/pages/nonLactatingCase/main'
+        url: '/pages/nonLactatingCase/main?own=' + this.own
       })
     }
   }

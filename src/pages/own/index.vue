@@ -102,7 +102,7 @@ export default {
   computed: {
     isLogin () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         return false
       } else {
         return true
@@ -174,8 +174,7 @@ export default {
       wx.navigateTo({ url: url })
     },
     toMyDoc () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         wx.showToast({
           title: '请登录后重试',
           icon: 'info',
@@ -188,8 +187,7 @@ export default {
       wx.navigateTo({ url: url })
     },
     toOrdList () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         wx.showToast({
           title: '请登录后重试',
           icon: 'info',
@@ -202,8 +200,7 @@ export default {
       wx.navigateTo({ url: url })
     },
     toOrdWList () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         wx.showToast({
           title: '请登录后重试',
           icon: 'info',
@@ -211,13 +208,11 @@ export default {
         })
         return
       }
-      this.patId = this.user.id
-      let url = '../myOrder/main?patId=' + this.patId + '&orderStatus=0'
+      let url = '../myOrder/main?patId=' + this.user.id + '&orderStatus=0'
       wx.navigateTo({ url: url })
     },
     toOrdFList () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         wx.showToast({
           title: '请登录后重试',
           icon: 'info',
@@ -225,13 +220,11 @@ export default {
         })
         return
       }
-      this.patId = this.user.id
-      let url = '../myOrder/main?patId=' + this.patId + '&orderStatus=1'
+      let url = '../myOrder/main?patId=' + this.user.id + '&orderStatus=1'
       wx.navigateTo({ url: url })
     },
     toMyInfo () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         wx.showToast({
           title: '请登录后重试',
           icon: 'info',
@@ -239,12 +232,11 @@ export default {
         })
         return
       }
-      let url = '../myInfo/main'
+      let url = '../myInfo/main?own=true'
       wx.navigateTo({ url: url })
     },
     toPatList () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         wx.showToast({
           title: '请登录后重试',
           icon: 'info',
@@ -257,8 +249,7 @@ export default {
       wx.navigateTo({ url: url })
     },
     toMsgList () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
+      if (this.user.id === undefined) {
         wx.showToast({
           title: '请登录后重试',
           icon: 'info',
@@ -288,6 +279,7 @@ export default {
   onShow () {
     this.current = 'mine'
     this.myInfo = this.$store.state.user.myInfo
+    this.user = wx.getStorageSync('userInfo')
     // this.myInfo = wx.getStorageSync('updateUser')
   }
 }

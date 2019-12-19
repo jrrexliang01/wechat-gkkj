@@ -91,6 +91,7 @@ export default {
       age: '',
       phone: '',
       patientName: '',
+      own: false,
       diseaseList: [{
         id: 1,
         name: '妇科疾病'
@@ -161,9 +162,6 @@ export default {
       docInfo: {}
     }
   },
-  // async onLoad () {
-  //
-  // },
   methods: {
     // 拉黑好友
     async addOut () {
@@ -209,11 +207,15 @@ export default {
           icon: 'none',
           duration: 1500
         })
-        this.docInfo = wx.getStorageSync('docInfo')
-        this.id = this.docInfo.id
-        wx.navigateTo({
-          url: '/pages/paymentInfo/main?docId=' + this.id
-        })
+        if (this.own) {
+          wx.navigateBack()
+        } else {
+          this.docInfo = wx.getStorageSync('docInfo')
+          this.id = this.docInfo.id
+          wx.navigateTo({
+            url: '/pages/paymentInfo/main?docId=' + this.id
+          })
+        }
       }
     },
     handleDiseaseChange (data) {
@@ -258,6 +260,9 @@ export default {
       this.currentTouch = this.form.touch
       this.currentSecretion = this.form.secretion
     }
+  },
+  onLoad (options) {
+    this.own = options.own
   }
 }
 </script>
