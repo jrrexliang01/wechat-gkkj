@@ -189,6 +189,11 @@
           },
           success (res) {
             wx.setStorageSync('studyInfo', res.data.data)
+            this.$store.commit('showToast', {
+              title: '申请成功，稍后由管理人员与您联系',
+              icon: 'none',
+              duration: 1500
+            })
           }
         })
       }
