@@ -10,7 +10,6 @@
             <p class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold z-lines-1-overflow-hidden">{{orderInfo.course.courseTitle}}</p>
             <p class="z-font-size-14 z-color-666 z-margin-bottom-3-px z-lines-1-overflow-hidden">专业课程</p>
             <p class="z-font-size-14 z-margin-bottom-3-px" style="color:#06c1ae">¥{{orderInfo.total}}</p>
-            <p class="z-font-size-14 z-margin-bottom-3-px" style="color:#06c1ae">¥{{orderInfo.course.payNum}}购买</p>
           </div>
         </dd>
         <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
@@ -47,11 +46,6 @@
         <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">评价</span>
           <span v-if="orderInfo.star ===0 " @click.stop="clickContact()" class="contactBtn z-width-100-percent ub-box ub-ver z-font-size-14 z-color-666">订单评价</span>
-          <div v-if="orderInfo.star !==0 ">
-            <i-rate
-              :value="orderInfo.star">
-            </i-rate>
-          </div>
         </dd>
       </dl>
     </scroll-view>
