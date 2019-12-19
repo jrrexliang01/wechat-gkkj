@@ -6,7 +6,6 @@
           <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg" :src="indexImg">
             <div class="indexImg-bk ub-box ub-col">
               <span class="z-font-size-18 z-lineHeight-30 z-color-fff z-box-sizing-border z-padding-h-8-px">{{courseInfo.courseTitle}}</span>
-              <span class="z-font-size-14 z-color-fff z-box-sizing-border z-padding-h-8-px">{{courseInfo.payNum}}人购买</span>
             </div>
           </image>
         </dd>
