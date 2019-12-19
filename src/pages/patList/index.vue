@@ -9,10 +9,10 @@
           </div>
         </dd>
       </dl>
-      <dl class="z-width-100-percent ub-box ub-col" v-if="reportList.length === 0">
+      <dl class="z-width-100-percent ub-box ub-col" @click.stop="goToHome()" v-if="reportList.length === 0">
         <dd class="z-margin-top-100-px ub-box ub-col ub-ver">
-          <p class="ub-ver">暂无相关报告，在线咨询，可以了解自身乳腺健康情况</p>
-          <span class="ub-ver">去咨询</span>
+          <p class="ub-ver" style="font-size: 12px;">暂无相关报告，在线咨询，可以了解自身乳腺健康情况</p>
+          <span class="ub-ver" style="color: #357cfb;">去咨询</span>
         </dd>
       </dl>
     </scroll-view>
@@ -37,8 +37,7 @@ export default {
     }
   },
   async onLoad (options) {
-    this.patId = parseInt(options.patId)
-    const { reportList } = await getPatReportList(this.patId)
+    const { reportList } = await getPatReportList(parseInt(options.patId))
     wx.setStorageSync('reportList', reportList)
   },
   mounted () {
