@@ -115,6 +115,14 @@
           })
           return
         }
+        if (this.form.phone.length !== 11) {
+          this.$store.commit('showToast', {
+            title: '您输入的手机号长度有问题',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
         this.form.docName = this.docName
         if (this.form.docName === '') {
           this.$store.commit('showToast', {
@@ -199,7 +207,7 @@
                   },
                   success (res) {
                     wx.setStorageSync('userInfo', res.data.data)
-                    wx.navigateTo({url: '/pages/init/main'})
+                    wx.redirectTo({url: '/pages/init/main'})
                   }
                 })
               } else {
@@ -274,17 +282,9 @@
       },
       testVal (event) {
         let phone = event.target.detail.value.replace(/\s/g, '')
-        if (phone.length !== 11) {
-          this.$store.commit('showToast', {
-            title: '您输入的手机号长度有问题',
-            icon: 'none',
-            duration: 1500
-          })
-        }
         let regs = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/
 
         if (regs.test(phone)) {
-          console.log(phone)
           let that = this
           wx.request({
             url: 'https://gkkj.jrrexliang.com/api/wx/doc/getDocByPhone',
@@ -297,7 +297,6 @@
             },
             method: 'POST',
             success (res) {
-              console.log(res)
               if (res.data.data !== null) {
                 that.id = res.data.data.id
                 that.phone = res.data.data.phone
