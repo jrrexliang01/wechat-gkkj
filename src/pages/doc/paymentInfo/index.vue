@@ -3,7 +3,7 @@
     <dl class="ub-box ub-col z-width-100-percent">
       <dd class="item z-width-100-percent ub-box ub-ver ub-between z-box-sizing-border z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-font-weight-bold">{{courseInfo.courseTitle}}</span>
-        <span class="z-font-size-15 z-color-333 z-font-weight-bold">{{courseInfo.payNum}}人购买</span>
+        <span class="z-font-size-15 z-color-333 z-font-weight-bold"></span>
       </dd>
       <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-between z-box-sizing-border z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-font-weight-bold">数量</span>
