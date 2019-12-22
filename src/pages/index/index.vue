@@ -4,7 +4,7 @@
       <view class="z-margin-top-100-px">
         <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
           <p class="ub-flex-1 ub-box ub-ver ub-between">
-            <span class="z-width-100-percent z-font-size-15 z-lineHeight-26">还没有消息</span>
+            <span class="z-width-100-percent z-font-size-15 z-lineHeight-26">暂无消息</span>
           </p>
         </div>
       </view>
