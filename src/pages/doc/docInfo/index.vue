@@ -60,15 +60,15 @@
           <li class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">{{docInfo.introduce}}</li>
         </ul>
       </dd>
-      <!--fixed部分-->
-      <ul class="fixCon ub-box ub-ver ub-between">
-        <li class="ub-box ub-ver z-padding-h-10-px">
-          <span class="z-font-size-12 z-color-999 z-margin-right-10-px"></span>
-          <span class="z-font-size-18 z-font-weight-bold" style="color:red"></span>
-        </li>
-        <li @click.stop="toChat(docInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即沟通</li>
-      </ul>
     </scroll-view>
+    <!--fixed部分-->
+    <ul class="fixCon ub-box ub-ver ub-between">
+      <li class="ub-box ub-ver z-padding-h-10-px">
+        <span class="z-font-size-12 z-color-999 z-margin-right-10-px"></span>
+        <span class="z-font-size-18 z-font-weight-bold" style="color:red"></span>
+      </li>
+      <li @click.stop="toChat(docInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即沟通</li>
+    </ul>
   </div>
 </template>
 
