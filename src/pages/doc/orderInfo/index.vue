@@ -4,20 +4,13 @@
       <dl class="ub-box ub-col z-width-100-percent">
         <dd class="item z-width-100-percent ub-box ub-ver z-box-sizing-border z-bg-color-fff">
           <p class="ub-box">
-            <img class="z-img-cover"
-                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573708198208&di=caad1e40da5a13dd206896e3494cffed&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F12%2F27%2Fd4e58d34321d4d7be62b4a6d7682c211.jpg"/>
+            <img class="z-img-cover" :src="imgSrc"/>
           </p>
           <div class="ub-flex-1 ub-box ub-col z-padding-h-10-px z-box-sizing-border">
             <p class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold z-lines-1-overflow-hidden">
               {{orderInfo.course.courseTitle}}</p>
             <p class="z-font-size-14 z-color-666 z-margin-bottom-3-px z-lines-1-overflow-hidden">专业课程</p>
             <p class="z-font-size-14 z-margin-bottom-3-px" style="color:#06c1ae">¥{{orderInfo.total}}</p>
-          </div>
-        </dd>
-        <dd class="item z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
-          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">课程介绍</span>
-          <div class="z-width-100-percent ub-box ub-between">
-            <span class="z-font-size-14 z-color-666">{{orderInfo.course.summary}}</span>
           </div>
         </dd>
         <dd style="padding:8px 50px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
@@ -58,6 +51,7 @@
   export default {
     data () {
       return {
+        imgSrc: '',
         orderInfo: {
           ordId: 0,
           total: 0.00,
@@ -73,6 +67,18 @@
         }
       }
     },
+    async onLoad (options) {
+      const {orderCourseInfo} = await getOrderCourseInfo(parseInt(options.ordId))
+      this.orderInfo = orderCourseInfo
+    },
+    mounted () {
+      let banner = wx.getStorageSync('enclosureList')
+      for (let i = 0; i < banner.data.length; i++) {
+        if (banner.data[i].enclosureName === 'course_order') {
+          this.imgSrc = banner.data[i].enclosurePath
+        }
+      }
+    },
     methods: {
       clickContact () {
         this.$store.commit('showToast', {
@@ -81,18 +87,6 @@
           duration: 1500
         })
       }
-    },
-    async onLoad (options) {
-      this.ordId = parseInt(options.ordId)
-      const { orderCourseInfo } = await getOrderCourseInfo(this.ordId)
-      wx.setStorageSync('orderCourseInfo', orderCourseInfo)
-      this.orderInfo = wx.getStorageSync('orderCourseInfo')
-    },
-    mounted () {
-      this.orderInfo = wx.getStorageSync('orderCourseInfo')
-    },
-    onShow () {
-      wx.setNavigationBarTitle({title: '订单详情页'})
     }
   }
 </script>
