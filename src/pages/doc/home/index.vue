@@ -214,7 +214,7 @@
         }
       })
     },
-    async mounted () {
+    mounted () {
       let banner = wx.getStorageSync('enclosureList')
       this.imgUrls = []
       for (let i = 0; i < banner.data.length; i++) {
