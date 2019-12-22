@@ -5,17 +5,19 @@
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <dd class="ub-box ub-col">
           <div v-for="(val, idx) in docList" :key="val.id" :isLast="idx===10">
-            <div @click.stop="gotoDetail(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
+            <div @click.stop="$openWin('/pages/doc/docInfo/main?docId=' + val.id)" class="card ub-box z-padding-v-10-px"
+                 :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.icon" class="z-img-cover">
               <div class="z-padding-h-10-px ub-between ub-flex-1">
                 <p class="ub-ver-left">
-                  <span class="z-width-80-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.docName}}</span>
+                  <span
+                    class="z-width-80-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.docName}}</span>
                 </p>
                 <p class="ub-ver-left">
                   <span class="ub-flex-1 z-textAlign-left z-font-size-12 z-color-888">{{val.title}}</span>
                 </p>
                 <p class="ub-ver-left">
-                  <span class="ub-flex-1 z-textAlign-left z-font-size-12 z-color-888" style="width: 150px;">{{val.hospitals.hospitalName}}</span>
+                  <span class="ub-flex-1 z-textAlign-left z-font-size-12 z-color-888" style="width: 160px;">{{val.hospitals.hospitalName}}</span>
                 </p>
               </div>
               <div class="z-padding-h-10-px ub-between ub-flex-1 z-margin-left-30-px" style="text-align: right;">
@@ -34,7 +36,7 @@
 <script>
   import { getExpDocList } from '../../../config'
   export default {
-    props: ['curGood', 'isLast'],
+    props: ['isLast'],
     data () {
       return {
         docList: {},
@@ -53,18 +55,15 @@
         let userInfo = wx.getStorageSync('userInfo')
         this.studyInfo.student.id = userInfo.id
         this.studyInfo.teacher.id = id
-        // TODO 补全后台AJAX
-        this.formData = JSON.stringify(this.studyInfo)
         wx.request({
           url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
-          data: this.formData,
+          data: JSON.stringify(this.studyInfo),
           method: 'POST',
           header: {
             'content-type': 'application/json', // 默认值
             'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
           },
           success (res) {
-            wx.setStorageSync('studyInfo', res.data.data)
             this.$store.commit('showToast', {
               title: '申请成功，稍后由管理人员与您联系',
               icon: 'none',
@@ -72,18 +71,12 @@
             })
           }
         })
-      },
-      gotoDetail (id) {
-        wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + id})
       }
     },
     async beforeCreate () {
       // 调用应用实例的方法获取全局数据
       const { expDocList } = await getExpDocList()
-      wx.setStorageSync('expDocList', expDocList)
-    },
-    mounted () {
-      this.docList = wx.getStorageSync('expDocList')
+      this.docList = expDocList
     },
     onPullDownRefresh () {
       setTimeout(() => {
