@@ -151,7 +151,7 @@ const getremindList = async (docId) => {
   return { remindList }
 }
 const getRemindInfo = async (remindId) => {
-  const res = (await API.getArticleInfo(remindId)).data.data
+  const res = (await API.getRemindInfo(remindId)).data.data
   const remindInfo = res
   return { remindInfo }
 }
