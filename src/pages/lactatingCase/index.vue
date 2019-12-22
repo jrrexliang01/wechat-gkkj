@@ -195,9 +195,8 @@ export default {
   },
   async mounted () {
     let userInfo = wx.getStorageSync('userInfo')
-    this.patId = userInfo.id
     // 调用应用实例的方法获取全局数据
-    const { patientDetail } = await getPatientDetail(this.patId)
+    const {patientDetail} = await getPatientDetail(userInfo.id)
     if (patientDetail !== null && patientDetail !== '') {
       this.form = patientDetail
       this.patientName = this.form.patientName
