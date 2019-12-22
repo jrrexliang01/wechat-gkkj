@@ -59,13 +59,11 @@
 </template>
 
 <script>
-  import good from '../../components/good.vue'
   import { getDocList } from '../../config'
   import QQMapWX from 'qqmap-wx-jssdk'
   import { switchUserTab } from '../../utils/common'
   export default {
-    props: ['curGood', 'isLast'],
-    components: {good},
+    props: ['isLast'],
     computed: {
       curCity () {
         return this.$store.state.curCity
@@ -73,8 +71,7 @@
     },
     data () {
       return {
-        imgUrls: [
-        ],
+        imgUrls: [],
         current: 'homepage',
         docList: {},
         enclosureList: []
@@ -113,8 +110,7 @@
       this.current = 'homepage'
       let location = wx.getStorageSync('location')
       const { docList } = await getDocList(location.province)
-      wx.setStorageSync('docList', docList)
-      this.docList = wx.getStorageSync('docList')
+      this.docList = docList
     },
     mounted () {
       let banner = wx.getStorageSync('enclosureList')
