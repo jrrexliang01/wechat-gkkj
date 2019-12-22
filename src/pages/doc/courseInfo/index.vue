@@ -1,6 +1,6 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <scroll-view scroll-y style="height:calc(100vh - 50);" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh - 50px);" scroll-top="0">
       <dl class="ub-box ub-col">
         <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
           <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg"

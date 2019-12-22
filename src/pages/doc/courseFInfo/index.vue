@@ -1,16 +1,18 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="ub-box ub-col">
         <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-          <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg" :src="indexImg">
+          <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg"
+                 :src="indexImg">
             <div class="indexImg-bk ub-box ub-col">
               <span class="z-font-size-18 z-lineHeight-30 z-color-fff z-box-sizing-border z-padding-h-8-px">{{courseInfo.courseTitle}}</span>
             </div>
           </image>
         </dd>
       </dl>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between"
+          style="border-bottom: 1px solid #f5f5f5">
         <p class="ub-box ub-ver">
           <span class="z-font-size-24 z-margin-right-5-px" style="color:#06c1ae">¥{{courseInfo.price}}</span>
           <span class="z-font-size-13 z-color-888"></span>

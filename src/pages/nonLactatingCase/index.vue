@@ -1,7 +1,8 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
-      <dd style="padding:8px 10px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
+      <dd style="padding:8px 10px"
+          class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">基本信息</span>
         <ul class="z-width-100-percent ub-box ub-col ub-ver">
           <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">

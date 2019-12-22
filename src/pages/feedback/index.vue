@@ -1,7 +1,8 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
-      <dd style="padding:8px 10px" class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
+      <dd style="padding:8px 10px"
+          class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
         <ul class="z-width-100-percent ub-box ub-col ub-ver">
           <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">反馈内容</span>
@@ -10,7 +11,7 @@
         <ul class="z-width-100-percent ub-box ub-col ub-ver">
           <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
-              <textarea placeholder="请填写您对于本小程序的意见" v-model="content" auto-focus />
+              <textarea placeholder="请填写您对于本小程序的意见" v-model="content" auto-focus/>
             </span>
           </li>
         </ul>
