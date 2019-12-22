@@ -41,7 +41,7 @@
                   <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
-                  <span class="z-font-size-16" style="color:#c1c12f">👍 0</span>
+                  <span class="z-font-size-16" style="color:#c1c12f">👍 {{val.star || 0}}</span>
                 </p>
               </div>
             </div>
@@ -100,23 +100,11 @@
           })
         }
       },
-      toCitySelect () {
-        wx.switchTab({
-          url: '../citySelect/main'
-        })
-      },
       gotoDetail (id) {
         wx.navigateTo({url: '/pages/docInfo/main?docId=' + id})
       }
     },
-    async onLoad () {
-      let location = wx.getStorageSync('location')
-      const { docList } = await getDocList(location.province)
-      wx.setStorageSync('docList', docList)
-      this.docList = wx.getStorageSync('docList')
-    },
-    onShow () {
-      this.current = 'homepage'
+    onLoad () {
       const qqmapsdk = new QQMapWX({
         key: 'S5FBZ-ZBMW5-JZ4IQ-Q2JKE-WDNSF-NPBW6'
       })
@@ -138,12 +126,15 @@
         }
       })
     },
-    async mounted () {
+    async onShow () {
+      this.current = 'homepage'
       let location = wx.getStorageSync('location')
-      // 调用应用实例的方法获取全局数据
       const { docList } = await getDocList(location.province)
       wx.setStorageSync('docList', docList)
       this.docList = wx.getStorageSync('docList')
+      console.log(this.docList)
+    },
+    mounted () {
       let banner = wx.getStorageSync('enclosureList')
       this.imgUrls = []
       for (let i = 0; i < banner.data.length; i++) {
