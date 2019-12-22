@@ -64,10 +64,10 @@
             'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
           },
           success (res) {
-            this.$store.commit('showToast', {
-              title: '申请成功，稍后由管理人员与您联系',
-              icon: 'none',
-              duration: 1500
+            wx.showToast({
+              title: '申请成功',
+              icon: 'success',
+              duration: 2000
             })
           }
         })
