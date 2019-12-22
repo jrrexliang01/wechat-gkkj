@@ -2,19 +2,19 @@
   <div class="container ub-box ub-col">
     <dl class="ub-box z-padding-all-10-px" style="background:#fff">
       <dd class="ub-box ub-ver">
-        <image :src="userInfo.icon || '/static/images/header.png'" class="head-img" mode="aspectFill"></image>
+        <image :src="user.icon || '/static/images/header.png'" class="head-img" mode="aspectFill"></image>
       </dd>
       <dd class="ub-flex-1 z-font-size-18 z-color-333 ub-box ub-ver-v z-padding-h-10-px">
         <button v-if="isLogin===false" class="loginBtn" lang="zh_CN"
                 @click.stop="navigateTo(true, '/pages/login/main')">登录
         </button>
         <ul v-if="isLogin===true" class="ub-box z-margin-left-10-px ub-col">
-          <li class="z-font-size-16 z-color-333 z-margin-bottom-5-px">{{userInfo.alias}}</li>
+          <li class="z-font-size-16 z-color-333 z-margin-bottom-5-px">{{user.alias}}</li>
         </ul>
       </dd>
-      <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">
-        <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">退出</div>
-      </dd>
+      <!--      <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">-->
+      <!--        <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">退出</div>-->
+      <!--      </dd>-->
     </dl>
     <!--订单详情-->
     <i-panel class="cell-panel-demo">
