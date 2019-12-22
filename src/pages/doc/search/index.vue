@@ -42,7 +42,7 @@
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box">
           <ul class="ub-box ub-wrap">
-            <li @click.stop="clickSearchItem(val)" v-for="(val, idx) in history" :key="idx"
+            <li v-for="(val, idx) in history" :key="idx"
                 class="item z-font-size-13 z-color-333">{{val.docName}}
             </li>
           </ul>
