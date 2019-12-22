@@ -112,6 +112,7 @@
     methods: {
       toConsult: function (id) {
         let userInfo = wx.getStorageSync('userInfo')
+        wx.setStorageSync('docInfo', this.docInfo)
         if (this.docInfo.onlineStatus === 0) {
           wx.showModal({
             title: '提示',
