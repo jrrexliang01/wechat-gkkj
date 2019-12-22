@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import { getDocInfo } from '../../../config'
+  import {doctorAdd, getDocInfo} from '../../../config'
   export default {
     data () {
       return {
@@ -58,13 +58,11 @@
           openId: '',
           icon: '',
           alias: ''
-        },
-        formData: {}
+        }
       }
     },
     async onLoad (options) {
       const {docInfo} = await getDocInfo(parseInt(options.docId))
-      wx.setStorageSync('userInfo', docInfo)
       this.docId = options.docId
       this.docName = docInfo.docName
       this.phone = docInfo.phone
@@ -84,19 +82,9 @@
         this.form.hospitals.department = this.department
         this.form.subject = this.subject
         this.form.introduce = this.introduce
-        this.formData = JSON.stringify(this.form)
-        wx.request({
-          url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
-          data: this.formData,
-          method: 'POST',
-          header: {
-            'content-type': 'application/json', // 默认值
-            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-          },
-          success (res) {
-            wx.navigateBack()
-          }
-        })
+        await doctorAdd(JSON.stringify(this.docInfo)).then(
+          wx.navigateBack()
+        )
       },
       changValue (val, event) {
         this[val] = event.target.detail.value
