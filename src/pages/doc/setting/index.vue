@@ -26,6 +26,7 @@ export default {
         doc: {
           id: 0
         },
+        docId: '',
         remindDay: ''
       },
       formData: {}
@@ -37,6 +38,7 @@ export default {
       // let sessionKey = wx.getStorageSync('sessionKey')
       let userInfo = wx.getStorageSync('userInfo')
       this.form.doc.id = userInfo.id
+      this.form.docId = userInfo.id
       // TODO 补全后台AJAX
       this.formData = JSON.stringify(this.form)
       wx.request({
