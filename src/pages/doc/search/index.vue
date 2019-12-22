@@ -55,32 +55,16 @@
       return {
         searchVal: '',
         // 测试搜索结果集
-        searchAllList: [
-          // {id: '1', val: '郑新宇', num: '1'},
-          // {id: '2', val: '武彪', num: '1'},
-          // {id: '3', val: '龚益平', num: '1'},
-          // {id: '4', val: '黄晓曦', num: '1'},
-          // {id: '5', val: '李建国', num: '1'},
-          // {id: '6', val: '李文涛', num: '1'},
-          // {id: '7', val: '廖海鹰', num: '1'},
-          // {id: '8', val: '任敏', num: '1'},
-          // {id: '9', val: '胡童', num: '1'},
-          // {id: '10', val: '李永平', num: '1'},
-          // {id: '11', val: '黄汉源', num: '1'},
-          // {id: '12', val: '张保宁', num: '1'},
-          // {id: '13', val: '李俊来', num: '1'}
-        ],
+        searchAllList: [],
         currSearchList: [], // 当前根据搜索关键词搜索到的列表
         guess: {},
-        history: [
-          {goodId: '1', name: '郑新宇'},
-          {goodId: '5', name: '李建国'}
-        ]
+        history: []
       }
     },
     async onLoad () {
       const { searchHotList } = await searchHot()
       this.guess = searchHotList
+      this.history = wx.getStorageSync('history')
     },
     methods: {
       doInput (e) {
@@ -96,12 +80,19 @@
         })
       },
       clickSearchItem (val) {
+        this.history.push(val)
+        wx.setStorageSync('history', this.history)
         wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + val.id})
+      },
+      clear () {
+        this.history = []
+        wx.setStorageSync('history', this.history)
       }
     },
     async mounted () {
       const { allDocList } = await getBaseDocs()
       this.searchAllList = allDocList
+      console.log(this.searchAllList)
       this.searchVal = ''
       this.currSearchList = JSON.parse(JSON.stringify(this.searchAllList))
     },
