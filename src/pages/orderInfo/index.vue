@@ -1,13 +1,14 @@
 <template>
   <div class="container ub-box">
-    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="ub-box ub-col z-width-100-percent">
         <dd class="item z-width-100-percent ub-box ub-ver z-box-sizing-border z-bg-color-fff">
           <p class="ub-box">
-            <img class="z-img-cover" :src="orderInfo.doc.icon" />
+            <img class="z-img-cover" :src="orderInfo.doc.icon"/>
           </p>
           <div class="ub-flex-1 ub-box ub-col z-padding-h-10-px z-box-sizing-border">
-            <p class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold z-lines-1-overflow-hidden">{{orderInfo.doc.docName}}问诊</p>
+            <p class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold z-lines-1-overflow-hidden">
+              {{orderInfo.doc.docName}}问诊</p>
             <p class="z-font-size-14 z-color-666 z-margin-bottom-3-px z-lines-1-overflow-hidden">在线问诊</p>
             <p class="z-font-size-14 z-margin-bottom-3-px" style="color:#06c1ae">¥{{orderInfo.total}}</p>
           </div>
@@ -86,16 +87,8 @@
       }
     },
     async onLoad (options) {
-      this.ordId = parseInt(options.ordId)
-      const { orderInfo } = await getOrderInfo(this.ordId)
-      wx.setStorageSync('orderInfo', orderInfo)
-      this.orderInfo = wx.getStorageSync('orderInfo')
-    },
-    mounted () {
-      this.orderInfo = wx.getStorageSync('orderInfo')
-    },
-    onShow () {
-      wx.setNavigationBarTitle({title: '订单详情页'})
+      const {orderInfo} = await getOrderInfo(parseInt(options.ordId))
+      this.orderInfo = orderInfo
     }
   }
 </script>
