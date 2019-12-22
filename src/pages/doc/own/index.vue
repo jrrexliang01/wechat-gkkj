@@ -123,157 +123,157 @@
 <script>
   import {getDocTotal} from '../../../config'
   import {switchDocTab} from '../../../utils/common'
-export default {
-  computed: {
-    isLogin () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        return false
-      } else {
-        return true
+
+  export default {
+    computed: {
+      isLogin () {
+        this.user = wx.getStorageSync('userInfo')
+        if (this.user === '') {
+          return false
+        } else {
+          return true
+        }
+      },
+      userInfo () {
+        return wx.getStorageSync('userInfo')
       }
     },
-    userInfo () {
-      return wx.getStorageSync('userInfo')
+    data () {
+      return {
+        search: '',
+        myInfo: {},
+        current: 'mine',
+        docId: 0,
+        user: {},
+        docTotal: {}
+      }
+    },
+    async onLoad () {
+      this.user = wx.getStorageSync('userInfo')
+      const {docTotal} = await getDocTotal(this.user.id)
+      this.docTotal = docTotal
+      this.docTotal.realSum = this.docTotal.incomeSum - this.docTotal.paySum
+    },
+    methods: {
+      login () {
+        wx.navigateTo({
+          url: '/pages/login/main'
+        })
+      },
+      onGetUserInfo (e) {
+        this.$store.commit('updateIsLogin', true)
+        this.$store.commit('updateUser', e.mp.detail.userInfo)
+      },
+      exitLogin () {
+        this.$store.commit('resetGroup')
+        this.$store.commit('resetUser')
+        this.$store.commit('resetCurrentConversation')
+        this.$store.commit('resetAllConversation')
+        this.$store.commit('updateIsLogin', false)
+        this.$store.commit('cleanUserInfo')
+        wx.$app.logout()
+        wx.clearStorage()
+        wx.hideLoading()
+        wx.reLaunch({
+          url: '../init/main'
+        })
+      },
+      handleChange (detail) {
+        switchDocTab(this.current, detail)
+      },
+      reviseInfo () {
+        let url = '../profile/main'
+        wx.navigateTo({url: url})
+      },
+      goUserAgreement () {
+        let url = '../../agreement/main'
+        wx.navigateTo({url: url})
+      },
+      toBillList () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../billList/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      toOrdList () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=2'
+        wx.navigateTo({url: url})
+      },
+      toOrdWList () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=0'
+        wx.navigateTo({url: url})
+      },
+      toOrdFList () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=1'
+        wx.navigateTo({url: url})
+      },
+      toCourseFList () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../myCourse/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      toMyInfo () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../myInfo/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      toOnLine () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../onLine/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      toEditPrice () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../price/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      toEditFollow () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../setting/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      toMyPat () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../myPat/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      toMsgList () {
+        this.user = wx.getStorageSync('userInfo')
+        this.docId = this.user.id
+        let url = '../message/main?docId=' + this.docId
+        wx.navigateTo({url: url})
+      },
+      logout () {
+        this.$store.commit('resetGroup')
+        this.$store.commit('resetUser')
+        this.$store.commit('resetCurrentConversation')
+        this.$store.commit('resetAllConversation')
+        wx.$app.logout()
+        wx.clearStorage()
+        wx.hideLoading()
+        wx.reLaunch({
+          url: '../login/main'
+        })
+      }
+    },
+    // 更新自己的个人信息
+    onShow () {
+      this.current = 'mine'
+      this.myInfo = this.$store.state.user.myInfo
     }
-  },
-  data () {
-    return {
-      search: '',
-      myInfo: {},
-      current: 'mine',
-      docId: 0,
-      user: {},
-      docTotal: {}
-    }
-  },
-  async onLoad () {
-    this.user = wx.getStorageSync('userInfo')
-    const {docTotal} = await getDocTotal(this.user.id)
-    this.docTotal = docTotal
-    this.docTotal.realSum = this.docTotal.incomeSum - this.docTotal.paySum
-  },
-  methods: {
-    login () {
-      wx.navigateTo({
-        url: '/pages/login/main'
-      })
-    },
-    onGetUserInfo (e) {
-      this.$store.commit('updateIsLogin', true)
-      this.$store.commit('updateUser', e.mp.detail.userInfo)
-    },
-    exitLogin () {
-      this.$store.commit('resetGroup')
-      this.$store.commit('resetUser')
-      this.$store.commit('resetCurrentConversation')
-      this.$store.commit('resetAllConversation')
-      this.$store.commit('updateIsLogin', false)
-      this.$store.commit('cleanUserInfo')
-      wx.$app.logout()
-      wx.clearStorage()
-      wx.hideLoading()
-      wx.reLaunch({
-        url: '../init/main'
-      })
-    },
-    handleChange (detail) {
-      switchDocTab(this.current, detail)
-    },
-    reviseInfo () {
-      let url = '../profile/main'
-      wx.navigateTo({ url: url })
-    },
-    goUserAgreement () {
-      let url = '../../agreement/main'
-      wx.navigateTo({ url: url })
-    },
-    toBillList () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../billList/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    toOrdList () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=2'
-      wx.navigateTo({ url: url })
-    },
-    toOrdWList () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=0'
-      wx.navigateTo({ url: url })
-    },
-    toOrdFList () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=1'
-      wx.navigateTo({ url: url })
-    },
-    toCourseFList () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../myCourse/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    toMyInfo () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../myInfo/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    toOnLine () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../onLine/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    toEditPrice () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../price/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    toEditFollow () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../setting/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    toMyPat () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../myPat/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    toMsgList () {
-      this.user = wx.getStorageSync('userInfo')
-      this.docId = this.user.id
-      let url = '../message/main?docId=' + this.docId
-      wx.navigateTo({ url: url })
-    },
-    logout () {
-      this.$store.commit('resetGroup')
-      this.$store.commit('resetUser')
-      this.$store.commit('resetCurrentConversation')
-      this.$store.commit('resetAllConversation')
-      wx.$app.logout()
-      wx.clearStorage()
-      wx.hideLoading()
-      wx.reLaunch({
-        url: '../login/main'
-      })
-    }
-  },
-  // 更新自己的个人信息
-  onShow () {
-    this.current = 'mine'
-    this.myInfo = this.$store.state.user.myInfo
-    // this.myInfo = wx.getStorageSync('updateUser')
   }
-}
 </script>
 
 <style lang='stylus' scoped>
