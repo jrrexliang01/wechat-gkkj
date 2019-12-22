@@ -5,19 +5,31 @@
 </template>
 <script>
   import city from '../../components/city.vue'
+  import {getDocList} from '../../config'
   export default {
     components: {city},
     data () {
       return {}
     },
     methods: {
-      cityService (city) {
+      async cityService (city) {
         /**
          * 更新Vuex state中的curCity
          */
         this.$store.commit('updateCity', city)
         wx.setStorageSync('locationCity', city)
-        this.$backBeaforWin()
+        const {docList} = await getDocList(city)
+        console.log(docList)
+        if (docList.size === 0) {
+          wx.showToast({
+            title: '暂无医生',
+            icon: 'success',
+            duration: 2000
+          })
+          wx.setStorageSync('locationCity', '北京')
+        } else {
+          this.$backBeaforWin()
+        }
       }
     },
     onShow () {
