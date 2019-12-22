@@ -65,10 +65,10 @@
     </scroll-view>
     <!--fixed部分-->
     <ul class="fixCon ub-box ub-ver ub-between">
-      <li v-if="docInfo.expertEducation===true" @click.stop="toChat(docInfo.id)"
+      <li v-if="docInfo.expertEducation===true" @click.stop="addStudy(docInfo.id)"
           class="courseBtn ub-box ub-ver z-font-size-16 z-color-000">专家带教
       </li>
-      <li v-if="docInfo.expertLecture===true" @click.stop="toChat(docInfo.id)"
+      <li v-if="docInfo.expertLecture===true" @click.stop="$openWin('/pages/doc/lecture/main')"
           class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">申请讲座
       </li>
     </ul>
@@ -76,46 +76,65 @@
 </template>
 
 <script>
-import { getDocInfo } from '../../../config'
-export default {
-  data () {
-    return {
-      indexImg: '',
-      docId: 0,
-      docInfo: {
-        docName: '',
-        hospitals: {
-          hospitalName: ''
+  import {getDocInfo, studyAdd} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        indexImg: '',
+        docId: 0,
+        docInfo: {
+          docName: '',
+          hospitals: {
+            hospitalName: ''
+          },
+          subject: '',
+          title: '',
+          department: '',
+          introduce: '',
+          onlineStatus: ''
         },
-        subject: '',
-        title: '',
-        department: '',
-        introduce: '',
-        onlineStatus: ''
-      },
-      lineStatus: {
-        '1': '在线',
-        '2': '离线'
+        studyInfo: {
+          teacher: {
+            id: 0
+          },
+          student: {
+            id: 0
+          }
+        },
+        lineStatus: {
+          '1': '在线',
+          '2': '离线'
+        }
       }
-    }
-  },
-  async onLoad (options) {
-    const {docInfo} = await getDocInfo(parseInt(options.docId))
-    this.docInfo = docInfo
-  },
-  mounted () {
-    let banner = wx.getStorageSync('enclosureList')
-    for (let i = 0; i < banner.data.length; i++) {
-      if (banner.data[i].enclosureName === 'doc_default') {
-        this.indexImg = banner.data[i].enclosurePath
+    },
+    async onLoad (options) {
+      const {docInfo} = await getDocInfo(parseInt(options.docId))
+      this.docInfo = docInfo
+    },
+    mounted () {
+      let banner = wx.getStorageSync('enclosureList')
+      for (let i = 0; i < banner.data.length; i++) {
+        if (banner.data[i].enclosureName === 'doc_default') {
+          this.indexImg = banner.data[i].enclosurePath
+        }
       }
-    }
-  },
-  methods: {
-    toChat: function (id) {
+    },
+    methods: {
+      async addStudy (id) {
+        let userInfo = wx.getStorageSync('userInfo')
+        this.studyInfo.student.id = userInfo.id
+        this.studyInfo.teacher.id = id
+        await studyAdd(JSON.stringify(this.studyInfo)).then(
+          wx.showToast({
+            title: '申请成功',
+            icon: 'success',
+            duration: 2000
+          })
+        )
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
