@@ -5,35 +5,47 @@
         <image :src="userInfo.icon || '/static/images/header.png'" class="head-img" mode="aspectFill"></image>
       </dd>
       <dd class="ub-flex-1 z-font-size-18 z-color-333 ub-box ub-ver-v z-padding-h-10-px">
-        <button v-if="isLogin===false" class="loginBtn" lang="zh_CN" @click.stop="login()">登录</button>
+        <button v-if="isLogin===false" class="loginBtn" lang="zh_CN"
+                @click.stop="navigateTo(true, '/pages/login/main')">登录
+        </button>
         <ul v-if="isLogin===true" class="ub-box z-margin-left-10-px ub-col">
           <li class="z-font-size-16 z-color-333 z-margin-bottom-5-px">{{userInfo.alias}}</li>
         </ul>
       </dd>
-<!--      <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">-->
-<!--        <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">退出</div>-->
-<!--      </dd>-->
+      <dd class="z-font-size-18 z-color-333 ub-box ub-ver-v">
+        <div @click.stop="exitLogin()" class="exitBtn ub-box ub-ver z-font-size-14">退出</div>
+      </dd>
     </dl>
     <!--订单详情-->
     <i-panel class="cell-panel-demo">
       <i-cell title="我的订单"></i-cell>
     </i-panel>
     <view class="sc df tc bte ">
-      <navigator @click.stop="toOrdWList()" class="df_1" url="../user/dingdan?currentTab=0" hover-class="none" >
-        <view><image src="../../static/images/dfh.png"></image></view>
+      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id + '&orderStatus=0')" url=""
+                 class="df_1" hover-class="none">
+        <view>
+          <image src="../../static/images/dfh.png"></image>
+        </view>
         <text class="font_12">待付款</text>
       </navigator>
-      <navigator @click.stop="toOrdFList()" class="df_1" url="../user/dingdan?currentTab=3" hover-class="none" >
-        <view><image src="../../static/images/dfk.png"></image></view>
-        <text  class="font_12">已完成</text>
+      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id + '&orderStatus=1')" url=""
+                 class="df_1" hover-class="none">
+        <view>
+          <image src="../../static/images/dfk.png"></image>
+        </view>
+        <text class="font_12">已完成</text>
       </navigator>
-      <navigator @click.stop="toOrdList()" class="df_1" url="../user/dingdan?currentTab=4" hover-class="none" >
-        <view><image src="../../static/images/tksh.png"></image></view>
+      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id)" url="" class="df_1"
+                 hover-class="none">
+        <view>
+          <image src="../../static/images/tksh.png"></image>
+        </view>
         <text class="font_12">全部订单</text>
       </navigator>
     </view>
     <dl class="ub-box ub-col z-margin-top-10-px" style="background:#fff;">
-      <dd @click.stop="toMyDoc()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="navigateTo(false, '/pages/myDoctor/main?patId='+user.id)"
+          class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的医生</span>
@@ -42,7 +54,8 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="toMsgList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="navigateTo(false, '/pages/message/main?patId='+user.id)"
+          class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-ziyuan" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的消息</span>
@@ -51,7 +64,8 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="toMyInfo()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="navigateTo(false, '/pages/myInfo/main?own=true')" class="z-padding-all-10-px ub-box ub-between"
+          style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-zhiliang" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">个人信息</span>
@@ -60,7 +74,8 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="toPatList()" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="navigateTo(false, '/pages/patList/main?patId='+user.id)"
+          class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon-shangpin" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">评估报告</span>
@@ -69,7 +84,8 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="$openWin('/pages/feedback/main')" class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
+      <dd @click.stop="navigateTo(false, '/pages/feedback/main')" class="z-padding-all-10-px ub-box ub-between"
+          style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">
           <i class="iconfont icon--kefu" style="color:#357cfb;font-size:20px"></i>
           <span class="z-font-size-15 z-color-666 z-padding-h-10-px">用户反馈</span>
@@ -109,17 +125,12 @@ export default {
     return {
       search: '',
       myInfo: {},
+      user: {},
       current: 'mine',
-      patId: 0,
-      user: {}
+      patId: 0
     }
   },
   methods: {
-    login () {
-      wx.navigateTo({
-        url: '/pages/login/main'
-      })
-    },
     onGetUserInfo (e) {
       this.$store.commit('updateIsLogin', true)
       this.$store.commit('updateUser', e.mp.detail.userInfo)
@@ -138,104 +149,23 @@ export default {
         url: '../init/main'
       })
     },
+    navigateTo (type, url) {
+      if (type) {
+        wx.navigateTo({url: url})
+      } else {
+        if (this.user.id === undefined) {
+          wx.showToast({
+            title: '请登录后重试',
+            icon: 'info',
+            duration: 2000
+          })
+        } else {
+          wx.navigateTo({url: url})
+        }
+      }
+    },
     handleChange (detail) {
       switchUserTab(this.current, detail)
-    },
-    reviseInfo () {
-      let url = '../profile/main'
-      wx.navigateTo({ url: url })
-    },
-    goUserAgreement () {
-      let url = '../agreement/main'
-      wx.navigateTo({ url: url })
-    },
-    toMyDoc () {
-      if (this.user.id === undefined) {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
-      this.patId = this.user.id
-      let url = '../myDoctor/main?patId=' + this.patId
-      wx.navigateTo({ url: url })
-    },
-    toOrdList () {
-      if (this.user.id === undefined) {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
-      this.patId = this.user.id
-      let url = '../myOrder/main?patId=' + this.patId
-      wx.navigateTo({ url: url })
-    },
-    toOrdWList () {
-      if (this.user.id === undefined) {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
-      let url = '../myOrder/main?patId=' + this.user.id + '&orderStatus=0'
-      wx.navigateTo({ url: url })
-    },
-    toOrdFList () {
-      if (this.user.id === undefined) {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
-      let url = '../myOrder/main?patId=' + this.user.id + '&orderStatus=1'
-      wx.navigateTo({ url: url })
-    },
-    toMyInfo () {
-      if (this.user.id === undefined) {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
-      let url = '../myInfo/main?own=true'
-      wx.navigateTo({ url: url })
-    },
-    toPatList () {
-      if (this.user.id === undefined) {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
-      this.patId = this.user.id
-      let url = '../patList/main?patId=' + this.patId
-      wx.navigateTo({ url: url })
-    },
-    toMsgList () {
-      if (this.user.id === undefined) {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
-      this.patId = this.user.id
-      let url = '../message/main?patId=' + this.patId
-      wx.navigateTo({ url: url })
     },
     logout () {
       this.$store.commit('resetGroup')
