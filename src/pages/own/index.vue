@@ -105,173 +105,220 @@
 </template>
 
 <script>
-import {switchUserTab} from '../../utils/common'
+  import {switchUserTab} from '../../utils/common'
 
-export default {
-  computed: {
-    isLogin () {
-      this.user = wx.getStorageSync('userInfo')
-      if (this.user.id === undefined) {
-        return false
-      } else {
-        return true
-      }
-    },
-    userInfo () {
-      return wx.getStorageSync('userInfo')
-    }
-  },
-  data () {
-    return {
-      search: '',
-      myInfo: {},
-      user: {},
-      current: 'mine',
-      patId: 0
-    }
-  },
-  methods: {
-    onGetUserInfo (e) {
-      this.$store.commit('updateIsLogin', true)
-      this.$store.commit('updateUser', e.mp.detail.userInfo)
-    },
-    exitLogin () {
-      this.$store.commit('resetGroup')
-      this.$store.commit('resetUser')
-      this.$store.commit('resetCurrentConversation')
-      this.$store.commit('resetAllConversation')
-      this.$store.commit('updateIsLogin', false)
-      this.$store.commit('cleanUserInfo')
-      wx.$app.logout()
-      wx.clearStorage()
-      wx.hideLoading()
-      wx.reLaunch({
-        url: '../init/main'
-      })
-    },
-    navigateTo (type, url) {
-      if (type) {
-        wx.navigateTo({url: url})
-      } else {
+  export default {
+    computed: {
+      isLogin () {
+        this.user = wx.getStorageSync('userInfo')
         if (this.user.id === undefined) {
-          wx.showToast({
-            title: '请登录后重试',
-            icon: 'info',
-            duration: 2000
-          })
+          return false
         } else {
-          wx.navigateTo({url: url})
+          return true
         }
+      },
+      userInfo () {
+        return wx.getStorageSync('userInfo')
       }
     },
-    handleChange (detail) {
-      switchUserTab(this.current, detail)
+    data () {
+      return {
+        search: '',
+        myInfo: {},
+        user: {},
+        current: 'mine',
+        patId: 0
+      }
     },
-    logout () {
-      this.$store.commit('resetGroup')
-      this.$store.commit('resetUser')
-      this.$store.commit('resetCurrentConversation')
-      this.$store.commit('resetAllConversation')
-      wx.removeStorageSync('userInfo')
-      wx.$app.logout()
-      wx.clearStorage()
-      wx.hideLoading()
-      wx.reLaunch({
-        url: '../login/main'
-      })
+    methods: {
+      onGetUserInfo (e) {
+        this.$store.commit('updateIsLogin', true)
+        this.$store.commit('updateUser', e.mp.detail.userInfo)
+      },
+      exitLogin () {
+        this.$store.commit('resetGroup')
+        this.$store.commit('resetUser')
+        this.$store.commit('resetCurrentConversation')
+        this.$store.commit('resetAllConversation')
+        this.$store.commit('updateIsLogin', false)
+        this.$store.commit('cleanUserInfo')
+        wx.$app.logout()
+        wx.clearStorage()
+        wx.hideLoading()
+        wx.reLaunch({
+          url: '../init/main'
+        })
+      },
+      navigateTo (type, url) {
+        if (type) {
+          wx.navigateTo({url: url})
+        } else {
+          if (this.user.id === undefined) {
+            wx.showToast({
+              title: '请登录后重试',
+              icon: 'info',
+              duration: 2000
+            })
+          } else {
+            wx.navigateTo({url: url})
+          }
+        }
+      },
+      handleChange (detail) {
+        switchUserTab(this.current, detail)
+      },
+      logout () {
+        this.$store.commit('resetGroup')
+        this.$store.commit('resetUser')
+        this.$store.commit('resetCurrentConversation')
+        this.$store.commit('resetAllConversation')
+        wx.removeStorageSync('userInfo')
+        wx.$app.logout()
+        wx.clearStorage()
+        wx.hideLoading()
+        wx.reLaunch({
+          url: '../login/main'
+        })
+      }
+    },
+    // 更新自己的个人信息
+    onShow () {
+      this.current = 'mine'
+      this.myInfo = this.$store.state.user.myInfo
+      this.user = wx.getStorageSync('userInfo')
     }
-  },
-  // 更新自己的个人信息
-  onShow () {
-    this.current = 'mine'
-    this.myInfo = this.$store.state.user.myInfo
-    this.user = wx.getStorageSync('userInfo')
   }
-}
 </script>
 
 <style lang='stylus' scoped>
-.card
-  border-bottom 1px solid $border-light
-.avatar
-  padding 10px
-.right
-  box-sizing border-box
-  height 100px
-  padding 10px
-  display flex
-  flex-direction column
-  justify-content space-around
-.username
-  font-weight 600
-  font-size 18px
-  color $base
-.account
-  font-size 14px
-  color $secondary
-.start
-  color white
-  background-color $primary
-  border-radius 8px
-  height 50px
-  width 200px
-  line-height 50px
-  font-size 16px
-.revise
-  padding 20px 40px 0 40px
-  margin-bottom 70px
-.sc
-  background: #fff
-  width: 100%
-  font-size: 12px
-  line-height: 16px
-  color: #666
-  padding: 4% 0
-.sc image
-  width: 24px
-  height: 24px
-  display: inline-block
-.bte
-  border-top: 1px solid #eee
-.qbdd
-  background: #fff
-  width: 92%
-  font-size: 12px
-  color: #666
-  padding: 4%
-.mt110
-  border-bottom: 1px solid #eee
-.df
-  display: -webkit-box
-  display: -webkit-flex
-  display: -ms-flexbox
-  display: flex
-.df_1
-  -webkit-box-flex: 1
-  -webkit-flex: 1
-  -ms-flex: 1
-  flex: 1
-  -webkit-tap-highlight-color: transparent
-.mt10
-  margin-top: 10px
-.font_17
-  font-size: 16px
-.font_12
-  font-size: 12px
-.c3
-  color: #333
-.fl_r
-  float: right
-.c9
-  color: #999
-  font-size: 12px
-  line-height: 20px
-.tc
-  text-align: center
-.bte
-  border-top:solid 1px #eee
-.container{width:100%;height:100vh;background:#e8e8e8;object-fit: cover}
-.head-img{width:60px;height:60px;border-radius:50%;box-shadow:0 0 5px rgba(0,0,0,.2);background:#eee}
-.loginBtn{font-size:14px;color:#fff;padding:0px 20px;margin-left: 10px;background: #ff5722}
-.exitBtn{border: 1px solid #357cfb;padding:7px 15px;color:#357cfb;border-radius: 3px}
+  .card
+    border-bottom 1px solid $border-light
+
+  .avatar
+    padding 10px
+
+  .right
+    box-sizing border-box
+    height 100px
+    padding 10px
+    display flex
+    flex-direction column
+    justify-content space-around
+
+  .username
+    font-weight 600
+    font-size 18px
+    color $base
+
+  .account
+    font-size 14px
+    color $secondary
+
+  .start
+    color white
+    background-color $primary
+    border-radius 8px
+    height 50px
+    width 200px
+    line-height 50px
+    font-size 16px
+
+  .revise
+    padding 20px 40px 0 40px
+    margin-bottom 70px
+
+  .sc
+    background: #fff
+    width: 100%
+    font-size: 12px
+    line-height: 16px
+    color: #666
+    padding: 4% 0
+
+  .sc image
+    width: 24px
+    height: 24px
+    display: inline-block
+
+  .bte
+    border-top: 1px solid #eee
+
+  .qbdd
+    background: #fff
+    width: 92%
+    font-size: 12px
+    color: #666
+    padding: 4%
+
+  .mt110
+    border-bottom: 1px solid #eee
+
+  .df
+    display: -webkit-box
+    display: -webkit-flex
+    display: -ms-flexbox
+    display: flex
+
+  .df_1
+    -webkit-box-flex: 1
+    -webkit-flex: 1
+    -ms-flex: 1
+    flex: 1
+    -webkit-tap-highlight-color: transparent
+
+  .mt10
+    margin-top: 10px
+
+  .font_17
+    font-size: 16px
+
+  .font_12
+    font-size: 12px
+
+  .c3
+    color: #333
+
+  .fl_r
+    float: right
+
+  .c9
+    color: #999
+    font-size: 12px
+    line-height: 20px
+
+  .tc
+    text-align: center
+
+  .bte
+    border-top: solid 1px #eee
+
+  .container {
+    width: 100%;
+    height: 100vh;
+    background: #e8e8e8;
+    object-fit: cover
+  }
+
+  .head-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    background: #eee
+  }
+
+  .loginBtn {
+    font-size: 14px;
+    color: #fff;
+    padding: 0px 20px;
+    margin-left: 10px;
+    background: #ff5722
+  }
+
+  .exitBtn {
+    border: 1px solid #357cfb;
+    padding: 7px 15px;
+    color: #357cfb;
+    border-radius: 3px
+  }
 </style>
