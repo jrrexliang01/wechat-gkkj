@@ -12,50 +12,32 @@
 </template>
 
 <script>
-import { getDocInfo } from '../../../config'
-export default {
-  data () {
-    return {
-      price: 100,
-      docInfo: {},
-      formData: {}
-    }
-  },
-  async onLoad (options) {
-    this.docId = parseInt(options.docId)
-    const { docInfo } = await getDocInfo(this.docId)
-    wx.setStorageSync('docInfo', docInfo)
-    this.docInfo = wx.getStorageSync('docInfo')
-    this.price = this.docInfo.price
-  },
-  methods: {
-    async savePrice () {
-      this.docInfo.price = this.price
-      // TODO 补全后台AJAX
-      this.formData = JSON.stringify(this.docInfo)
-      wx.request({
-        url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
-        data: this.formData,
-        method: 'POST',
-        header: {
-          'content-type': 'application/json', // 默认值
-          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-        },
-        success (res) {
-          wx.removeStorageSync('docInfo')
-          wx.setStorageSync('docInfo', res.data.data)
-          wx.navigateBack()
-        }
-      })
+  import {doctorAdd, getDocInfo} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        price: 0,
+        docInfo: {}
+      }
     },
-    changValue (val, event) {
-      this[val] = event.target.detail.value
+    async onLoad (options) {
+      const {docInfo} = await getDocInfo(parseInt(options.docId))
+      this.docInfo = docInfo
+      this.price = this.docInfo.price
+    },
+    methods: {
+      async savePrice () {
+        this.docInfo.price = this.price
+        await doctorAdd(JSON.stringify(this.docInfo)).then(
+          wx.navigateBack()
+        )
+      },
+      changValue (val, event) {
+        this[val] = event.target.detail.value
+      }
     }
-  },
-  mounted () {
-    wx.removeStorage('docInfo')
   }
-}
 </script>
 
 <style lang="stylus" scoped>
