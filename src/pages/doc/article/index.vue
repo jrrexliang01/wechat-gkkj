@@ -3,7 +3,8 @@
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <img :src="imgSrc" class="z-width-100-percent" mode="widthFix"/>
       <dl class="z-width-100-percent ub-box ub-col" style="margin-bottom: 50px;">
-        <dd @click.stop="toArticleInfo(item.id)" v-for="(item,index ) in articleList" :key="item.id"
+        <dd @click.stop="$openWin('/pages/doc/articleInfo/main?articleId=' + item.id)"
+            v-for="(item,index ) in articleList" :key="item.id"
             class="order z-width-100-percent z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-17 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
@@ -11,7 +12,6 @@
           <img class="z-img-contain" :src="newSrc"/>
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>
-            <!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
           </div>
         </dd>
       </dl>
@@ -20,64 +20,29 @@
 </template>
 
 <script>
-  import {getArticleList, getEnclosureList} from '../../../config'
+  import {getArticleList} from '../../../config'
 
   export default {
     data () {
       return {
         articleList: {},
         imgSrc: '',
-        newSrc: '',
-        current: ''
-      }
-    },
-    filters: {
-      ellipsis (value) {
-        if (!value) return ''
-        if (value.length > 20) {
-          return value
-        }
-        return value
-      }
-    },
-    methods: {
-      handleChange (detail) {
-        this.current = detail.mp.detail.key
-        if (detail.mp.detail.key.toString() === 'homepage') {
-          wx.switchTab({
-            url: '../home/main'
-          })
-        } else if (detail.mp.detail.key.toString() === 'mine') {
-          wx.switchTab({
-            url: '../own/main'
-          })
-        } else if (detail.mp.detail.key.toString() === 'chat') {
-          wx.switchTab({
-            url: '../index/main'
-          })
-        }
-      },
-      toArticleInfo (id) {
-        wx.navigateTo({
-          url: '/pages/doc/articleInfo/main?articleId=' + id
-        })
+        newSrc: ''
       }
     },
     async onShow () {
-      const {enclosureList} = await getEnclosureList('article_default')
-      if (enclosureList.data.length > 0) {
-        this.newSrc = enclosureList.data[0].enclosurePath
-      }
-      this.current = 'science'
-    },
-    async mounted () {
       // 调用应用实例的方法获取全局数据
       const {articleList} = await getArticleList()
-      wx.setStorageSync('articleList', articleList)
-      this.articleList = wx.getStorageSync('articleList')
-      const {enclosureList} = await getEnclosureList('article_banner')
-      if (enclosureList.data.length > 0) {
-        this.imgSrc = enclosureList.data[0].enclosurePath
+      this.articleList = articleList
+    },
+    mounted () {
+      let banner = wx.getStorageSync('enclosureList')
+      for (let i = 0; i < banner.data.length; i++) {
+        if (banner.data[i].enclosureName === 'article_banner') {
+          this.imgSrc = banner.data[i].enclosurePath
+        } else if (banner.data[i].enclosureName === 'article_default') {
+          this.newSrc = banner.data[i].enclosurePath
+        }
       }
     }
   }

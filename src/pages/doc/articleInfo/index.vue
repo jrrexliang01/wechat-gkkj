@@ -1,38 +1,48 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver" style="border-bottom: 1px solid #f5f5f5">
-      <p class="z-font-size-24 z-color-000" style="border-bottom: 1px solid #f5f5f5">{{articleInfo.title}}</p>
-      <p class="z-font-size-14 z-color-666">发表时间:{{articleInfo.createTime}}</p>
-    </dd>
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col" style="margin-top: 1px;">
-      <parser :html="articleInfo.content" img-mode="widthFix"></parser>
-    </dd>
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver"
+          style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-24 z-color-000">{{articleInfo.title}}</p>
+        <p class="z-font-size-14 z-color-666">发表时间:{{articleInfo.createTime}}</p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col"
+          style="margin-top: 1px;">
+        <parser :html="articleInfo.content" img-mode="widthFix"></parser>
+      </dd>
+    </scroll-view>
   </div>
 </template>
 
 <script>
-import { getArticleInfo } from '../../../config'
-export default {
-  data () {
-    return {
-      articleId: 0,
-      articleInfo: {
-        title: '',
-        content: ''
+  import {getArticleInfo} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        articleInfo: {
+          title: '',
+          content: '',
+          createTime: ''
+        }
+      }
+    },
+    async onLoad (options) {
+      this.resetData()
+      const {articleInfo} = await getArticleInfo(parseInt(options.articleId))
+      this.articleInfo = articleInfo
+    },
+    onUnload () {
+      this.resetData()
+    },
+    methods: {
+      resetData () {
+        this.articleInfo.title = ''
+        this.articleInfo.content = ''
+        this.articleInfo.createTime = ''
       }
     }
-  },
-  async onLoad (options) {
-    this.articleId = parseInt(options.articleId)
-  },
-  methods: {
-  },
-  async mounted () {
-    const { articleInfo } = await getArticleInfo(this.articleId)
-    wx.setStorageSync('articleInfo', articleInfo)
-    this.articleInfo = wx.getStorageSync('articleInfo')
   }
-}
 </script>
 
 <style lang="stylus" scoped>
