@@ -22,7 +22,7 @@
 
 <script>
 import { getNewList } from '../../config'
-import {switchUserTab} from '../../utils/common'
+import { switchUserTab } from '../../utils/common'
 export default {
   data () {
     return {
@@ -46,22 +46,17 @@ export default {
       switchUserTab(this.current, detail)
     },
     toNewsInfo (id) {
-      wx.navigateTo({
-        url: '/pages/scienceInfo/main?newsId=' + id
-      })
+      this.$openWin('/pages/scienceInfo/main?newsId=' + id)
     }
   },
-  async onShow () {
+  onShow () {
     this.current = 'science'
   },
   async mounted () {
     // 调用应用实例的方法获取全局数据
     const { newList } = await getNewList()
-    wx.setStorageSync('newList', newList)
-    this.newList = wx.getStorageSync('newList')
-
+    this.newList = newList
     let banner = wx.getStorageSync('enclosureList')
-    this.imgUrls = []
     for (let i = 0; i < banner.data.length; i++) {
       if (banner.data[i].enclosureName === 'new_banner') {
         this.imgSrc = banner.data[i].enclosurePath
