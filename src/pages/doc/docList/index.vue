@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import { getExpDocList } from '../../../config'
+  import {getExpDocList, studyAdd} from '../../../config'
   export default {
     props: ['isLast'],
     data () {
@@ -51,26 +51,17 @@
       }
     },
     methods: {
-      addStudy (id) {
+      async addStudy (id) {
         let userInfo = wx.getStorageSync('userInfo')
         this.studyInfo.student.id = userInfo.id
         this.studyInfo.teacher.id = id
-        wx.request({
-          url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
-          data: JSON.stringify(this.studyInfo),
-          method: 'POST',
-          header: {
-            'content-type': 'application/json', // 默认值
-            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-          },
-          success (res) {
-            wx.showToast({
-              title: '申请成功',
-              icon: 'success',
-              duration: 2000
-            })
-          }
-        })
+        await studyAdd(JSON.stringify(this.studyInfo)).then(
+          wx.showToast({
+            title: '申请成功',
+            icon: 'success',
+            duration: 2000
+          })
+        )
       }
     },
     async beforeCreate () {

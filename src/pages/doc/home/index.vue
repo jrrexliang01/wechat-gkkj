@@ -88,8 +88,7 @@
 </template>
 
 <script>
-  import {getDocList, getCourseList} from '../../../config'
-  import QQMapWX from 'qqmap-wx-jssdk'
+  import {getDocList, getCourseList, studyAdd} from '../../../config'
   import {switchDocTab} from '../../../utils/common'
 
   export default {
@@ -160,28 +159,17 @@
           })
         }
       },
-      addStudy (id) {
+      async addStudy (id) {
         let userInfo = wx.getStorageSync('userInfo')
         this.studyInfo.student.id = userInfo.id
         this.studyInfo.teacher.id = id
-        // TODO 补全后台AJAX
-        this.formData = JSON.stringify(this.studyInfo)
-        wx.request({
-          url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
-          data: this.formData,
-          method: 'POST',
-          header: {
-            'content-type': 'application/json', // 默认值
-            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-          },
-          success (res) {
-            wx.showToast({
-              title: '申请成功',
-              icon: 'success',
-              duration: 2000
-            })
-          }
-        })
+        await studyAdd(JSON.stringify(this.studyInfo)).then(
+          wx.showToast({
+            title: '申请成功',
+            icon: 'success',
+            duration: 2000
+          })
+        )
       }
     },
     async beforeCreate () {
@@ -190,27 +178,6 @@
       this.docList = docList
       const {courseList} = await getCourseList()
       this.courseList = courseList.slice(0, 3)
-    },
-    onLoad () {
-      const qqmapsdk = new QQMapWX({
-        key: 'S5FBZ-ZBMW5-JZ4IQ-Q2JKE-WDNSF-NPBW6'
-      })
-      // 实例化API核心类
-      wx.getLocation({
-        type: 'wgs84',
-        success (res) {
-          qqmapsdk.reverseGeocoder({
-            location: {
-              latitude: res.latitude,
-              longitude: res.longitude
-            },
-            success (res) {
-              wx.setStorageSync('location', res.result.address_component)
-              wx.setStorageSync('locationCity', res.result.address_component.city)
-            }
-          })
-        }
-      })
     },
     mounted () {
       let banner = wx.getStorageSync('enclosureList')
