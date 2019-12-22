@@ -67,6 +67,7 @@
       this.docName = docInfo.docName
       this.phone = docInfo.phone
       this.title = docInfo.title
+      this.form.hospitals.id = docInfo.hospitals.id
       this.hospitalName = docInfo.hospitals.hospitalName
       this.department = docInfo.hospitals.department
       this.subject = docInfo.subject
@@ -76,13 +77,77 @@
       async reg (id) {
         this.form.id = id
         this.form.docName = this.docName
+        if (this.form.docName === '') {
+          this.$store.commit('showToast', {
+            title: '请填写医生姓名',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
         this.form.phone = this.phone
+        if (this.form.phone === '') {
+          this.$store.commit('showToast', {
+            title: '请填写手机号',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
+        if (this.form.phone.length !== 11) {
+          this.$store.commit('showToast', {
+            title: '您输入的手机号长度有问题',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
         this.form.title = this.title
+        if (this.form.title === '') {
+          this.$store.commit('showToast', {
+            title: '请填写职称',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
         this.form.hospitals.hospitalName = this.hospitalName
+        if (this.form.hospitals.hospitalName === '') {
+          this.$store.commit('showToast', {
+            title: '请填写所属医院',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
         this.form.hospitals.department = this.department
+        if (this.form.hospitals.department === '') {
+          this.$store.commit('showToast', {
+            title: '请填写科室',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
         this.form.subject = this.subject
+        if (this.form.subject === '') {
+          this.$store.commit('showToast', {
+            title: '请填写擅长科目',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
         this.form.introduce = this.introduce
-        await doctorAdd(JSON.stringify(this.docInfo)).then(
+        if (this.form.introduce === '') {
+          this.$store.commit('showToast', {
+            title: '请填写医生介绍',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
+        await doctorAdd(JSON.stringify(this.form)).then(
           wx.navigateBack()
         )
       },
