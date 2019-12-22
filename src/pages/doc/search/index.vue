@@ -12,10 +12,11 @@
       <div v-if="searchVal.length>0" class="ub-box ub-col" style="padding:8px 8px 0 8px">
         <scroll-view scroll-y style="height: calc(100vh - 80px)" scroll-top="0">
           <ul class="ub-box ub-col">
-            <li @click.stop="clickSearchItem(val)" v-if="currSearchList.length>0" class="search-item ub-box ub-ver z-box-sizing-border" v-for="(val, i) in currSearchList" :key="i">
+            <li @click.stop="clickSearchItem(val)" v-if="currSearchList.length>0"
+                class="search-item ub-box ub-ver z-box-sizing-border" v-for="(val, i) in currSearchList" :key="i">
               <i class="iconfont icon-sousuo z-color-999 z-font-size-16 z-margin-right-10-px"></i>
-              <p class="ub-flex-1 z-color-333 z-font-size-14">{{val.val}}</p>
-              <span class="z-font-size-12 z-color-999">约{{val.num}}个结果</span>
+              <p class="ub-flex-1 z-color-333 z-font-size-14">{{val.docName}}</p>
+              <span class="z-font-size-12 z-color-999">约1个结果</span>
             </li>
             <li @click.stop="clickSearchItem(searchVal)" v-if="currSearchList.length===0" class="search-item ub-box ub-ver z-box-sizing-border">
               <i class="iconfont icon-sousuo z-color-999 z-font-size-16 z-margin-right-10-px"></i>
@@ -37,11 +38,13 @@
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
           <p class="z-font-size-14 z-color-888">历史搜索</p>
-          <i class="iconfont icon-juqianshou z-color-999 z-font-size-16"></i>
+          <i @click.stop="clear()" class="iconfont icon-juqianshou z-color-999 z-font-size-16"></i>
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box">
           <ul class="ub-box ub-wrap">
-            <li @click.stop="clickSearchItem(val)" v-for="(val, idx) in history" :key="idx" class="item z-font-size-13 z-color-333">{{val.name}}</li>
+            <li @click.stop="clickSearchItem(val)" v-for="(val, idx) in history" :key="idx"
+                class="item z-font-size-13 z-color-333">{{val.docName}}
+            </li>
           </ul>
         </dd>
       </div>
@@ -57,14 +60,13 @@
         // 测试搜索结果集
         searchAllList: [],
         currSearchList: [], // 当前根据搜索关键词搜索到的列表
-        guess: {},
+        guess: [],
         history: []
       }
     },
     async onLoad () {
       const { searchHotList } = await searchHot()
       this.guess = searchHotList
-      this.history = wx.getStorageSync('history')
     },
     methods: {
       doInput (e) {
@@ -76,7 +78,7 @@
       },
       filterList () {
         this.currSearchList = this.searchAllList.filter(item => {
-          if (item.val.indexOf(this.searchVal) >= 0) return item
+          if (item.docName.indexOf(this.searchVal) >= 0 || item.subject.indexOf(this.searchVal) >= 0) return item
         })
       },
       clickSearchItem (val) {
@@ -97,6 +99,7 @@
     },
     onShow () {
       wx.setNavigationBarTitle({title: '搜索'})
+      this.history = wx.getStorageSync('history')
     }
   }
 </script>

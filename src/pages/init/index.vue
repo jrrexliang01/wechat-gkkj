@@ -78,8 +78,11 @@ export default {
     })
   },
   async mounted () {
-    const { enclosureList } = await enclosureFindAll()
+    const {enclosureList} = await enclosureFindAll()
     wx.setStorageSync('enclosureList', enclosureList)
+    if (wx.getStorageSync('history') === '') {
+      wx.setStorageSync('history', [])
+    }
   }
 }
 </script>
