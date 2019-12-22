@@ -97,13 +97,11 @@
       }
     },
     async onLoad (options) {
-      this.docId = parseInt(options.docId)
-      const { docInfo } = await getDocInfo(this.docId)
-      wx.setStorageSync('docInfo', docInfo)
-      this.docInfo = wx.getStorageSync('docInfo')
+      wx.removeStorage('docInfo')
+      const { docInfo } = await getDocInfo(parseInt(options.docId))
+      this.docInfo = docInfo
     },
     mounted () {
-      wx.removeStorage('docInfo')
       let banner = wx.getStorageSync('enclosureList')
       for (let i = 0; i < banner.data.length; i++) {
         if (banner.data[i].enclosureName === 'doc_default') {
@@ -113,13 +111,13 @@
     },
     methods: {
       toConsult: function (id) {
+        let userInfo = wx.getStorageSync('userInfo')
         if (this.docInfo.onlineStatus === 0) {
           wx.showModal({
             title: '提示',
             content: '该医生可能长时间不在线',
             success (res) {
               if (res.confirm) {
-                let userInfo = wx.getStorageSync('userInfo')
                 if (userInfo.id === undefined) {
                   wx.navigateTo({
                     url: '/pages/login/main'
@@ -133,7 +131,6 @@
             }
           })
         } else {
-          let userInfo = wx.getStorageSync('userInfo')
           if (userInfo.id === undefined) {
             wx.navigateTo({
               url: '/pages/login/main'
