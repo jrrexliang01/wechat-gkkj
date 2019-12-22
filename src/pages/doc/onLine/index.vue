@@ -17,57 +17,41 @@
 </template>
 
 <script>
-import { getDocInfo } from '../../../config'
-export default {
-  data () {
-    return {
-      onLineStatus: false,
-      docInfo: {},
-      formData: {}
-    }
-  },
-  async onLoad (options) {
-    this.docId = parseInt(options.docId)
-    const { docInfo } = await getDocInfo(this.docId)
-    wx.setStorageSync('docInfo', docInfo)
-    this.docInfo = wx.getStorageSync('docInfo')
-    this.onLineStatus = this.docInfo.onlineStatus
-  },
-  methods: {
-    onChange () {
-      this.onLineStatus === true ? this.onLineStatus = false : this.onLineStatus = true
-    },
-    async saveStatus () {
-      if (this.onLineStatus) {
-        this.docInfo.onlineStatus = 1
-      } else {
-        this.docInfo.onlineStatus = 0
+  import {doctorAdd, getDocInfo} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        onLineStatus: false,
+        docInfo: {},
+        formData: {}
       }
-      // TODO 补全后台AJAX
-      this.formData = JSON.stringify(this.docInfo)
-      wx.request({
-        url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
-        data: this.formData,
-        method: 'POST',
-        header: {
-          'content-type': 'application/json', // 默认值
-          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-        },
-        success (res) {
-          wx.removeStorageSync('docInfo')
-          wx.setStorageSync('docInfo', res.data.data)
-          wx.navigateBack()
-        }
-      })
     },
-    changValue (val, event) {
-      this[val] = event.target.detail.value
+    async onLoad (options) {
+      const {docInfo} = await getDocInfo(parseInt(options.docId))
+      this.docInfo = docInfo
+      this.onLineStatus = this.docInfo.onlineStatus
+    },
+    methods: {
+      onChange () {
+        this.onLineStatus === true ? this.onLineStatus = false : this.onLineStatus = true
+      },
+      async saveStatus () {
+        if (this.onLineStatus) {
+          this.docInfo.onlineStatus = 1
+        } else {
+          this.docInfo.onlineStatus = 0
+        }
+        this.formData = JSON.stringify(this.docInfo)
+        await doctorAdd(JSON.stringify(this.docInfo)).then(
+          wx.navigateBack()
+        )
+      },
+      changValue (val, event) {
+        this[val] = event.target.detail.value
+      }
     }
-  },
-  mounted () {
-    wx.removeStorage('docInfo')
   }
-}
 </script>
 
 <style lang="stylus" scoped>
