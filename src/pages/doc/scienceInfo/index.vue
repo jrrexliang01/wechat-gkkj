@@ -11,28 +11,23 @@
 </template>
 
 <script>
-import { getNewsInfo } from '../../../config'
-export default {
-  data () {
-    return {
-      newsId: 0,
-      newsInfo: {
-        title: '',
-        content: ''
+  import {getNewsInfo} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        newsId: 0,
+        newsInfo: {
+          title: '',
+          content: ''
+        }
       }
+    },
+    async onLoad (options) {
+      const {newsInfo} = await getNewsInfo(parseInt(options.newsId))
+      this.newsInfo = newsInfo
     }
-  },
-  async onLoad (options) {
-    this.newsId = parseInt(options.newsId)
-  },
-  methods: {
-  },
-  async mounted () {
-    const { newsInfo } = await getNewsInfo(this.newsId)
-    wx.setStorageSync('newsInfo', newsInfo)
-    this.newsInfo = wx.getStorageSync('newsInfo')
   }
-}
 </script>
 
 <style lang="stylus" scoped>

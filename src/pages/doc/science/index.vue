@@ -10,7 +10,6 @@
           <img class="z-img-contain" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711471422&di=925e0c1d65d6df1958bd6bf2dadb21fc&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fd5d8822184fb61bd5b16bc940c5b02aa77f9efb426b3f-wrTF8y_fw658" />
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>
-<!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
           </div>
         </dd>
       </dl>
@@ -19,37 +18,37 @@
 </template>
 
 <script>
-import { getNewList } from '../../../config'
-export default {
-  data () {
-    return {
-      newList: {},
-      imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711070555&di=838265d4fd12babf14dc71651dc9a9a7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F170e60b9758f0742a63e91e3179995d14d95c89d2d012-bYEkE9_fw658'
-    }
-  },
-  filters: {
-    ellipsis (value) {
-      if (!value) return ''
-      if (value.length > 20) {
+  import {getNewList} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        newList: {},
+        imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711070555&di=838265d4fd12babf14dc71651dc9a9a7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F170e60b9758f0742a63e91e3179995d14d95c89d2d012-bYEkE9_fw658'
+      }
+    },
+    filters: {
+      ellipsis (value) {
+        if (!value) return ''
+        if (value.length > 20) {
+          return value
+        }
         return value
       }
-      return value
+    },
+    methods: {
+      toNewsInfo (id) {
+        wx.navigateTo({
+          url: '/pages/doc/scienceInfo/main?newsId=' + id
+        })
+      }
+    },
+    async mounted () {
+      // 调用应用实例的方法获取全局数据
+      const {newList} = await getNewList()
+      this.newList = newList
     }
-  },
-  methods: {
-    toNewsInfo (id) {
-      wx.navigateTo({
-        url: '/pages/doc/scienceInfo/main?newsId=' + id
-      })
-    }
-  },
-  async mounted () {
-    // 调用应用实例的方法获取全局数据
-    const { newList } = await getNewList()
-    wx.setStorageSync('newList', newList)
-    this.newList = wx.getStorageSync('newList')
   }
-}
 </script>
 
 <style lang="stylus" scoped>
