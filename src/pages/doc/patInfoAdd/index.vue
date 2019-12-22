@@ -1,8 +1,5 @@
 <template>
   <div class="container ub-box ub-col">
-<!--    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">-->
-<!--      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">就诊报告</p>-->
-<!--    </dd>-->
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
       <p class="ub-box">
         <i-panel title="疼痛">
@@ -286,64 +283,47 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.bg
-  background-color $background
-  height 100vh
-.right
-  box-sizing border-box
-  height 100px
-  padding 10px
-  display flex
-  flex-direction column
-  justify-content space-around
-  .username
-    font-weight 600
-    font-size 18px
-    color $base
-  .account
-    font-size 14px
-    color $secondary
-.btn
-  color white
-  background-color $primary
-  border-radius 20px
-  height 40px
-  width 150px
-  line-height 40px
-  font-size 16px
-.delete
-  background-color $danger
-.container
-  background-color $background
-  height 100vh
-  overflow scroll
-.card
-  border-top 1px solid $border-light
-  border-bottom 1px solid $border-light
-  background-color white
-  margin-bottom -1px
-  .item
-    display flex
-    width 100vw
-    padding 10px 20px
-    border-bottom 1px solid $border-base
-    font-size 16px
-    .key
-      width 60vw
-      font-weight 500
-      color $base
-      box-sizing border-box
-    .value
-      width 40vw
-      font-weight 400
-      color $regular
-      box-sizing border-box
-.avatar
-  padding 10px
-.revise
-  padding-top 20px
-  display flex
-  flex-direction column
-  justify-content space-around
-  height 100px
+  .container {
+    width: 100%;
+    height: 100vh;
+    background: #e8e8e8
+  }
+
+  .indexImg {
+    height: 170px;
+    position: relative;
+  }
+
+  .indexImg-bk {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 30%;
+    background: rgba(0, 0, 0, .3);
+    padding: 5px 0px
+  }
+
+  .buyBtn {
+    background: #f90;
+    padding: 8px 12px;
+    border-radius: 3px
+  }
+
+  .label {
+    border-radius: 3px;
+    background: #fff;
+    padding: 3px 5px;
+    margin: 0 5px 5px 0
+  }
+
+  .loginBtn {
+    font-size: 18px;
+    color: #fff;
+    padding: 0px 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: #357cfb
+  }
 </style>
