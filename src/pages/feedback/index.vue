@@ -33,8 +33,10 @@ export default {
       userInfo: '',
       form: {
         content: '',
-        patientId: '',
-        openId: ''
+        patient: {
+          id: ''
+        },
+        openid: ''
       },
       formData: {}
     }
@@ -43,8 +45,8 @@ export default {
     async save () {
       this.userInfo = wx.getStorageSync('userInfo')
       this.form.content = this.content
-      this.form.patientId = this.userInfo.id
-      this.form.openId = this.userInfo.openId
+      this.form.patient.id = this.userInfo.id
+      this.form.openid = this.userInfo.openId
       this.formData = JSON.stringify(this.form)
       if (this.form.content === '') {
         this.$store.commit('showToast', {
@@ -54,7 +56,7 @@ export default {
         })
         return
       }
-      const { status } = await feedBackAdd(this.formData)
+      const {status} = await feedBackAdd(this.formData)
       this.status = status
       if (this.status === 1) {
         this.$store.commit('showToast', {
