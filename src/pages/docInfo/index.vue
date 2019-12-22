@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { getDocInfo, getEnclosureList } from '../../config'
+import { getDocInfo } from '../../config'
 export default {
   data () {
     return {
@@ -101,9 +101,14 @@ export default {
     const { docInfo } = await getDocInfo(this.docId)
     wx.setStorageSync('docInfo', docInfo)
     this.docInfo = wx.getStorageSync('docInfo')
-    const { enclosureList } = await getEnclosureList('doc_default')
-    if (enclosureList.data.length > 0) {
-      this.indexImg = enclosureList.data[0].enclosurePath
+  },
+  mounted () {
+    wx.removeStorage('docInfo')
+    let banner = wx.getStorageSync('enclosureList')
+    for (let i = 0; i < banner.data.length; i++) {
+      if (banner.data[i].enclosureName === 'doc_default') {
+        this.indexImg = banner.data[i].enclosurePath
+      }
     }
   },
   methods: {
@@ -141,9 +146,6 @@ export default {
         }
       }
     }
-  },
-  mounted () {
-    wx.removeStorage('docInfo')
   }
 }
 </script>
