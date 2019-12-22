@@ -2,17 +2,19 @@
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col" v-if="reportList.length !== 0">
-        <dd @click.stop="$openWin('/pages/patInfo/main?reportId=' + val.id)" v-for="(val, idx) in reportList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
+        <dd @click.stop="$openWin('/pages/patInfo/main?reportId=' + val.id)" v-for="(val, idx) in reportList" :key="idx"
+            class="order z-width-100-percent ub-box z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
-            <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.doc.docName}}问诊报告</span>
+            <span
+              class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.doc.docName}}问诊报告</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">报告时间{{val.reportDate}}</span>
           </div>
         </dd>
       </dl>
-      <dl class="z-width-100-percent ub-box ub-col" @click.stop="goToHome()" v-if="reportList.length === 0">
-        <dd class="z-margin-top-100-px ub-box ub-col ub-ver">
-          <p class="ub-ver" style="font-size: 12px;">暂无相关报告，在线咨询，可以了解自身乳腺健康情况</p>
-          <span class="ub-ver" style="color: #357cfb;">去咨询</span>
+      <dl class="z-width-100-percent ub-box ub-col" @click="$openWin('pages/home/main')" v-if="reportList.length === 0">
+        <dd class="z-margin-top-100-px ub-box ub-col ub-ver" @click="$openWin('pages/home/main')">
+          <p class="ub-ver" @click="$openWin('pages/home/main')" style="font-size: 12px;">暂无相关报告，在线咨询，可以了解自身乳腺健康情况</p>
+          <span class="ub-ver" @click="$openWin('pages/home/main')" style="color: #357cfb;">去咨询</span>
         </dd>
       </dl>
     </scroll-view>
@@ -20,30 +22,19 @@
 </template>
 
 <script>
-import { getPatReportList } from '../../config'
-export default {
-  data () {
-    return {
-      modalLoading: true,
-      modal: false,
-      reportList: {},
-      patId: 0,
-      orderStatus: 0
+  import {getPatReportList} from '../../config'
+
+  export default {
+    data () {
+      return {
+        reportList: {}
+      }
+    },
+    async onLoad (options) {
+      const {reportList} = await getPatReportList(parseInt(options.patId))
+      this.reportList = reportList
     }
-  },
-  methods: {
-    goToHome () {
-      wx.redirectTo({url: 'pages/home/main'})
-    }
-  },
-  async onLoad (options) {
-    const { reportList } = await getPatReportList(parseInt(options.patId))
-    wx.setStorageSync('reportList', reportList)
-  },
-  mounted () {
-    this.reportList = wx.getStorageSync('reportList')
   }
-}
 </script>
 
 <style lang="stylus" scoped>
