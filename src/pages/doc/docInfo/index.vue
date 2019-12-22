@@ -1,9 +1,10 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="ub-box ub-col">
         <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-          <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg" :src="indexImg">
+          <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg"
+                 :src="indexImg">
             <div class="indexImg-bk ub-box ub-col">
               <span class="z-font-size-18 z-lineHeight-30 z-color-fff z-box-sizing-border z-padding-h-8-px">{{docInfo.docName}}</span>
               <span class="z-font-size-14 z-color-fff z-box-sizing-border z-padding-h-8-px">{{docInfo.hospitals.hospitalName}}</span>
@@ -55,7 +56,8 @@
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-888">简介</p>
       </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
+      <dd
+        class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col z-margin-bottom-40-px">
         <ul class="ub-box ub-col">
           <li class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">{{docInfo.introduce}}</li>
         </ul>
