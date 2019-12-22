@@ -15,28 +15,18 @@
 </template>
 
 <script>
-import { getMsgList } from '../../../config'
-export default {
-  data () {
-    return {
-      modalLoading: true,
-      modal: false,
-      msgList: {},
-      patId: 0,
-      orderStatus: 0
+  import { getMsgList } from '../../../config'
+  export default {
+    data () {
+      return {
+        msgList: []
+      }
+    },
+    async onLoad (options) {
+      const { msgList } = await getMsgList(parseInt(options.docId), 1)
+      this.msgList = msgList
     }
-  },
-  methods: {
-  },
-  async onLoad (options) {
-    this.docId = parseInt(options.docId)
-    const { msgList } = await getMsgList(this.docId, 1)
-    wx.setStorageSync('msgList', msgList)
-  },
-  mounted () {
-    this.msgList = wx.getStorageSync('msgList')
   }
-}
 </script>
 
 <style lang="stylus" scoped>
