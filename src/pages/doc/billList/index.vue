@@ -1,54 +1,74 @@
 <template>
-  <div class="container ub-box">
+  <div class="container ub-box ub-col ub-ver">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
-      <dl class="z-width-100-percent ub-box ub-col">
-        <dd v-for="(val, idx) in billList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">
-          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
-            <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">收益明细</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{val.createTime}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">收入</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{val.income}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">支出</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{val.pay}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">实际收入</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{val.realIn}}</span>
-          </div>
-        </dd>
-      </dl>
+      <div v-for="(val, idx) in billList" :key="idx">
+        <dl class="ub-box ub-col z-width-100-percent z-margin-bottom-5-px">
+          <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
+            <p class="z-font-size-14 z-color-333"><b>{{billStatus[val.billTpe]}}收益</b></p>
+            <p class="ub-box">
+              <span class="z-font-size-14 z-color-333">{{val.createTime}}</span>
+            </p>
+          </dd>
+          <dd v-if="val.income !== null"
+              class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
+            <p class="z-font-size-14 z-color-333"><b>收入</b></p>
+            <p class="ub-box">
+              <span class="z-font-size-14 z-color-333">{{val.income}}</span>
+            </p>
+          </dd>
+          <dd v-if="val.pay !== null"
+              class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
+            <p class="z-font-size-14 z-color-333"><b>支出</b></p>
+            <p class="ub-box">
+              <span class="z-font-size-14 z-color-333">{{val.pay}}</span>
+            </p>
+          </dd>
+          <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between"
+              style="border-bottom: 1px solid #f5f5f5">
+            <p class="z-font-size-14 z-color-333"><b>实际收入</b></p>
+            <p class="ub-box">
+              <span class="z-font-size-14 z-color-333">{{val.realIn}}</span>
+            </p>
+          </dd>
+        </dl>
+      </div>
     </scroll-view>
   </div>
 </template>
 
 <script>
-import { getDocBill } from '../../../config'
-export default {
-  data () {
-    return {
-      modalLoading: true,
-      modal: false,
-      billList: {},
-      patId: 0,
-      orderStatus: 0
-    }
-  },
-  methods: {
-  },
-  async onLoad (options) {
-    this.docId = parseInt(options.docId)
-    const { docBill } = await getDocBill(this.docId)
-    wx.setStorageSync('docBill', docBill)
-  },
-  mounted () {
-    this.billList = wx.getStorageSync('docBill')
-    for (const v of this.billList) {
-      v.realIn = v.income - v.pay
+  import {getDocBill} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        billList: [],
+        billStatus: {
+          '1': '在线问诊',
+          '2': '课程购买'
+        }
+      }
+    },
+    async onLoad (options) {
+      const {docBill} = await getDocBill(parseInt(options.docId))
+      this.billList = docBill
+      console.log(docBill)
+      for (const v of this.billList) {
+        v.realIn = v.income - v.pay
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
-  .container{width:100%;height:100vh;background:#fff}
-  .order{border-bottom: 1px solid #f5f5f5;padding: 10px 8px;}
-  .order img{width: 55px; height: 55px; border-radius: 3px}
+  .container {
+    width: 100%;
+    height: 100vh;
+    background: #f5f5f5
+  }
+
+  .item {
+    border-bottom: 1px solid #f5f5f5;
+    padding: 8px 10px;
+  }
 </style>
