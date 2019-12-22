@@ -22,12 +22,9 @@
       <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="introduce" placeholder="请输入医生介绍" @change="changValue('introduce', $event)" right title="医生介绍"/></span>
       </p>
-      <!--<p class="ub-box">-->
-        <!--<span class="z-font-size-14 z-color-333" @click="chooseImage()"><i-input value="" v-model="path" title="资质证书"/></span>-->
-      <!--</p>-->
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
-      <button class="loginBtn" lang="zh_CN" @click="reg()">保  存</button>
+      <button class="loginBtn" lang="zh_CN" @click="reg(docId)">保 存</button>
     </dd>
   </div>
 </template>
@@ -37,7 +34,6 @@
   export default {
     data () {
       return {
-        indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
         docId: 0,
         docName: '',
         phone: '',
@@ -67,23 +63,20 @@
       }
     },
     async onLoad (options) {
-      this.docId = parseInt(options.docId)
-      const { docInfo } = await getDocInfo(this.docId)
+      const {docInfo} = await getDocInfo(parseInt(options.docId))
       wx.setStorageSync('userInfo', docInfo)
-      wx.setStorageSync('docInfo', docInfo)
-      this.form = wx.getStorageSync('docInfo')
-      this.docName = this.form.docName
-      this.phone = this.form.phone
-      this.title = this.form.title
-      this.hospitalName = this.form.hospitals.hospitalName
-      this.department = this.form.hospitals.department
-      this.subject = this.form.subject
-      this.introduce = this.form.introduce
+      this.docId = options.docId
+      this.docName = docInfo.docName
+      this.phone = docInfo.phone
+      this.title = docInfo.title
+      this.hospitalName = docInfo.hospitals.hospitalName
+      this.department = docInfo.hospitals.department
+      this.subject = docInfo.subject
+      this.introduce = docInfo.introduce
     },
     methods: {
-      async reg () {
-        let userInfo = wx.getStorageSync('userInfo')
-        this.form.id = userInfo.id
+      async reg (id) {
+        this.form.id = id
         this.form.docName = this.docName
         this.form.phone = this.phone
         this.form.title = this.title
@@ -101,8 +94,6 @@
             'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
           },
           success (res) {
-            // wx.removeStorage('userInfo')
-            // wx.setStorageSync('userInfo', res.data.data)
             wx.navigateBack()
           }
         })
@@ -110,9 +101,6 @@
       changValue (val, event) {
         this[val] = event.target.detail.value
       }
-    },
-    mounted () {
-      wx.removeStorage('docInfo')
     }
   }
 </script>
