@@ -80,6 +80,7 @@ export default {
     const { newList } = await getNewList()
     wx.setStorageSync('newList', newList)
     this.newList = wx.getStorageSync('newList')
+
     let banner = wx.getStorageSync('enclosureList')
     this.imgUrls = []
     for (let i = 0; i < banner.data.length; i++) {

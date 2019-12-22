@@ -118,7 +118,6 @@
               longitude: res.longitude
             },
             success (res) {
-              console.log(res)
               wx.setStorageSync('location', res.result.address_component)
               wx.setStorageSync('locationCity', res.result.address_component.city)
             }
@@ -132,7 +131,6 @@
       const { docList } = await getDocList(location.province)
       wx.setStorageSync('docList', docList)
       this.docList = wx.getStorageSync('docList')
-      console.log(this.docList)
     },
     mounted () {
       let banner = wx.getStorageSync('enclosureList')

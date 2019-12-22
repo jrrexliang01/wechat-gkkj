@@ -92,7 +92,6 @@
     async mounted () {
       const { allDocList } = await getBaseDocs()
       this.searchAllList = allDocList
-      console.log(this.searchAllList)
       this.searchVal = ''
       this.currSearchList = JSON.parse(JSON.stringify(this.searchAllList))
     },

@@ -101,8 +101,6 @@
         icon: '',
         alias: ''
       }
-      let location = wx.getStorageSync('location')
-      console.log(location)
     },
     methods: {
       async reg () {

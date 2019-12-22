@@ -168,12 +168,9 @@ export default {
           icon: 'none',
           duration: 1500
         })
-        console.log(this.own)
         if (this.own === 'true') {
-          console.log('in if')
           wx.navigateBack()
         } else {
-          console.log('in else')
           this.docInfo = wx.getStorageSync('docInfo')
           this.id = this.docInfo.id
           wx.navigateTo({
@@ -197,7 +194,6 @@ export default {
     }
   },
   async mounted () {
-    console.log(this.current)
     let userInfo = wx.getStorageSync('userInfo')
     this.patId = userInfo.id
     // 调用应用实例的方法获取全局数据
@@ -220,7 +216,6 @@ export default {
   },
   onLoad (options) {
     this.own = options.own
-    console.log(this.own)
   }
 }
 </script>

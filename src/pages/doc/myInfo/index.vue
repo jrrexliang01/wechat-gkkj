@@ -92,7 +92,6 @@
         this.form.subject = this.subject
         this.form.introduce = this.introduce
         this.formData = JSON.stringify(this.form)
-        console.log(this.formData)
         wx.request({
           url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
           data: this.formData,

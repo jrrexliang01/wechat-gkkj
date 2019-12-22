@@ -65,7 +65,6 @@
     async onLoad () {
       this.userProfile = this.$store.state.user.userProfile
       const { userDetail } = await getUserByOpenId(this.userProfile.userID)
-      console.log(userDetail.data.data)
       wx.setStorageSync('userDetail', userDetail.data.data)
       this.userDetail = wx.getStorageSync('userDetail')
     }

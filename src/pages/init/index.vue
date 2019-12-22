@@ -79,7 +79,6 @@ export default {
   },
   async mounted () {
     const { enclosureList } = await enclosureFindAll()
-    console.log(enclosureList)
     wx.setStorageSync('enclosureList', enclosureList)
   }
 }

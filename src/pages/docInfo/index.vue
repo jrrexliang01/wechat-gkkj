@@ -60,15 +60,15 @@
           <li class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">{{docInfo.introduce}}</li>
         </ul>
       </dd>
+      <!--fixed部分-->
+      <ul class="fixCon ub-box ub-ver ub-between">
+        <li class="ub-box ub-ver z-padding-h-10-px">
+          <span class="z-font-size-12 z-color-999 z-margin-right-10-px">咨询费用</span>
+          <span class="z-font-size-18 z-font-weight-bold" style="color:red">¥{{docInfo.price}}</span>
+        </li>
+        <li @click.stop="toConsult(docInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即咨询</li>
+      </ul>
     </scroll-view>
-    <!--fixed部分-->
-    <ul class="fixCon ub-box ub-ver ub-between">
-      <li class="ub-box ub-ver z-padding-h-10-px">
-        <span class="z-font-size-12 z-color-999 z-margin-right-10-px">咨询费用</span>
-        <span class="z-font-size-18 z-font-weight-bold" style="color:red">¥{{docInfo.price}}</span>
-      </li>
-      <li @click.stop="toConsult(docInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即咨询</li>
-    </ul>
   </div>
 </template>
 
@@ -113,7 +113,6 @@ export default {
   },
   methods: {
     toConsult: function (id) {
-      console.log(this.docInfo.onlineStatus)
       if (this.docInfo.onlineStatus === 0) {
         wx.showModal({
           title: '提示',

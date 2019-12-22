@@ -61,7 +61,6 @@ export default {
       this.orderInfo.status = 1
       this.formData = JSON.stringify(this.orderInfo)
       const { status } = await orderAdd(this.formData)
-      console.log(status)
       this.status = status.status
       if (this.status === 1) {
         wx.navigateTo({
