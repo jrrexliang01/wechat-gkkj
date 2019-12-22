@@ -1,16 +1,18 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <scroll-view scroll-y style="height: 100vh" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh - 50);" scroll-top="0">
       <dl class="ub-box ub-col">
         <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-          <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg" :src="indexImg">
+          <image @click.stop="previewImage([indexImg])" class="z-width-100-percent z-img-cover indexImg"
+                 :src="indexImg">
             <div class="indexImg-bk ub-box ub-col">
               <span class="z-font-size-18 z-lineHeight-30 z-color-fff z-box-sizing-border z-padding-h-8-px">{{courseInfo.courseTitle}}</span>
             </div>
           </image>
         </dd>
       </dl>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver"
+          style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-888">介绍</p>
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
@@ -19,19 +21,20 @@
           <span class="z-font-size-14 z-color-333">{{typeVal[courseInfo.type]}}</span>
         </p>
       </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between"
+          style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-333"><b>主讲医生</b></p>
         <p class="ub-box">
           <span class="z-font-size-14 z-color-333">{{courseInfo.doc.docName}}</span>
         </p>
       </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver"
+          style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-888">简介</p>
       </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
-        <ul class="ub-box ub-col">
-          <li class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">{{courseInfo.summary}}</li>
-        </ul>
+      <dd
+        class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col z-margin-bottom-40-px">
+        <parser :html="courseInfo.summary" img-mode="widthFix"></parser>
       </dd>
       <!--fixed部分-->
       <ul class="fixCon ub-box ub-ver ub-between">
@@ -39,7 +42,7 @@
           <span class="z-font-size-12 z-color-999 z-margin-right-10-px">课程金额：</span>
           <span class="z-font-size-18 z-font-weight-bold" style="color:red">¥{{courseInfo.price}}</span>
         </li>
-        <li @click.stop="toConsult (courseInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即购买</li>
+        <li @click.stop="toConsult(courseInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即购买</li>
       </ul>
     </scroll-view>
   </div>
@@ -50,7 +53,7 @@ import { getCourseInfo } from '../../../config'
 export default {
   data () {
     return {
-      indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
+      indexImg: '',
       courseId: 0,
       courseInfo: {
         id: 0,
@@ -70,27 +73,24 @@ export default {
     }
   },
   async onLoad (options) {
-    this.courseId = parseInt(options.courseId)
-    const { courseInfo } = await getCourseInfo(this.courseId)
-    wx.setStorageSync('courseInfo', courseInfo)
-    this.courseInfo = wx.getStorageSync('courseInfo')
+    const {courseInfo} = await getCourseInfo(parseInt(options.courseId))
+    this.courseInfo = courseInfo
   },
-  methods: {
-    toConsult: function (id) {
-      let userInfo = wx.getStorageSync('userInfo')
-      if (userInfo.id === undefined) {
-        wx.navigateTo({
-          url: '/pages/login/main'
-        })
-      } else {
-        wx.navigateTo({
-          url: '/pages/doc/paymentInfo/main?courseId=' + id
-        })
+  mounted () {
+    let banner = wx.getStorageSync('enclosureList')
+    for (let i = 0; i < banner.data.length; i++) {
+      if (banner.data[i].enclosureName === 'course_banner') {
+        this.indexImg = banner.data[i].enclosurePath
       }
     }
   },
-  mounted () {
-    wx.removeStorage('courseInfo')
+  methods: {
+    toConsult: function (id) {
+      wx.setStorageSync('courseInfo', this.courseInfo)
+      wx.navigateTo({
+        url: '/pages/doc/paymentInfo/main?courseId=' + id
+      })
+    }
   }
 }
 </script>
