@@ -26,15 +26,10 @@ export default {
       orderStatus: 0
     }
   },
-  methods: {
-  },
   async onLoad (options) {
-    this.patId = parseInt(options.patId)
-    const { msgList } = await getMsgList(this.patId, 2)
-    wx.setStorageSync('msgList', msgList)
-  },
-  mounted () {
-    this.msgList = wx.getStorageSync('msgList')
+    console.log(options.patId)
+    const {msgList} = await getMsgList(parseInt(options.patId), 2)
+    this.msgList = msgList
   }
 }
 </script>
