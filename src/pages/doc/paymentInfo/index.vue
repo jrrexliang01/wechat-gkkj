@@ -60,12 +60,17 @@ export default {
       this.orderInfo.status = 1
       this.formData = JSON.stringify(this.orderInfo)
       const { status } = await orderCourseAdd(this.formData)
-      this.status = status
+      this.status = status.status
       if (this.status === 1) {
         wx.navigateTo({
           url: '/pages/doc/success/main'
         })
       } else {
+        wx.showToast({
+          title: '请勿重复提交',
+          icon: 'none',
+          duration: 2000
+        })
       }
     }
   },
