@@ -15,7 +15,7 @@
             <li @click.stop="clickSearchItem(val)" v-if="currSearchList.length>0" class="search-item ub-box ub-ver z-box-sizing-border" v-for="(val, i) in currSearchList" :key="i">
               <i class="iconfont icon-sousuo z-color-999 z-font-size-16 z-margin-right-10-px"></i>
               <p class="ub-flex-1 z-color-333 z-font-size-14">{{val.docName}}</p>
-              <span class="z-font-size-12 z-color-999">约{{val.num}}个结果</span>
+              <span class="z-font-size-12 z-color-999">约{{val.num || 1}}个结果</span>
             </li>
             <li @click.stop="clickSearchItem(searchVal)" v-if="currSearchList.length===0" class="search-item ub-box ub-ver z-box-sizing-border">
               <i class="iconfont icon-sousuo z-color-999 z-font-size-16 z-margin-right-10-px"></i>
@@ -37,7 +37,7 @@
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
           <p class="z-font-size-14 z-color-888">历史搜索</p>
-          <i class="iconfont icon-juqianshou z-color-999 z-font-size-16"></i>
+          <i class="iconfont icon-juqianshou z-color-999 z-font-size-16" @click="clear()"></i>
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box">
           <ul class="ub-box ub-wrap">
@@ -56,31 +56,16 @@
         searchVal: '',
         // 测试搜索结果集
         searchAllList: [
-          // {id: '1', val: '郑新宇', num: '7'},
-          // {id: '2', val: '武彪', num: '5'},
-          // {id: '3', val: '龚益平', num: '3'},
-          // {id: '4', val: '黄晓曦', num: '1'},
-          // {id: '5', val: '李建国', num: '1'},
-          // {id: '6', val: '李文涛', num: '2'},
-          // {id: '7', val: '廖海鹰', num: '3'},
-          // {id: '8', val: '任敏', num: '1'},
-          // {id: '9', val: '胡童', num: '2'},
-          // {id: '10', val: '李永平', num: '1'},
-          // {id: '11', val: '黄汉源', num: '1'},
-          // {id: '12', val: '张保宁', num: '1'},
-          // {id: '13', val: '李俊来', num: '1'}
         ],
         currSearchList: [], // 当前根据搜索关键词搜索到的列表
         guess: {},
-        history: [
-          {goodId: '1', name: '郑新宇'},
-          {goodId: '5', name: '李建国'}
-        ]
+        history: []
       }
     },
     async onLoad () {
       const { searchHotList } = await searchHot()
       this.guess = searchHotList
+      this.history = wx.getStorageSync('history')
     },
     methods: {
       doInput (e) {
@@ -96,7 +81,13 @@
         })
       },
       clickSearchItem (val) {
+        this.history.push(val)
+        wx.setStorageSync('history', this.history)
         wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.id})
+      },
+      clear () {
+        this.history = []
+        wx.setStorageSync('history', this.history)
       }
     },
     async mounted () {
