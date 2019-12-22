@@ -13,6 +13,7 @@ export function formatTime (date) {
   const t2 = [hour, minute, second].map(formatNumber).join(':')
   return `${t1} ${t2}`
 }
+
 // 封装Ajax
 export function Ajax (opts, cb = function () { }) {
   wx.showLoading({title: '请求中...', mask: true})

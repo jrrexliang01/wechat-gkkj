@@ -200,6 +200,11 @@ const getEnclosureList = async (name) => {
   const enclosureList = res
   return { enclosureList }
 }
+const enclosureFindAll = async (name) => {
+  const res = (await API.enclosureFindAll()).data
+  const enclosureList = res
+  return { enclosureList }
+}
 const feedBackAdd = async (formData) => {
   const res = (await API.feedBackAdd(formData)).data.status
   const status = res
@@ -221,5 +226,5 @@ export {
   getOrderCourseStatusList, getAgreementInfo, getPatReportList, reportAdd, getReportInfo, searchAdd, searchHot, getMsgList, msgAdd,
   patientAdd, doctorAdd, orderAdd, getMyPat, getCourseList, getCourseInfo, orderCourseAdd, getArticleList, getArticleInfo, remindAdd,
   remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal,
-  getUserByOpenId, getEnclosureList, feedBackAdd, getBaseDocs, getExpDocList
+  getUserByOpenId, getEnclosureList, feedBackAdd, getBaseDocs, getExpDocList, enclosureFindAll
 }

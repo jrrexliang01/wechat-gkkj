@@ -60,7 +60,7 @@
 
 <script>
   import good from '../../components/good.vue'
-  import { getDocList, getEnclosureList } from '../../config'
+  import { getDocList } from '../../config'
   import QQMapWX from 'qqmap-wx-jssdk'
   export default {
     props: ['curGood', 'isLast'],
@@ -110,9 +110,10 @@
       }
     },
     async onLoad () {
-      // 调用应用实例的方法获取全局数据
-      const { docList } = await getDocList()
+      let location = wx.getStorageSync('location')
+      const { docList } = await getDocList(location.province)
       wx.setStorageSync('docList', docList)
+      this.docList = wx.getStorageSync('docList')
     },
     onShow () {
       this.current = 'homepage'
@@ -123,7 +124,6 @@
       wx.getLocation({
         type: 'wgs84',
         success (res) {
-          console.log(res)
           qqmapsdk.reverseGeocoder({
             location: {
               latitude: res.latitude,
@@ -140,17 +140,17 @@
     },
     async mounted () {
       let location = wx.getStorageSync('location')
-      console.log(location)
       // 调用应用实例的方法获取全局数据
       const { docList } = await getDocList(location.province)
       wx.setStorageSync('docList', docList)
       this.docList = wx.getStorageSync('docList')
-      const { enclosureList } = await getEnclosureList('banner')
+      let banner = wx.getStorageSync('enclosureList')
       this.imgUrls = []
-      for (let i = 0; i < enclosureList.data.length; i++) {
-        this.imgUrls.push(enclosureList.data[i].enclosurePath)
+      for (let i = 0; i < banner.data.length; i++) {
+        if (banner.data[i].enclosureName === 'banner') {
+          this.imgUrls.push(banner.data[i].enclosurePath)
+        }
       }
-      this.enclosureList = enclosureList
     },
     onPullDownRefresh () {
       setTimeout(() => {

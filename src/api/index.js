@@ -1169,6 +1169,30 @@ class API {
     })
   }
   /**
+   * 获取附件列表
+   * @param formData
+   * @returns {Promise<any>}
+   */
+  enclosureFindAll () {
+    return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '数据加载中'
+      })
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/enclosure/findAll',
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          wx.hideLoading()
+          resolve(res)
+        }
+      })
+    })
+  }
+  /**
    * 添加患者
    * @param formData
    * @returns {Promise<any>}
