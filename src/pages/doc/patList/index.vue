@@ -15,9 +15,6 @@
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">报告时间{{val.reportDate}}</span>
           </div>
         </dd>
-        <view class="i-divider-mart">
-          <i-divider content="加载已经完成,没有其他数据" lineColor="#2d8cf0"></i-divider>
-        </view>
       </dl>
     </scroll-view>
   </div>
@@ -45,10 +42,7 @@ export default {
   async onLoad (options) {
     this.patId = parseInt(options.patId)
     const { reportList } = await getPatReportList(this.patId)
-    wx.setStorageSync('reportList', reportList)
-  },
-  mounted () {
-    this.reportList = wx.getStorageSync('reportList')
+    this.reportList = reportList
   }
 }
 </script>
