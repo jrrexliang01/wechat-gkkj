@@ -1,12 +1,14 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver z-border-bottom-1-5f5f5">
-      <p class="z-font-size-24 z-color-000 z-border-bottom-1-5f5f5">{{newsInfo.title}}</p>
-      <p class="z-font-size-14 z-color-666">发表时间:{{newsInfo.createTime}}</p>
-    </dd>
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col z-margin-top-1-px">
-      <parser :html="newsInfo.content" img-mode="widthFix" lazy-load show-with-animation></parser>
-    </dd>
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver z-border-bottom-1-5f5f5">
+        <p class="z-font-size-24 z-color-000 z-border-bottom-1-5f5f5">{{newsInfo.title}}</p>
+        <p class="z-font-size-14 z-color-666">发表时间:{{newsInfo.createTime}}</p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col z-margin-top-1-px">
+        <parser :html="newsInfo.content" img-mode="widthFix" lazy-load></parser>
+      </dd>
+    </scroll-view>
   </div>
 </template>
 
@@ -18,21 +20,25 @@ export default {
       newsId: 0,
       newsInfo: {
         title: '',
-        content: ''
+        content: '',
+        createTime: ''
       }
     }
   },
   async onLoad (options) {
-    this.newsId = parseInt(options.newsId)
+    this.resetData()
+    const { newsInfo } = await getNewsInfo(parseInt(options.newsId))
+    this.newsInfo = newsInfo
   },
   onUnload () {
-    this.newsInfo.title = ''
-    this.newsInfo.content = ''
-    this.newsInfo.createTime = ''
+    this.resetData()
   },
-  async mounted () {
-    const { newsInfo } = await getNewsInfo(this.newsId)
-    this.newsInfo = newsInfo
+  methods: {
+    resetData () {
+      this.newsInfo.title = ''
+      this.newsInfo.content = ''
+      this.newsInfo.createTime = ''
+    }
   }
 }
 </script>
