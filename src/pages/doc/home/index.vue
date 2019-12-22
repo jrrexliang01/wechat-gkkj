@@ -147,7 +147,7 @@
           })
         } else if (val === '经验分享') {
           wx.navigateTo({
-            url: '/pages/doc/article/main'
+            url: '/pages/doc/experience/main'
           })
         } else if (val === '专家带教') {
           wx.navigateTo({
@@ -155,7 +155,7 @@
           })
         } else {
           wx.navigateTo({
-            url: '/pages/doc/science/main'
+            url: '/pages/doc/article/main'
           })
         }
       },
@@ -176,7 +176,7 @@
       // 调用应用实例的方法获取全局数据
       const {docList} = await getDocList()
       this.docList = docList
-      const {courseList} = await getCourseList()
+      const {courseList} = await getCourseList(2)
       this.courseList = courseList.slice(0, 3)
     },
     mounted () {

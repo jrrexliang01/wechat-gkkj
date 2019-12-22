@@ -57,7 +57,9 @@
     "pages/doc/lectureInfo/main",
     "pages/doc/lectureList/main",
     "pages/doc/followSetting/main",
-    "pages/doc/detail/main"
+    "pages/doc/detail/main",
+    "pages/doc/experience/main",
+    "pages/doc/experienceInfo/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
