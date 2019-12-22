@@ -51,3 +51,24 @@ export function redirectTo (url) {
 export function backBeaforWin () {
   wx.navigateBack({delta: 1})
 }
+
+export function switchUserTab (obj, detail) {
+  obj = detail.mp.detail.key
+  if (detail.mp.detail.key.toString() === 'homepage') {
+    wx.redirectTo({
+      url: '../home/main'
+    })
+  } else if (detail.mp.detail.key.toString() === 'science') {
+    wx.redirectTo({
+      url: '../science/main'
+    })
+  } else if (detail.mp.detail.key.toString() === 'mine') {
+    wx.redirectTo({
+      url: '../own/main'
+    })
+  } else if (detail.mp.detail.key.toString() === 'chat') {
+    wx.redirectTo({
+      url: '../index/main'
+    })
+  }
+}

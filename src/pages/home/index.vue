@@ -62,6 +62,7 @@
   import good from '../../components/good.vue'
   import { getDocList } from '../../config'
   import QQMapWX from 'qqmap-wx-jssdk'
+  import { switchUserTab } from '../../utils/common'
   export default {
     props: ['curGood', 'isLast'],
     components: {good},
@@ -81,24 +82,7 @@
     },
     methods: {
       handleChange (detail) {
-        this.current = detail.mp.detail.key
-        if (detail.mp.detail.key.toString() === 'homepage') {
-          wx.redirectTo({
-            url: '../home/main'
-          })
-        } else if (detail.mp.detail.key.toString() === 'science') {
-          wx.redirectTo({
-            url: '../science/main'
-          })
-        } else if (detail.mp.detail.key.toString() === 'mine') {
-          wx.redirectTo({
-            url: '../own/main'
-          })
-        } else if (detail.mp.detail.key.toString() === 'chat') {
-          wx.redirectTo({
-            url: '../index/main'
-          })
-        }
+        switchUserTab(this.current, detail)
       },
       gotoDetail (id) {
         wx.navigateTo({url: '/pages/docInfo/main?docId=' + id})

@@ -98,6 +98,8 @@
 </template>
 
 <script>
+import {switchUserTab} from '../../utils/common'
+
 export default {
   computed: {
     isLogin () {
@@ -146,24 +148,7 @@ export default {
       })
     },
     handleChange (detail) {
-      this.current = detail.mp.detail.key
-      if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.redirectTo({
-          url: '../home/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'science') {
-        wx.redirectTo({
-          url: '../science/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.redirectTo({
-          url: '../own/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.redirectTo({
-          url: '../index/main'
-        })
-      }
+      switchUserTab(this.current, detail)
     },
     reviseInfo () {
       let url = '../profile/main'
@@ -280,7 +265,6 @@ export default {
     this.current = 'mine'
     this.myInfo = this.$store.state.user.myInfo
     this.user = wx.getStorageSync('userInfo')
-    // this.myInfo = wx.getStorageSync('updateUser')
   }
 }
 </script>

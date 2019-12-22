@@ -27,6 +27,7 @@
 
 <script>
 import { getNewList } from '../../config'
+import {switchUserTab} from '../../utils/common'
 export default {
   data () {
     return {
@@ -47,24 +48,7 @@ export default {
   },
   methods: {
     handleChange (detail) {
-      this.current = detail.mp.detail.key
-      if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.redirectTo({
-          url: '../home/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'science') {
-        wx.redirectTo({
-          url: '../science/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.redirectTo({
-          url: '../own/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.redirectTo({
-          url: '../index/main'
-        })
-      }
+      switchUserTab(this.current, detail)
     },
     toNewsInfo (id) {
       wx.navigateTo({
