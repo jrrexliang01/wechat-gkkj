@@ -32,46 +32,6 @@
             </div>
           </i-col>
         </i-row>
-        <i-row v-else-if="item.type === 'GROUP'" @click="checkoutConversation(item, item.groupProfile.name || item.groupProfile.ID)" slot="content">
-          <i-col span="4">
-            <div class="avatar">
-              <i-avatar :src="item.groupProfile.avatar || '/static/images/groups.png'" size="large" shape="square" />
-            </div>
-          </i-col>
-          <i-col span="20">
-            <div class="right">
-              <div class="information">
-                <div class="username">{{item.groupProfile.name || item.groupProfile.groupID}}</div>
-                <div class="last">{{item.lastMessage._lastTime}}</div>
-              </div>
-              <div class="information">
-                <div class="content" v-if="item.lastMessage.fromAccount === '@TIM#SYSTEM'">{{item.lastMessage.messageForShow}}</div>
-                <div class="content" v-else-if="item.lastMessage.type === 'TIMCustomElem'">[自定义消息]</div>
-                <div class="content-red" v-else-if="item.lastMessage.at && item.unreadCount > 0">[有人@你了]</div>
-                <div class="content" v-else>{{item.lastMessage.fromAccount}}：{{item.lastMessage.messageForShow}}</div>
-                <div class="remain" v-if="item.unreadCount > 0">{{item.unreadCount}}</div>
-              </div>
-            </div>
-          </i-col>
-        </i-row>
-        <i-row v-else-if="item.type === '@TIM#SYSTEM'" @click="checkoutNotification(item)" slot="content">
-          <i-col span="4">
-            <div class="avatar">
-              <i-avatar src="../../../static/images/system.png" size="large" shape="square" />
-            </div>
-          </i-col>
-          <i-col span="20">
-            <div class="right">
-              <div class="information">
-                <div class="username">系统通知</div>
-                <div class="remain" v-if="item.unreadCount > 0">{{item.unreadCount}}</div>
-              </div>
-              <div class="information">
-                <div class="content">点击查看</div>
-              </div>
-            </div>
-          </i-col>
-        </i-row>
       </div>
     </div>
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
@@ -197,8 +157,7 @@ export default {
   },
   onShow () {
     this.current = 'chat'
-  },
-  mounted () {}
+  }
 }
 </script>
 
