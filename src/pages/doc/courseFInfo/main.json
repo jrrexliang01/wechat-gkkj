@@ -1,7 +1,8 @@
 {
-  "navigationBarTitleText": "专家详情",
+  "navigationBarTitleText": "课程详情",
   "navigationBarBackgroundColor": "#E7E9EA",
   "disableScroll": false,
   "usingComponents": {
+    "parser": "../../../static/Parser/index"
   }
 }

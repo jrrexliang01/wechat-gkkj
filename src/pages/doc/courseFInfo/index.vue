@@ -11,86 +11,88 @@
           </image>
         </dd>
       </dl>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver"
+          style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-888">专家介绍</p>
+      </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between"
           style="border-bottom: 1px solid #f5f5f5">
-        <p class="ub-box ub-ver">
-          <span class="z-font-size-24 z-margin-right-5-px" style="color:#06c1ae">¥{{courseInfo.price}}</span>
-          <span class="z-font-size-13 z-color-888"></span>
-        </p>
-        <p class="ub-box ub-ver">
-				<span @click.stop="toConsult (courseInfo.id) " class="buyBtn ub-box ub-ver z-font-size-16 z-color-fff">
-					立即学习
-				</span>
+        <p class="z-font-size-14 z-color-333"><b>专家名称</b></p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">{{courseInfo.doc.docName}}</span>
         </p>
       </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
-        <p class="z-font-size-14 z-color-888">介绍</p>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between"
+          style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333"><b>职称</b></p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">{{courseInfo.doc.title}}</span>
+        </p>
       </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver"
+          style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-888">课程介绍</p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between"
+          style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-333"><b>课程类别</b></p>
         <p class="ub-box">
           <span class="z-font-size-14 z-color-333">{{typeVal[courseInfo.type]}}</span>
         </p>
       </dd>
-      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver" style="border-bottom: 1px solid #f5f5f5">
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between"
+          style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-333"><b>发布时间</b></p>
+        <p class="ub-box">
+          <span class="z-font-size-14 z-color-333">{{courseInfo.createTime}}</span>
+        </p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver"
+          style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-14 z-color-888">简介</p>
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
-        <ul class="ub-box ub-col">
-          <li class="z-font-size-14 z-color-333 z-box-sizing-border z-lineHeight-24">{{courseInfo.summary}}</li>
-        </ul>
+        <parser :html="courseInfo.summary" img-mode="widthFix"></parser>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-ver"
+          style="border-bottom: 1px solid #f5f5f5">
+        <p class="z-font-size-14 z-color-888">备注</p>
+      </dd>
+      <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col">
+        <parser :html="courseInfo.remarks" img-mode="widthFix"></parser>
       </dd>
     </scroll-view>
   </div>
 </template>
 
 <script>
-import { getCourseInfo } from '../../../config'
-export default {
-  data () {
-    return {
-      indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
-      courseId: 0,
-      courseInfo: {
-        id: 0,
-        courseTitle: '',
-        payNum: '',
-        price: '',
-        type: '',
-        summary: ''
-      },
-      typeVal: {
-        '1': '技术培训',
-        '2': '经验分享'
+  import {getCourseInfo} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        indexImg: '',
+        courseInfo: {},
+        typeVal: {
+          '1': '技术培训',
+          '2': '经验分享'
+        }
+      }
+    },
+    async onLoad (options) {
+      const {courseInfo} = await getCourseInfo(parseInt(options.courseId))
+      this.courseInfo = courseInfo
+      console.log(courseInfo)
+    },
+    mounted () {
+      let banner = wx.getStorageSync('enclosureList')
+      for (let i = 0; i < banner.data.length; i++) {
+        if (banner.data[i].enclosureName === 'course_banner') {
+          this.indexImg = banner.data[i].enclosurePath
+        }
       }
     }
-  },
-  async onLoad (options) {
-    this.courseId = parseInt(options.courseId)
-    const { courseInfo } = await getCourseInfo(this.courseId)
-    wx.setStorageSync('courseInfo', courseInfo)
-    this.courseInfo = wx.getStorageSync('courseInfo')
-  },
-  methods: {
-    toConsult: function (id) {
-      let userInfo = wx.getStorageSync('userInfo')
-      if (userInfo.id === undefined) {
-        wx.navigateTo({
-          url: '/pages/login/main'
-        })
-      } else {
-        this.$store.commit('showToast', {
-          title: '学习成功',
-          icon: 'none',
-          duration: 1500
-        })
-      }
-    }
-  },
-  mounted () {
-    wx.removeStorage('courseInfo')
   }
-}
 </script>
 
 <style lang="stylus" scoped>
