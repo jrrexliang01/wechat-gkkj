@@ -77,7 +77,7 @@
       },
       filterList () {
         this.currSearchList = this.searchAllList.filter(item => {
-          if (item.docName.indexOf(this.searchVal) >= 0) return item
+          if (item.docName.indexOf(this.searchVal) >= 0 || item.subject.indexOf(this.searchVal) >= 0 || item.introduce.indexOf(this.searchVal) >= 0) return item
         })
       },
       clickSearchItem (val) {
@@ -95,9 +95,6 @@
       this.searchAllList = allDocList
       this.searchVal = ''
       this.currSearchList = JSON.parse(JSON.stringify(this.searchAllList))
-    },
-    onShow () {
-      wx.setNavigationBarTitle({title: '搜索'})
     }
   }
 </script>
