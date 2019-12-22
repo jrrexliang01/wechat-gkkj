@@ -65,11 +65,12 @@
     </scroll-view>
     <!--fixed部分-->
     <ul class="fixCon ub-box ub-ver ub-between">
-      <li class="ub-box ub-ver z-padding-h-10-px">
-        <span class="z-font-size-12 z-color-999 z-margin-right-10-px"></span>
-        <span class="z-font-size-18 z-font-weight-bold" style="color:red"></span>
+      <li v-if="docInfo.expertEducation===true" @click.stop="toChat(docInfo.id)"
+          class="courseBtn ub-box ub-ver z-font-size-16 z-color-000">专家带教
       </li>
-      <li @click.stop="toChat(docInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即沟通</li>
+      <li v-if="docInfo.expertLecture===true" @click.stop="toChat(docInfo.id)"
+          class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">申请讲座
+      </li>
     </ul>
   </div>
 </template>
@@ -79,7 +80,7 @@ import { getDocInfo } from '../../../config'
 export default {
   data () {
     return {
-      indexImg: 'http://39.100.255.143:8013/img/wx/wenzhen.jpg',
+      indexImg: '',
       docId: 0,
       docInfo: {
         docName: '',
@@ -99,78 +100,78 @@ export default {
     }
   },
   async onLoad (options) {
-    this.docId = parseInt(options.docId)
-    const { docInfo } = await getDocInfo(this.docId)
-    wx.setStorageSync('docInfo', docInfo)
-    this.docInfo = wx.getStorageSync('docInfo')
+    const {docInfo} = await getDocInfo(parseInt(options.docId))
+    this.docInfo = docInfo
   },
-  methods: {
-    toChat: function (id) {
-      this.id = id
-      this.content = '医生，您好'
-      if (this.content !== '' && this.id !== '') {
-        let option = {
-          userIDList: [this.id]
-        }
-        wx.$app.getUserProfile(option).then((res) => {
-          if (res.data.length > 0) {
-            const message = wx.$app.createTextMessage({
-              to: this.id,
-              conversationType: this.TIM.TYPES.CONV_C2C,
-              payload: { text: this.content }
-            })
-            wx.$app.sendMessage(message).then(() => {
-              let conversationID = this.TIM.TYPES.CONV_C2C + this.id
-              wx.$app.getConversationProfile(conversationID).then((res) => {
-                this.$store.commit('resetCurrentConversation')
-                this.$store.commit('resetGroup')
-                this.$store.commit('updateCurrentConversation', res.data.conversation)
-                this.$store.dispatch('getMessageList', conversationID)
-                this.content = ''
-                this.id = ''
-                let url = `../chat/main?toAccount=${res.data.conversation.userProfile.nick || res.data.conversation.userProfile.userID}`
-                wx.navigateTo({ url })
-              })
-            }).catch(() => {
-              this.$store.commit('showToast', {
-                title: '输入内容有误',
-                icon: 'none',
-                duration: 1000
-              })
-            })
-          } else {
-            this.$store.commit('showToast', {
-              title: '用户不存在',
-              icon: 'none',
-              duration: 1000
-            })
-            this.id = ''
-            this.content = ''
-          }
-        }).catch(() => {
-          this.$store.commit('showToast', {
-            title: '用户不存在',
-            icon: 'none',
-            duration: 1000
-          })
-          this.id = ''
-          this.content = ''
-        })
+  mounted () {
+    let banner = wx.getStorageSync('enclosureList')
+    for (let i = 0; i < banner.data.length; i++) {
+      if (banner.data[i].enclosureName === 'doc_default') {
+        this.indexImg = banner.data[i].enclosurePath
       }
     }
   },
-  mounted () {
-    wx.removeStorage('docInfo')
+  methods: {
+    toChat: function (id) {
+    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  .container{width:100%;height:100vh;background:#e8e8e8}
-  .indexImg{height: 170px;position: relative;}
-  .indexImg-bk{position: absolute;bottom: 0;left: 0;z-index: 1;width: 100%;height: 30%;background: rgba(0,0,0,.3);padding: 5px 0px}
-  .buyBtn{background: #f90;padding: 8px 12px;border-radius:3px}
-  .label{border-radius:3px;background: #fff;padding: 3px 5px;margin: 0 5px 5px 0}
-  .fixCon{position: fixed;left: 0;bottom: 0;z-index: 10;width: 100%;background: #fff;}
-  .submitBtn{padding: 15px 35px;background: #5CA2F2;box-sizing: border-box;}
+  .container {
+    width: 100%;
+    height: 100vh;
+    background: #e8e8e8
+  }
+
+  .indexImg {
+    height: 170px;
+    position: relative;
+  }
+
+  .indexImg-bk {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 30%;
+    background: rgba(0, 0, 0, .3);
+    padding: 5px 0px
+  }
+
+  .buyBtn {
+    background: #f90;
+    padding: 8px 12px;
+    border-radius: 3px
+  }
+
+  .label {
+    border-radius: 3px;
+    background: #fff;
+    padding: 3px 5px;
+    margin: 0 5px 5px 0
+  }
+
+  .fixCon {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    background: #fff;
+  }
+
+  .courseBtn {
+    padding: 15px 20%;
+    background: #ffffff;
+    box-sizing: border-box;
+  }
+
+  .submitBtn {
+    padding: 15px 20%;
+    background: #5CA2F2;
+    box-sizing: border-box;
+  }
 </style>
