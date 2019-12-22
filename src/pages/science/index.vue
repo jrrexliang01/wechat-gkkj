@@ -8,13 +8,8 @@
             <span class="z-font-size-17 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>
           </div>
           <img class="z-img-contain" :src="newSrc || item.banner" />
-          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col z-margin-top-6-px">
-<!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px" style="text-align: right;padding-right: 5px;">{{item.createTime}}</span>-->
-<!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">{{item.content | ellipsis}}</span>-->
-          </div>
         </dd>
       </dl>
-
       <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
         <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
         <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
