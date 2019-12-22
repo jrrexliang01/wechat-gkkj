@@ -207,7 +207,7 @@ export default {
           icon: 'none',
           duration: 1500
         })
-        if (this.own) {
+        if (this.own === 'true') {
           wx.navigateBack()
         } else {
           this.docInfo = wx.getStorageSync('docInfo')

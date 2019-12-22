@@ -122,7 +122,7 @@ export default {
                 })
               } else {
                 wx.navigateTo({
-                  url: '/pages/myInfo/main'
+                  url: '/pages/myInfo/main?own=false'
                 })
               }
             }
@@ -136,7 +136,7 @@ export default {
           })
         } else {
           wx.navigateTo({
-            url: '/pages/myInfo/main'
+            url: '/pages/myInfo/main?own=false'
           })
         }
       }

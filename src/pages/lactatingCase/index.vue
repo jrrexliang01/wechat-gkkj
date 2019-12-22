@@ -168,9 +168,12 @@ export default {
           icon: 'none',
           duration: 1500
         })
-        if (this.own) {
+        console.log(this.own)
+        if (this.own === 'true') {
+          console.log('in if')
           wx.navigateBack()
         } else {
+          console.log('in else')
           this.docInfo = wx.getStorageSync('docInfo')
           this.id = this.docInfo.id
           wx.navigateTo({
