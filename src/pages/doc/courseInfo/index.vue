@@ -49,50 +49,51 @@
 </template>
 
 <script>
-import { getCourseInfo } from '../../../config'
-export default {
-  data () {
-    return {
-      indexImg: '',
-      courseId: 0,
-      courseInfo: {
-        id: 0,
-        courseTitle: '',
-        payNum: '',
-        price: '',
-        type: '',
-        summary: '',
-        doc: {
-          docName: ''
+  import {getCourseInfo} from '../../../config'
+
+  export default {
+    data () {
+      return {
+        indexImg: '',
+        courseId: 0,
+        courseInfo: {
+          id: 0,
+          courseTitle: '',
+          payNum: '',
+          price: '',
+          type: '',
+          summary: '',
+          doc: {
+            docName: ''
+          }
+        },
+        typeVal: {
+          '1': '技术培训',
+          '2': '经验分享'
         }
-      },
-      typeVal: {
-        '1': '技术培训',
-        '2': '经验分享'
       }
-    }
-  },
-  async onLoad (options) {
-    const {courseInfo} = await getCourseInfo(parseInt(options.courseId))
-    this.courseInfo = courseInfo
-  },
-  mounted () {
-    let banner = wx.getStorageSync('enclosureList')
-    for (let i = 0; i < banner.data.length; i++) {
-      if (banner.data[i].enclosureName === 'course_banner') {
-        this.indexImg = banner.data[i].enclosurePath
+    },
+    async onLoad (options) {
+      const {courseInfo} = await getCourseInfo(parseInt(options.courseId))
+      this.courseInfo = courseInfo
+    },
+    mounted () {
+      let banner = wx.getStorageSync('enclosureList')
+      for (let i = 0; i < banner.data.length; i++) {
+        if (banner.data[i].enclosureName === 'course_banner') {
+          this.indexImg = banner.data[i].enclosurePath
+        }
       }
-    }
-  },
-  methods: {
-    toConsult: function (id) {
-      wx.setStorageSync('courseInfo', this.courseInfo)
-      wx.navigateTo({
-        url: '/pages/doc/paymentInfo/main?courseId=' + id
-      })
+    },
+    methods: {
+      toConsult: function (id) {
+        wx.setStorageSync('courseInfo', this.courseInfo)
+        wx.navigateTo({
+          url: '/pages/doc/paymentInfo/main?courseId=' + id
+        })
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
