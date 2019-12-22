@@ -108,17 +108,17 @@ const orderAdd = async (formData) => {
 const getMyPat = async (docId) => {
   const res = (await API.getMyPat(docId)).data.data
   const myPatInfo = res
-  return { myPatInfo }
+  return {myPatInfo}
 }
-const getCourseList = async () => {
-  const res = (await API.getCourseList()).data.data.content
+const getCourseList = async (typeId) => {
+  const res = (await API.getCourseList(typeId)).data.data.content
   const courseList = res
-  return { courseList }
+  return {courseList}
 }
 const getCourseInfo = async (couresId) => {
   const res = (await API.getCourseInfo(couresId)).data.data
   const courseInfo = res
-  return { courseInfo }
+  return {courseInfo}
 }
 const orderCourseAdd = async (formData) => {
   const res = (await API.orderCourseAdd(formData)).data.status

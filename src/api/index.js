@@ -6,9 +6,6 @@ class API {
    */
   getNewList () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/news/list',
         data: {
@@ -26,7 +23,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -39,9 +35,6 @@ class API {
    */
   getDocList (province) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/list',
         data: {
@@ -62,7 +55,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -76,9 +68,6 @@ class API {
    */
   getDocInfo (docId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/detail',
         data: {
@@ -90,7 +79,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -104,9 +92,6 @@ class API {
    */
   getNewsInfo (newsId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/news/detail',
         data: {
@@ -118,7 +103,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -132,9 +116,6 @@ class API {
    */
   getOrderList (patId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/patientList',
         data: {
@@ -152,7 +133,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -166,9 +146,6 @@ class API {
    */
   getOrderInfo (ordId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/detail',
         data: {
@@ -180,7 +157,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -194,9 +170,6 @@ class API {
    */
   getOrderCourseList (docId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/orders/course/docList',
         data: {
@@ -214,7 +187,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -228,9 +200,6 @@ class API {
    */
   getOrderCourseInfo (ordId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/orders/course/detail',
         data: {
@@ -242,7 +211,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -257,9 +225,6 @@ class API {
    */
   getOrderStatusList (patId, status) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/patientList',
         data: {
@@ -278,7 +243,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -293,9 +257,6 @@ class API {
    */
   getOrderCourseStatusList (docId, status) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/orders/course/docList',
         data: {
@@ -314,7 +275,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -327,9 +287,6 @@ class API {
    */
   getAgreementInfo () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/agreement/detail',
         method: 'POST',
@@ -338,7 +295,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -352,9 +308,6 @@ class API {
    */
   getPatReportList (patId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/report/list/patient',
         data: {
@@ -372,7 +325,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -386,9 +338,6 @@ class API {
    */
   reportAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/report/add',
         data: formData,
@@ -398,7 +347,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -412,9 +360,6 @@ class API {
    */
   getReportInfo (reportId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/report/detail',
         data: {
@@ -426,7 +371,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -440,9 +384,6 @@ class API {
    */
   searchAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/search/add',
         data: formData,
@@ -452,7 +393,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -465,9 +405,6 @@ class API {
    */
   searchHot () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/search/hot',
         method: 'POST',
@@ -476,7 +413,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -491,9 +427,6 @@ class API {
    */
   getMsgList (userId, userType) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/msg/list',
         data: {
@@ -512,7 +445,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -526,9 +458,6 @@ class API {
    */
   msgAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/msg/add',
         data: formData,
@@ -538,7 +467,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -552,9 +480,6 @@ class API {
    */
   patientAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
         data: formData,
@@ -564,7 +489,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -578,9 +502,6 @@ class API {
    */
   doctorAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/add',
         data: formData,
@@ -590,7 +511,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -604,9 +524,6 @@ class API {
    */
   orderAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/save',
         data: formData,
@@ -616,7 +533,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -629,9 +545,6 @@ class API {
    */
   getMyPat (docId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/mePatient',
         data: {
@@ -643,7 +556,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -655,11 +567,8 @@ class API {
    * @param courseTitle
    * @returns {Promise<any>}
    */
-  getCourseList () {
+  getCourseList (typeId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/course/list',
         data: {
@@ -668,7 +577,7 @@ class API {
             sizePerPage: 10
           },
           params: {
-            type: 2
+            type: typeId
           }
         },
         method: 'POST',
@@ -677,7 +586,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -691,9 +599,6 @@ class API {
    */
   getCourseInfo (couresId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/course/detail',
         data: {
@@ -705,7 +610,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -719,9 +623,6 @@ class API {
    */
   orderCourseAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/orders/course/add',
         data: formData,
@@ -731,7 +632,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -745,9 +645,6 @@ class API {
    */
   getArticleList (title) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/article/list',
         data: {
@@ -765,7 +662,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -779,9 +675,6 @@ class API {
    */
   getArticleInfo (articleId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/article/detail',
         data: {
@@ -793,7 +686,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -807,9 +699,6 @@ class API {
    */
   remindAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/remind/add',
         data: formData,
@@ -819,7 +708,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -833,9 +721,6 @@ class API {
    */
   remindConfigAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/remind/config/add',
         data: formData,
@@ -845,7 +730,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -859,9 +743,6 @@ class API {
    */
   getremindList (docId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/remind/list',
         data: {
@@ -879,7 +760,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -893,9 +773,6 @@ class API {
    */
   getRemindInfo (remindId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/remind/config/detail',
         data: {
@@ -907,7 +784,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -922,9 +798,6 @@ class API {
    */
   getCodeMsg (docId, code) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/code/edit',
         data: {
@@ -939,7 +812,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -953,9 +825,6 @@ class API {
    */
   studyAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/study/add',
         data: formData,
@@ -965,7 +834,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -978,9 +846,6 @@ class API {
    */
   getHotDocList () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/hot',
         data: {
@@ -995,7 +860,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1008,9 +872,6 @@ class API {
    */
   getBanner () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/news/banner',
         method: 'POST',
@@ -1019,7 +880,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1033,9 +893,6 @@ class API {
    */
   getDocBill (docId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/bill/list',
         data: {
@@ -1053,7 +910,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1067,9 +923,6 @@ class API {
    */
   getPatientDetail (patientId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/patient/detail',
         data: {
@@ -1081,7 +934,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1094,9 +946,6 @@ class API {
    */
   getDocTotal (docId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/bill/sum',
         data: {
@@ -1108,7 +957,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1121,9 +969,6 @@ class API {
    */
   getUserByOpenId (openId) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/userType',
         data: {
@@ -1135,7 +980,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1148,9 +992,6 @@ class API {
    */
   enclosureList (name) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/enclosure/list',
         method: 'POST',
@@ -1162,7 +1003,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1175,9 +1015,6 @@ class API {
    */
   enclosureFindAll () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/enclosure/findAll',
         method: 'POST',
@@ -1186,7 +1023,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1199,9 +1035,6 @@ class API {
    */
   feedBackAdd (formData) {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/feedback/add',
         data: formData,
@@ -1211,7 +1044,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1223,9 +1055,6 @@ class API {
    */
   getBaseDocs () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/selectList',
         method: 'POST',
@@ -1234,7 +1063,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
@@ -1246,9 +1074,6 @@ class API {
    */
   getExpDocList () {
     return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '数据加载中'
-      })
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/doc/expertEducatio',
         method: 'POST',
@@ -1257,7 +1082,6 @@ class API {
           'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
         },
         success (res) {
-          wx.hideLoading()
           resolve(res)
         }
       })
