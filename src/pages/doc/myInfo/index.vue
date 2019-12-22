@@ -11,10 +11,14 @@
         <span class="z-font-size-14 z-color-333"><i-input v-model="title" placeholder="请输入医生职称" @change="changValue('title', $event)" right title="医生职称"/></span>
       </p>
       <p>
-        <span class="z-font-size-14 z-color-333"><i-input v-model="hospitalName" placeholder="请输入所属医院" @change="changValue('hospitalName', $event)" right title="所属医院"/></span>
+        <span class="z-font-size-14 z-color-333"><i-input v-model="hospitalName" placeholder="请输入所属医院"
+                                                          @change="changValue('hospitalName', $event)" right
+                                                          title="所属医院" readonly/></span>
       </p>
       <p>
-        <span class="z-font-size-14 z-color-333"><i-input v-model="department" placeholder="请输入科室" @change="changValue('department', $event)" right title="科室"/></span>
+        <span class="z-font-size-14 z-color-333"><i-input v-model="department" placeholder="请输入科室"
+                                                          @change="changValue('department', $event)" right title="科室"
+                                                          readonly/></span>
       </p>
       <p>
         <span class="z-font-size-14 z-color-333"><i-input v-model="subject" placeholder="请输入擅长描述" @change="changValue('subject', $event)" right title="擅长描述"/></span>
@@ -63,11 +67,11 @@
     },
     async onLoad (options) {
       const {docInfo} = await getDocInfo(parseInt(options.docId))
+      this.form = docInfo
       this.docId = options.docId
       this.docName = docInfo.docName
       this.phone = docInfo.phone
       this.title = docInfo.title
-      this.form.hospitals.id = docInfo.hospitals.id
       this.hospitalName = docInfo.hospitals.hospitalName
       this.department = docInfo.hospitals.department
       this.subject = docInfo.subject
