@@ -1,14 +1,16 @@
 <template>
   <div class="container ub-box ub-col">
-    <scroll-view scroll-y style="height: calc(100vh - 50px);" scroll-top="0">
+    <scroll-view scroll-y style="height: calc(100vh);" scroll-top="0">
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <dd class="ub-box ub-col" style="padding-bottom: 40px;">
           <div class="ub-end" v-for="(val, idx) in patList" :key="val.id" :isLast="idx===6">
-            <div @click.stop="toPatList(val.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
+            <div @click.stop="$openWin('../patList/main?patId=' + val.id)" class="card ub-box z-padding-v-10-px"
+                 :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.icon" class="z-img-cover">
               <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
                 <p class="ub-flex-1 ub-box ub-ver ub-between">
-                  <span class="z-width-80-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.patientName}}</span>
+                  <span
+                    class="z-width-80-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.patientName}}</span>
                   <span class="ub-flex-1 z-textAlign-right z-font-size-12 z-color-888">{{val.age}}</span>
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
@@ -32,38 +34,13 @@
   export default {
     data () {
       return {
-        patList: {},
-        user: {}
-      }
-    },
-    methods: {
-      toPatList (id) {
-        this.user = wx.getStorageSync('userInfo')
-        if (this.user === '') {
-          wx.showToast({
-            title: '请登录后重试',
-            icon: 'info',
-            duration: 2000
-          })
-          return
-        }
-        this.patId = id
-        let url = '../patList/main?patId=' + this.patId
-        wx.navigateTo({ url: url })
+        patList: {}
       }
     },
     async onLoad (options) {
-      this.docId = parseInt(options.docId)
-      // 调用应用实例的方法获取全局数据
-      const { patList } = await getMyPat(this.docId)
+      const {patList} = await getMyPat(parseInt(options.docId))
       wx.setStorageSync('patList', patList)
-    },
-    async mounted () {
-      // 调用应用实例的方法获取全局数据
-      this.user = wx.getStorageSync('userInfo')
-      const { patList } = await getMyPat(this.user.id)
-      wx.setStorageSync('patList', patList)
-      this.patList = wx.getStorageSync('patList')
+      this.patList = patList
     }
   }
 </script>
