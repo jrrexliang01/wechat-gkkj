@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { getNewList, getEnclosureList } from '../../config'
+import { getNewList } from '../../config'
 export default {
   data () {
     return {
@@ -73,11 +73,6 @@ export default {
     }
   },
   async onShow () {
-    const { enclosureList } = await getEnclosureList('new_default')
-    console.log(enclosureList.data.length)
-    if (enclosureList.data.length > 0) {
-      this.newSrc = enclosureList.data[0].enclosurePath
-    }
     this.current = 'science'
   },
   async mounted () {
@@ -85,9 +80,15 @@ export default {
     const { newList } = await getNewList()
     wx.setStorageSync('newList', newList)
     this.newList = wx.getStorageSync('newList')
-    const { enclosureList } = await getEnclosureList('new_banner')
-    if (enclosureList.data.length > 0) {
-      this.imgSrc = enclosureList.data[0].enclosurePath
+    let banner = wx.getStorageSync('enclosureList')
+    this.imgUrls = []
+    for (let i = 0; i < banner.data.length; i++) {
+      if (banner.data[i].enclosureName === 'new_banner') {
+        this.imgSrc = banner.data[i].enclosurePath
+      }
+      if (banner.data[i].enclosureName === 'new_default') {
+        this.newSrc = banner.data[i].enclosurePath
+      }
     }
   }
 }
