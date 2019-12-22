@@ -115,13 +115,14 @@
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-      <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
+      <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
     </i-tab-bar>
   </div>
 </template>
 
 <script>
-import { getDocTotal } from '../../../config'
+  import {getDocTotal} from '../../../config'
+  import {switchDocTab} from '../../../utils/common'
 export default {
   computed: {
     isLogin () {
@@ -148,8 +149,7 @@ export default {
   },
   async onLoad () {
     this.user = wx.getStorageSync('userInfo')
-    this.docId = this.user.id
-    const { docTotal } = await getDocTotal(this.docId)
+    const {docTotal} = await getDocTotal(this.user.id)
     this.docTotal = docTotal
     this.docTotal.realSum = this.docTotal.incomeSum - this.docTotal.paySum
   },
@@ -178,20 +178,7 @@ export default {
       })
     },
     handleChange (detail) {
-      this.current = detail.mp.detail.key
-      if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.redirectTo({
-          url: '../home/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.redirectTo({
-          url: '../own/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.redirectTo({
-          url: '../index/main'
-        })
-      }
+      switchDocTab(this.current, detail)
     },
     reviseInfo () {
       let url = '../profile/main'
@@ -203,154 +190,66 @@ export default {
     },
     toBillList () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../billList/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toOrdList () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=2'
       wx.navigateTo({ url: url })
     },
     toOrdWList () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=0'
       wx.navigateTo({ url: url })
     },
     toOrdFList () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../myOrder/main?docId=' + this.docId + '&orderStatus=1'
       wx.navigateTo({ url: url })
     },
     toCourseFList () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../myCourse/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toMyInfo () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../myInfo/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toOnLine () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../onLine/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toEditPrice () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../price/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toEditFollow () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../setting/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toMyPat () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../myPat/main?docId=' + this.docId
       wx.navigateTo({ url: url })
     },
     toMsgList () {
       this.user = wx.getStorageSync('userInfo')
-      if (this.user === '') {
-        wx.showToast({
-          title: '请登录后重试',
-          icon: 'info',
-          duration: 2000
-        })
-        return
-      }
       this.docId = this.user.id
       let url = '../message/main?docId=' + this.docId
       wx.navigateTo({ url: url })

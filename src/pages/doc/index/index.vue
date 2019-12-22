@@ -77,14 +77,15 @@
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-      <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
+      <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
     </i-tab-bar>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { throttle } from '../../../utils/index'
+import {throttle} from '../../../utils/index'
+import {switchDocTab} from '../../../utils/common'
 export default {
   data () {
     return {
@@ -120,20 +121,7 @@ export default {
       this.handleModalShow()
     },
     handleChange (detail) {
-      this.current = detail.mp.detail.key
-      if (detail.mp.detail.key.toString() === 'homepage') {
-        wx.redirectTo({
-          url: '../home/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'mine') {
-        wx.redirectTo({
-          url: '../own/main'
-        })
-      } else if (detail.mp.detail.key.toString() === 'chat') {
-        wx.redirectTo({
-          url: '../index/main'
-        })
-      }
+      switchDocTab(this.current, detail)
     },
     handleModalShow () {
       this.modalVisible = !this.modalVisible
