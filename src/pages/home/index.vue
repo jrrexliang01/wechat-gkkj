@@ -59,9 +59,9 @@
 </template>
 
 <script>
-  import { getDocList } from '../../config'
   import QQMapWX from 'qqmap-wx-jssdk'
-  import { switchUserTab } from '../../utils/common'
+  import {switchUserTab} from '../../utils/common'
+  import {getDocList} from '../../config'
   export default {
     props: ['isLast'],
     computed: {
@@ -109,8 +109,13 @@
     async onShow () {
       this.current = 'homepage'
       let location = wx.getStorageSync('location')
-      const { docList } = await getDocList(location.province)
-      this.docList = docList
+      const {docList} = await getDocList(location.province)
+      if (docList.length === 0) {
+        const {docList} = await getDocList('北京')
+        this.docList = docList
+      } else {
+        this.docList = docList
+      }
     },
     mounted () {
       let banner = wx.getStorageSync('enclosureList')
@@ -123,7 +128,6 @@
     },
     onPullDownRefresh () {
       setTimeout(() => {
-        this.docList = wx.getStorageSync('docList')
         wx.stopPullDownRefresh()
       }, 600)
     }
