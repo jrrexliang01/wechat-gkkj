@@ -33,7 +33,8 @@
               <img :src="val.icon" class="z-img-cover">
               <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
                 <p class="ub-flex-1 ub-box ub-ver ub-between">
-                  <span class="z-width-80-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.docName}}</span>
+                  <span
+                    class="z-width-60-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.docName}}</span>
                   <span class="ub-flex-1 z-textAlign-right z-font-size-12 z-color-888">{{val.title}}</span>
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
