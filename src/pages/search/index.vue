@@ -17,7 +17,8 @@
               <p class="ub-flex-1 z-color-333 z-font-size-14">{{val.docName}}</p>
               <span class="z-font-size-12 z-color-999">约{{val.num || 1}}个结果</span>
             </li>
-            <li @click.stop="clickSearchItem(searchVal)" v-if="currSearchList.length===0" class="search-item ub-box ub-ver z-box-sizing-border">
+            <li @click.stop="clickNoSearchItem()" v-if="currSearchList.length===0"
+                class="search-item ub-box ub-ver z-box-sizing-border">
               <i class="iconfont icon-sousuo z-color-999 z-font-size-16 z-margin-right-10-px"></i>
               <p class="ub-flex-1 z-color-333 z-font-size-14">搜索"{{searchVal}}"</p>
               <i class="iconfont icon-xiayiyeqianjinchakangengduo z-color-999 z-font-size-16"></i>
@@ -91,6 +92,13 @@
       },
       clickGuessItem (val) {
         wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.id})
+      },
+      clickNoSearchItem () {
+        wx.showToast({
+          title: '暂无内容',
+          icon: 'success',
+          duration: 2000
+        })
       },
       clear () {
         this.history = []
