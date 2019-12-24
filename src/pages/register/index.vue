@@ -50,9 +50,9 @@ export default {
           openId: sessionKey.openid,
           icon: userInfo.avatarUrl,
           alias: userInfo.nickName,
-          county: userInfo.county || location.nation,
-          city: userInfo.city || location.city,
-          province: userInfo.province || location.province,
+          county: location.nation || userInfo.county,
+          city: location.city || userInfo.city,
+          province: location.province || userInfo.province,
           sex: userInfo.gender,
           phone: this.form.phone
         },
