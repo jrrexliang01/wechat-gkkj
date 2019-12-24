@@ -33,7 +33,9 @@
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box">
           <ul class="ub-box ub-wrap">
-            <li @click.stop="clickSearchItem(val)" v-for="(val, idx) in guess" :key="idx" class="item z-font-size-13 z-color-333">{{val.content}}</li>
+            <li @click.stop="clickGuessItem(val)" v-for="(val, idx) in guess" :key="idx"
+                class="item z-font-size-13 z-color-333">{{val.content}}
+            </li>
           </ul>
         </dd>
         <dd class="z-margin-h-8-px z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
@@ -87,6 +89,9 @@
         let arr = unique(this.history)
         wx.setStorageSync('history', arr)
         wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + val.id})
+      },
+      clickGuessItem (val) {
+        wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.id})
       },
       clear () {
         this.history = []
