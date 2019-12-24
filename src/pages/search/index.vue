@@ -49,14 +49,15 @@
   </div>
 </template>
 <script>
-  import { searchHot, getBaseDocs } from '../../config'
+  import {searchHot, getDocList} from '../../config'
+  import {unique} from '../../utils/common'
+
   export default {
     data () {
       return {
         searchVal: '',
         // 测试搜索结果集
-        searchAllList: [
-        ],
+        searchAllList: [],
         currSearchList: [], // 当前根据搜索关键词搜索到的列表
         guess: {},
         history: []
@@ -82,7 +83,8 @@
       },
       clickSearchItem (val) {
         this.history.push(val)
-        wx.setStorageSync('history', this.history)
+        let arr = unique(this.history)
+        wx.setStorageSync('history', arr)
         wx.navigateTo({url: '/pages/docInfo/main?docId=' + val.id})
       },
       clear () {
@@ -91,8 +93,10 @@
       }
     },
     async mounted () {
-      const { allDocList } = await getBaseDocs()
-      this.searchAllList = allDocList
+      let city = wx.getStorageSync('locationCity')
+      const {docList} = await getDocList(city)
+      // const { allDocList } = await getBaseDocs()
+      this.searchAllList = docList
       this.searchVal = ''
       this.currSearchList = JSON.parse(JSON.stringify(this.searchAllList))
     }

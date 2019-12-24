@@ -52,7 +52,8 @@
   </div>
 </template>
 <script>
-  import { searchHot, getBaseDocs } from '../../../config'
+  import {searchHot, getBaseDocs} from '../../../config'
+  import {unique} from '../../../utils/common'
   export default {
     data () {
       return {
@@ -83,7 +84,8 @@
       },
       clickSearchItem (val) {
         this.history.push(val)
-        wx.setStorageSync('history', this.history)
+        let arr = unique(this.history)
+        wx.setStorageSync('history', arr)
         wx.navigateTo({url: '/pages/doc/docInfo/main?docId=' + val.id})
       },
       clear () {
