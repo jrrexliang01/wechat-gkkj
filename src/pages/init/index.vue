@@ -8,8 +8,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import { genTestUserSig } from '../../../static/utils/GenerateTestUserSig'
-import { enclosureFindAll } from '../../config'
+import {genTestUserSig} from '../../../static/utils/GenerateTestUserSig'
+import {enclosureFindAll, getBaseDocs} from '../../config'
 export default {
   computed: {
     ...mapState({
@@ -83,6 +83,8 @@ export default {
     if (wx.getStorageSync('history') === '') {
       wx.setStorageSync('history', [])
     }
+    const {allDocList} = await getBaseDocs()
+    wx.setStorageSync('allDocList', allDocList)
   }
 }
 </script>

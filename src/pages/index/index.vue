@@ -58,7 +58,7 @@ export default {
   computed: {
     ...mapState({
       allConversation: state => {
-        let docList = wx.getStorageSync('docList')
+        let docList = wx.getStorageSync('allDocList')
         for (let j = 0; j < state.conversation.allConversation.length; j++) {
           for (let i = 0; i < docList.length; i++) {
             if (state.conversation.allConversation[j].userProfile.userID === docList[i].openId) {
