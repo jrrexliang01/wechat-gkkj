@@ -3,7 +3,7 @@
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <img :src="imgSrc" class="z-width-100-percent" mode="widthFix"/>
       <dl class="z-width-100-percent ub-box ub-col" style="margin-bottom: 50px;">
-        <dd @click.stop="$openWin('/pages/doc/experienceInfo/main?courseId=' + item.id)"
+        <dd @click.stop="$openWin('/pages/doc/courseInfo/main?courseId=' + item.id)"
             v-for="(item,index ) in courseList" :key="item.id"
             class="order z-width-100-percent z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
@@ -32,7 +32,7 @@
     },
     async onShow () {
       // 调用应用实例的方法获取全局数据
-      const {courseList} = await getCourseList(1)
+      const {courseList} = await getCourseList(2)
       this.courseList = courseList
     },
     mounted () {
