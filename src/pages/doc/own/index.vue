@@ -16,21 +16,21 @@
       <i-cell title="我的收益"></i-cell>
     </i-panel>
     <view class="sc df tc bte ">
-      <navigator @click.stop="$openWin('../billList/main?docId=' + user.id)" class="df_1"
+      <navigator @click.stop="$openWin('../billList/main?docId=' + user.id + '&type=all')" class="df_1"
                  url="../user/dingdan?currentTab=0" hover-class="none">
         <view>
           <image src="../../../static/images/dfh.png"></image>
         </view>
         <text class="font_12">总计：{{docTotal.realSum}}</text>
       </navigator>
-      <navigator @click.stop="$openWin('../billList/main?docId=' + user.id)" class="df_1"
+      <navigator @click.stop="$openWin('../billList/main?docId=' + user.id + '&type=out')" class="df_1"
                  url="../user/dingdan?currentTab=3" hover-class="none">
         <view>
           <image src="../../../static/images/dfk.png"></image>
         </view>
         <text class="font_12">支出：{{docTotal.paySum}}</text>
       </navigator>
-      <navigator @click.stop="$openWin('../billList/main?docId=' + user.id)" class="df_1"
+      <navigator @click.stop="$openWin('../billList/main?docId=' + user.id + '&type=in')" class="df_1"
                  url="../user/dingdan?currentTab=4" hover-class="none">
         <view>
           <image src="../../../static/images/tksh.png"></image>

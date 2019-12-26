@@ -56,6 +56,24 @@
       for (const v of this.billList) {
         v.realIn = v.income - v.pay
       }
+      let list = this.billList
+      if (options.type === 'all') {
+        this.billList = list
+      } else if (options.type === 'in') {
+        this.billList = []
+        for (const v of list) {
+          if (v.income !== null) {
+            this.billList.push(v)
+          }
+        }
+      } else {
+        this.billList = []
+        for (const v of list) {
+          if (v.pay !== null) {
+            this.billList.push(v)
+          }
+        }
+      }
     }
   }
 </script>
