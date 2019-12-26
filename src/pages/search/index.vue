@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-  import {searchHot, getDocList} from '../../config'
+  import {searchHot, getBaseDocs} from '../../config'
   import {unique} from '../../utils/common'
 
   export default {
@@ -106,10 +106,10 @@
       }
     },
     async mounted () {
-      let city = wx.getStorageSync('locationCity')
-      const {docList} = await getDocList(city)
-      // const { allDocList } = await getBaseDocs()
-      this.searchAllList = docList
+      // let city = wx.getStorageSync('locationCity')
+      // const {docList} = await getDocList(city)
+      const {allDocList} = await getBaseDocs()
+      this.searchAllList = allDocList
       this.searchVal = ''
       this.currSearchList = JSON.parse(JSON.stringify(this.searchAllList))
     }
