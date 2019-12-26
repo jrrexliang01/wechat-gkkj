@@ -36,15 +36,15 @@
         class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col z-margin-bottom-40-px">
         <parser :html="courseInfo.summary" img-mode="widthFix"></parser>
       </dd>
-      <!--fixed部分-->
-      <ul class="fixCon ub-box ub-ver ub-between">
-        <li class="ub-box ub-ver z-padding-h-10-px">
-          <span class="z-font-size-12 z-color-999 z-margin-right-10-px">课程金额：</span>
-          <span class="z-font-size-18 z-font-weight-bold" style="color:red">¥{{courseInfo.price}}</span>
-        </li>
-        <li @click.stop="toConsult(courseInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即购买</li>
-      </ul>
     </scroll-view>
+    <!--fixed部分-->
+    <ul class="fixCon ub-box ub-ver ub-between">
+      <li class="ub-box ub-ver z-padding-h-10-px z-margin-bottom-10-px">
+        <span class="z-font-size-12 z-color-999 z-margin-right-10-px">课程金额：</span>
+        <span class="z-font-size-18 z-font-weight-bold" style="color:red">¥{{courseInfo.price}}</span>
+      </li>
+      <li @click.stop="toConsult(courseInfo.id)" class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">立即购买</li>
+    </ul>
   </div>
 </template>
 
@@ -76,6 +76,7 @@
     async onLoad (options) {
       const {courseInfo} = await getCourseInfo(parseInt(options.courseId))
       this.courseInfo = courseInfo
+      this.videoContext = wx.createVideoContext('myVideo')
     },
     mounted () {
       let banner = wx.getStorageSync('enclosureList')
