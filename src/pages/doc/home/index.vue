@@ -12,8 +12,8 @@
       <div class="ub-box ub-ver z-bg-color-fff">
         <swiper class="swiper" indicator-dots="false" autoplay="false" interval="5000" duration="500">
           <block v-for="(item, idx) in imgUrls" :key="idx">
-            <swiper-item>
-              <image :src="item" class="z-width-100-percent" mode="widthFix"/>
+            <swiper-item @click="gotoArticle(item.id)">
+              <image :src="item.src" class="z-width-100-percent" mode="widthFix"/>
             </swiper-item>
           </block>
         </swiper>
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-  import {getDocList, getCourseList, studyAdd} from '../../../config'
+  import {getDocList, getCourseList, studyAdd, getArticleListAll} from '../../../config'
   import {switchDocTab} from '../../../utils/common'
 
   export default {
@@ -170,6 +170,13 @@
             duration: 2000
           })
         )
+      },
+      gotoArticle (id) {
+        if (id !== 0) {
+          wx.navigateTo({
+            url: '/pages/doc/articleInfo/main?articleId=' + id
+          })
+        }
       }
     },
     async beforeCreate () {
@@ -178,15 +185,28 @@
       this.docList = docList
       const {courseList} = await getCourseList(2)
       this.courseList = courseList.slice(0, 3)
+      console.log(courseList)
     },
-    mounted () {
+    async mounted () {
       let banner = wx.getStorageSync('enclosureList')
       this.imgUrls = []
       for (let i = 0; i < banner.data.length; i++) {
-        if (banner.data[i].enclosureName === 'doc_banner') {
-          this.imgUrls.push(banner.data[i].enclosurePath)
+        if (banner.data[i].enclosureName === 'doc_banner' && banner.data[i].delFlag === false) {
+          this.imgUrls.push({
+            id: 0,
+            src: banner.data[i].enclosurePath
+          })
         } else if (banner.data[i].enclosureName === 'course_default') {
           this.newSrc = banner.data[i].enclosurePath
+        }
+      }
+      const {articleList} = await getArticleListAll()
+      for (let i = 0; i < articleList.length; i++) {
+        if (articleList[i].banner !== null) {
+          this.imgUrls.push({
+            id: articleList[i].id,
+            src: articleList[i].banner
+          })
         }
       }
     },

@@ -46,7 +46,6 @@ class API {
             province: province,
             city: '',
             docName: ''
-
           }
         },
         method: 'POST',
@@ -647,6 +646,36 @@ class API {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/article/list',
+        data: {
+          pageInfo: {
+            currentPage: 0,
+            sizePerPage: 10
+          },
+          params: {
+            title: title
+          }
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          resolve(res)
+        }
+      })
+    })
+  }
+
+  /**
+   * 文章列表
+   * @param title
+   * @returns {Promise<any>}
+   */
+  getArticleListAll (title) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/article/listAll',
         data: {
           pageInfo: {
             currentPage: 0,

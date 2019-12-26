@@ -123,17 +123,22 @@ const getCourseInfo = async (couresId) => {
 const orderCourseAdd = async (formData) => {
   const res = (await API.orderCourseAdd(formData)).data
   const status = res
-  return { status }
+  return {status}
 }
 const getArticleList = async (courseTitle) => {
   const res = (await API.getArticleList(courseTitle)).data.data.content
   const articleList = res
-  return { articleList }
+  return {articleList}
+}
+const getArticleListAll = async (courseTitle) => {
+  const res = (await API.getArticleListAll(courseTitle)).data.data.content
+  const articleList = res
+  return {articleList}
 }
 const getArticleInfo = async (articleId) => {
   const res = (await API.getArticleInfo(articleId)).data.data
   const articleInfo = res
-  return { articleInfo }
+  return {articleInfo}
 }
 const remindAdd = async (formData) => {
   const res = (await API.remindAdd(formData)).data.status
@@ -222,9 +227,49 @@ const getExpDocList = async () => {
 }
 
 export {
-  getNewList, getDocList, getDocInfo, getNewsInfo, getOrderList, getOrderInfo, getOrderCourseList, getOrderCourseInfo, getOrderStatusList,
-  getOrderCourseStatusList, getAgreementInfo, getPatReportList, reportAdd, getReportInfo, searchAdd, searchHot, getMsgList, msgAdd,
-  patientAdd, doctorAdd, orderAdd, getMyPat, getCourseList, getCourseInfo, orderCourseAdd, getArticleList, getArticleInfo, remindAdd,
-  remindConfigAdd, getremindList, getRemindInfo, getCodeMsg, studyAdd, getHotDocList, getBanner, getDocBill, getPatientDetail, getDocTotal,
-  getUserByOpenId, getEnclosureList, feedBackAdd, getBaseDocs, getExpDocList, enclosureFindAll
+  getNewList,
+  getDocList,
+  getDocInfo,
+  getNewsInfo,
+  getOrderList,
+  getOrderInfo,
+  getOrderCourseList,
+  getOrderCourseInfo,
+  getOrderStatusList,
+  getOrderCourseStatusList,
+  getAgreementInfo,
+  getPatReportList,
+  reportAdd,
+  getReportInfo,
+  searchAdd,
+  searchHot,
+  getMsgList,
+  msgAdd,
+  patientAdd,
+  doctorAdd,
+  orderAdd,
+  getMyPat,
+  getCourseList,
+  getCourseInfo,
+  orderCourseAdd,
+  getArticleList,
+  getArticleInfo,
+  remindAdd,
+  remindConfigAdd,
+  getremindList,
+  getRemindInfo,
+  getCodeMsg,
+  studyAdd,
+  getHotDocList,
+  getBanner,
+  getDocBill,
+  getPatientDetail,
+  getDocTotal,
+  getUserByOpenId,
+  getEnclosureList,
+  feedBackAdd,
+  getBaseDocs,
+  getExpDocList,
+  enclosureFindAll,
+  getArticleListAll
 }
