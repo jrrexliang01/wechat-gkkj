@@ -3,8 +3,8 @@
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <img :src="imgSrc" class="z-width-100-percent" mode="widthFix"/>
       <dl class="z-width-100-percent ub-box ub-col" style="margin-bottom: 50px;">
-        <dd @click.stop="$openWin('/pages/doc/articleInfo/main?articleId=' + item.id)"
-            v-for="(item,index ) in articleList" :key="item.id"
+        <dd @click.stop="$openWin('/pages/doc/articleInfo/main?articleId=' + item.id + '&time=' + item.createTime)"
+            v-for="(item,index ) in articleList" :key="item.id" v-if="item.isBanner === false"
             class="order z-width-100-percent z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-17 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{item.title}}</span>

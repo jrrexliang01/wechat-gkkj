@@ -4,7 +4,7 @@
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver"
           style="border-bottom: 1px solid #f5f5f5">
         <p class="z-font-size-24 z-color-000">{{articleInfo.title}}</p>
-        <p class="z-font-size-14 z-color-666">发表时间:{{articleInfo.createTime}}</p>
+        <p class="z-font-size-14 z-color-666">发表时间:{{time}}</p>
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col"
           style="margin-top: 1px;">
@@ -16,10 +16,10 @@
 
 <script>
   import {getArticleInfo} from '../../../config'
-
   export default {
     data () {
       return {
+        time: '',
         articleInfo: {
           title: '',
           content: '',
@@ -29,6 +29,7 @@
     },
     async onLoad (options) {
       this.resetData()
+      this.time = options.time
       const {articleInfo} = await getArticleInfo(parseInt(options.articleId))
       this.articleInfo = articleInfo
     },
