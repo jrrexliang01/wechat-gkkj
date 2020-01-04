@@ -12,7 +12,7 @@
         </dd>
       </dl>
       <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" fixed="true">
-        <button class="loginBtn" lang="zh_CN" @click="add">保存</button>
+        <button class="loginBtn" lang="zh_CN" @click="add">添加</button>
       </dd>
       <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
         <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="病例"></i-tab-bar-item>
