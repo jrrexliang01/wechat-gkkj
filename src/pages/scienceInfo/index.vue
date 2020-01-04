@@ -2,7 +2,7 @@
   <div class="container ub-box ub-col ub-ver">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-ver z-border-bottom-1-5f5f5">
-        <p class="z-font-size-24 z-color-000 z-border-bottom-1-5f5f5">{{newsInfo.title}}</p>
+        <p class="z-font-size-24 z-color-000">{{newsInfo.title}}</p>
         <p class="z-font-size-14 z-color-666">发表时间:{{newsInfo.createTime}}</p>
       </dd>
       <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-col z-margin-top-1-px">
