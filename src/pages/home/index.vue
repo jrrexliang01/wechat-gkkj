@@ -39,10 +39,7 @@
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
                   <span class="z-font-size-12 z-color-666 z-lineHeight-20">{{val.department}}</span>
-                  <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>
-                </p>
-                <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
-                  <span class="z-font-size-16" style="color:#c1c12f">👍 {{val.star || 0}}</span>
+<!--                  <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>-->
                 </p>
               </div>
             </div>
@@ -51,7 +48,7 @@
       </dl>
     </scroll-view>
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
-      <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
+      <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="病例"></i-tab-bar-item>
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
       <i-tab-bar-item key="science" icon="document" current-icon="document_fill" title="科普"></i-tab-bar-item>
       <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
