@@ -59,7 +59,8 @@
     "pages/doc/followSetting/main",
     "pages/doc/detail/main",
     "pages/doc/experience/main",
-    "pages/doc/experienceInfo/main"
+    "pages/doc/experienceInfo/main",
+    "pages/caseList/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

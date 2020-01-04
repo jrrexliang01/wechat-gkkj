@@ -331,6 +331,30 @@ class API {
   }
 
   /**
+   * 患者病例列表
+   * @param patId
+   * @returns {Promise<any>}
+   */
+  getCaseList (userId) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/patient/history/list',
+        data: {
+          id: userId
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          resolve(res)
+        }
+      })
+    })
+  }
+
+  /**
    * 添加报告
    * @param formData
    * @returns {Promise<any>}

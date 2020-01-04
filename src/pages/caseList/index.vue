@@ -11,6 +11,9 @@
           </div>
         </dd>
       </dl>
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" fixed="true">
+        <button class="loginBtn" lang="zh_CN" @click="add">保存</button>
+      </dd>
       <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
         <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="病例"></i-tab-bar-item>
         <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
@@ -65,5 +68,14 @@
     width: 55px;
     height: 55px;
     border-radius: 3px
+  }
+
+  .loginBtn {
+    font-size: 18px;
+    color: #fff;
+    padding: 0px 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: #5CA2F2
   }
 </style>

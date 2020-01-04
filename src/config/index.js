@@ -53,12 +53,17 @@ const getOrderCourseStatusList = async (docId, status) => {
 const getAgreementInfo = async () => {
   const res = (await API.getAgreementInfo()).data.data
   const agreementInfo = res
-  return { agreementInfo }
+  return {agreementInfo}
+}
+const getCaseList = async (userId) => {
+  const res = (await API.getCaseList(userId)).data.data
+  const caseList = res
+  return {caseList}
 }
 const getPatReportList = async (patId) => {
   const res = (await API.getPatReportList(patId)).data.data.content
   const reportList = res
-  return { reportList }
+  return {reportList}
 }
 const reportAdd = async (formData) => {
   const res = (await API.reportAdd(formData)).data
@@ -271,5 +276,6 @@ export {
   getBaseDocs,
   getExpDocList,
   enclosureFindAll,
-  getArticleListAll
+  getArticleListAll,
+  getCaseList
 }
