@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { patientAdd, getPatientDetail } from '../../config'
+import {addCaseDetail, getPatientDetail} from '../../config'
 export default {
   data () {
     return {
@@ -166,6 +166,7 @@ export default {
   methods: {
     // 拉黑好友
     async addOut () {
+      let userInfo = wx.getStorageSync('userInfo')
       this.form.patientName = this.patientName
       this.form.age = this.age
       this.form.phone = this.phone
@@ -175,6 +176,9 @@ export default {
       this.form.pain = this.currentPain
       this.form.touch = this.currentTouch
       this.form.secretion = this.currentSecretion
+      this.form.patient = {
+        id: userInfo.id
+      }
       this.formData = JSON.stringify(this.form)
       if (this.form.patientName === '' || this.form.patientName == null) {
         this.$store.commit('showToast', {
@@ -200,7 +204,7 @@ export default {
         })
         return
       }
-      const { status } = await patientAdd(this.formData)
+      const {status} = await addCaseDetail(this.formData)
       this.status = status
       if (this.status === 1) {
         this.$store.commit('showToast', {
@@ -211,10 +215,8 @@ export default {
         if (this.own === 'true') {
           wx.navigateBack()
         } else {
-          this.docInfo = wx.getStorageSync('docInfo')
-          this.id = this.docInfo.id
           wx.navigateTo({
-            url: '/pages/paymentInfo/main?docId=' + this.id
+            url: '/pages/caseList/main'
           })
         }
       }

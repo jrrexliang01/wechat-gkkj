@@ -188,22 +188,32 @@ const getBanner = async () => {
 const getDocBill = async (docId) => {
   const res = (await API.getDocBill(docId)).data.data.content
   const docBill = res
-  return { docBill }
+  return {docBill}
 }
 const getPatientDetail = async (patientId) => {
   const res = (await API.getPatientDetail(patientId)).data.data
   const patientDetail = res
-  return { patientDetail }
+  return {patientDetail}
+}
+const getCaseDetail = async (patientId) => {
+  const res = (await API.getCaseDetail(patientId)).data.data
+  const caseDetail = res
+  return {caseDetail}
+}
+const addCaseDetail = async (formData) => {
+  const res = (await API.addCaseDetail(formData)).data.status
+  const status = res
+  return {status}
 }
 const getDocTotal = async (docId) => {
   const res = (await API.getDocTotal(docId)).data.data
   const docTotal = res
-  return { docTotal }
+  return {docTotal}
 }
 const getUserByOpenId = async (openId) => {
   const res = (await API.getUserByOpenId(openId))
   const userDetail = res
-  return { userDetail }
+  return {userDetail}
 }
 const getEnclosureList = async (name) => {
   const res = (await API.enclosureList(name)).data
@@ -277,5 +287,7 @@ export {
   getExpDocList,
   enclosureFindAll,
   getArticleListAll,
-  getCaseList
+  getCaseList,
+  getCaseDetail,
+  addCaseDetail
 }
