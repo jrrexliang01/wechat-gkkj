@@ -3,7 +3,7 @@
     <scroll-view scroll-y style="height: calc(100vh);" scroll-top="0">
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <dd class="ub-box ub-col" style="padding-bottom: 40px;">
-          <div class="ub-end" v-for="(val, idx) in patList" :key="val.id" :isLast="idx===6">
+          <div class="ub-end" v-for="(val, idx) in myPatInfo" :key="val.id" :isLast="idx===6">
             <div @click.stop="$openWin('../patList/main?patId=' + val.id)" class="card ub-box z-padding-v-10-px"
                  :class="{'z-border-bottom-1-eee':isLast==false}">
               <img :src="val.icon" class="z-img-cover">
@@ -16,9 +16,6 @@
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
                   <span class="z-font-size-12 z-color-666 z-lineHeight-20">{{val.sex}}</span>
                   <span class="z-font-size-12 z-color-888">{{val.phone}}</span>
-                </p>
-                <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
-                  <span class="z-font-size-16" style="color:#06c1ae">诊断报告</span>
                 </p>
               </div>
             </div>
@@ -34,13 +31,13 @@
   export default {
     data () {
       return {
-        patList: []
+        myPatInfo: []
       }
     },
     async onLoad (options) {
-      const {patList} = await getMyPat(parseInt(options.docId))
-      this.patList = patList
-      console.log(this.patList)
+      const {myPatInfo} = await getMyPat(parseInt(options.docId))
+      this.myPatInfo = myPatInfo
+      console.log(this.myPatInfo)
     }
   }
 </script>
