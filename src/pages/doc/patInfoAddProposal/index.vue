@@ -57,6 +57,7 @@ export default {
       this.patRepInfo = wx.getStorageSync('reportInfoAdd')
       this.patRepInfo.healthProposal = this.healthProposal
       this.patRepInfo.projectProposal = this.projectProposal
+      console.log(this.patRepInfo)
       const {status} = await reportAdd(JSON.stringify(this.patRepInfo))
       if (status.status === 1) {
         this.formData.docId = this.patRepInfo.doc.id

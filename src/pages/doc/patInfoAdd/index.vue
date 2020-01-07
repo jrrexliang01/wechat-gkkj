@@ -219,15 +219,20 @@ export default {
         doc: {
           id: 0
         },
+        patientHistory: {
+          id: 0
+        },
         healthProposal: '',
         projectProposal: ''
       },
-      patId: 0
+      patId: 0,
+      caseId: 0
     }
   },
   methods: {
     async onLoad (options) {
       this.patId = parseInt(options.patId)
+      this.caseId = parseInt(options.caseId)
     },
     handlePainRepChange (data) {
       this.currentPainRep = data.target.value
@@ -273,6 +278,7 @@ export default {
       this.patRepInfo.breastCyst = this.currentBreastCystRep
       this.patRepInfo.patient.id = this.patId
       this.patRepInfo.doc.id = userInfo.id
+      this.patRepInfo.patientHistory.id = this.caseId
       wx.setStorageSync('reportInfoAdd', this.patRepInfo)
       wx.navigateTo({
         url: '/pages/doc/patInfoAddProposal/main'

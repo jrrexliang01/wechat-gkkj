@@ -60,7 +60,12 @@
     "pages/doc/detail/main",
     "pages/doc/experience/main",
     "pages/doc/experienceInfo/main",
-    "pages/caseList/main"
+    "pages/caseList/main",
+    "pages/doc/myPatList/main",
+    "pages/doc/caseList/main",
+    "pages/doc/lactatingCase/main",
+    "pages/doc/nonLactatingCase/main",
+    "pages/doc/myPatInfo/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

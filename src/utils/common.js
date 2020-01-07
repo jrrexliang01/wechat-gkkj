@@ -85,7 +85,7 @@ export function switchDocTab (obj, detail) {
     })
   } else if (detail.mp.detail.key.toString() === 'chat') {
     wx.redirectTo({
-      url: '../index/main'
+      url: '../myPatList/main'
     })
   }
 }
