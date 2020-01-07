@@ -70,8 +70,8 @@ const reportAdd = async (formData) => {
   const status = res
   return { status }
 }
-const getReportInfo = async (reportId) => {
-  const res = (await API.getReportInfo(reportId)).data.data
+const getReportInfo = async (caseId) => {
+  const res = (await API.getReportInfo(caseId)).data.data
   const reportInfo = res
   return { reportInfo }
 }

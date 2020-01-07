@@ -87,14 +87,10 @@ export default {
                   'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
                 },
                 success (res) {
-                  if (res.data.status === 1) {
-                    wx.removeStorage('reportInfoAdd')
-                    this.$store.commit('showToast', {
-                      title: '保存成功',
-                      icon: 'none',
-                      duration: 1500
-                    })
-                  }
+                  wx.removeStorage('reportInfoAdd')
+                  wx.navigateTo({
+                    url: '/pages/doc/home/main'
+                  })
                 }
               })
             }
@@ -102,6 +98,12 @@ export default {
         })
       }
     }
+  },
+  mounted () {
+    this.patRepInfo = wx.getStorageSync('reportInfo')
+    console.log(this.patRepInfo)
+    this.healthProposal = this.patRepInfo.healthProposal
+    this.projectProposal = this.patRepInfo.projectProposal
   }
 }
 </script>

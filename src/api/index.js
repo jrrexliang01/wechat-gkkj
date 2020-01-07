@@ -427,12 +427,12 @@ class API {
    * @param reportId
    * @returns {Promise<any>}
    */
-  getReportInfo (reportId) {
+  getReportInfo (caseId) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'https://gkkj.jrrexliang.com/api/wx/report/detail',
+        url: 'https://gkkj.jrrexliang.com/api/wx/report/detailByHistoryId',
         data: {
-          id: reportId
+          id: caseId
         },
         method: 'POST',
         header: {

@@ -2,7 +2,7 @@
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col" v-if="caseList.length !== 0">
-        <dd @click.stop="$openWin('/pages/doc/myPatInfo/main?own=false&caseId=' + val.id + '&patId=' +val.patientId)" v-for="(val, idx) in caseList"
+        <dd @click.stop="$openWin('/pages/doc/myPatInfo/main?own=false&caseId=' + val.id + '&patId=' +val.patient.id)" v-for="(val, idx) in caseList"
             :key="idx"
             class="order z-width-100-percent ub-box z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
@@ -33,7 +33,7 @@
       return {
         caseList: {},
         current: 'chat',
-        user: {},
+        user: {}
       }
     },
     async onLoad (options) {

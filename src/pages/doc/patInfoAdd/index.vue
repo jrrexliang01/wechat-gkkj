@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import { getReportInfo } from '../../../config'
 export default {
   data () {
     return {
@@ -230,10 +231,6 @@ export default {
     }
   },
   methods: {
-    async onLoad (options) {
-      this.patId = parseInt(options.patId)
-      this.caseId = parseInt(options.caseId)
-    },
     handlePainRepChange (data) {
       this.currentPainRep = data.target.value
     },
@@ -284,6 +281,28 @@ export default {
         url: '/pages/doc/patInfoAddProposal/main'
       })
     }
+  },
+  async onLoad (options) {
+    this.patId = parseInt(options.patId)
+    this.caseId = parseInt(options.caseId)
+    const { reportInfo } = await getReportInfo(this.caseId)
+    wx.setStorageSync('reportInfo', reportInfo)
+  },
+  mounted () {
+    this.patRepInfo = wx.getStorageSync('reportInfo')
+    console.log(this.patRepInfo)
+    this.currentPainRep = this.patRepInfo.isPain
+    this.currentMilkRep = this.patRepInfo.isMilk
+    this.currentChunksRep = this.patRepInfo.chunks
+    this.currentAcuteMastitisRep = this.patRepInfo.auteMastitis
+    this.currentSpillRep = this.patRepInfo.spill
+    this.currentQuestionRep = this.patRepInfo.question
+    this.currentHyperplasiaRep = this.patRepInfo.hyperplasia
+    this.currentFibromaRep = this.patRepInfo.fibroma
+    this.currentMastodyniaRep = this.patRepInfo.mastodynia
+    this.currentBreastCystRep = this.patRepInfo.breastCyst
+    this.healthProposal = this.patRepInfo.healthProposal
+    this.projectProposal = this.patRepInfo.projectProposal
   }
 }
 </script>

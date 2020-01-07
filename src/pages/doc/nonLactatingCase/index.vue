@@ -166,7 +166,6 @@ export default {
   },
   methods: {
     addOut () {
-      let userInfo = wx.getStorageSync('userInfo')
       wx.navigateTo({
         url: '/pages/doc/patInfoAdd/main?caseId=' + this.caseId + '&patId=' + this.patId
       })
