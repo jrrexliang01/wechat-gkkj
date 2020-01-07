@@ -28,14 +28,7 @@
         <input type="text" class="custom-input" placeholder="输入其他" v-model.lazy:value="customExtension"/>
       </div>
     </i-modal>
-    <i-modal title="对医生的评分" i-class="custom-modal" :visible="rateModal" @ok="sendSurvey" @cancel="rateModal = false">
-      <div class="custom-wrapper">
-        <i-rate
-          @change="onChange"
-          :value="rate">
-        </i-rate>
-<!--        <input type="text" class="custom-input" placeholder="输入评价" v-model.lazy:value="customExtension"/>-->
-      </div>
+    <i-modal title="对医生的点赞" i-class="custom-modal" :visible="rateModal" @ok="sendSurvey" @cancel="rateModal = false">
     </i-modal>
     <div id="list" @click="loseFocus">
       <li v-for="(message, index) in currentMessageList" :key="message.ID" :id="message.ID">

@@ -24,7 +24,7 @@ export default {
   data () {
     return {
       courseList: {},
-      imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573711070555&di=838265d4fd12babf14dc71651dc9a9a7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F170e60b9758f0742a63e91e3179995d14d95c89d2d012-bYEkE9_fw658'
+      imgSrc: ''
     }
   },
   filters: {
@@ -45,8 +45,14 @@ export default {
   },
   async mounted () {
     // 调用应用实例的方法获取全局数据
-    const { courseList } = await getCourseList()
+    const {courseList} = await getCourseList(2)
     this.courseList = courseList
+    let banner = wx.getStorageSync('enclosureList')
+    for (let i = 0; i < banner.data.length; i++) {
+      if (banner.data[i].enclosureName === 'course_banner') {
+        this.imgSrc = banner.data[i].enclosurePath
+      }
+    }
   }
 }
 </script>

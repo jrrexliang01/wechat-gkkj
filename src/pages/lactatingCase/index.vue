@@ -71,7 +71,8 @@
           </i-checkbox>
         </i-checkbox-group>
       </dd>
-      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px"
+          v-if="own !== 'false'">
         <button class="loginBtn" lang="zh_CN" @click="add">保存</button>
       </dd>
     </scroll-view>
@@ -79,10 +80,11 @@
 </template>
 
 <script>
-import {addCaseDetail, getPatientDetail} from '../../config'
+  import {addCaseDetail, getCaseDetail} from '../../config'
 export default {
   data () {
     return {
+      caseId: '',
       id: '',
       patId: '',
       content: '',
@@ -197,11 +199,12 @@ export default {
     }
   },
   async mounted () {
-    let userInfo = wx.getStorageSync('userInfo')
+    console.log(this.caseId)
     // 调用应用实例的方法获取全局数据
-    const {patientDetail} = await getPatientDetail(userInfo.id)
-    if (patientDetail !== null && patientDetail !== '') {
-      this.form = patientDetail
+    const {caseDetail} = await getCaseDetail(this.caseId)
+    console.log(caseDetail)
+    if (caseDetail !== null && caseDetail !== '') {
+      this.form = caseDetail
       this.patientName = this.form.patientName
       this.age = this.form.age
       this.phone = this.form.phone
@@ -218,6 +221,7 @@ export default {
   },
   onLoad (options) {
     this.own = options.own
+    this.caseId = options.caseId
   }
 }
 </script>

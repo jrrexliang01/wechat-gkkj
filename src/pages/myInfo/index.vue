@@ -13,23 +13,25 @@
 export default {
   data () {
     return {
-      own: false
+      own: false,
+      id: ''
     }
   },
   onLoad (options) {
     this.own = options.own
+    this.id = options.caseId
   },
   methods: {
     toAddIn () {
       wx.setStorageSync('isIn', '1')
       wx.navigateTo({
-        url: '/pages/lactatingCase/main?own=' + this.own
+        url: '/pages/lactatingCase/main?own=' + this.own + '&caseId=' + this.id
       })
     },
     toAddOut () {
       wx.setStorageSync('isIn', '2')
       wx.navigateTo({
-        url: '/pages/nonLactatingCase/main?own=' + this.own
+        url: '/pages/nonLactatingCase/main?own=' + this.own + '&caseId=' + this.id
       })
     }
   }

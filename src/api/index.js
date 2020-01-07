@@ -355,6 +355,52 @@ class API {
   }
 
   /**
+   * 患者详情
+   * @param patientId
+   * @returns {Promise<any>}
+   */
+  getCaseDetail (patientId) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/patient/history/get',
+        data: {
+          id: patientId
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          resolve(res)
+        }
+      })
+    })
+  }
+
+  /**
+   * 患者详情
+   * @param formData
+   * @returns {Promise<any>}
+   */
+  addCaseDetail (formData) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'https://gkkj.jrrexliang.com/api/wx/patient/history/add',
+        data: formData,
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          resolve(res)
+        }
+      })
+    })
+  }
+
+  /**
    * 添加报告
    * @param formData
    * @returns {Promise<any>}

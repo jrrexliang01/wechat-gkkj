@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import {addCaseDetail, getPatientDetail} from '../../config'
+import {addCaseDetail, getCaseDetail} from '../../config'
 export default {
   data () {
     return {
@@ -246,7 +246,7 @@ export default {
     let userInfo = wx.getStorageSync('userInfo')
     this.patId = userInfo.id
     // 调用应用实例的方法获取全局数据
-    const { patientDetail } = await getPatientDetail(this.patId)
+    const {patientDetail} = await getCaseDetail(this.patId)
     if (patientDetail !== null && patientDetail !== '') {
       this.form = patientDetail
       this.patientName = this.form.patientName

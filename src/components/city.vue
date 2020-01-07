@@ -49,6 +49,7 @@
 </template>
 <script>
   import cityData from '../utils/cityData.js'
+  import {getDocList} from '../config'
   export default {
     data () {
       return {
@@ -80,12 +81,38 @@
       initCityList () {
         this.cityList = cityData
       },
-      clickCode (obj) {
+      async clickCode (obj) {
         if (obj.list.length < 1) return
         this.currView = obj.initial
+        const {docList} = await getDocList(this.currView)
+        if (docList.size === 0) {
+          wx.showToast({
+            title: '暂无医生',
+            icon: 'success',
+            duration: 2000
+          })
+          wx.setStorageSync('locationCity', '北京')
+        } else {
+          wx.setStorageSync('locationCity', this.currView)
+          this.$backBeaforWin()
+        }
       },
-      clickCity (city) {
-        this.$emit('cityService', city.name)
+      async clickCity (city) {
+        console.log(city)
+        wx.setStorageSync('locationCity', city.name)
+        const {docList} = await getDocList(city.name)
+        if (docList.size === 0) {
+          wx.showToast({
+            title: '暂无医生',
+            icon: 'success',
+            duration: 2000
+          })
+          wx.setStorageSync('locationCity', '北京')
+          this.$emit('cityService', '北京')
+        } else {
+          this.$emit('cityService', city.name)
+          this.$backBeaforWin()
+        }
       }
     }
   }

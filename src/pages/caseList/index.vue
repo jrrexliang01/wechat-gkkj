@@ -2,7 +2,8 @@
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col" v-if="caseList.length !== 0">
-        <dd @click.stop="$openWin('/pages/caseInfo/main?caseId=' + val.id)" v-for="(val, idx) in caseList" :key="idx"
+        <dd @click.stop="$openWin('/pages/myInfo/main?own=false&caseId=' + val.id)" v-for="(val, idx) in caseList"
+            :key="idx"
             class="order z-width-100-percent ub-box z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span
@@ -49,7 +50,7 @@
         switchUserTab(this.current, detail)
       },
       add () {
-        wx.navigateTo({url: '/pages/myInfo/main'})
+        wx.navigateTo({url: '/pages/myInfo/main?own=true'})
       }
     }
   }

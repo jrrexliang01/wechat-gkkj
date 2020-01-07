@@ -34,13 +34,13 @@
   export default {
     data () {
       return {
-        patList: {}
+        patList: []
       }
     },
     async onLoad (options) {
       const {patList} = await getMyPat(parseInt(options.docId))
-      wx.setStorageSync('patList', patList)
       this.patList = patList
+      console.log(this.patList)
     }
   }
 </script>

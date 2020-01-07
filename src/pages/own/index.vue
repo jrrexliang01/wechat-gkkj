@@ -17,32 +17,32 @@
       <!--      </dd>-->
     </dl>
     <!--订单详情-->
-    <i-panel class="cell-panel-demo">
-      <i-cell title="我的订单"></i-cell>
-    </i-panel>
-    <view class="sc df tc bte ">
-      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id + '&orderStatus=0')" url=""
-                 class="df_1" hover-class="none">
-        <view>
-          <image src="../../static/images/dfh.png"></image>
-        </view>
-        <text class="font_12">待付款</text>
-      </navigator>
-      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id + '&orderStatus=1')" url=""
-                 class="df_1" hover-class="none">
-        <view>
-          <image src="../../static/images/dfk.png"></image>
-        </view>
-        <text class="font_12">已完成</text>
-      </navigator>
-      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id)" url="" class="df_1"
-                 hover-class="none">
-        <view>
-          <image src="../../static/images/tksh.png"></image>
-        </view>
-        <text class="font_12">全部订单</text>
-      </navigator>
-    </view>
+    <!--    <i-panel class="cell-panel-demo">-->
+    <!--      <i-cell title="我的订单"></i-cell>-->
+    <!--    </i-panel>-->
+    <!--    <view class="sc df tc bte ">-->
+    <!--      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id + '&orderStatus=0')" url=""-->
+    <!--                 class="df_1" hover-class="none">-->
+    <!--        <view>-->
+    <!--          <image src="../../static/images/dfh.png"></image>-->
+    <!--        </view>-->
+    <!--        <text class="font_12">待付款</text>-->
+    <!--      </navigator>-->
+    <!--      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id + '&orderStatus=1')" url=""-->
+    <!--                 class="df_1" hover-class="none">-->
+    <!--        <view>-->
+    <!--          <image src="../../static/images/dfk.png"></image>-->
+    <!--        </view>-->
+    <!--        <text class="font_12">已完成</text>-->
+    <!--      </navigator>-->
+    <!--      <navigator @click.stop="navigateTo(false, '/pages/myOrder/main?patId=' + user.id)" url="" class="df_1"-->
+    <!--                 hover-class="none">-->
+    <!--        <view>-->
+    <!--          <image src="../../static/images/tksh.png"></image>-->
+    <!--        </view>-->
+    <!--        <text class="font_12">全部订单</text>-->
+    <!--      </navigator>-->
+    <!--    </view>-->
     <dl class="ub-box ub-col z-margin-top-10-px" style="background:#fff;">
       <dd @click.stop="navigateTo(false, '/pages/myDoctor/main?patId='+user.id)"
           class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
@@ -96,7 +96,7 @@
       </dd>
     </dl>
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
-      <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="消息"></i-tab-bar-item>
+      <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="病例"></i-tab-bar-item>
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
       <i-tab-bar-item key="science" icon="document" current-icon="document_fill" title="科普"></i-tab-bar-item>
       <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
