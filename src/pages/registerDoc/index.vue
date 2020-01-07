@@ -56,6 +56,7 @@
         subject: '',
         path: '',
         introduce: '',
+        uniqueCode: '',
         form: {
           docName: '',
           phone: '',
@@ -70,7 +71,8 @@
           introduce: '',
           openId: '',
           icon: '',
-          alias: ''
+          alias: '',
+          uniqueCode: ''
         },
         formData: {}
       }
@@ -180,14 +182,15 @@
         this.form.openId = sessionKey.openid
         this.form.icon = userInfo.avatarUrl
         this.form.alias = userInfo.nickName
+        let number = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
+        console.log(number)
+        this.form.uniqueCode = number
         let form = this.form
         let code = this.code
         if (form.hospitals.id !== 0) {
           form.id = this.id
           form.province = location.province
           form.city = location.city
-          const number = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
-          form.uniqueCode = number
           let formData = JSON.stringify(form)
           wx.request({
             url: 'https://gkkj.jrrexliang.com/api/wx/code/get',

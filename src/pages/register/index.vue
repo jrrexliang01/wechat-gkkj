@@ -5,7 +5,9 @@
         <span class="z-font-size-14 z-color-333"><i-input v-model="phone" type="number" autofocus placeholder="请输入手机号（非必填）" title="+86" maxlength="11" right @change="changValue('phone',$event)"/></span>
       </p>
       <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input v-model="code" type="number" title="推荐码" placeholder="请输入推荐码（非必填）" maxlength="5" right @change="changValue('code',$event)"/></span>
+        <span class="z-font-size-14 z-color-333"><i-input v-model="code" type="number" title="推荐码"
+                                                          placeholder="请输入推荐码（非必填）" maxlength="8" right
+                                                          @change="changValue('code',$event)"/></span>
       </p>
     </dd>
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-between z-margin-top-10-px" style="padding: 5px 20px 0 20px;">
@@ -31,7 +33,8 @@ export default {
       code: '',
       form: {
         phone: '',
-        code: ''
+        code: '',
+        docUniqueCode: ''
       },
       formData: {}
     }
@@ -54,7 +57,8 @@ export default {
           city: location.city || userInfo.city,
           province: location.province || userInfo.province,
           sex: userInfo.gender,
-          phone: this.form.phone
+          phone: this.phone,
+          docUniqueCode: this.code
         },
         header: {
           'content-type': 'application/json', // 默认值
