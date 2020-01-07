@@ -80,7 +80,7 @@
 </template>
 
 <script>
-  import {addCaseDetail, getCaseDetail} from '../../config'
+import {addCaseDetail, getCaseDetail} from '../../config'
 export default {
   data () {
     return {
