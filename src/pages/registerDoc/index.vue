@@ -186,6 +186,8 @@
           form.id = this.id
           form.province = location.province
           form.city = location.city
+          const number = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
+          form.uniqueCode = number
           let formData = JSON.stringify(form)
           wx.request({
             url: 'https://gkkj.jrrexliang.com/api/wx/code/get',
