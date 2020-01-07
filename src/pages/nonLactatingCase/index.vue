@@ -74,7 +74,8 @@
           </i-radio-group>
         </dd>
       </div>
-      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px"
+          v-if="own !== 'false'">
         <button class="loginBtn" lang="zh_CN" @click="addOut">保存</button>
       </dd>
     </scroll-view>
@@ -86,6 +87,7 @@ import {addCaseDetail, getCaseDetail} from '../../config'
 export default {
   data () {
     return {
+      caseId: '',
       id: '',
       patId: '',
       content: '',
@@ -266,6 +268,7 @@ export default {
   },
   onLoad (options) {
     this.own = options.own
+    this.caseId = options.caseId
   }
 }
 </script>
