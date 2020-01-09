@@ -252,10 +252,10 @@ export default {
   },
   async mounted () {
     // 调用应用实例的方法获取全局数据
-    const {patientDetail} = await getCaseDetail(this.caseId)
-    console.log(patientDetail)
-    if (patientDetail !== null && patientDetail !== '' && patientDetail !== undefined) {
-      this.form = patientDetail
+    const {caseDetail} = await getCaseDetail(this.caseId)
+    console.log(caseDetail)
+    if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
+      this.form = caseDetail
       this.patientName = this.form.patientName
       this.age = this.form.age
       this.phone = this.form.phone
