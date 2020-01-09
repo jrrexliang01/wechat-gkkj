@@ -99,36 +99,36 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="$openWin('../onLine/main?docId=' + user.id)" class="z-padding-all-10-px ub-box ub-between"
-          style="border-bottom:1px solid #eee">
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">在线状态</span>
-        </p>
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
-        </p>
-      </dd>
-      <dd @click.stop="$openWin('../price/main?docId=' + user.id)" class="z-padding-all-10-px ub-box ub-between"
-          style="border-bottom:1px solid #eee">
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">问诊价钱</span>
-        </p>
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
-        </p>
-      </dd>
-      <dd @click.stop="$openWin('../setting/main?docId=' + user.id)" class="z-padding-all-10-px ub-box ub-between"
-          style="border-bottom:1px solid #eee">
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon--fuwu" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">随访设置</span>
-        </p>
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
-        </p>
-      </dd>
+      <!--      <dd @click.stop="$openWin('../onLine/main?docId=' + user.id)" class="z-padding-all-10-px ub-box ub-between"-->
+      <!--          style="border-bottom:1px solid #eee">-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>-->
+      <!--          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">在线状态</span>-->
+      <!--        </p>-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>-->
+      <!--        </p>-->
+      <!--      </dd>-->
+      <!--      <dd @click.stop="$openWin('../price/main?docId=' + user.id)" class="z-padding-all-10-px ub-box ub-between"-->
+      <!--          style="border-bottom:1px solid #eee">-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-danju" style="color:#357cfb;font-size:20px"></i>-->
+      <!--          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">问诊价钱</span>-->
+      <!--        </p>-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>-->
+      <!--        </p>-->
+      <!--      </dd>-->
+      <!--      <dd @click.stop="$openWin('../setting/main?docId=' + user.id)" class="z-padding-all-10-px ub-box ub-between"-->
+      <!--          style="border-bottom:1px solid #eee">-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon&#45;&#45;fuwu" style="color:#357cfb;font-size:20px"></i>-->
+      <!--          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">随访设置</span>-->
+      <!--        </p>-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>-->
+      <!--        </p>-->
+      <!--      </dd>-->
     </dl>
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="报告"></i-tab-bar-item>

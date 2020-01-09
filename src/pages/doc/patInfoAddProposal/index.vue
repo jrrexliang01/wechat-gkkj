@@ -1,19 +1,37 @@
 <template>
   <div class="container ub-box ub-col">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
-      <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input placeholder="调理建议(非必填)"
-                                                          @change="changValue('healthProposal', $event)" right
-                                                          title="调理建议"/></span>
-      </p>
-      <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input placeholder="项目建议(非必填)"
-                                                          @change="changValue('projectProposal', $event)" right
-                                                          title="项目建议"/></span>
-      </p>
+    <dd style="padding:8px 10px"
+        class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+          <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">调理建议</span>
+        </li>
+      </ul>
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
+              <textarea placeholder="调理建议(非必填)" v-model="healthProposal" auto-focus right/>
+            </span>
+        </li>
+      </ul>
+    </dd>
+    <dd style="padding:8px 10px"
+        class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+          <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">项目建议</span>
+        </li>
+      </ul>
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
+              <textarea placeholder="项目建议(非必填)" v-model="projectProposal" auto-focus right/>
+            </span>
+        </li>
+      </ul>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
-      <button class="loginBtn" lang="zh_CN" @click="addReport()">保  存</button>
+      <button class="loginBtn" lang="zh_CN" @click="addReport()">保 存</button>
     </dd>
   </div>
 </template>
@@ -100,10 +118,10 @@ export default {
     }
   },
   mounted () {
-    this.patRepInfo = wx.getStorageSync('reportInfo')
-    console.log(this.patRepInfo)
-    this.healthProposal = this.patRepInfo.healthProposal
-    this.projectProposal = this.patRepInfo.projectProposal
+    if (wx.getStorageSync('reportInfo') !== null) {
+      this.healthProposal = this.patRepInfo.healthProposal
+      this.projectProposal = this.patRepInfo.projectProposal
+    }
   }
 }
 </script>

@@ -1,86 +1,94 @@
 <template>
   <div class="container ub-box ub-col">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
-      <p class="ub-box">
-        <i-panel title="疼痛">
-          <i-radio-group :current="currentPainRep" v-for="(painRep,index ) in painRepList" :key="painRep.id" @change="handlePainRepChange">
-            <i-radio position="right" :value="painRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="积乳">
-          <i-radio-group :current="currentMilkRep" v-for="(milkRep,index ) in milkRepList" :key="milkRep.id" @change="handleMilkRepChange">
-            <i-radio position="right" :value="milkRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="包块">
-          <i-radio-group :current="currentChunksRep" v-for="(chunksRep,index ) in chunksRepList" :key="chunksRep.id" @change="handleChunksRepChange">
-            <i-radio position="right" :value="chunksRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="急性乳腺炎">
-          <i-radio-group :current="currentAcuteMastitisRep" v-for="(acuteMastitisRep,index ) in acuteMastitisRepList" :key="acuteMastitisRep.id" @change="handleAcuteMastitisRepChange">
-            <i-radio position="right" :value="acuteMastitisRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="溢液">
-          <i-radio-group :current="currentSpillRep" v-for="(spillRep,index ) in spillRepList" :key="spillRep.id" @change="handleSpillRepChange">
-            <i-radio position="right" :value="spillRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="乳头问题">
-          <i-radio-group :current="currentQuestionRep" v-for="(questionRep,index ) in questionRepList" :key="questionRep.id" @change="handleQuestionRepChange">
-            <i-radio position="right" :value="questionRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="增生">
-          <i-radio-group :current="currentHyperplasiaRep" v-for="(hyperplasiaRep,index ) in hyperplasiaRepList" :key="hyperplasiaRep.id" @change="handleHyperplasiaRepChange">
-            <i-radio position="right" :value="hyperplasiaRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="纤维瘤、脂肪瘤">
-          <i-radio-group :current="currentFibromaRep" v-for="(fibromaRep,index ) in fibromaRepList" :key="fibromaRep.id" @change="handleFibromaRepChange">
-            <i-radio position="right" :value="fibromaRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="乳痛症">
-          <i-radio-group :current="currentMastodyniaRep" v-for="(mastodyniaRep,index ) in mastodyniaRepList" :key="mastodyniaRep.id" @change="handleMastodyniaRepChange">
-            <i-radio position="right" :value="mastodyniaRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="乳腺囊肿">
-          <i-radio-group :current="currentBreastCystRep" v-for="(breastCystRep,index ) in breastCystRepList" :key="breastCystRep.id" @change="handleBreastCystRepChange">
-            <i-radio position="right" :value="breastCystRep.name">
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疼痛</span>
+      <i-radio-group :current="currentPainRep" v-for="(painRep,index ) in painRepList" :key="painRep.id"
+                     @change="handlePainRepChange">
+        <i-radio position="right" :value="painRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">积乳</span>
+      <i-radio-group :current="currentMilkRep" v-for="(milkRep,index ) in milkRepList" :key="milkRep.id"
+                     @change="handleMilkRepChange">
+        <i-radio position="right" :value="milkRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">包块</span>
+      <i-radio-group :current="currentChunksRep" v-for="(chunksRep,index ) in chunksRepList" :key="chunksRep.id"
+                     @change="handleChunksRepChange">
+        <i-radio position="right" :value="chunksRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">急性乳腺炎</span>
+      <i-radio-group :current="currentAcuteMastitisRep" v-for="(acuteMastitisRep,index ) in acuteMastitisRepList"
+                     :key="acuteMastitisRep.id" @change="handleAcuteMastitisRepChange">
+        <i-radio position="right" :value="acuteMastitisRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">溢液</span>
+      <i-radio-group :current="currentSpillRep" v-for="(spillRep,index ) in spillRepList" :key="spillRep.id"
+                     @change="handleSpillRepChange">
+        <i-radio position="right" :value="spillRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">乳头问题</span>
+      <i-radio-group :current="currentQuestionRep" v-for="(questionRep,index ) in questionRepList" :key="questionRep.id"
+                     @change="handleQuestionRepChange">
+        <i-radio position="right" :value="questionRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">增生</span>
+      <i-radio-group :current="currentHyperplasiaRep" v-for="(hyperplasiaRep,index ) in hyperplasiaRepList"
+                     :key="hyperplasiaRep.id" @change="handleHyperplasiaRepChange">
+        <i-radio position="right" :value="hyperplasiaRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">纤维瘤、脂肪瘤</span>
+      <i-radio-group :current="currentFibromaRep" v-for="(fibromaRep,index ) in fibromaRepList" :key="fibromaRep.id"
+                     @change="handleFibromaRepChange">
+        <i-radio position="right" :value="fibromaRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">乳痛症</span>
+      <i-radio-group :current="currentMastodyniaRep" v-for="(mastodyniaRep,index ) in mastodyniaRepList"
+                     :key="mastodyniaRep.id" @change="handleMastodyniaRepChange">
+        <i-radio position="right" :value="mastodyniaRep.name">
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">乳腺囊肿</span>
+      <i-radio-group :current="currentBreastCystRep" v-for="(breastCystRep,index ) in breastCystRepList"
+                     :key="breastCystRep.id" @change="handleBreastCystRepChange">
+        <i-radio position="right" :value="breastCystRep.name">
+        </i-radio>
+      </i-radio-group>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
       <button class="loginBtn" lang="zh_CN" @click="next()">下一步</button>
@@ -204,16 +212,16 @@ export default {
       currentMastodyniaRep: '',
       currentBreastCystRep: '',
       patRepInfo: {
-        isPain: '',
-        isMilk: '',
-        chunks: '',
-        auteMastitis: '',
-        spill: '',
-        question: '',
-        hyperplasia: '',
-        fibroma: '',
-        mastodynia: '',
-        breastCyst: '',
+        isPain: {},
+        isMilk: {},
+        chunks: {},
+        auteMastitis: {},
+        spill: {},
+        question: {},
+        hyperplasia: {},
+        fibroma: {},
+        mastodynia: {},
+        breastCyst: {},
         patient: {
           id: 0
         },
@@ -289,20 +297,20 @@ export default {
     wx.setStorageSync('reportInfo', reportInfo)
   },
   mounted () {
-    this.patRepInfo = wx.getStorageSync('reportInfo')
-    console.log(this.patRepInfo)
-    this.currentPainRep = this.patRepInfo.isPain
-    this.currentMilkRep = this.patRepInfo.isMilk
-    this.currentChunksRep = this.patRepInfo.chunks
-    this.currentAcuteMastitisRep = this.patRepInfo.auteMastitis
-    this.currentSpillRep = this.patRepInfo.spill
-    this.currentQuestionRep = this.patRepInfo.question
-    this.currentHyperplasiaRep = this.patRepInfo.hyperplasia
-    this.currentFibromaRep = this.patRepInfo.fibroma
-    this.currentMastodyniaRep = this.patRepInfo.mastodynia
-    this.currentBreastCystRep = this.patRepInfo.breastCyst
-    this.healthProposal = this.patRepInfo.healthProposal
-    this.projectProposal = this.patRepInfo.projectProposal
+    if (wx.getStorageSync('reportInfo') !== null) {
+      this.currentPainRep = this.patRepInfo.isPain
+      this.currentMilkRep = this.patRepInfo.isMilk
+      this.currentChunksRep = this.patRepInfo.chunks
+      this.currentAcuteMastitisRep = this.patRepInfo.auteMastitis
+      this.currentSpillRep = this.patRepInfo.spill
+      this.currentQuestionRep = this.patRepInfo.question
+      this.currentHyperplasiaRep = this.patRepInfo.hyperplasia
+      this.currentFibromaRep = this.patRepInfo.fibroma
+      this.currentMastodyniaRep = this.patRepInfo.mastodynia
+      this.currentBreastCystRep = this.patRepInfo.breastCyst
+      this.healthProposal = this.patRepInfo.healthProposal
+      this.projectProposal = this.patRepInfo.projectProposal
+    }
   }
 }
 </script>

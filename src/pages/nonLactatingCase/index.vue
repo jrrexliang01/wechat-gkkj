@@ -158,7 +158,8 @@ export default {
         appearance: '',
         pain: '',
         touch: '',
-        secretion: ''
+        secretion: '',
+        isLactation: 0
       },
       formData: {},
       status: 0,
@@ -166,7 +167,6 @@ export default {
     }
   },
   methods: {
-    // 拉黑好友
     async addOut () {
       let userInfo = wx.getStorageSync('userInfo')
       this.form.patientName = this.patientName
@@ -179,9 +179,14 @@ export default {
       this.form.touch = this.currentTouch
       this.form.secretion = this.currentSecretion
       this.form.patient = {
-        id: userInfo.id
+        id: userInfo.id,
+        patientName: this.patientName,
+        age: this.age,
+        phone: this.phone
       }
+      this.form.isLactation = 0
       this.formData = JSON.stringify(this.form)
+      console.log(this.formData)
       if (this.form.patientName === '' || this.form.patientName == null) {
         this.$store.commit('showToast', {
           title: '请输入姓名',
@@ -206,6 +211,7 @@ export default {
         })
         return
       }
+
       const {status} = await addCaseDetail(this.formData)
       this.status = status
       if (this.status === 1) {
@@ -245,11 +251,10 @@ export default {
     }
   },
   async mounted () {
-    let userInfo = wx.getStorageSync('userInfo')
-    this.patId = userInfo.id
     // 调用应用实例的方法获取全局数据
-    const {patientDetail} = await getCaseDetail(this.patId)
-    if (patientDetail !== null && patientDetail !== '') {
+    const {patientDetail} = await getCaseDetail(this.caseId)
+    console.log(patientDetail)
+    if (patientDetail !== null && patientDetail !== '' && patientDetail !== undefined) {
       this.form = patientDetail
       this.patientName = this.form.patientName
       this.age = this.form.age

@@ -121,7 +121,8 @@ export default {
         isAllergy: false,
         postpartumDay: 0,
         postpartumRepair: false,
-        currentState: []
+        currentState: [],
+        isLactation: 1
       },
       formData: {},
       status: 0,
@@ -140,8 +141,12 @@ export default {
       this.form.postpartumRepair = this.switch3
       this.form.currentState = this.current.toString()
       this.form.patient = {
-        id: userInfo.id
+        id: userInfo.id,
+        patientName: this.patientName,
+        age: this.age,
+        phone: this.phone
       }
+      this.form.isLactation = 1
       this.formData = JSON.stringify(this.form)
       if (this.form.patientName === '' || this.form.patientName == null) {
         this.$store.commit('showToast', {
@@ -199,11 +204,9 @@ export default {
     }
   },
   async mounted () {
-    console.log(this.caseId)
     // 调用应用实例的方法获取全局数据
     const {caseDetail} = await getCaseDetail(this.caseId)
-    console.log(caseDetail)
-    if (caseDetail !== null && caseDetail !== '') {
+    if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
       this.form = caseDetail
       this.patientName = this.form.patientName
       this.age = this.form.age

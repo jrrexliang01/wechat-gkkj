@@ -249,12 +249,11 @@ export default {
     }
   },
   async mounted () {
-    let userInfo = wx.getStorageSync('userInfo')
-    this.patId = userInfo.id
     // 调用应用实例的方法获取全局数据
-    const {patientDetail} = await getCaseDetail(this.patId)
-    if (patientDetail !== null && patientDetail !== '') {
-      this.form = patientDetail
+    const {caseDetail} = await getCaseDetail(this.caseId)
+    console.log(caseDetail)
+    if (caseDetail !== null && caseDetail !== '') {
+      this.form = caseDetail
       this.patientName = this.form.patientName
       this.age = this.form.age
       this.phone = this.form.phone

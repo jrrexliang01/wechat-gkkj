@@ -3,93 +3,125 @@
     <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
       <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">就诊报告</p>
     </dd>
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px">
-      <p class="ub-box">
-        <i-panel title="疼痛">
-          <i-radio-group :current="currentPainRep" v-for="(painRep,index ) in painRepList" :key="painRep.id" @change="handlePainRepChange">
-            <i-radio position="right" :value="painRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="积乳">
-          <i-radio-group :current="currentMilkRep" v-for="(milkRep,index ) in milkRepList" :key="milkRep.id" @change="handleMilkRepChange">
-            <i-radio position="right" :value="milkRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="包块">
-          <i-radio-group :current="currentChunksRep" v-for="(chunksRep,index ) in chunksRepList" :key="chunksRep.id" @change="handleChunksRepChange">
-            <i-radio position="right" :value="chunksRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="急性乳腺炎">
-          <i-radio-group :current="currentAcuteMastitisRep" v-for="(acuteMastitisRep,index ) in acuteMastitisRepList" :key="acuteMastitisRep.id" @change="handleAcuteMastitisRepChange">
-            <i-radio position="right" :value="acuteMastitisRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="溢液">
-          <i-radio-group :current="currentSpillRep" v-for="(spillRep,index ) in spillRepList" :key="spillRep.id" @change="handleSpillRepChange">
-            <i-radio position="right" :value="spillRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="乳头问题">
-          <i-radio-group :current="currentQuestionRep" v-for="(questionRep,index ) in questionRepList" :key="questionRep.id" @change="handleQuestionRepChange">
-            <i-radio position="right" :value="questionRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="增生">
-          <i-radio-group :current="currentHyperplasiaRep" v-for="(hyperplasiaRep,index ) in hyperplasiaRepList" :key="hyperplasiaRep.id" @change="handleHyperplasiaRepChange">
-            <i-radio position="right" :value="hyperplasiaRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="纤维瘤、脂肪瘤">
-          <i-radio-group :current="currentFibromaRep" v-for="(fibromaRep,index ) in fibromaRepList" :key="fibromaRep.id" @change="handleFibromaRepChange">
-            <i-radio position="right" :value="fibromaRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="乳痛症">
-          <i-radio-group :current="currentMastodyniaRep" v-for="(mastodyniaRep,index ) in mastodyniaRepList" :key="mastodyniaRep.id" @change="handleMastodyniaRepChange">
-            <i-radio position="right" :value="mastodyniaRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <i-panel title="乳腺囊肿">
-          <i-radio-group :current="currentBreastCystRep" v-for="(breastCystRep,index ) in breastCystRepList" :key="breastCystRep.id" @change="handleBreastCystRepChange">
-            <i-radio position="right" :value="breastCystRep.name" disabled>
-            </i-radio>
-          </i-radio-group>
-        </i-panel>
-      </p>
-      <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input placeholder="调理建议" @change="changValue('healthProposal', $event)" right title="调理建议" disabled/></span>
-      </p>
-      <p class="ub-box">
-        <span class="z-font-size-14 z-color-333"><i-input placeholder="项目建议" @change="changValue('projectProposal', $event)" right title="项目建议" disabled/></span>
-      </p>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疼痛</span>
+      <i-radio-group :current="currentPainRep" v-for="(painRep,index ) in painRepList" :key="painRep.id"
+                     @change="handlePainRepChange">
+        <i-radio position="right" :value="painRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">积乳</span>
+      <i-radio-group :current="currentMilkRep" v-for="(milkRep,index ) in milkRepList" :key="milkRep.id"
+                     @change="handleMilkRepChange">
+        <i-radio position="right" :value="milkRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">包块</span>
+      <i-radio-group :current="currentChunksRep" v-for="(chunksRep,index ) in chunksRepList" :key="chunksRep.id"
+                     @change="handleChunksRepChange">
+        <i-radio position="right" :value="chunksRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">急性乳腺炎</span>
+      <i-radio-group :current="currentAcuteMastitisRep" v-for="(acuteMastitisRep,index ) in acuteMastitisRepList"
+                     :key="acuteMastitisRep.id" @change="handleAcuteMastitisRepChange">
+        <i-radio position="right" :value="acuteMastitisRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">溢液</span>
+      <i-radio-group :current="currentSpillRep" v-for="(spillRep,index ) in spillRepList" :key="spillRep.id"
+                     @change="handleSpillRepChange">
+        <i-radio position="right" :value="spillRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">乳头问题</span>
+      <i-radio-group :current="currentQuestionRep" v-for="(questionRep,index ) in questionRepList" :key="questionRep.id"
+                     @change="handleQuestionRepChange">
+        <i-radio position="right" :value="questionRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">增生</span>
+      <i-radio-group :current="currentHyperplasiaRep" v-for="(hyperplasiaRep,index ) in hyperplasiaRepList"
+                     :key="hyperplasiaRep.id" @change="handleHyperplasiaRepChange">
+        <i-radio position="right" :value="hyperplasiaRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">纤维瘤、脂肪瘤</span>
+      <i-radio-group :current="currentFibromaRep" v-for="(fibromaRep,index ) in fibromaRepList" :key="fibromaRep.id"
+                     @change="handleFibromaRepChange">
+        <i-radio position="right" :value="fibromaRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">乳痛症</span>
+      <i-radio-group :current="currentMastodyniaRep" v-for="(mastodyniaRep,index ) in mastodyniaRepList"
+                     :key="mastodyniaRep.id" @change="handleMastodyniaRepChange">
+        <i-radio position="right" :value="mastodyniaRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">乳腺囊肿</span>
+      <i-radio-group :current="currentBreastCystRep" v-for="(breastCystRep,index ) in breastCystRepList"
+                     :key="breastCystRep.id" @change="handleBreastCystRepChange">
+        <i-radio position="right" :value="breastCystRep.name" disabled>
+        </i-radio>
+      </i-radio-group>
+    </dd>
+    <dd style="padding:8px 10px"
+        class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+          <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">调理建议</span>
+        </li>
+      </ul>
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
+              <textarea placeholder="调理建议(非必填)" v-model="healthProposal" auto-focus right disabled/>
+            </span>
+        </li>
+      </ul>
+    </dd>
+    <dd style="padding:8px 10px"
+        class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+          <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">项目建议</span>
+        </li>
+      </ul>
+      <ul class="z-width-100-percent ub-box ub-col ub-ver">
+        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
+              <textarea placeholder="项目建议(非必填)" v-model="projectProposal" auto-focus right/>
+            </span>
+        </li>
+      </ul>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
       <button class="loginBtn" lang="zh_CN" @click="next()">下一步</button>

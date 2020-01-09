@@ -9,6 +9,7 @@
             <span
               class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.patient.alias}}</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">日期:{{val.createTime}}</span>
+            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">病例类型:{{caseStatus[val.isLactation]}}</span>
           </div>
         </dd>
       </dl>
@@ -33,7 +34,11 @@
       return {
         caseList: {},
         current: 'chat',
-        user: {}
+        user: {},
+        caseStatus: {
+          true: '哺乳期',
+          false: '非哺乳期'
+        }
       }
     },
     async onLoad (options) {

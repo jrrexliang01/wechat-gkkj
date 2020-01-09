@@ -3,18 +3,19 @@
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col">
         <dd class="ub-box ub-col" style="padding-bottom: 40px;">
-          <div class="ub-end" v-for="(val, idx) in orderList" :key="idx" :isLast="idx===6">
-            <div @click.stop="gotoDocDetail(val.doc.id)" class="card ub-box z-padding-v-10-px" :class="{'z-border-bottom-1-eee':isLast==false}">
-              <img :src="val.doc.icon" class="z-img-cover">
+          <div class="ub-end" v-for="(val, idx) in docList" :key="idx" :isLast="idx===6">
+            <div @click.stop="gotoDocDetail(val.id)" class="card ub-box z-padding-v-10-px"
+                 :class="{'z-border-bottom-1-eee':isLast==false}">
+              <img :src="val.icon" class="z-img-cover">
               <div class="z-padding-h-10-px ub-flex-1 ub-box ub-col">
                 <p class="ub-flex-1 ub-box ub-ver ub-between">
                   <span
-                    class="z-width-60-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.doc.docName}}</span>
-                  <span class="ub-flex-1 z-textAlign-right z-font-size-12 z-color-888">{{val.doc.title}}</span>
+                    class="z-width-60-percent z-font-size-15 z-lineHeight-26 z-lines-1-overflow-hidden z-font-weight-bold">{{val.docName}}</span>
+                  <span class="ub-flex-1 z-textAlign-right z-font-size-12 z-color-888">{{val.title}}</span>
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
-                  <span class="z-font-size-12 z-color-666 z-lineHeight-20">{{val.doc.hospitals.department}}</span>
-                  <span class="z-font-size-12 z-color-888">{{val.doc.hospitals.hospitalName}}</span>
+                  <span class="z-font-size-12 z-color-666 z-lineHeight-20">{{val.hospitals.department}}</span>
+                  <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>
                 </p>
               </div>
             </div>
@@ -26,14 +27,12 @@
 </template>
 
 <script>
-import { getOrderList } from '../../config'
 export default {
   data () {
     return {
       modalLoading: true,
       modal: false,
-      orderList: {},
-      patId: 0
+      docList: {}
     }
   },
   methods: {
@@ -41,13 +40,8 @@ export default {
       wx.navigateTo({url: '/pages/docInfo/main?docId=' + id})
     }
   },
-  async onLoad (options) {
-    this.patId = parseInt(options.patId)
-    const { orderList } = await getOrderList(this.patId)
-    this.orderList = orderList
-  },
   mounted () {
-    this.orderList = wx.getStorageSync('orderList')
+    this.docList = wx.getStorageSync('userInfo').docs
   }
 }
 </script>

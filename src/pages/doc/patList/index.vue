@@ -1,12 +1,5 @@
 <template>
   <div class="container ub-box">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between" style="border-bottom: 1px solid #f5f5f5">
-      <p class="ub-box ub-ver">
-				<span @click.stop="toReportAdd() " class="buyBtn ub-box ub-ver z-font-size-16 z-color-fff">
-					添加报告
-				</span>
-      </p>
-    </dd>
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col">
         <dd @click.stop="$openWin('/pages/doc/patInfo/main?reportId=' + val.id)" v-for="(val, idx) in reportList" :key="idx" class="order z-width-100-percent ub-box z-box-sizing-border">

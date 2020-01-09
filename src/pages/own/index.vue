@@ -54,36 +54,36 @@
           <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
         </p>
       </dd>
-      <dd @click.stop="navigateTo(false, '/pages/message/main?patId='+user.id)"
-          class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-ziyuan" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的消息</span>
-        </p>
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
-        </p>
-      </dd>
-      <dd @click.stop="navigateTo(false, '/pages/myInfo/main?own=true')" class="z-padding-all-10-px ub-box ub-between"
-          style="border-bottom:1px solid #eee">
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-zhiliang" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">个人信息</span>
-        </p>
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
-        </p>
-      </dd>
-      <dd @click.stop="navigateTo(false, '/pages/patList/main?patId='+user.id)"
-          class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-shangpin" style="color:#357cfb;font-size:20px"></i>
-          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">评估报告</span>
-        </p>
-        <p class="ub-box ub-ver">
-          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>
-        </p>
-      </dd>
+      <!--      <dd @click.stop="navigateTo(false, '/pages/message/main?patId='+user.id)"-->
+      <!--          class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-ziyuan" style="color:#357cfb;font-size:20px"></i>-->
+      <!--          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">我的消息</span>-->
+      <!--        </p>-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>-->
+      <!--        </p>-->
+      <!--      </dd>-->
+      <!--      <dd @click.stop="navigateTo(false, '/pages/myInfo/main?own=true')" class="z-padding-all-10-px ub-box ub-between"-->
+      <!--          style="border-bottom:1px solid #eee">-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-zhiliang" style="color:#357cfb;font-size:20px"></i>-->
+      <!--          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">个人信息</span>-->
+      <!--        </p>-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>-->
+      <!--        </p>-->
+      <!--      </dd>-->
+      <!--      <dd @click.stop="navigateTo(false, '/pages/patList/main?patId='+user.id)"-->
+      <!--          class="z-padding-all-10-px ub-box ub-between" style="border-bottom:1px solid #eee">-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-shangpin" style="color:#357cfb;font-size:20px"></i>-->
+      <!--          <span class="z-font-size-15 z-color-666 z-padding-h-10-px">评估报告</span>-->
+      <!--        </p>-->
+      <!--        <p class="ub-box ub-ver">-->
+      <!--          <i class="iconfont icon-xiayiyeqianjinchakangengduo z-font-size-14 z-color-888"></i>-->
+      <!--        </p>-->
+      <!--      </dd>-->
       <dd @click.stop="navigateTo(false, '/pages/feedback/main')" class="z-padding-all-10-px ub-box ub-between"
           style="border-bottom:1px solid #eee">
         <p class="ub-box ub-ver">

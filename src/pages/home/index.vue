@@ -84,6 +84,7 @@
       }
     },
     onLoad () {
+      console.log(wx.getStorageSync('token'))
       const qqmapsdk = new QQMapWX({
         key: 'S5FBZ-ZBMW5-JZ4IQ-Q2JKE-WDNSF-NPBW6'
       })
