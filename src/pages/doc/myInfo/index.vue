@@ -20,12 +20,21 @@
                                                           @change="changValue('department', $event)" right title="科室"
                                                           readonly/></span>
       </p>
-      <p>
-        <span class="z-font-size-14 z-color-333"><i-input v-model="subject" placeholder="请输入擅长描述" @change="changValue('subject', $event)" right title="擅长描述"/></span>
-      </p>
-      <p>
-        <span class="z-font-size-14 z-color-333"><i-input v-model="introduce" placeholder="请输入医生介绍" @change="changValue('introduce', $event)" right title="医生介绍"/></span>
-      </p>
+        <p>
+            <span class="z-font-size-14 z-color-333"><i-input v-model="subject" placeholder="请输入擅长描述"
+                                                              @change="changValue('subject', $event)" right
+                                                              title="擅长描述"/></span>
+        </p>
+        <p>
+            <span class="z-font-size-14 z-color-333"><i-input v-model="introduce" placeholder="请输入医生介绍"
+                                                              @change="changValue('introduce', $event)" right
+                                                              title="医生介绍"/></span>
+        </p>
+        <p>
+            <span class="z-font-size-14 z-color-333"><i-input v-model="uniqueCode" placeholder="医生码"
+                                                              @change="changValue('uniqueCode', $event)" right
+                                                              title="医生码" disabled/></span>
+        </p>
     </dd>
     <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
       <button class="loginBtn" lang="zh_CN" @click="reg(docId)">保 存</button>
@@ -46,6 +55,7 @@
         department: '',
         subject: '',
         introduce: '',
+        uniqueCode: '',
         form: {
           id: 0,
           docName: '',
@@ -61,7 +71,8 @@
           introduce: '',
           openId: '',
           icon: '',
-          alias: ''
+          alias: '',
+          uniqueCode: ''
         }
       }
     },
@@ -76,6 +87,7 @@
       this.department = docInfo.hospitals.department
       this.subject = docInfo.subject
       this.introduce = docInfo.introduce
+      this.uniqueCode = docInfo.uniqueCode
     },
     methods: {
       async reg (id) {

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的病例",
+  "navigationBarTitleText": "患者病例",
   "navigationBarBackgroundColor": "#E7E9EA",
   "disableScroll": false,
   "usingComponents": {

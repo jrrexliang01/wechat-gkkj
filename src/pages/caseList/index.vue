@@ -7,7 +7,7 @@
             class="order z-width-100-percent ub-box z-box-sizing-border">
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span
-              class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.patient.alias}}</span>
+                    class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.patientName}}</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">日期:{{val.createTime}}</span>
             <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">病例类型:{{caseStatus[val.isLactation]}}</span>
           </div>

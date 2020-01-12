@@ -1,6 +1,6 @@
 <template>
   <div class="container ub-box ub-col ub-ver">
-    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0" v-if="!isLactation">
       <dd style="padding:8px 10px"
           class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">基本信息</span>
@@ -8,7 +8,7 @@
           <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">姓名</span>
             <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
-              <input v-model="patientName" placeholder="请输入姓名">
+              <input v-model="patientName" placeholder="请输入姓名" disabled>
             </span>
           </li>
         </ul>
@@ -16,7 +16,7 @@
           <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">年龄</span>
             <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
-              <input v-model="age" placeholder="请输入年龄" type="number">
+              <input v-model="age" placeholder="请输入年龄" type="number" disabled>
             </span>
           </li>
         </ul>
@@ -24,21 +24,23 @@
           <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">电话</span>
             <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
-              <input v-model="phone" placeholder="请输入电话" type="number">
+              <input v-model="phone" placeholder="请输入电话" type="number" disabled>
             </span>
           </li>
         </ul>
       </dd>
       <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疾病</span>
-        <i-checkbox-group :current="currentDisease" v-for="(disease,index ) in diseaseList" :key="disease.id" @change="handleDiseaseChange">
+        <i-checkbox-group :current="currentDisease" v-for="(disease,index ) in diseaseList" :key="disease.id"
+                          @change="handleDiseaseChange" disabled="true">
           <i-checkbox position="right" :value="disease.name">
           </i-checkbox>
         </i-checkbox-group>
       </dd>
       <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">治疗或服务经历</span>
-        <i-checkbox-group :current="currentTreatment" v-for="(treatment,index ) in treatmentList" :key="treatment.id" @change="handleTreatmentChange">
+        <i-checkbox-group :current="currentTreatment" v-for="(treatment,index ) in treatmentList" :key="treatment.id"
+                          @change="handleTreatmentChange" disabled>
           <i-checkbox position="right" :value="treatment.name">
           </i-checkbox>
         </i-checkbox-group>
@@ -47,34 +49,117 @@
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">目前状况</span>
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">外观</span>
-          <i-radio-group :current="currentAppearance" v-for="(appearance,index ) in appearanceList" :key="appearance.id" @change="handleAppearanceChange">
+          <i-radio-group :current="currentAppearance" v-for="(appearance,index ) in appearanceList" :key="appearance.id"
+                         @change="handleAppearanceChange" disabled>
             <i-radio position="right" :value="appearance.name">
             </i-radio>
           </i-radio-group>
         </dd>
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疼痛</span>
-          <i-radio-group :current="currentPain" v-for="(pain,index ) in painList" :key="pain.id" @change="handlePainChange">
+          <i-radio-group :current="currentPain" v-for="(pain,index ) in painList" :key="pain.id"
+                         @change="handlePainChange" disabled>
             <i-radio position="right" :value="pain.name">
             </i-radio>
           </i-radio-group>
         </dd>
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">触感</span>
-          <i-radio-group :current="currentTouch" v-for="(touch,index ) in touchList" :key="touch.id" @change="handleTouchChange">
+          <i-radio-group :current="currentTouch" v-for="(touch,index ) in touchList" :key="touch.id"
+                         @change="handleTouchChange" disabled>
             <i-radio position="right" :value="touch.name">
             </i-radio>
           </i-radio-group>
         </dd>
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
-          <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">分泌物</span>
-          <i-radio-group :current="currentSecretion" v-for="(secretion,index ) in secretionList" :key="secretion.id" @change="handleSecretionChange">
+          <span
+            class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">分泌物</span>
+          <i-radio-group :current="currentSecretion" v-for="(secretion,index ) in secretionList" :key="secretion.id"
+                         @change="handleSecretionChange" disabled>
             <i-radio position="right" :value="secretion.name">
             </i-radio>
           </i-radio-group>
         </dd>
       </div>
       <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
+        <button class="loginBtn" lang="zh_CN" @click="addOut">生成报告</button>
+      </dd>
+    </scroll-view>
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0" v-if="isLactation">
+      <dd style="padding:8px 10px"
+          class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">基本信息</span>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">姓名</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="patientName" placeholder="请输入姓名" disabled>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">年龄</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="age" placeholder="请输入年龄" type="number" disabled>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">电话</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="phone" placeholder="请输入电话" type="number" disabled>
+            </span>
+          </li>
+        </ul>
+      </dd>
+      <dd style="padding:8px 10px"
+          class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
+        <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold">疾病情况</span>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">疾病史</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <i-switch :value="switch1" @change="onChange1" slot="footer" disabled></i-switch>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">过敏史</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <i-switch :value="switch2" @change="onChange2" slot="footer" disabled></i-switch>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">产后修复</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <i-switch :value="switch3" @change="onChange3" slot="footer" disabled></i-switch>
+            </span>
+          </li>
+        </ul>
+        <ul class="z-width-100-percent ub-box ub-col ub-ver">
+          <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
+            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">产后天数(天)</span>
+            <span class="z-font-size-16 z-color-888 ub-flex-2 z-textAlign-right">
+              <input v-model="postpartumDay" placeholder="请输入天数" type="number" disabled>
+            </span>
+          </li>
+        </ul>
+      </dd>
+      <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+        <span
+          class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">目前状态</span>
+        <i-checkbox-group :current="current" v-for="(now, index) in nowList" :key="now.id" @change="handleChange"
+                          disabled>
+          <i-checkbox position="right" :value="now.name">
+          </i-checkbox>
+        </i-checkbox-group>
+      </dd>
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" disabled>
         <button class="loginBtn" lang="zh_CN" @click="addOut">生成报告</button>
       </dd>
     </scroll-view>
@@ -93,7 +178,29 @@ export default {
       age: '',
       phone: '',
       patientName: '',
+      isLactation: false,
       own: false,
+      switch1: false,
+      switch2: false,
+      switch3: false,
+      postpartumDay: '',
+      nowList: [{
+        id: 1,
+        name: '少奶'
+      }, {
+        id: 2,
+        name: '生理涨奶'
+      }, {
+        id: 3,
+        name: '乳头问题'
+      }, {
+        id: 4,
+        name: '急性乳腺炎'
+      }, {
+        id: 5,
+        name: '回奶'
+      }],
+      current: [],
       diseaseList: [{
         id: 1,
         name: '妇科疾病'
@@ -157,7 +264,12 @@ export default {
         appearance: '',
         pain: '',
         touch: '',
-        secretion: ''
+        secretion: '',
+        isDisease: false,
+        isAllergy: false,
+        postpartumDay: 0,
+        postpartumRepair: false,
+        currentState: []
       },
       formData: {},
       status: 0,
@@ -246,12 +358,24 @@ export default {
     },
     handleSecretionChange (data) {
       this.currentSecretion = data.target.value
+    },
+    onChange1 () {
+      this.switch1 === true ? this.switch1 = false : this.switch1 = true
+    },
+    onChange2 () {
+      this.switch2 === true ? this.switch2 = false : this.switch2 = true
+    },
+    onChange3 () {
+      this.switch3 === true ? this.switch3 = false : this.switch3 = true
+    },
+    handleChange (data) {
+      const index = this.current.indexOf(data.target.value)
+      index === -1 ? this.current.push(data.target.value) : this.current.splice(index, 1)
     }
   },
   async mounted () {
     // 调用应用实例的方法获取全局数据
     const {caseDetail} = await getCaseDetail(this.caseId)
-    console.log(caseDetail)
     if (caseDetail !== null && caseDetail !== '') {
       this.form = caseDetail
       this.patientName = this.form.patientName
@@ -267,6 +391,15 @@ export default {
       this.currentPain = this.form.pain
       this.currentTouch = this.form.touch
       this.currentSecretion = this.form.secretion
+      this.switch1 = this.form.isDisease
+      this.switch2 = this.form.isAllergy
+      this.postpartumDay = this.form.postpartumDay
+      this.switch3 = this.form.postpartumRepair
+      if (this.form.currentState !== null) {
+        this.current = this.form.currentState.split(',')
+      } else {
+        this.current = []
+      }
     }
   },
   onLoad (options) {

@@ -1,8 +1,5 @@
 <template>
   <div class="container ub-box ub-col">
-    <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff">
-      <p class="z-font-size-18 z-color-000" style="padding: 20px 0 20px 20px;">就诊报告</p>
-    </dd>
     <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
       <span
         class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疼痛</span>
@@ -103,7 +100,7 @@
       <ul class="z-width-100-percent ub-box ub-col ub-ver">
         <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
-              <textarea placeholder="调理建议(非必填)" v-model="healthProposal" auto-focus right disabled/>
+              <textarea placeholder="调理建议(非必填)" v-model="healthProposal" right disabled/>
             </span>
         </li>
       </ul>
@@ -118,13 +115,10 @@
       <ul class="z-width-100-percent ub-box ub-col ub-ver">
         <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
             <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
-              <textarea placeholder="项目建议(非必填)" v-model="projectProposal" auto-focus right/>
+              <textarea placeholder="项目建议(非必填)" v-model="projectProposal" right disabled/>
             </span>
         </li>
       </ul>
-    </dd>
-    <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px">
-      <button class="loginBtn" lang="zh_CN" @click="next()">下一步</button>
     </dd>
   </div>
 </template>

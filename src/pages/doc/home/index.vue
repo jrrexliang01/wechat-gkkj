@@ -201,12 +201,15 @@
         }
       }
       const {articleList} = await getArticleListAll()
+      console.log(articleList)
       for (let i = 0; i < articleList.length; i++) {
-        if (articleList[i].banner !== null) {
-          this.imgUrls.push({
-            id: articleList[i].id,
-            src: articleList[i].banner
-          })
+        if (articleList[i].isBanner) {
+          if (articleList[i].banner !== null) {
+            this.imgUrls.push({
+              id: articleList[i].id,
+              src: articleList[i].banner
+            })
+          }
         }
       }
     },

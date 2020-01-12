@@ -251,24 +251,26 @@ export default {
     }
   },
   async mounted () {
-    // 调用应用实例的方法获取全局数据
-    const {caseDetail} = await getCaseDetail(this.caseId)
-    console.log(caseDetail)
-    if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
-      this.form = caseDetail
-      this.patientName = this.form.patientName
-      this.age = this.form.age
-      this.phone = this.form.phone
-      if (this.form.medicalHistory !== null) {
-        this.currentDisease = this.form.medicalHistory.split(',')
+    console.log(this.caseId)
+    if (this.caseId === undefined) {
+      const {caseDetail} = await getCaseDetail(this.caseId)
+      // 调用应用实例的方法获取全局数据
+      if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
+        this.form = caseDetail
+        this.patientName = this.form.patientName
+        this.age = this.form.age
+        this.phone = this.form.phone
+        if (this.form.medicalHistory !== null) {
+          this.currentDisease = this.form.medicalHistory.split(',')
+        }
+        if (this.form.treatment !== null) {
+          this.currentTreatment = this.form.treatment.split(',')
+        }
+        this.currentAppearance = this.form.appearance
+        this.currentPain = this.form.pain
+        this.currentTouch = this.form.touch
+        this.currentSecretion = this.form.secretion
       }
-      if (this.form.treatment !== null) {
-        this.currentTreatment = this.form.treatment.split(',')
-      }
-      this.currentAppearance = this.form.appearance
-      this.currentPain = this.form.pain
-      this.currentTouch = this.form.touch
-      this.currentSecretion = this.form.secretion
     }
   },
   onLoad (options) {

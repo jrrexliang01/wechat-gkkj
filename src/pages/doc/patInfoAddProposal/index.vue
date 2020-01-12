@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { reportAdd } from '../../../config'
+import {msgAdd, reportAdd} from '../../../config'
 export default {
   data () {
     return {
@@ -75,44 +75,24 @@ export default {
       this.patRepInfo = wx.getStorageSync('reportInfoAdd')
       this.patRepInfo.healthProposal = this.healthProposal
       this.patRepInfo.projectProposal = this.projectProposal
-      console.log(this.patRepInfo)
       const {status} = await reportAdd(JSON.stringify(this.patRepInfo))
       if (status.status === 1) {
         this.formData.docId = this.patRepInfo.doc.id
         this.formData.patientId = this.patRepInfo.patient.id
-        let formData = JSON.stringify(this.formData)
-        wx.request({
-          url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/orderInfo',
-          data: formData,
-          method: 'POST',
-          header: {
-            'content-type': 'application/json', // 默认值
-            'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-          },
-          success (res) {
-            let orderInfo = res.data.data
-            if (orderInfo !== null) {
-              orderInfo.isReport = true
-              orderInfo.reportTime = new Date()
-              orderInfo.reportTime = status.id
-              let formData = JSON.stringify(orderInfo)
-              wx.request({
-                url: 'https://gkkj.jrrexliang.com/api/wx/order/interrogation/save',
-                data: formData,
-                method: 'POST',
-                header: {
-                  'content-type': 'application/json', // 默认值
-                  'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-                },
-                success (res) {
-                  wx.removeStorage('reportInfoAdd')
-                  wx.navigateTo({
-                    url: '/pages/doc/home/main'
-                  })
-                }
-              })
-            }
-          }
+        let msgInfo = {
+          title: '',
+          userId: '',
+          userType: 0,
+          msg: ''
+        }
+        msgInfo.title = '病例消息'
+        msgInfo.userId = this.patRepInfo.patient.id
+        msgInfo.userType = 2
+        msgInfo.msg = '您的专属医生已为您提交病例报告,请查看！'
+        await msgAdd(JSON.stringify(msgInfo))
+        wx.removeStorage('reportInfoAdd')
+        wx.navigateTo({
+          url: '/pages/doc/myPatList/main'
         })
       }
     }

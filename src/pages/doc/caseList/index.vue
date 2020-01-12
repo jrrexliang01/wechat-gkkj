@@ -2,15 +2,16 @@
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col" v-if="caseList.length !== 0">
-        <dd @click.stop="$openWin('/pages/doc/myPatInfo/main?own=false&caseId=' + val.id + '&patId=' +val.patient.id)" v-for="(val, idx) in caseList"
+        <dd @click.stop="$openWin('/pages/doc/nonLactatingCase/main?own=false&caseId=' + val.id + '&patId=' +val.patient.id)"
+            v-for="(val, idx) in caseList"
             :key="idx"
             class="order z-width-100-percent ub-box z-box-sizing-border">
-          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
+            <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span
-              class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.patient.alias}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">日期:{{val.createTime}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">病例类型:{{caseStatus[val.isLactation]}}</span>
-          </div>
+                    class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.patientName}}</span>
+                <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">日期:{{val.createTime}}</span>
+                <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">病例类型:{{caseStatus[val.isLactation]}}</span>
+            </div>
         </dd>
       </dl>
       <!--<dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" fixed="true">-->

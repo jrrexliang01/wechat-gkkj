@@ -16,8 +16,8 @@
       <div class="ub-box ub-ver z-bg-color-fff">
         <swiper class="swiper" indicator-dots="false" autoplay="false" interval="5000" duration="500">
           <block v-for="(item, idx) in imgUrls" :key="idx">
-            <swiper-item>
-              <image :src="item" class="z-width-100-percent" mode="widthFix" style="height: 150px;"/>
+            <swiper-item @click="gotoNew(item.id)">
+              <image :src="item.src" class="z-width-100-percent" mode="widthFix" style="height: 150px;"/>
             </swiper-item>
           </block>
         </swiper>
@@ -39,7 +39,7 @@
                 </p>
                 <p class="ub-flex-1 ub-box ub-ver ub-between ub-flex-end">
                   <span class="z-font-size-12 z-color-666 z-lineHeight-20">{{val.department}}</span>
-<!--                  <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>-->
+                  <span class="z-font-size-12 z-color-888">{{val.hospitals.hospitalName}}</span>
                 </p>
               </div>
             </div>
@@ -59,7 +59,7 @@
 <script>
   import QQMapWX from 'qqmap-wx-jssdk'
   import {switchUserTab} from '../../utils/common'
-  import {getDocList} from '../../config'
+  import {getDocList, getNewList} from '../../config'
   export default {
     props: ['isLast'],
     computed: {
@@ -81,6 +81,13 @@
       },
       gotoDetail (id) {
         wx.navigateTo({url: '/pages/docInfo/main?docId=' + id})
+      },
+      gotoNew (id) {
+        if (id !== 0) {
+          wx.navigateTo({
+            url: '/pages/scienceInfo/main?newsId=' + id
+          })
+        }
       }
     },
     onLoad () {
@@ -116,12 +123,27 @@
         this.docList = docList
       }
     },
-    mounted () {
+    async mounted () {
       let banner = wx.getStorageSync('enclosureList')
       this.imgUrls = []
       for (let i = 0; i < banner.data.length; i++) {
-        if (banner.data[i].enclosureName === 'banner') {
-          this.imgUrls.push(banner.data[i].enclosurePath)
+        if (banner.data[i].enclosureName === 'banner' && banner.data[i].delFlag === false) {
+          this.imgUrls.push({
+            id: 0,
+            src: banner.data[i].enclosurePath
+          })
+        }
+      }
+      const {newList} = await getNewList()
+      console.log(newList)
+      for (let i = 0; i < newList.length; i++) {
+        if (newList[i].isBanner) {
+          if (newList[i].banner !== null) {
+            this.imgUrls.push({
+              id: newList[i].id,
+              src: newList[i].banner
+            })
+          }
         }
       }
     },

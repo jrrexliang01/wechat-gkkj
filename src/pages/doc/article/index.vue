@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import {getArticleList} from '../../../config'
+  import {getArticleListAll} from '../../../config'
 
   export default {
     data () {
@@ -32,7 +32,7 @@
     },
     async onShow () {
       // 调用应用实例的方法获取全局数据
-      const {articleList} = await getArticleList()
+      const {articleList} = await getArticleListAll()
       this.articleList = articleList
     },
     mounted () {
