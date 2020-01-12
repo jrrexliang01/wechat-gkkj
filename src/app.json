@@ -2,7 +2,6 @@
   "pages": [
     "pages/init/main",
     "pages/home/main",
-    "pages/index/main",
     "pages/login/main",
     "pages/register/main",
     "pages/registerDoc/main",

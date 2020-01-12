@@ -2,7 +2,7 @@
   <div class="container ub-box ub-col ub-ver">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <div v-for="(val, idx) in billList" :key="idx">
-        <dl class="ub-box ub-col z-width-100-percent z-margin-bottom-5-px">
+        <dl class="ub-box ub-col z-width-100-percent z-margin-bottom-5-px" v-if="val.billTpe === 2">
           <dd class="z-width-100-percent z-box-sizing-border z-bg-color-fff z-padding-all-8-px ub-box ub-between">
             <p class="z-font-size-14 z-color-333"><b>{{billStatus[val.billTpe]}}收益</b></p>
             <p class="ub-box">
