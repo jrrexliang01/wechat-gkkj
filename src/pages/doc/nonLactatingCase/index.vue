@@ -265,6 +265,9 @@ export default {
         pain: '',
         touch: '',
         secretion: '',
+        switch1: false,
+        switch2: false,
+        switch3: false,
         isDisease: false,
         isAllergy: false,
         postpartumDay: 0,
@@ -376,8 +379,10 @@ export default {
   async mounted () {
     // 调用应用实例的方法获取全局数据
     const {caseDetail} = await getCaseDetail(this.caseId)
+    console.log(caseDetail)
     if (caseDetail !== null && caseDetail !== '') {
       this.form = caseDetail
+      this.isLactation = this.form.isLactation
       this.patientName = this.form.patientName
       this.age = this.form.age
       this.phone = this.form.phone
@@ -393,8 +398,8 @@ export default {
       this.currentSecretion = this.form.secretion
       this.switch1 = this.form.isDisease
       this.switch2 = this.form.isAllergy
-      this.postpartumDay = this.form.postpartumDay
       this.switch3 = this.form.postpartumRepair
+      this.postpartumDay = this.form.postpartumDay
       if (this.form.currentState !== null) {
         this.current = this.form.currentState.split(',')
       } else {

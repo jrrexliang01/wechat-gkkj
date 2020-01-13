@@ -252,8 +252,9 @@ export default {
   },
   async mounted () {
     console.log(this.caseId)
-    if (this.caseId === undefined) {
+    if (this.caseId !== undefined) {
       const {caseDetail} = await getCaseDetail(this.caseId)
+      console.log(caseDetail)
       // 调用应用实例的方法获取全局数据
       if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
         this.form = caseDetail

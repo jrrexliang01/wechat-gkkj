@@ -13,7 +13,8 @@
           </div>
         </dd>
       </dl>
-      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" fixed="true">
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" fixed="true"
+          style="margin-bottom: 70px;">
         <button class="loginBtn" lang="zh_CN" @click="add">添加</button>
       </dd>
       <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">

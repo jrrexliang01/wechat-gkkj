@@ -29,65 +29,65 @@
               data: {
                 code: res.code
               },
-            method: 'GET',
-            success (res) {
-              var sessionKey = res.data
-              wx.setStorageSync('sessionKey', sessionKey)
-              wx.setStorageSync('token', sessionKey.unionid)
-              let options = genTestUserSig(sessionKey.openid)
-              options.runLoopNetType = 0
-              if (options) {
-                wx.$app.login({
-                  userID: sessionKey.openid,
-                  userSig: options.userSig,
-                  hasUserInfo: true
-                }).then(() => {
-                  wx.request({
-                    url: 'https://gkkj.jrrexliang.com/api/wx/doc/userType',
-                    data: {
-                      openId: sessionKey.openid
-                    },
-                    header: {
-                      'content-type': 'application/json', // 默认值
-                      'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
-                    },
-                    method: 'POST',
-                    success (res) {
-                      if (res.data.data.userType === null) {
-                        wx.redirectTo({
-                          url: '/pages/home/main'
-                        })
-                      } else if (res.data.data.userType === 1) {
-                        wx.setStorageSync('userInfo', res.data.data.doc)
-                        wx.redirectTo({
-                          url: '/pages/doc/home/main'
-                        })
-                      } else if (res.data.data.userType === 2) {
-                        wx.setStorageSync('userInfo', res.data.data.patient)
-                        wx.redirectTo({
-                          url: '/pages/home/main'
-                        })
+              method: 'GET',
+              success (res) {
+                var sessionKey = res.data
+                wx.setStorageSync('sessionKey', sessionKey)
+                wx.setStorageSync('token', sessionKey.unionid)
+                let options = genTestUserSig(sessionKey.openid)
+                options.runLoopNetType = 0
+                if (options) {
+                  wx.$app.login({
+                    userID: sessionKey.openid,
+                    userSig: options.userSig,
+                    hasUserInfo: true
+                  }).then(() => {
+                    wx.request({
+                      url: 'https://gkkj.jrrexliang.com/api/wx/doc/userType',
+                      data: {
+                        openId: sessionKey.openid
+                      },
+                      header: {
+                        'content-type': 'application/json', // 默认值
+                        'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+                      },
+                      method: 'POST',
+                      success (res) {
+                        if (res.data.data.userType === null) {
+                          wx.redirectTo({
+                            url: '/pages/home/main'
+                          })
+                        } else if (res.data.data.userType === 1) {
+                          wx.setStorageSync('userInfo', res.data.data.doc)
+                          wx.redirectTo({
+                            url: '/pages/doc/home/main'
+                          })
+                        } else if (res.data.data.userType === 2) {
+                          wx.setStorageSync('userInfo', res.data.data.patient)
+                          wx.redirectTo({
+                            url: '/pages/home/main'
+                          })
+                        }
                       }
-                    }
+                    })
                   })
-                })
+                }
               }
-            }
-          })
+            })
+          }
         }
+      })
+    },
+    async mounted () {
+      const {enclosureList} = await enclosureFindAll()
+      wx.setStorageSync('enclosureList', enclosureList)
+      if (wx.getStorageSync('history') === '') {
+        wx.setStorageSync('history', [])
       }
-    })
-  },
-  async mounted () {
-    const {enclosureList} = await enclosureFindAll()
-    wx.setStorageSync('enclosureList', enclosureList)
-    if (wx.getStorageSync('history') === '') {
-      wx.setStorageSync('history', [])
+      const {allDocList} = await getBaseDocs()
+      wx.setStorageSync('allDocList', allDocList)
     }
-    const {allDocList} = await getBaseDocs()
-    wx.setStorageSync('allDocList', allDocList)
   }
-}
 </script>
 
 <style lang="stylus" scoped>

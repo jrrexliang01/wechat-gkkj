@@ -90,35 +90,15 @@
         </i-radio>
       </i-radio-group>
     </dd>
-    <dd style="padding:8px 10px"
-        class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
-      <ul class="z-width-100-percent ub-box ub-col ub-ver">
-        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
-          <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">调理建议</span>
-        </li>
-      </ul>
-      <ul class="z-width-100-percent ub-box ub-col ub-ver">
-        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
-            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
-              <textarea placeholder="调理建议(非必填)" v-model="healthProposal" right disabled/>
-            </span>
-        </li>
-      </ul>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">调理建议</span>
+      {{healthProposal}}
     </dd>
-    <dd style="padding:8px 10px"
-        class="z-margin-top-8-px z-width-100-percent ub-box ub-ver ub-col z-box-sizing-border z-bg-color-fff">
-      <ul class="z-width-100-percent ub-box ub-col ub-ver">
-        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
-          <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">项目建议</span>
-        </li>
-      </ul>
-      <ul class="z-width-100-percent ub-box ub-col ub-ver">
-        <li class="z-width-100-percent ub-box ub-between ub-ver z-margin-bottom-20-px">
-            <span class="z-font-size-18 z-color-000 ub-flex-1 z-textAlign-left">
-              <textarea placeholder="项目建议(非必填)" v-model="projectProposal" right disabled/>
-            </span>
-        </li>
-      </ul>
+    <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
+      <span
+        class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">项目建议</span>
+      {{projectProposal}}
     </dd>
   </div>
 </template>

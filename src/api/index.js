@@ -643,7 +643,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             type: typeId
