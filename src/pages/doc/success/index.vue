@@ -42,7 +42,7 @@ export default {
       this.status = status
       if (this.status === 1) {
         this.docId = this.docInfo.id
-        let url = '/pages/doc/myCourse/main'
+        let url = '/pages/doc/myCourse/main?docId=' + this.docId
         wx.navigateTo({ url: url })
       } else {
       }

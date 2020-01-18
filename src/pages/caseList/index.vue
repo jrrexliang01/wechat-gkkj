@@ -48,7 +48,6 @@
       this.user = wx.getStorageSync('userInfo')
       const {caseList} = await getCaseList(parseInt(this.user.id))
       this.caseList = caseList
-      console.log(this.caseList)
     },
     methods: {
       handleChange (detail) {

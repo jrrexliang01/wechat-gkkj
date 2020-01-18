@@ -1,22 +1,20 @@
 <template>
   <div class="container ub-box">
-    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh);padding-bottom: 50px;" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col" v-if="caseList.length !== 0">
-        <dd @click.stop="$openWin('/pages/doc/nonLactatingCase/main?own=false&caseId=' + val.id + '&patId=' +val.patient.id)"
-            v-for="(val, idx) in caseList"
-            :key="idx"
-            class="order z-width-100-percent ub-box z-box-sizing-border">
-            <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
+        <dd
+          @click.stop="$openWin('/pages/doc/nonLactatingCase/main?own=false&caseId=' + val.id + '&patId=' +val.patient.id)"
+          v-for="(val, idx) in caseList"
+          :key="idx"
+          class="order z-width-100-percent ub-box z-box-sizing-border">
+          <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span
-                    class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.patientName}}</span>
-                <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">日期:{{val.createTime}}</span>
-                <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">病例类型:{{caseStatus[val.isLactation]}}</span>
+              class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.patientName}}</span>
+            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">日期:{{val.createTime}}</span>
+            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">病例类型:{{caseStatus[val.isLactation]}}</span>
             </div>
         </dd>
       </dl>
-      <!--<dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" fixed="true">-->
-        <!--<button class="loginBtn" lang="zh_CN" @click="add">添加</button>-->
-      <!--</dd>-->
       <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
         <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="报告"></i-tab-bar-item>
         <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>

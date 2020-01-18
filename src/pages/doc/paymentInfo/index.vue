@@ -67,7 +67,7 @@ export default {
         })
       } else {
         wx.showToast({
-          title: '请勿重复提交',
+          title: '您已购买此课程，可以在已购课程中查看',
           icon: 'none',
           duration: 2000
         })

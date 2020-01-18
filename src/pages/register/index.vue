@@ -6,7 +6,7 @@
       </p>
       <p class="ub-box">
         <span class="z-font-size-14 z-color-333"><i-input v-model="code" type="number" title="推荐码"
-                                                          placeholder="请输入推荐码（非必填）" maxlength="8" right
+                                                          placeholder="请输入推荐码" maxlength="8" right
                                                           @change="changValue('code',$event)"/></span>
       </p>
     </dd>
@@ -46,7 +46,14 @@ export default {
       let sessionKey = wx.getStorageSync('sessionKey')
       let userInfo = wx.getStorageSync('userInfo')
       let location = wx.getStorageSync('location')
-
+      if (this.form.code === '') {
+        this.$store.commit('showToast', {
+          title: '请填写推荐码',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
       wx.request({
         url: 'https://gkkj.jrrexliang.com/api/wx/patient/add',
         data: {

@@ -33,15 +33,15 @@
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疾病</span>
         <i-checkbox-group :current="currentDisease" v-for="(disease,index ) in diseaseList" :key="disease.id"
                           @change="handleDiseaseChange" disabled="true">
-          <i-checkbox position="right" :value="disease.name">
+          <i-checkbox position="right" :value="disease.name" disabled>
           </i-checkbox>
         </i-checkbox-group>
       </dd>
       <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
         <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">治疗或服务经历</span>
         <i-checkbox-group :current="currentTreatment" v-for="(treatment,index ) in treatmentList" :key="treatment.id"
-                          @change="handleTreatmentChange" disabled>
-          <i-checkbox position="right" :value="treatment.name">
+                          @change="handleTreatmentChange">
+          <i-checkbox position="right" :value="treatment.name" disabled>
           </i-checkbox>
         </i-checkbox-group>
       </dd>
@@ -50,24 +50,24 @@
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">外观</span>
           <i-radio-group :current="currentAppearance" v-for="(appearance,index ) in appearanceList" :key="appearance.id"
-                         @change="handleAppearanceChange" disabled>
-            <i-radio position="right" :value="appearance.name">
+                         @change="handleAppearanceChange">
+            <i-radio position="right" :value="appearance.name" disabled>
             </i-radio>
           </i-radio-group>
         </dd>
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">疼痛</span>
           <i-radio-group :current="currentPain" v-for="(pain,index ) in painList" :key="pain.id"
-                         @change="handlePainChange" disabled>
-            <i-radio position="right" :value="pain.name">
+                         @change="handlePainChange">
+            <i-radio position="right" :value="pain.name" disabled>
             </i-radio>
           </i-radio-group>
         </dd>
         <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
           <span class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">触感</span>
           <i-radio-group :current="currentTouch" v-for="(touch,index ) in touchList" :key="touch.id"
-                         @change="handleTouchChange" disabled>
-            <i-radio position="right" :value="touch.name">
+                         @change="handleTouchChange">
+            <i-radio position="right" :value="touch.name" disabled>
             </i-radio>
           </i-radio-group>
         </dd>
@@ -75,8 +75,8 @@
           <span
             class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">分泌物</span>
           <i-radio-group :current="currentSecretion" v-for="(secretion,index ) in secretionList" :key="secretion.id"
-                         @change="handleSecretionChange" disabled>
-            <i-radio position="right" :value="secretion.name">
+                         @change="handleSecretionChange">
+            <i-radio position="right" :value="secretion.name" disabled>
             </i-radio>
           </i-radio-group>
         </dd>
@@ -153,9 +153,8 @@
       <dd class="z-margin-top-8-px z-width-100-percent z-bg-color-fff">
         <span
           class="z-font-size-15 z-color-333 z-margin-bottom-8-px z-font-weight-bold ub-box ub-ver ub-col z-padding-top-10-px">目前状态</span>
-        <i-checkbox-group :current="current" v-for="(now, index) in nowList" :key="now.id" @change="handleChange"
-                          disabled>
-          <i-checkbox position="right" :value="now.name">
+        <i-checkbox-group :current="current" v-for="(now, index) in nowList" :key="now.id" @change="handleChange">
+          <i-checkbox position="right" :value="now.name" disabled>
           </i-checkbox>
         </i-checkbox-group>
       </dd>
@@ -167,7 +166,7 @@
 </template>
 
 <script>
-import {getCaseDetail} from '../../../config'
+  import {getCaseDetail, getReportInfo} from '../../../config'
 export default {
   data () {
     return {
@@ -285,63 +284,6 @@ export default {
         url: '/pages/doc/patInfoAdd/main?caseId=' + this.caseId + '&patId=' + this.patId
       })
     },
-    // 拉黑好友
-    // async addOut () {
-    //   let userInfo = wx.getStorageSync('userInfo')
-    //   this.form.patientName = this.patientName
-    //   this.form.age = this.age
-    //   this.form.phone = this.phone
-    //   this.form.medicalHistory = this.currentDisease.toString()
-    //   this.form.treatment = this.currentTreatment.toString()
-    //   this.form.appearance = this.currentAppearance
-    //   this.form.pain = this.currentPain
-    //   this.form.touch = this.currentTouch
-    //   this.form.secretion = this.currentSecretion
-    //   this.form.patient = {
-    //     id: userInfo.id
-    //   }
-    //   this.formData = JSON.stringify(this.form)
-    //   if (this.form.patientName === '' || this.form.patientName == null) {
-    //     this.$store.commit('showToast', {
-    //       title: '请输入姓名',
-    //       icon: 'none',
-    //       duration: 1500
-    //     })
-    //     return
-    //   }
-    //   if (this.form.age === '' || this.form.age == null) {
-    //     this.$store.commit('showToast', {
-    //       title: '请输入年龄',
-    //       icon: 'none',
-    //       duration: 1500
-    //     })
-    //     return
-    //   }
-    //   if (this.form.phone === '' || this.form.phone == null) {
-    //     this.$store.commit('showToast', {
-    //       title: '请输入手机号',
-    //       icon: 'none',
-    //       duration: 1500
-    //     })
-    //     return
-    //   }
-    //   const {status} = await addCaseDetail(this.formData)
-    //   this.status = status
-    //   if (this.status === 1) {
-    //     this.$store.commit('showToast', {
-    //       title: '保存成功',
-    //       icon: 'none',
-    //       duration: 1500
-    //     })
-    //     if (this.own === 'true') {
-    //       wx.navigateBack()
-    //     } else {
-    //       wx.navigateTo({
-    //         url: '/pages/caseList/main'
-    //       })
-    //     }
-    //   }
-    // },
     handleDiseaseChange (data) {
       const index = this.currentDisease.indexOf(data.target.value)
       index === -1 ? this.currentDisease.push(data.target.value) : this.currentDisease.splice(index, 1)
@@ -374,6 +316,20 @@ export default {
     handleChange (data) {
       const index = this.current.indexOf(data.target.value)
       index === -1 ? this.current.push(data.target.value) : this.current.splice(index, 1)
+    },
+    checkReport () {
+      this.patRepInfo = wx.getStorageSync('reportInfo')
+      if (this.patRepInfo === null) {
+        this.$store.commit('showToast', {
+          title: '暂无诊断报告',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
+      wx.navigateTo({
+        url: '/pages/reportInfo/main'
+      })
     }
   },
   async mounted () {
@@ -407,10 +363,12 @@ export default {
       }
     }
   },
-  onLoad (options) {
+  async onLoad (options) {
     this.own = options.own
     this.caseId = options.caseId
     this.patId = options.patId
+    const {reportInfo} = await getReportInfo(this.caseId)
+    wx.setStorageSync('reportInfo', reportInfo)
   }
 }
 </script>

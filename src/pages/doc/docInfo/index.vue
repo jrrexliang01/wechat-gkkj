@@ -66,7 +66,7 @@
     <!--fixed部分-->
     <ul class="fixCon ub-box ub-ver ub-between">
       <li v-if="docInfo.expertEducation===true" @click.stop="addStudy(docInfo.id)"
-          class="courseBtn ub-box ub-ver z-font-size-16 z-color-000">专家带教
+          class="courseBtn ub-box ub-ver z-font-size-16 z-color-fff">专家带教
       </li>
       <li v-if="docInfo.expertLecture===true" @click.stop="$openWin('/pages/doc/lecture/main')"
           class="submitBtn ub-box ub-ver z-font-size-16 z-color-fff">申请讲座
@@ -127,7 +127,7 @@
         this.studyInfo.teacher.id = id
         await studyAdd(JSON.stringify(this.studyInfo)).then(
           wx.showToast({
-            title: '申请成功',
+            title: '您的申请已经提交，2个工作日内会有专人与您联系。',
             icon: 'success',
             duration: 2000
           })
@@ -184,7 +184,7 @@
 
   .courseBtn {
     padding: 15px 20%;
-    background: #ffffff;
+    background: #2489f2;
     box-sizing: border-box;
   }
 
