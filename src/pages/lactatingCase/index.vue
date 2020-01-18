@@ -205,26 +205,37 @@ export default {
   },
   async mounted () {
     // 调用应用实例的方法获取全局数据
-    const {caseDetail} = await getCaseDetail(this.caseId)
-    if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
-      this.form = caseDetail
-      this.patientName = this.form.patientName
-      this.age = this.form.age
-      this.phone = this.form.phone
-      this.switch1 = this.form.isDisease
-      this.switch2 = this.form.isAllergy
-      this.postpartumDay = this.form.postpartumDay
-      this.switch3 = this.form.postpartumRepair
-      if (this.form.currentState !== null) {
-        this.current = this.form.currentState.split(',')
-      } else {
-        this.current = []
+    if (this.caseId !== undefined && this.caseId !== 'undefined') {
+      const {caseDetail} = await getCaseDetail(this.caseId)
+      if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
+        this.form = caseDetail
+        this.patientName = this.form.patientName
+        this.age = this.form.age
+        this.phone = this.form.phone
+        this.switch1 = this.form.isDisease
+        this.switch2 = this.form.isAllergy
+        this.postpartumDay = this.form.postpartumDay
+        this.switch3 = this.form.postpartumRepair
+        if (this.form.currentState !== null) {
+          this.current = this.form.currentState.split(',')
+        } else {
+          this.current = []
+        }
       }
     }
   },
   onLoad (options) {
     this.own = options.own
     this.caseId = options.caseId
+    this.content = ''
+    this.switch1 = false
+    this.switch2 = false
+    this.switch3 = false
+    this.age = ''
+    this.phone = ''
+    this.patientName = ''
+    this.postpartumDay = ''
+    this.current = []
   }
 }
 </script>

@@ -166,7 +166,7 @@
 </template>
 
 <script>
-  import {getCaseDetail, getReportInfo} from '../../../config'
+import {getCaseDetail, getReportInfo} from '../../../config'
 export default {
   data () {
     return {
