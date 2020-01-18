@@ -251,10 +251,8 @@ export default {
     }
   },
   async mounted () {
-    console.log(this.caseId)
-    if (this.caseId !== undefined) {
+    if (this.caseId !== undefined && this.caseId !== 'undefined') {
       const {caseDetail} = await getCaseDetail(this.caseId)
-      console.log(caseDetail)
       // 调用应用实例的方法获取全局数据
       if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
         this.form = caseDetail
@@ -277,6 +275,16 @@ export default {
   onLoad (options) {
     this.own = options.own
     this.caseId = options.caseId
+    this.currentDisease = []
+    this.currentTreatment = []
+    this.currentAppearance = ''
+    this.currentPain = ''
+    this.currentTouch = ''
+    this.currentSecretion = ''
+    this.age = ''
+    this.phone = ''
+    this.patientName = ''
+    this.content = ''
   }
 }
 </script>
