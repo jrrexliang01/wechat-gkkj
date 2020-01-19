@@ -59,9 +59,20 @@
                           })
                         } else if (res.data.data.userType === 1) {
                           wx.setStorageSync('userInfo', res.data.data.doc)
-                          wx.redirectTo({
-                            url: '/pages/doc/home/main'
-                          })
+                          if (res.data.data.doc.examineStatus === '2') {
+                            wx.redirectTo({
+                              url: '/pages/home/main'
+                            })
+                          } else if (res.data.data.doc.examineStatus === '不通过') {
+                            wx.redirectTo({
+                              url: '/pages/home/main'
+                            })
+                          } else {
+                            wx.redirectTo({
+                              url: '/pages/doc/home/main'
+                            })
+                          }
+                          console.log(res.data.data.doc)
                         } else if (res.data.data.userType === 2) {
                           wx.setStorageSync('userInfo', res.data.data.patient)
                           wx.redirectTo({

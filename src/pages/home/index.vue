@@ -91,7 +91,20 @@
       }
     },
     onLoad () {
-      console.log(wx.getStorageSync('token'))
+      this.userInfo = wx.getStorageSync('userInfo')
+      if (this.userInfo.examineStatus === '不通过') {
+        wx.showModal({
+          title: '提示',
+          content: this.userInfo.examineMsg,
+          success (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
       const qqmapsdk = new QQMapWX({
         key: 'S5FBZ-ZBMW5-JZ4IQ-Q2JKE-WDNSF-NPBW6'
       })

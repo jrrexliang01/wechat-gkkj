@@ -61,7 +61,21 @@
             duration: 2000
           })
         } else {
-          wx.navigateTo({url: '/pages/myInfo/main?own=true'})
+          if (this.user.examineStatus === '2') {
+            wx.showToast({
+              title: '您已提交医生注册信息，请等待后台审核！',
+              icon: 'none',
+              duration: 2000
+            })
+          } else if (this.user.examineStatus === '不通过') {
+            wx.showToast({
+              title: '您提交的审核未通过，请重新提交！',
+              icon: 'none',
+              duration: 2000
+            })
+          } else {
+            wx.navigateTo({url: '/pages/myInfo/main?own=true'})
+          }
         }
       }
     }

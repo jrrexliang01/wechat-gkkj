@@ -44,6 +44,22 @@ export default {
   methods: {
     async save () {
       this.userInfo = wx.getStorageSync('userInfo')
+      if (this.userInfo.examineStatus === '2') {
+        wx.showToast({
+          title: '您已提交医生注册信息，请等待后台审核！',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
+      if (this.user.examineStatus === '不通过') {
+        wx.showToast({
+          title: '您提交的审核未通过，请重新提交！',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
       this.form.content = this.content
       this.form.patient.id = this.userInfo.id
       this.form.openid = this.userInfo.openId

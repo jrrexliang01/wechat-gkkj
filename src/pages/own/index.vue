@@ -114,7 +114,11 @@
         if (this.user.id === undefined) {
           return false
         } else {
-          return true
+          if (this.userInfo.examineStatus === '不通过') {
+            return false
+          } else {
+            return true
+          }
         }
       },
       userInfo () {

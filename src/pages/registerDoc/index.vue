@@ -78,30 +78,51 @@
       }
     },
     onShow () {
-      this.phone = ''
-      this.code = ''
-      this.docName = ''
-      this.title = ''
-      this.hospitalName = ''
-      this.department = ''
-      this.subject = ''
-      this.introduce = ''
-      this.id = ''
-      this.form = {
-        docName: '',
-        phone: '',
-        hospitals: {
-          id: 0,
-          hospitalName: '',
-          department: ''
-        },
-        subject: '',
-        title: '',
-        department: '',
-        introduce: '',
-        openId: '',
-        icon: '',
-        alias: ''
+      let userInfo = wx.getStorageSync('userInfo')
+      console.log(userInfo)
+      if (userInfo.examineStatus === '不通过') {
+        this.phone = userInfo.phone
+        this.docName = userInfo.docName
+        this.title = userInfo.title
+        this.hospitalName = userInfo.hospitals.hospitalName
+        this.department = userInfo.department
+        this.subject = userInfo.subject
+        this.introduce = userInfo.introduce
+        this.id = userInfo.id
+        this.openId = userInfo.openId
+        this.icon = userInfo.icon
+        this.alias = userInfo.alias
+        this.form.icon = userInfo.icon
+        this.form.alias = userInfo.alias
+        this.form.hospitals.id = userInfo.hospitals.id
+        this.form.hospitals.hospitalName = userInfo.hospitals.hospitalName
+        this.form.hospitals.department = userInfo.hospitals.department
+      } else {
+        this.phone = ''
+        this.code = ''
+        this.docName = ''
+        this.title = ''
+        this.hospitalName = ''
+        this.department = ''
+        this.subject = ''
+        this.introduce = ''
+        this.id = ''
+        this.form = {
+          docName: '',
+          phone: '',
+          hospitals: {
+            id: 0,
+            hospitalName: '',
+            department: ''
+          },
+          subject: '',
+          title: '',
+          department: '',
+          introduce: '',
+          openId: '',
+          icon: '',
+          alias: ''
+        }
       }
     },
     methods: {
@@ -180,10 +201,11 @@
           return
         }
         this.form.openId = sessionKey.openid
-        this.form.icon = userInfo.avatarUrl
-        this.form.alias = userInfo.nickName
+        if (userInfo.examineStatus !== '不通过') {
+          this.form.icon = userInfo.avatarUrl
+          this.form.alias = userInfo.nickName
+        }
         let number = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
-        console.log(number)
         this.form.uniqueCode = number
         let form = this.form
         let code = this.code
