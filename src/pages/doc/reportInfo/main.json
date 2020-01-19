@@ -1,0 +1,20 @@
+{
+  "navigationBarTitleText": "患者报告",
+  "navigationBarBackgroundColor": "#E7E9EA",
+  "backgroundColor": "#e6e6e6",
+  "usingComponents": {
+    "i-input": "../../../static/iview/input/index",
+    "i-avatar": "../../../static/iview/avatar/index",
+    "i-row": "../../../static/iview/row/index",
+    "i-col": "../../../static/iview/col/index",
+    "i-icon": "../../../static/iview/icon/index",
+    "i-modal": "../../../static/iview/modal/index",
+    "i-switch": "../../../static/iview/switch/index",
+    "i-cell": "../../../static/iview/cell/index",
+    "i-panel": "../../static/iview/panel/index",
+    "i-radio-group": "../../static/iview/radio-group/index",
+    "i-radio": "../../static/iview/radio/index",
+    "i-checkbox-group": "../../static/iview/checkbox-group/index",
+    "i-checkbox": "../../static/iview/checkbox/index"
+  }
+}

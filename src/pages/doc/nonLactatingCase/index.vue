@@ -84,6 +84,9 @@
       <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
         <button class="loginBtn" lang="zh_CN" @click="addOut">生成报告</button>
       </dd>
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
+        <button class="loginBtn" lang="zh_CN" @click="checkReport">查看报告</button>
+      </dd>
     </scroll-view>
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0" v-if="isLactation">
       <dd style="padding:8px 10px"
@@ -160,6 +163,9 @@
       </dd>
       <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" disabled>
         <button class="loginBtn" lang="zh_CN" @click="addOut">生成报告</button>
+      </dd>
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px">
+        <button class="loginBtn" lang="zh_CN" @click="checkReport">查看报告</button>
       </dd>
     </scroll-view>
   </div>
@@ -275,7 +281,8 @@ export default {
       },
       formData: {},
       status: 0,
-      docInfo: {}
+      docInfo: {},
+      patRepInfo: null
     }
   },
   methods: {
@@ -318,7 +325,6 @@ export default {
       index === -1 ? this.current.push(data.target.value) : this.current.splice(index, 1)
     },
     checkReport () {
-      this.patRepInfo = wx.getStorageSync('reportInfo')
       if (this.patRepInfo === null) {
         this.$store.commit('showToast', {
           title: '暂无诊断报告',
@@ -328,7 +334,7 @@ export default {
         return
       }
       wx.navigateTo({
-        url: '/pages/reportInfo/main'
+        url: '/pages/doc/reportInfo/main'
       })
     }
   },
@@ -369,6 +375,7 @@ export default {
     this.patId = options.patId
     const {reportInfo} = await getReportInfo(this.caseId)
     wx.setStorageSync('reportInfo', reportInfo)
+    this.patRepInfo = reportInfo
   }
 }
 </script>

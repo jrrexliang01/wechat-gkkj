@@ -23,6 +23,7 @@
     "pages/nonLactatingCase/main",
     "pages/message/main",
     "pages/patList/main",
+    "pages/reportInfo/main",
     "pages/myDoctor/main",
     "pages/feedback/main",
     "pages/doc/home/main",
@@ -63,7 +64,8 @@
     "pages/doc/caseList/main",
     "pages/doc/lactatingCase/main",
     "pages/doc/nonLactatingCase/main",
-    "pages/doc/myPatInfo/main"
+    "pages/doc/myPatInfo/main",
+    "pages/doc/reportInfo/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
