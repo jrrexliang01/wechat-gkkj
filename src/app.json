@@ -65,7 +65,8 @@
     "pages/doc/lactatingCase/main",
     "pages/doc/nonLactatingCase/main",
     "pages/doc/myPatInfo/main",
-    "pages/doc/reportInfo/main"
+    "pages/doc/reportInfo/main",
+    "pages/web/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

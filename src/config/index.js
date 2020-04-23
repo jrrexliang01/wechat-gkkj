@@ -175,6 +175,11 @@ const studyAdd = async (formData) => {
   const status = res
   return { status }
 }
+const studyFind = async (formData) => {
+  const res = (await API.studyFind(formData)).data.status
+  const status = res
+  return { status }
+}
 const getHotDocList = async () => {
   const res = (await API.getHotDocList()).data.data.content
   const hotDocList = res
@@ -275,6 +280,7 @@ export {
   getRemindInfo,
   getCodeMsg,
   studyAdd,
+  studyFind,
   getHotDocList,
   getBanner,
   getDocBill,

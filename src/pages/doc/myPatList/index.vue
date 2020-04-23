@@ -22,6 +22,9 @@
           </div>
         </dd>
       </dl>
+      <dl class="z-width-100-percent ub-box ub-col"  v-if="patList.length === 0" style="margin-top: 50px;align-items:center;-webkit-box-align:center;">
+        暂无患者
+      </dl>
     </scroll-view>
     <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
       <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="报告"></i-tab-bar-item>

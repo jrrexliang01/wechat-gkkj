@@ -1,6 +1,6 @@
 <template>
   <div class="container ub-box">
-    <scroll-view scroll-y style="height:calc(100vh);padding-bottom: 50px;" scroll-top="0">
+    <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
       <dl class="z-width-100-percent ub-box ub-col" v-if="caseList.length !== 0">
         <dd
           @click.stop="$openWin('/pages/doc/nonLactatingCase/main?own=false&caseId=' + val.id + '&patId=' +val.patient.id)"
@@ -15,11 +15,6 @@
             </div>
         </dd>
       </dl>
-      <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
-        <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="报告"></i-tab-bar-item>
-        <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-        <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
-      </i-tab-bar>
     </scroll-view>
   </div>
 </template>

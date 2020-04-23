@@ -205,7 +205,10 @@ export default {
   },
   async mounted () {
     // 调用应用实例的方法获取全局数据
+    console.log(this.own)
+    console.log(this.caseId)
     if (this.caseId !== undefined && this.caseId !== 'undefined') {
+      console.log('in this')
       const {caseDetail} = await getCaseDetail(this.caseId)
       if (caseDetail !== null && caseDetail !== '' && caseDetail !== undefined) {
         this.form = caseDetail

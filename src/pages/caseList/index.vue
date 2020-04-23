@@ -1,7 +1,11 @@
 <template>
   <div class="container ub-box">
     <scroll-view scroll-y style="height:calc(100vh);" scroll-top="0">
-      <dl class="z-width-100-percent ub-box ub-col" v-if="caseList.length !== 0">
+      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px"
+          style="margin-bottom: 0px;">
+        <button class="loginBtn" lang="zh_CN" @click="add" style="display:flex;box-sizing:border-box;position:fixed;justify-content:space-around;align-items:center;-webkit-box-align:center;width:90%;top:calc(100vh - 150px)">添加</button>
+      </dd>
+      <dl class="z-width-100-percent ub-box ub-col" v-if="caseList.length !== 0" style="margin-bottom: 150px;">
         <dd @click.stop="$openWin('/pages/myInfo/main?own=false&caseId=' + val.id)" v-for="(val, idx) in caseList"
             :key="idx"
             class="order z-width-100-percent ub-box z-box-sizing-border">
@@ -13,10 +17,9 @@
           </div>
         </dd>
       </dl>
-      <dd class="z-font-size-18 z-color-333 z-padding-h-10-px z-margin-top-30-px z-margin-bottom-20-px" fixed="true"
-          style="margin-bottom: 70px;">
-        <button class="loginBtn" lang="zh_CN" @click="add">添加</button>
-      </dd>
+      <dl class="z-width-100-percent ub-box ub-col"  v-if="caseList.length === 0" style="align-items:center;-webkit-box-align:center;">
+        暂无病例信息
+      </dl>
       <i-tab-bar :current="current" color="#357cfb" @change="handleChange" fixed="true">
         <i-tab-bar-item key="chat" icon="interactive" current-icon="interactive_fill" title="病例"></i-tab-bar-item>
         <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
@@ -24,6 +27,7 @@
         <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
       </i-tab-bar>
     </scroll-view>
+
   </div>
 </template>
 
@@ -40,7 +44,8 @@
         caseStatus: {
           true: '哺乳期',
           false: '非哺乳期'
-        }
+        },
+        allHeight: '100px'
       }
     },
     async onShow () {
@@ -48,6 +53,13 @@
       this.user = wx.getStorageSync('userInfo')
       const {caseList} = await getCaseList(parseInt(this.user.id))
       this.caseList = caseList
+      wx.getSystemInfo({
+        success: function (res, rect) {
+          this.setData({
+            allHeight: res.windowHeight
+          })
+        }
+      })
     },
     methods: {
       handleChange (detail) {

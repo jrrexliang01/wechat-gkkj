@@ -6,10 +6,10 @@
           <img class="z-img-cover" :src="imgSrc"/>
           <div class="ub-flex-1 z-padding-left-10-px ub-box ub-col">
             <span class="z-font-size-15 z-color-333 z-margin-bottom-3-px z-font-weight-bold">{{val.course.courseTitle}}</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">数量：1</span>
-            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">总价：{{val.total}}</span>
+<!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">数量：1</span>-->
+<!--            <span class="z-font-size-12 z-color-888 z-margin-bottom-3-px">总价：{{val.total}}</span>-->
           </div>
-          <span class="z-font-size-14" style="color:#06c1ae">{{payStatus[val.status]}}</span>
+<!--          <span class="z-font-size-14" style="color:#06c1ae">{{payStatus[val.status]}}</span>-->
         </dd>
       </dl>
     </scroll-view>

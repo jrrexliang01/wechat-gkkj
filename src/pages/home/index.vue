@@ -22,6 +22,9 @@
           </block>
         </swiper>
       </div>
+      <div class="ub-box ub-ver z-bg-color-fff">
+        <image src='http://39.100.255.143:8013/img/home.jpg' class="z-width-100-percent" mode="widthFix" style="height: 150px;" @click="gotoOutPage()"/>
+      </div>
       <!--专家列表-->
       <dl class="ub-box ub-col z-margin-top-6-px z-padding-all-8-px" style="background:#fff">
         <p class="z-width-100-percent ub-box ub-ver" style="border-bottom:1px solid #eee">
@@ -88,6 +91,11 @@
             url: '/pages/scienceInfo/main?newsId=' + id
           })
         }
+      },
+      gotoOutPage () {
+        wx.navigateTo({
+          url: '/pages/web/main'
+        })
       }
     },
     onLoad () {

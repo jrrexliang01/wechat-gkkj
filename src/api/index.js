@@ -11,7 +11,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             title: ''
@@ -40,7 +40,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             province: province,
@@ -120,7 +120,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             id: patId
@@ -174,7 +174,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             id: docId
@@ -229,7 +229,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             id: patId,
@@ -261,7 +261,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             id: docId,
@@ -312,7 +312,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             id: patId
@@ -501,7 +501,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             userType: userType,
@@ -719,7 +719,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             title: title
@@ -749,7 +749,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             title: title
@@ -847,7 +847,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             id: docId
@@ -939,6 +939,23 @@ class API {
     })
   }
 
+  studyFind (formData) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'https://localhost:8000/api/wx/study/find',
+        data: formData,
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'wxAuthorization': 'Bearer ' + wx.getStorageSync('token')
+        },
+        success (res) {
+          resolve(res)
+        }
+      })
+    })
+  }
+
   /**
    * 随访列表
    * @returns {Promise<any>}
@@ -950,7 +967,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 4
+            sizePerPage: 50
           }
         },
         method: 'POST',
@@ -997,7 +1014,7 @@ class API {
         data: {
           pageInfo: {
             currentPage: 0,
-            sizePerPage: 10
+            sizePerPage: 50
           },
           params: {
             id: docId

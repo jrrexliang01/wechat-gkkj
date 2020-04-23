@@ -88,7 +88,7 @@
 </template>
 
 <script>
-  import {getDocList, getCourseList, studyAdd, getArticleListAll} from '../../../config'
+  import {getDocList, getCourseList, studyAdd, getArticleListAll, studyFind} from '../../../config'
   import {switchDocTab} from '../../../utils/common'
 
   export default {
@@ -118,6 +118,7 @@
             id: ''
           }
         },
+        status: 0,
         current: 'homepage'
       }
     },
@@ -163,13 +164,23 @@
         let userInfo = wx.getStorageSync('userInfo')
         this.studyInfo.student.id = userInfo.id
         this.studyInfo.teacher.id = id
-        await studyAdd(JSON.stringify(this.studyInfo)).then(
+        const {status} = await studyFind(JSON.stringify(this.studyInfo))
+        this.status = status
+        if (this.status === 1) {
           wx.showToast({
-            title: '申请成功',
-            icon: 'success',
+            title: '已申请',
+            icon: 'none',
             duration: 2000
           })
-        )
+        } else {
+          await studyAdd(JSON.stringify(this.studyInfo)).then(
+            wx.showToast({
+              title: '申请成功',
+              icon: 'none',
+              duration: 2000
+            })
+          )
+        }
       },
       gotoArticle (id) {
         if (id !== 0) {
@@ -183,9 +194,9 @@
       // 调用应用实例的方法获取全局数据
       const {docList} = await getDocList()
       this.docList = docList
+      console.log(docList)
       const {courseList} = await getCourseList(2)
       this.courseList = courseList.slice(0, 3)
-      console.log(courseList)
     },
     async mounted () {
       let banner = wx.getStorageSync('enclosureList')

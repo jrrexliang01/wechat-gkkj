@@ -36,13 +36,12 @@ export default {
       this.msgInfo.title = '订单消息'
       this.msgInfo.userId = this.docInfo.id
       this.msgInfo.userType = 1
-      this.msgInfo.msg = this.docInfo.docName + '您好，您的订单已支付成功！'
+      this.msgInfo.msg = this.docInfo.docName + '您的课程已购买成功，请在已购课程中查看'
       this.formData = JSON.stringify(this.msgInfo)
       const { status } = await msgAdd(this.formData)
       this.status = status
       if (this.status === 1) {
-        this.docId = this.docInfo.id
-        let url = '/pages/doc/myCourse/main?docId=' + this.docId
+        let url = '/pages/doc/myCourse/main?docId=' + this.docInfo.id
         wx.navigateTo({ url: url })
       } else {
       }
